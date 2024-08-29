@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Source
+public abstract class Source
 {
-	public BuildingObj obj;
 	public Trans trans;
 	public LinkedList<int> nums;
 	public Resource from;
@@ -14,48 +13,7 @@ public class Source
 	/// <summary>
 	/// 更新资源,输入成本
 	/// </summary>
-	public virtual void Update()
-	{
-		int count = maxnCount;
-		foreach (var t in trans.edge.tras)//转移时间
-		{
-			count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
-		}
-		for (var k = nums.Last; k != null; k = k.Previous)
-		{
-			int sum = Math.Min(count, k.Value);
-			count -= sum;
-			foreach (var t in trans.edge.tras)
-			{
-				obj.rates[t.x].tempCount -= sum * t.y;
-			}
-			k.Value -= sum;
-			if (k == nums.Last)
-			{
-				foreach (var data in trans.to.source)
-				{
-					to.Add(data.x, data.y * sum);
-				}
-			}
-			else
-			{
-				k.Next.Value += sum;
-			}
-		}
-		int maxC = 9999999;
-		foreach (var data in trans.from.source)
-		{
-			maxC = Math.Min(maxC, resource.GetRemain(data.x) / data.y);
-		}
-		count = Math.Min(maxC, count);
-		maxnCount -= count;
-		if (count != 0)
-			foreach (var data in trans.from.source)
-			{
-				from.Remove(data.x, data.y * count);
-			}
-		nums.First.Value = count;
-	}
+	public abstract void Update();
 
 	public Source(Resource from, Resource to, Trans trans)
 	{
@@ -70,6 +28,67 @@ public class Source
 		}
 	}
 }
+public class OnceSource:Source
+{
+	/// <summary>
+	/// 更新资源,输入成本
+	/// </summary>
+	public override void Update()
+	{
+		//int count = maxnCount;
+		//foreach (var t in trans.edge.tras)//转移时间
+		//{
+		//	count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
+		//}
+		//for (var k = nums.Last; k != null; k = k.Previous)
+		//{
+		//	int sum = Math.Min(count, k.Value);
+		//	count -= sum;
+		//	foreach (var t in trans.edge.tras)
+		//	{
+		//		obj.rates[t.x].tempCount -= sum * t.y;
+		//	}
+		//	k.Value -= sum;
+		//	if (k == nums.Last)
+		//	{
+		//		foreach (var data in trans.to.source)
+		//		{
+		//			to.Add(data.x, data.y * sum);
+		//		}
+		//	}
+		//	else
+		//	{
+		//		k.Next.Value += sum;
+		//	}
+		//}
+		//int maxC = 9999999;
+		//foreach (var data in trans.from.source)
+		//{
+		//	maxC = Math.Min(maxC, resource.GetRemain(data.x) / data.y);
+		//}
+		//count = Math.Min(maxC, count);
+		//maxnCount -= count;
+		//if (count != 0)
+		//	foreach (var data in trans.from.source)
+		//	{
+		//		from.Remove(data.x, data.y * count);
+		//	}
+		//nums.First.Value = count;
+	}
+
+    public OnceSource(Resource from, Resource to, Trans trans):base(from,to,trans)
+	{
+		//this.trans = trans;
+		//this.from = from;
+		//this.to = to;
+		//maxnCount = 99999;
+		//nums = new LinkedList<int>();
+		//for (int i = 0; i < trans.edge.time; i++)
+		//{
+		//	nums.AddFirst(0);
+		//}
+	}
+}
 //资源需要持续提供
 public class IterSource : Source
 {
@@ -78,55 +97,50 @@ public class IterSource : Source
 	/// </summary>
 	public override void Update()
 	{
+		//int count = maxnCount;
 		//int maxC = 9999999;
 		//foreach (var data in trans.from.source)
 		//{
-		//    maxC = Math.Min(maxC, resource.GetRemain(data.x) / data.y);
+		//	maxC = Math.Min(maxC, from.GetRemain(data.x) / data.y);
 		//}
-		int count = maxnCount;
-		int maxC = 9999999;
-		foreach (var data in trans.from.source)
-		{
-			maxC = Math.Min(maxC, from.GetRemain(data.x) / data.y);
-		}
-		count = Math.Min(maxC, count);
-		foreach (var t in trans.edge.tras)//转移时间
-		{
-			count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
-		}
-		for (var k = nums.Last; k != null; k = k.Previous)
-		{
-			int sum = Math.Min(count, k.Value);
-			count -= sum;
-			foreach (var t in trans.edge.tras)
-			{
-				obj.rates[t.x].tempCount -= sum * t.y;
-			}
-			foreach (var data in trans.from.source)
-			{
-				to.Remove(data.x, data.y * sum);
-			}
-			k.Value -= sum;
-			if (k == nums.Last)
-			{
-				foreach (var data in trans.to.source)
-				{
-					to.Add(data.x, data.y * sum);
-				}
-			}
-			else
-			{
-				k.Next.Value += sum;
-			}
+		//count = Math.Min(maxC, count);
+		//foreach (var t in trans.edge.tras)//转移时间
+		//{
+		//	count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
+		//}
+		//for (var k = nums.Last; k != null; k = k.Previous)
+		//{
+		//	int sum = Math.Min(count, k.Value);
+		//	count -= sum;
+		//	foreach (var t in trans.edge.tras)
+		//	{
+		//		obj.rates[t.x].tempCount -= sum * t.y;
+		//	}
+		//	foreach (var data in trans.from.source)
+		//	{
+		//		to.Remove(data.x, data.y * sum);
+		//	}
+		//	k.Value -= sum;
+		//	if (k == nums.Last)
+		//	{
+		//		foreach (var data in trans.to.source)
+		//		{
+		//			to.Add(data.x, data.y * sum);
+		//		}
+		//	}
+		//	else
+		//	{
+		//		k.Next.Value += sum;
+		//	}
 
-		}
-		maxnCount -= count;
-		if (count != 0)
-			foreach (var data in trans.from.source)
-			{
-				from.Remove(data.x, data.y * count);
-			}
-		nums.First.Value = count;
+		//}
+		//maxnCount -= count;
+		//if (count != 0)
+		//	foreach (var data in trans.from.source)
+		//	{
+		//		from.Remove(data.x, data.y * count);
+		//	}
+		//nums.First.Value = count;
 
 	}
 	public IterSource(Resource from, Resource to, Trans trans) : base(from, to, trans)
@@ -163,7 +177,7 @@ public class Trans
 	public Source AddSource(Resource from,Resource to)
 	{
 		if (transEnum == TransEnum.one)
-			return new Source(from,to, this);
+			return new OnceSource(from,to, this);
 		else
 			return new IterSource(from, to, this);
 	}
