@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,9 @@ public class Resource
     public int nowSize;
 
     public HashSet<GoodsObj> goods;
+
+    public Action<GoodsObj> remove;
+    public Action<GoodsObj> add;
     
     public void Add(GoodsObj goodsObj)
     {
@@ -23,6 +27,7 @@ public class Resource
         goods.TryGetValue(goodsObj, out val);
         if (val == null)
         {
+            add(goodsObj);
             goods.Add(goodsObj);
         }
         else
@@ -47,6 +52,7 @@ public class Resource
             val.sum -= goodsObj.sum;
             if (val.sum == 0)
             {
+                remove(goodsObj);
                 goods.Remove(goodsObj);
             }
         }

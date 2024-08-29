@@ -3,7 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Source
+public class GoodsManager : Resource
+{
+	/// <summary>
+	/// 商品和价格
+	/// </summary>
+	public Dictionary<GoodsObj, int> goodslist;
+	public Resource resource;
+	public GoodsManager(Resource resource)
+	{
+		this.resource = resource;
+		resource.add = (obj) =>//添加
+		{
+			goodslist.Add(obj, 1);
+		};
+		resource.remove = (obj) =>//删除
+		{
+			goodslist.Remove(obj);
+		};
+		goodslist = new Dictionary<GoodsObj, int>();
+		foreach (var x in resource.goods)
+		{
+			goodslist.Add(x, 1);
+		}
+	}
+}
+
+public abstract class Source
+{
+	public Trans trans;
+	public Resource from;
+	public Resource to;
+	/// <summary>
+	/// 更新资源,输入成本
+	/// </summary>
+	public abstract void Update();
+
+	public Source(Resource from, Resource to, Trans trans)
+	{
+		this.from = from;
+		this.to = to;
+		this.trans = trans;
+	}
+}
+public class OnceSource:Source
 {
 	public BuildingObj obj;
 	public Trans trans;
@@ -14,10 +57,10 @@ public class Source
 	/// <summary>
 	/// 更新资源,输入成本
 	/// </summary>
-	public virtual void Update()
+	public override void Update()
 	{
 		int count = maxnCount;
-		foreach (var t in trans.edge.tras)//转移时间
+		foreach (var t in trans.edge.tras)
 		{
 			count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
 		}
@@ -57,7 +100,7 @@ public class Source
 		nums.First.Value = count;
 	}
 
-	public Source(Resource from, Resource to, Trans trans)
+	public OnceSource(Resource from, Resource to, Trans trans):base(from,to,trans)
 	{
 		this.trans = trans;
 		this.from = from;
@@ -87,7 +130,7 @@ public class IterSource : Source
 		int maxC = 9999999;
 		foreach (var data in trans.from.source)
 		{
-			maxC = Math.Min(maxC, from.GetRemain(data.x) / data.y);
+			maxC = Math.Min(maxC, from.Get(data) / data.y);
 		}
 		count = Math.Min(maxC, count);
 		foreach (var t in trans.edge.tras)//转移时间
@@ -131,6 +174,7 @@ public class IterSource : Source
 	}
 	public IterSource(Resource from, Resource to, Trans trans) : base(from, to, trans)
 	{
+
 	}
 }
 public enum TransEnum
@@ -163,7 +207,7 @@ public class Trans
 	public Source AddSource(Resource from,Resource to)
 	{
 		if (transEnum == TransEnum.one)
-			return new Source(from,to, this);
+			return new OnceSource(from,to, this);
 		else
 			return new IterSource(from, to, this);
 	}
@@ -222,17 +266,6 @@ public enum TransationEnum
 	/// 开采
 	/// </summary>
 	kaiCai,
-}
-public enum SitEnum
-{
-	/// <summary>
-	/// 床
-	/// </summary>
-	bed,
-	/// <summary>
-	/// 座位
-	/// </summary>
-	set
 }
 
 
