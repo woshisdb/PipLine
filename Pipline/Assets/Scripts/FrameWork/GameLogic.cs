@@ -15,14 +15,14 @@ using UnityEngine.Events;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 /// <summary>
-/// ¸üĞÂ»·¾³
+/// Â¸Ã¼ÃÃ‚Â»Â·Â¾Â³
 /// </summary>
 public class EnvirUpdateEvent
 {
 
 }
 /// <summary>
-/// ¿ªÊ¼Ñ¡Ôñ»î¶¯
+/// Â¿ÂªÃŠÂ¼Ã‘Â¡Ã”Ã±Â»Ã®Â¶Â¯
 /// </summary>
 public class BeginSelectEvent
 {
@@ -31,24 +31,13 @@ public class BeginSelectEvent
 public class EndSelectEvent
 {
 }
-/// <summary>
-/// ÃèÊö½ñÌìµÄ¹¤×÷
-/// </summary>
-public class CodeSystemData
-{
-    /// <summary>
-    /// Ã¿Ò»ÌìµÄ¹¤×÷
-    /// </summary>
-    public int nowTime;
-    public string name;
-    /// <summary>
-    /// 
-    /// </summary>
+/// æè¿°ä»Šå¤©çš„å·¥ä½œ
+    /// æ¯ä¸€å¤©çš„å·¥ä½œ
     //public List<List<CodeData>> work;
-    ///// <summary>
-    ///// »ñÈ¡µ±Ç°µÄ¹¤×÷ÁĞ±í
-    ///// </summary>
-    ///// <returns></returns>
+    /// <summary>
+    /// è·å–å½“å‰çš„å·¥ä½œåˆ—è¡¨
+    /// </summary>
+    /// <returns></returns>
     //public List<CodeData> GetNowWorks()
     //{
     //    return work[nowTime];
@@ -62,60 +51,11 @@ public class CodeSystemData
     //    work= new List<List<CodeData>>();
     //    nowTime=0;
     //}
-    //public virtual IEnumerator EditCodeSystem(PersonObj PersonObj, Obj obj,CodeData codeData)
-    //{
-    //    List<Activity> activities = obj.InitActivities();
-    //    List<CardInf> sels = new List<CardInf>();
-    //    Activity activity = null;
-    //    foreach (var x in activities)
-    //    {
-    //        var data = x;
-    //        sels.Add(new CardInf("Ñ¡Ôñ:" + data.activityName, data.detail,
-    //            () =>
-    //            {
-    //                activity = data;
-    //            }
-    //        ));
-    //    }
+    //        sels.Add(new CardInf("é€‰æ‹©:" + data.activityName, data.detail,
 
-    //    yield return GameArchitect.gameLogic.AddDecision(PersonObj, new DecisionTex(
-    //    "¹¤×÷µÄÄÚÈİ", "Ñ¡Ôñ¹¤×÷µÄÄÚÈİ½øĞĞ¹¤×÷", sels));
-    //    foreach (var x in work)
-    //    {
-    //        x.obj = obj;
-    //    }
-    //    /////////////////////////////////////////////////////////////////
-    //    yield return GetActDec(codeData, obj, activity);
-    //}
-    //public IEnumerator GetActDec(CodeData codeData, Obj obj,Activity activity)
-    //{
-    //    var w= codeData;
-    //    PersonObj tempPersonObj = new PersonObj();//×Ô½¨PersonObj
-    //    BuildingObj buildingObj = new BuildingObj();
-    //    w.activity = activity;
-    //    List<WinData> winDatas = new List<WinData>();
-    //    var eff = activity.Effect(obj, tempPersonObj, winDatas);
-    //    tempPersonObj.SetAct(eff);
-    //    tempPersonObj.isPlayer = true;
-    //    Debug.Log(eff.GetType().Name);
-    //    bool hasTime = GameLogic.hasTime;
-    //    while (tempPersonObj.hasSelect == true)
-    //    {
-    //        GameLogic.hasTime = true;
-    //        yield return tempPersonObj.act.Run(
-    //            (result) => {
-    //                if (result is EndAct)
-    //                    tempPersonObj.RemoveAct();
-    //                else if (result is Act)
-    //                    tempPersonObj.SetAct((Act)result);
-    //            }
-    //        );
-    //    }
-    //    GameLogic.hasTime = hasTime;
-    //    ///Ñ¡ÔñÒ»ÏµÁĞ»î¶¯
-    //    w.wins = winDatas;
-    //}
-}
+    //    "å·¥ä½œçš„å†…å®¹", "é€‰æ‹©å·¥ä½œçš„å†…å®¹è¿›è¡Œå·¥ä½œ", sels));
+    //    PersonObj tempPersonObj = new PersonObj();//è‡ªå»ºPersonObj
+    //    ///é€‰æ‹©ä¸€ç³»åˆ—æ´»åŠ¨
 //public class CodeSystemDataWeek: CodeSystemData
 //{
 //    public CodeSystemDataWeek():base()
@@ -133,7 +73,7 @@ public class CodeSystemData
 //        foreach(var x in activities)
 //        {
 //            var data = x;
-//            sels.Add(new CardInf("Ñ¡Ôñ:"+data.activityName,data.detail,
+//            sels.Add(new CardInf("Ã‘Â¡Ã”Ã±:"+data.activityName,data.detail,
 //                () =>
 //                {
 //                    activity = data;
@@ -142,7 +82,7 @@ public class CodeSystemData
 //        }
 
 //        yield return GameArchitect.gameLogic.AddDecision(PersonObj,new DecisionTex(
-//        "¹¤×÷µÄÄÚÈİ","Ñ¡Ôñ¹¤×÷µÄÄÚÈİ½øĞĞ¹¤×÷",sels));
+//        "Â¹Â¤Ã—Ã·ÂµÃ„Ã„ÃšÃˆÃ","Ã‘Â¡Ã”Ã±Â¹Â¤Ã—Ã·ÂµÃ„Ã„ÃšÃˆÃÂ½Ã¸ÃÃÂ¹Â¤Ã—Ã·",sels));
 //        foreach(var x in work)
 //        {
 //            x.obj = obj;
@@ -169,7 +109,7 @@ public class CodeSystemData
 //        foreach (var x in activities)
 //        {
 //            var data = x;
-//            sels.Add(new CardInf("Ñ¡Ôñ:" + data.activityName, data.detail,
+//            sels.Add(new CardInf("Ã‘Â¡Ã”Ã±:" + data.activityName, data.detail,
 //                () =>
 //                {
 //                    activity = data;
@@ -178,13 +118,13 @@ public class CodeSystemData
 //        }
 
 //        yield return GameArchitect.gameLogic.AddDecision(PersonObj, new DecisionTex(
-//        "¹¤×÷µÄÄÚÈİ", "Ñ¡Ôñ¹¤×÷µÄÄÚÈİ½øĞĞ¹¤×÷", sels));
+//        "Â¹Â¤Ã—Ã·ÂµÃ„Ã„ÃšÃˆÃ", "Ã‘Â¡Ã”Ã±Â¹Â¤Ã—Ã·ÂµÃ„Ã„ÃšÃˆÃÂ½Ã¸ÃÃÂ¹Â¤Ã—Ã·", sels));
 //        foreach (var x in work)
 //        {
 //            x.obj = obj;
 //        }
-//        var w = work.Find((x) => { return x.codeName == "°áÔË"; });
-//        PersonObj tempPersonObj = new PersonObj();//×Ô½¨PersonObj
+//        var w = work.Find((x) => { return x.codeName == "Â°Ã¡Ã”Ã‹"; });
+//        PersonObj tempPersonObj = new PersonObj();//Ã—Ã”Â½Â¨PersonObj
 //        BuildingObj buildingObj = new BuildingObj();
 //        w.activity = activity;
 //        List<WinData> winDatas = new List<WinData>();
@@ -206,7 +146,7 @@ public class CodeSystemData
 //            );
 //        }
 //        GameLogic.hasTime = hasTime;
-//        ///Ñ¡ÔñÒ»ÏµÁĞ»î¶¯
+//        ///Ã‘Â¡Ã”Ã±Ã’Â»ÃÂµÃÃÂ»Ã®Â¶Â¯
 //        w.wins = winDatas;
 //    }
 //}
@@ -214,7 +154,7 @@ public class CodeSystemData
 
 
 /// <summary>
-/// Ñ¡ÔñĞĞÎª
+/// Ã‘Â¡Ã”Ã±ÃÃÃÂª
 /// </summary>
 public class WinData
 {
@@ -223,7 +163,7 @@ public class WinData
 
 public class SelData:WinData
 {
-    public List<System.Tuple<string, int>> selects;//Ñ¡ÔñµÄĞĞÎª
+    public List<System.Tuple<string, int>> selects;//Ã‘Â¡Ã”Ã±ÂµÃ„ÃÃÃÂª
     public SelData()
     {
         selects = new List<System.Tuple<string, int>>();
@@ -265,34 +205,15 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
 {
     //public static OptionUIEnum optionUIEnum;
     public static bool isCoding=false;
-    //Ïà»ú
-    public Camera camera;
-    //public static WindowManager windowsmanager;
-    public static List<UnityAction> unityActions;
+    //ÃÃ Â»Ãº
+    public Camera mainCamera;
     protected TaskCompletionSource<bool> tcs;
     public static bool hasTime;
     //public CodeControler codeControler;
-    // Start is called before the first frame update
-    public IEnumerator WindowSwitch()
-    {
-        while (true)
-        {
-            if (unityActions.Count > 0)
-            {
-                unityActions[0].Invoke();
-                unityActions.RemoveAt(0);
-                yield return null;
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-    }
 
-    public IArchitecture GetArchitecture()
-    {
+	public IArchitecture GetArchitecture()
+	{
         return GameArchitect.get;
-    }
+	}
 
 }

@@ -3,7 +3,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class GoodsManager : Resource
+{
+	/// <summary>
+	/// ï¿½ï¿½Æ·ï¿½Í¼Û¸ï¿½
+	/// </summary>
+	public Dictionary<GoodsObj, int> goodslist;
+	public Resource resource;
+	public GoodsManager(Resource resource)
+	{
+		this.resource = resource;
+		resource.add = (obj) =>//ï¿½ï¿½ï¿½ï¿½
+		{
+			goodslist.Add(obj, 1);
+		};
+		resource.remove = (obj) =>//É¾ï¿½ï¿½
+		{
+			goodslist.Remove(obj);
+		};
+		goodslist = new Dictionary<GoodsObj, int>();
+		foreach (var x in resource.goods)
+		{
+			goodslist.Add(x, 1);
+		}
+	}
+}
+
 public abstract class Source
+{
+	public Trans trans;
+	public Resource from;
+	public Resource to;
+	/// <summary>
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´,ï¿½ï¿½ï¿½ï¿½É±ï¿½
+	/// </summary>
+	public abstract void Update();
+
+	public Source(Resource from, Resource to, Trans trans)
+	{
+		this.from = from;
+		this.to = to;
+		this.trans = trans;
+	}
+}
+public class OnceSource:Source
 {
 	public Trans trans;
 	public LinkedList<int> nums;
@@ -11,11 +54,52 @@ public abstract class Source
 	public Resource to;
 	public int maxnCount = 99999;
 	/// <summary>
-	/// ¸üÐÂ×ÊÔ´,ÊäÈë³É±¾
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´,ï¿½ï¿½ï¿½ï¿½É±ï¿½
 	/// </summary>
-	public abstract void Update();
+	public override void Update()
+	{
+		int count = maxnCount;
+		foreach (var t in trans.edge.tras)
+		{
+			count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
+		}
+		for (var k = nums.Last; k != null; k = k.Previous)
+		{
+			int sum = Math.Min(count, k.Value);
+			count -= sum;
+			foreach (var t in trans.edge.tras)
+			{
+				obj.rates[t.x].tempCount -= sum * t.y;
+			}
+			k.Value -= sum;
+			if (k == nums.Last)
+			{
+				foreach (var data in trans.to.source)
+				{
+					to.Add(data.x, data.y * sum);
+				}
+			}
+			else
+			{
+				k.Next.Value += sum;
+			}
+		}
+		int maxC = 9999999;
+		foreach (var data in trans.from.source)
+		{
+			maxC = Math.Min(maxC, resource.GetRemain(data.x) / data.y);
+		}
+		count = Math.Min(maxC, count);
+		maxnCount -= count;
+		if (count != 0)
+			foreach (var data in trans.from.source)
+			{
+				from.Remove(data.x, data.y * count);
+			}
+		nums.First.Value = count;
+	}
 
-	public Source(Resource from, Resource to, Trans trans)
+	public OnceSource(Resource from, Resource to, Trans trans):base(from,to,trans)
 	{
 		this.trans = trans;
 		this.from = from;
@@ -31,12 +115,12 @@ public abstract class Source
 public class OnceSource:Source
 {
 	/// <summary>
-	/// ¸üÐÂ×ÊÔ´,ÊäÈë³É±¾
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´,ï¿½ï¿½ï¿½ï¿½É±ï¿½
 	/// </summary>
 	public override void Update()
 	{
 		//int count = maxnCount;
-		//foreach (var t in trans.edge.tras)//×ªÒÆÊ±¼ä
+		//foreach (var t in trans.edge.tras)//×ªï¿½ï¿½Ê±ï¿½ï¿½
 		//{
 		//	count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
 		//}
@@ -89,11 +173,11 @@ public class OnceSource:Source
 		//}
 	}
 }
-//×ÊÔ´ÐèÒª³ÖÐøÌá¹©
+//ï¿½ï¿½Ô´ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½á¹©
 public class IterSource : Source
 {
 	/// <summary>
-	/// ¸üÐÂ×ÊÔ´,ÊäÈë³É±¾
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´,ï¿½ï¿½ï¿½ï¿½É±ï¿½
 	/// </summary>
 	public override void Update()
 	{
@@ -103,35 +187,41 @@ public class IterSource : Source
 		//{
 		//	maxC = Math.Min(maxC, from.GetRemain(data.x) / data.y);
 		//}
-		//count = Math.Min(maxC, count);
-		//foreach (var t in trans.edge.tras)//×ªÒÆÊ±¼ä
-		//{
-		//	count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
-		//}
-		//for (var k = nums.Last; k != null; k = k.Previous)
-		//{
-		//	int sum = Math.Min(count, k.Value);
-		//	count -= sum;
-		//	foreach (var t in trans.edge.tras)
-		//	{
-		//		obj.rates[t.x].tempCount -= sum * t.y;
-		//	}
-		//	foreach (var data in trans.from.source)
-		//	{
-		//		to.Remove(data.x, data.y * sum);
-		//	}
-		//	k.Value -= sum;
-		//	if (k == nums.Last)
-		//	{
-		//		foreach (var data in trans.to.source)
-		//		{
-		//			to.Add(data.x, data.y * sum);
-		//		}
-		//	}
-		//	else
-		//	{
-		//		k.Next.Value += sum;
-		//	}
+		int count = maxnCount;
+		int maxC = 9999999;
+		foreach (var data in trans.from.source)
+		{
+			maxC = Math.Min(maxC, from.Get(data) / data.y);
+		}
+		count = Math.Min(maxC, count);
+		foreach (var t in trans.edge.tras)//×ªï¿½ï¿½Ê±ï¿½ï¿½
+		{
+			count = Math.Min(obj.rates[t.x].tempCount / t.y, count);
+		}
+		for (var k = nums.Last; k != null; k = k.Previous)
+		{
+			int sum = Math.Min(count, k.Value);
+			count -= sum;
+			foreach (var t in trans.edge.tras)
+			{
+				obj.rates[t.x].tempCount -= sum * t.y;
+			}
+			foreach (var data in trans.from.source)
+			{
+				to.Remove(data.x, data.y * sum);
+			}
+			k.Value -= sum;
+			if (k == nums.Last)
+			{
+				foreach (var data in trans.to.source)
+				{
+					to.Add(data.x, data.y * sum);
+				}
+			}
+			else
+			{
+				k.Next.Value += sum;
+			}
 
 		//}
 		//maxnCount -= count;
@@ -145,21 +235,22 @@ public class IterSource : Source
 	}
 	public IterSource(Resource from, Resource to, Trans trans) : base(from, to, trans)
 	{
+
 	}
 }
 public enum TransEnum
 {
 	/// <summary>
-	/// Ò»´ÎÐÔÉú²ú³öÀ´
+	/// Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	one,
 	/// <summary>
-	/// ¿ÉÒÔ³ÖÐø²ú³ö
+	/// ï¿½ï¿½ï¿½Ô³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	conti
 }
 /// <summary>
-/// ÎïÌå×ªÒÆ¹ØÏµ
+/// ï¿½ï¿½ï¿½ï¿½×ªï¿½Æ¹ï¿½Ïµ
 /// </summary>
 [System.Serializable]
 public class Trans
@@ -183,7 +274,7 @@ public class Trans
 	}
 }
 ///// <summary>
-///// ³ÖÐøÐèÒª×ÊÔ´µÄ×ªÒÆ¹ØÏµ
+///// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ô´ï¿½ï¿½×ªï¿½Æ¹ï¿½Ïµ
 ///// </summary>
 //[System.Serializable]
 //public class IterTrans:Trans
@@ -197,56 +288,45 @@ public class Trans
 public enum TransationEnum
 {
 	/// <summary>
-	/// Åëâ¿Ê³Îï
+	/// ï¿½ï¿½ï¿½Ê³ï¿½ï¿½
 	/// </summary>
 	cook,
 	/// <summary>
-	/// ¸ûÖÖÅ©×÷Îï
+	/// ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	gengZhong,
 	/// <summary>
-	/// ²ÉÕª×÷Îï
+	/// ï¿½ï¿½Õªï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	shouHuo,
 	/// <summary>
-	/// ÔÔÖÖÖ²Îï
+	/// ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½
 	/// </summary>
 	zaiZhong,
 	/// <summary>
-	/// ¿³Ê÷»òÊÇ²ðÐ¶
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½Ð¶
 	/// </summary>
 	qieGe,
 	/// <summary>
-	/// ´î½¨½¨Öþ
+	/// ï¿½î½¨ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	daJian,
 	/// <summary>
-	/// ¹æ»®½¨ÖþÉè±¸
+	/// ï¿½æ»®ï¿½ï¿½ï¿½ï¿½ï¿½è±¸
 	/// </summary>
 	guiHua,
 	/// <summary>
-	/// °²×°Éè±¸
+	/// ï¿½ï¿½×°ï¿½è±¸
 	/// </summary>
 	anZhuang,
 	/// <summary>
-	/// ÖÆ×÷¹¤¾ß
+	/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	zhiZuo,
 	/// <summary>
-	/// ¿ª²É
+	/// ï¿½ï¿½ï¿½ï¿½
 	/// </summary>
 	kaiCai,
-}
-public enum SitEnum
-{
-	/// <summary>
-	/// ´²
-	/// </summary>
-	bed,
-	/// <summary>
-	/// ×ùÎ»
-	/// </summary>
-	set
 }
 
 
@@ -263,18 +343,18 @@ public class EdgeItem
 public class Node
 {
 	[SerializeField]
-	public List<GoodsObj> source;//¶àÉÙ×ÊÔ´
+	public List<GoodsObj> source;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´
 }
 [System.Serializable]
 public class Edge
 {
 	/// <summary>
-	/// Ò»ÏµÁÐ×ªÒÆ¹æÔò
+	/// Ò»Ïµï¿½ï¿½×ªï¿½Æ¹ï¿½ï¿½ï¿½
 	/// </summary>
 	[SerializeField]
 	public List<EdgeItem> tras;
 	/// <summary>
-	/// »¨·ÑµÄÊ±¼ä
+	/// ï¿½ï¿½ï¿½Ñµï¿½Ê±ï¿½ï¿½
 	/// </summary>
 	public int time;
 }
@@ -287,7 +367,7 @@ public struct TransNode
 }
 
 /// <summary>
-/// ¹ÜÏß¹ÜÀíÆ÷£¬¹ÜÀíÉú²úÉÌÆ·
+/// ï¿½ï¿½ï¿½ß¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
 /// </summary>
 public class PipLineManager
 {
