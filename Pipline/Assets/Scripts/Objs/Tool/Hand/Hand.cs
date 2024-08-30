@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class HandInf : ToolInf
 {
+
 }
 
 public class HandObj : ToolObj

@@ -42,10 +42,6 @@ public class SaveSystem :Singleton<SaveSystem>
             game.saveData=SerializationUtility.DeserializeValue<SaveData>(tableBytes, DataFormat.JSON); // 假设TableType是game.tableAsset的类型
             Debug.Log("Table data loaded.");
             ///初始化
-            foreach(var obj in GameArchitect.get.objs)
-            {
-
-            }
         }
         else
         {
@@ -53,12 +49,6 @@ public class SaveSystem :Singleton<SaveSystem>
             ///saveData初始化
             GameArchitect.get.saveData = new SaveData();
             Debug.Log("Table data loaded.");
-            foreach (var obj in GameArchitect.get.objs)
-            {
-                //Debug.Log(obj.GetType().Name);
-                //obj.activities = GameArchitect.activities[obj.GetType()];//一系列的活动
-                //obj.cardInf.effect = () => { obj.SendEvent<SelectObjEvent>(new SelectObjEvent(obj)); };
-            }
             Debug.LogWarning("No table save file found.");
         }
     }
@@ -74,16 +64,14 @@ public class SaveData
     /// <summary>
     /// 一片地形
     /// </summary>
-    public List<LandCellObj> landCells;
-    public List<BaseObj> objs;
+    public List<SceneObj> landCells;
     public List<NpcObj> npcs;
     public List<BuildingObj> buildings;
     public TimeSystem timeSystem;
     public SaveData()
     {
         no = 0;
-        landCells = new List<LandCellObj>();
-        objs=new List<BaseObj>();
+        landCells = new List<SceneObj>();
         timeSystem = new TimeSystem();
         buildings = new List<BuildingObj>();
     }

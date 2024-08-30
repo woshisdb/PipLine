@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb0c75e16f22724da7f898ad5cde267, type: 3}
+  m_Name: NewObjAsset
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: map
+      Entry: 7
+      Data: 0|WorldMap, Assembly-CSharp
+    - Name: paths
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[Path, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 2|Path, Assembly-CSharp
+    - Name: from
+      Entry: 7
+      Data: 3|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test1
+    - Name: npcs
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: to
+      Entry: 7
+      Data: 4|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test2
+    - Name: npcs
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wastTime
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: scenes
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 6|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test1
+    - Name: npcs
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test2
+    - Name: npcs
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: from
+      Entry: 7
+      Data: 8|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test1
+    - Name: npcs
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: to
+      Entry: 9
+      Data: 4
+  wastTime: 3
