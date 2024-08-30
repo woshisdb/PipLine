@@ -11,8 +11,7 @@ public class ToolInf : GoodsInf
 {
 	public Dictionary<ProductivityEnum, int> dics;
 }
-public abstract class ToolObj<T>:GoodsObj<T>
-where T:ToolInf
+public abstract class ToolObj:GoodsObj
 {
 	public Productivity productivity;
 	public Resource resource;

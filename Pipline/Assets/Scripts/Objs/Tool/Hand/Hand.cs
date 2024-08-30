@@ -9,10 +9,10 @@ public class HandInf : ToolInf
 {
 }
 
-public class HandObj : ToolObj<HandInf>
+public class HandObj : ToolObj
 {
 	public override Dictionary<ProductivityEnum, int> GetProducs()
 	{
-		return get().dics;
+		return ((ToolInf)get()).dics;
 	}
 }

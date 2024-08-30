@@ -42,12 +42,8 @@ public class GoodsObj : BaseObj,IEqualityComparer<GoodsObj>
     {
         return obj.goodsInf.GetHashCode();
     }
-}
-public class GoodsObj<T> : GoodsObj
-where T:GoodsInf
-{
-    public T get()
+    public GoodsInf get()
     {
-        return (T)goodsInf;
+        return (GoodsInf)goodsInf;
     }
 }
