@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoodsManager
-{
-
-}
 
 public class BuildingObj :BaseObj
 {
@@ -25,12 +21,22 @@ public class BuildingObj :BaseObj
     /// 商品管理器
     /// </summary>
     public GoodsManager goodsManager;
+    /// <summary>
+    /// 提供的生产力
+    /// </summary>
+    public Productivity productivity;
+
     public BuildingObj()
     {
         pipLineManager = new PipLineManager();
         resource = new Resource();
         goodsRes = new Resource();
-        goodsManager = new GoodsManager(goodsManager);
+        goodsManager = new GoodsManager(goodsRes);
+        productivity = new Productivity(resource,this);
+    }
+    public IEnumerator Update()
+    {
+        return null;
     }
 }
 

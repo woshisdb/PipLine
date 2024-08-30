@@ -7,5 +7,6 @@ public class NpcObj : BaseObj
 	/// <summary>
 	/// 当前角色行为序列
 	/// </summary>
-	public Act nowAct;
+	public Act befAct;
+	public Act endAct;
 }

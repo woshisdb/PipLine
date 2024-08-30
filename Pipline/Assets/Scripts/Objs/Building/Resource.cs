@@ -57,6 +57,38 @@ public class Resource
             }
         }
     }
+    public void AddAddFunc(Action<GoodsObj> action)
+    {
+        if (add == null)
+        {
+            add = action;
+        }
+        else
+        {
+            var tempAct = add;
+            add = (obj) =>
+            {
+                tempAct(obj);
+                action(obj);
+            };
+        }
+    }
+    public void AddRemoveFunc(Action<GoodsObj> action)
+    {
+        if (remove == null)
+        {
+            remove = action;
+        }
+        else
+        {
+            var tempAct = remove;
+            remove = (obj) =>
+            {
+                tempAct(obj);
+                action(obj);
+            };
+        }
+    }
     public void Add(Resource resource)
     {
         foreach (var x in resource.goods)

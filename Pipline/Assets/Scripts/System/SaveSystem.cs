@@ -77,6 +77,7 @@ public class SaveData
     public List<LandCellObj> landCells;
     public List<BaseObj> objs;
     public List<NpcObj> npcs;
+    public List<BuildingObj> buildings;
     public TimeSystem timeSystem;
     public SaveData()
     {
@@ -84,5 +85,6 @@ public class SaveData
         landCells = new List<LandCellObj>();
         objs=new List<BaseObj>();
         timeSystem = new TimeSystem();
+        buildings = new List<BuildingObj>();
     }
 }

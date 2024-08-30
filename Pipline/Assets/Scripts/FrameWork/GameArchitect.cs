@@ -18,8 +18,9 @@ public class GameArchitect : Architecture<GameArchitect>
     public SaveData saveData;
     public TimeSystem timeSystem { get { return saveData.timeSystem; } }
     public List<BaseObj> objs { get { return GameArchitect.get.saveData.objs; } }
+    public List<BuildingObj> buildings { get { return GameArchitect.get.saveData.buildings; } }
     public List<LandCellObj> landCells { get { return GameArchitect.get.saveData.landCells; } }
-    public static List<NpcObj> npcs { get { return GameArchitect.get.saveData.npcs; } }
+    public List<NpcObj> npcs { get { return GameArchitect.get.saveData.npcs; } }
     //public static Dictionary<string, Activity> actDic;
     //public void SetPlayer(PersonObj PersonObj)
     //{
