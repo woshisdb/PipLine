@@ -18,19 +18,9 @@ public class GameArchitect : Architecture<GameArchitect>
     public SaveData saveData;
     public TimeSystem timeSystem { get { return saveData.timeSystem; } }
     public List<BuildingObj> buildings { get { return GameArchitect.get.saveData.buildings; } }
-    public List<SceneObj> landCells { get { return GameArchitect.get.saveData.landCells; } }
+    public List<SceneObj> scenes { get { return GameArchitect.get.saveData.scenes; } }
     public List<NpcObj> npcs { get { return GameArchitect.get.saveData.npcs; } }
-    //public static Dictionary<string, Activity> actDic;
-    //public void SetPlayer(PersonObj PersonObj)
-    //{
-    //    Debug.Log(PersonObj);
-    //    //Debug.Log("?????????");
-    //    this.player = PersonObj;
-    //    if (GameArchitect.get.player != null)
-    //    {
-    //        gameLogic.camera.transform.position = GameArchitect.get.player.belong.control.CenterPos();
-    //    }
-    //}
+
     protected override void Init()
     {
         //winCons = new List<WinCon>();
@@ -90,65 +80,14 @@ public class GameArchitect : Architecture<GameArchitect>
     }
     public void FirstInit()
     {
-        //Debug.Log(111111211111);
-        //tableAsset.CreateTable("TestTable", 100000);
-        //Debug.Log(11131111);
-        //var PersonObj = new PersonObj(Map.Instance.GetSaver(ObjEnum.PersonObjE));
-        //GameArchitect.gameLogic.CreatePersonObj(true, "PersonObj", true, "TestTable");
-        //Debug.Log(111111111111);
     }
     public void MapInit()
     {
-        //Map.Instance.Init();
     }
-    //public IEnumerator AddDecision(WinCon winCon)
-    //{
-    //    //Debug.Log(winCons.Count);
-    //    //winCons.Add(winCon);
-    //    //while (winCons.Count > 0)
-    //    //{
-    //    //    yield return CallDecision();
-    //    //}
-    //    //yield return winCon.data;
-    //}
-    //public IEnumerator CallDecision()
-    //{
-    //    //Debug.Log(":"+winCons.Count);
-    //    //decisionUI.gameObject.SetActive(false);
-    //    //selectUI.gameObject.SetActive(false);
-    //    //Debug.Log(">>>>" + winCons.Count);
-    //    //if (winCons.Count>0)
-    //    //{
-    //    //    var data = winCons[0];
-    //    //    winCons.RemoveAt(0);
-    //    //    Debug.Log(">>>>" + winCons.Count);
-    //    //    if (data is DecisionTex)
-    //    //    {
-    //    //        decisionUI.gameObject.SetActive(true);
-    //    //        yield return decisionUI.AddDecision((DecisionTex)data);
-    //    //    }
-    //    //    else if(data is SelectTex)
-    //    //    {
-    //    //        selectUI.gameObject.SetActive(true);
-    //    //        yield return selectUI.AddDecision((SelectTex)data);
-    //    //    }
-    //    //}
-    //    //else
-    //    //{
-    //    //    decisionUI.gameObject.SetActive(false);
-    //    //    selectUI.gameObject.SetActive(false);
-    //    //}
-    //}
     /// <summary>
     /// 创建一系列的活动
     /// </summary>
     public void InitActivities()
     {
-        //activities = new Dictionary<Type, List<Activity>>();
-        //foreach (Type key in ((Map)Map.Instance).kv.Keys)
-        //{
-        //    Obj instance = (Obj)Activator.CreateInstance(key, new object[] { null });
-        //    activities.Add(key, instance.InitActivities());
-        //}
     }
 }

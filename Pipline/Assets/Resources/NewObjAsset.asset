@@ -21,85 +21,156 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: map
+    - Name: from
       Entry: 7
-      Data: 0|WorldMap, Assembly-CSharp
-    - Name: paths
+      Data: 0|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test3
+    - Name: npcs
       Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[Path, Assembly-CSharp]], mscorlib
+      Data: 1|System.Collections.Generic.List`1[[NpcObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sceneObjects
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: to
+      Entry: 7
+      Data: 2|SceneObj, Assembly-CSharp
+    - Name: sceneName
+      Entry: 1
+      Data: Test1
+    - Name: npcs
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[NpcObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sceneObjects
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: goodsInfs
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[GoodsInf, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 5|HandInf, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: "\u624B"
+    - Name: goodNo
+      Entry: 3
+      Data: 1
+    - Name: goodSize
+      Entry: 3
+      Data: 1
+    - Name: dics
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[ProductivityEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 7|System.Collections.Generic.EnumEqualityComparer`1[[ProductivityEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 2|Path, Assembly-CSharp
-    - Name: from
-      Entry: 7
-      Data: 3|SceneObj, Assembly-CSharp
-    - Name: sceneName
-      Entry: 1
-      Data: Test1
-    - Name: npcs
-      Entry: 6
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: to
-      Entry: 7
-      Data: 4|SceneObj, Assembly-CSharp
-    - Name: sceneName
-      Entry: 1
-      Data: Test2
-    - Name: npcs
-      Entry: 6
-      Data: 
     - Name: 
       Entry: 8
       Data: 
-    - Name: wastTime
+    - Name: 
+      Entry: 7
+      Data: 8|GoodsInf, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: "\u5E26\u94C1\u77FF\u77F3"
+    - Name: goodNo
+      Entry: 3
+      Data: 2
+    - Name: goodSize
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|GoodsInf, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: "\u94C1\u77FF\u77F3"
+    - Name: goodNo
       Entry: 3
       Data: 3
+    - Name: goodSize
+      Entry: 3
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: scenes
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
+      Data: 10|GoodsInf, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: "\u94C1"
+    - Name: goodNo
+      Entry: 3
+      Data: 4
+    - Name: goodSize
+      Entry: 3
       Data: 2
     - Name: 
-      Entry: 7
-      Data: 6|SceneObj, Assembly-CSharp
-    - Name: sceneName
-      Entry: 1
-      Data: Test1
-    - Name: npcs
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 7|SceneObj, Assembly-CSharp
-    - Name: sceneName
-      Entry: 1
-      Data: Test2
-    - Name: npcs
-      Entry: 6
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
     - Name: 
@@ -108,19 +179,144 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: trans
+      Entry: 7
+      Data: 11|System.Collections.Generic.List`1[[Trans, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 12|Trans, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\u5F00\u91C7\u94C1\u77FF\u77F3"
     - Name: from
       Entry: 7
-      Data: 8|SceneObj, Assembly-CSharp
-    - Name: sceneName
+      Data: 13|Node, Assembly-CSharp
+    - Name: source
+      Entry: 7
+      Data: 14|System.Collections.Generic.List`1[[GoodsObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 15|GoodsObj, Assembly-CSharp
+    - Name: goodsInf
+      Entry: 7
+      Data: 16|GoodsInf, Assembly-CSharp
+    - Name: name
       Entry: 1
-      Data: Test1
-    - Name: npcs
-      Entry: 6
+      Data: "\u5E26\u94C1\u77FF\u77F3"
+    - Name: goodNo
+      Entry: 3
+      Data: 2
+    - Name: goodSize
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sum
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: to
-      Entry: 9
-      Data: 4
+      Entry: 7
+      Data: 17|Node, Assembly-CSharp
+    - Name: source
+      Entry: 7
+      Data: 18|System.Collections.Generic.List`1[[GoodsObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 19|GoodsObj, Assembly-CSharp
+    - Name: goodsInf
+      Entry: 7
+      Data: 20|GoodsInf, Assembly-CSharp
+    - Name: name
+      Entry: 1
+      Data: "\u94C1\u77FF\u77F3"
+    - Name: goodNo
+      Entry: 3
+      Data: 3
+    - Name: goodSize
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sum
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: edge
+      Entry: 7
+      Data: 21|Edge, Assembly-CSharp
+    - Name: tras
+      Entry: 7
+      Data: 22|System.Collections.Generic.Dictionary`2[[ProductivityEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 23|System.Collections.Generic.EnumEqualityComparer`1[[ProductivityEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wasterTimes
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   wastTime: 3

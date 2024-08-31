@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Serialization;
 using UnityEngine;
 
 public class GoodsManager : Resource
@@ -28,89 +29,141 @@ public class GoodsManager : Resource
 		}
 	}
 }
-
-public abstract class Source
+public class Pair<T,F>
 {
-	public Trans trans;
+	public T Item1;
+	public F Item2;
+}
+public class Source
+{
+	public Trans trans;//商品间的转移关系
 	public Resource from;
 	public Resource to;
-	public LinkedList<int> nums;
-	public abstract void Update();
-
-	public Source(Resource from, Resource to, Trans trans)
-	{
-		this.from = from;
-		this.to = to;
-		this.trans = trans;
-	}
-}
-public class OnceSource:Source
-{
 	/// <summary>
-	/// ������Դ,����ɱ�
+	/// 表示
 	/// </summary>
-	public override void Update()
-	{
-	}
-
-	public OnceSource(Resource from, Resource to, Trans trans):base(from,to,trans)
-	{
-		nums = new LinkedList<int>();
-		for (int i = 0; i < trans.edge.time; i++)
+	public CircularQueue<Pair<Edge, int>> trasSource;
+	public Productivity productivity;
+	public void Update()
+    {
+		int sum = 999999999;
+		foreach(var x in trans.edge.tras)
+        {
+			sum = Math.Min(sum, productivity[x.Key] /x.Value);
+        }
+		var sourceMax = 99999999;
+		foreach(var x in trans.from.source)
+        {
+			sum = Math.Min(sum,from.Get(x)/x.sum);
+			sourceMax = Math.Max(sourceMax, from.Get(x) / x.sum);
+        }
+		foreach(var x in trans.from.source)
+        {
+			x.sum *= sum;
+			from.remove(x);
+			x.sum /= sum;
+        }
+		foreach (var x in trans.edge.tras)
 		{
-			nums.AddFirst(0);
+			productivity.productivities[x.Key] -= sum * x.Value;
 		}
-	}
+		if (trans.wasterTimes == 1)
+		{
+			//添加到里面
+			foreach (var retS in trans.to.source)
+			{
+				retS.sum *= sum;
+				to.Add(retS);
+				retS.sum /= sum;
+			}
+			return;
+		}
+		for (int i=1;i<trans.wasterTimes;i++)//倒数某个元素
+        {
+			var node=trasSource.Find(trans.wasterTimes-i-1);//拿到节点
+			int retsum = Math.Min(node.Item2,sum);//先升级
+			bool canPro = true;
+			foreach(var x in node.Item1.tras)
+            {
+                int val = Math.Min(trans.edge[x.Key] - productivity[x.Key], productivity[x.Key]);
+				node.Item1.tras[x.Key] += val;
+				productivity.productivities[x.Key] -= val;
+                if (node.Item1.tras[x.Key]< trans.edge[x.Key])
+                {
+					canPro = false;
+                }
+			}
+			sum -= retsum;
+			node.Item2 = retsum;
+			if (canPro&& sourceMax>0)
+            {
+				retsum++;
+				sourceMax--;
+				foreach (var x in node.Item1.tras)
+				{
+					node.Item1.tras[x.Key] = 0;
+				}
+				foreach (var x in trans.from.source)
+				{
+					x.sum *= sum;
+					from.remove(x);
+					x.sum /= sum;
+				}
+			}
+			if(i==0)
+            {
+				//添加到里面
+				foreach(var retS in trans.to.source)
+                {
+					retS.sum*= retsum;
+					to.Add(retS);
+					retS.sum /= retsum;
+                }
+            }
+			else
+            {
+				var after = trasSource.Find(trans.wasterTimes - i);
+				after.Item2 += retsum;
+			}
+        }
+		var last=trasSource.Find(0);
+		last.Item2 += sum;
+    }
+
+	public Source(Resource from, Resource to, Trans trans, Productivity productivity)
+    {
+        this.from = from;
+        this.to = to;
+        this.trans = trans;
+		trasSource = new CircularQueue<Pair<Edge, int>>(trans.wasterTimes-1);
+        this.productivity = productivity;
+    }
 }
-public class IterSource : Source
-{
-	public override void Update()
-	{
-	}
-	public IterSource(Resource from, Resource to, Trans trans):base(from, to, trans)
-	{
-	}
-}
-public enum TransEnum
-{
-	one,
-	conti
-}
-/// <summary>
-/// ����ת�ƹ�ϵ
-/// </summary>
-[System.Serializable]
 public class Trans
 {
-	[SerializeField]
+	[OdinSerialize]
 	public string title;
-	[SerializeField]
+	[OdinSerialize]
 	public Node from;
-	[SerializeField]
+	[OdinSerialize]
 	public Node to;
-	[SerializeField]
+	[OdinSerialize]
 	public Edge edge;
-	[SerializeField]
-	public TransEnum transEnum;
-	public Source AddSource(Resource from,Resource to)
+	/// <summary>
+	/// 所需要的时间
+	/// </summary>
+	public int wasterTimes;
+	public Source AddSource(Resource from,Resource to,Productivity productivity)
 	{
-		if (transEnum == TransEnum.one)
-			return new OnceSource(from,to, this);
-		else
-			return new IterSource(from, to, this);
+		return new Source(from,to, this,productivity);
 	}
+	public Trans()
+    {
+		from=new Node();
+		to=new Node();
+		edge=new Edge();
+    }
 }
-///// <summary>
-///// ������Ҫ��Դ��ת�ƹ�ϵ
-///// </summary>
-//[System.Serializable]
-//public class IterTrans:Trans
-//{
-//	public override Source AddSource(Obj obj, Trans trans)
-//	{
-//		return new IterSource((BuildingObj)obj, ((BuildingObj)obj).resource, trans);
-//	}
-//}
 
 [Serializable]
 public class EdgeItem
@@ -120,25 +173,43 @@ public class EdgeItem
 	[SerializeField]
 	public int y;
 }
-
 [System.Serializable]
 public class Node
 {
 	[SerializeField]
 	public List<GoodsObj> source;
+	public Node()
+    {
+		source=new List<GoodsObj>();
+    }
 }
 [System.Serializable]
 public class Edge
 {
 	/// <summary>
-	/// һϵ��ת�ƹ���
+	/// 
 	/// </summary>
 	[SerializeField]
-	public List<EdgeItem> tras;
-	/// <summary>
-	/// ���ѵ�ʱ��
-	/// </summary>
-	public int time;
+	public Dictionary<ProductivityEnum,int> tras;
+	public Edge()
+    {
+		tras = new Dictionary<ProductivityEnum, int>();
+    }
+	public int this[ProductivityEnum index]
+	{
+		get
+		{
+            if (tras.ContainsKey(index))
+            {
+				return tras[index];
+            }
+			else
+            {
+				return 0;
+            }
+		}
+	}
+
 }
 public struct TransNode
 {
@@ -152,17 +223,24 @@ public struct TransNode
 /// </summary>
 public class PipLineManager
 {
+	public BuildingObj buildingObj;
 	public List<Source> piplines;
 	public void SetTrans(List<TransNode> trans)
 	{
 		piplines.Clear();
 		foreach (var x in trans)
 		{
-			piplines.Add(x.trans.AddSource(x.from,x.to));
+			piplines.Add(x.trans.AddSource(x.from,x.to,buildingObj.productivity));
 		}
 	}
-	public PipLineManager()
-	{
-	}
+	public PipLineManager(BuildingObj buildingObj)
+    {
+        piplines = new List<Source>();
+        this.buildingObj = buildingObj;
+    }
 }
 
+public enum ProductivityEnum
+{
+	KaiCai,
+}

@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NpcObj : BaseObj
+{
+	public Act befAct;
+	public Act endAct;
+	/// <summary>
+	/// 生活方式
+	/// </summary>
+	public LifeStyle lifeStyle;
+	/// <summary>
+	/// 属于的场景
+	/// </summary>
+	public SceneObj belong;
+}
+
+public class SpareTimeWork
+{
+	public Act spareTimeAct;
+	public NpcObj npc;
+	public SpareTimeWork(NpcObj npc)
+    {
+        this.npc = npc;
+    }
+    public int getWasterTime()
+    {
+		return spareTimeAct.WasterTime();
+    }
+}
+
+/// <summary>
+/// 生活方式
+/// </summary>
+public class LifeStyle
+{
+	public Job job;
+	public SpareTimeWork timeWork;
+	public NpcObj npc;
+	public LifeStyle(NpcObj npc)
+    {
+		this.npc=npc;
+		this.job = new Job(npc);
+		this.timeWork = new SpareTimeWork(npc);
+    }
+}

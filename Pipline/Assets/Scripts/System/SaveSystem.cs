@@ -61,17 +61,18 @@ public class SaveData
     /// 标号
     /// </summary>
     public ulong no;
-    /// <summary>
-    /// 一片地形
-    /// </summary>
-    public List<SceneObj> landCells;
     public List<NpcObj> npcs;
     public List<BuildingObj> buildings;
+
+    [SerializeField]
+    public WorldMap map;
+    public List<SceneObj> scenes;//一系列的Land
+
     public TimeSystem timeSystem;
     public SaveData()
     {
         no = 0;
-        landCells = new List<SceneObj>();
+        scenes = new List<SceneObj>();
         timeSystem = new TimeSystem();
         buildings = new List<BuildingObj>();
     }

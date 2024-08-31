@@ -50,7 +50,15 @@ public class CircularQueue<T>
         _size--;
         return item;
     }
+    public T Peek()
+    {
+        if (_size == 0)
+        {
+            throw new InvalidOperationException("队列为空");
+        }
 
+        return _queue[_head];
+    }
     // 查找距离队列尾部n个位置的元素
     public T Find(int n)
     {

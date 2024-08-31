@@ -28,7 +28,7 @@ public class BuildingObj :BaseObj
 
     public BuildingObj()
     {
-        pipLineManager = new PipLineManager();
+        pipLineManager = new PipLineManager(this);
         resource = new Resource();
         goodsRes = new Resource();
         goodsManager = new GoodsManager(goodsRes);

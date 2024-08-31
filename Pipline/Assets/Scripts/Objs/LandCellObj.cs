@@ -6,6 +6,7 @@ public class SceneObj : BaseObj
 {
     public string sceneName;
     public List<NpcObj> npcs;
+    public List<BuildingObj> sceneObjects;
     public SceneObj()
     {
         sceneName = "";

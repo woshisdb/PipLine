@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ProductivityEnum
-{
-	UseHand,
-}
+
 public class ToolInf : GoodsInf
 {
+    [SerializeField]
 	public Dictionary<ProductivityEnum, int> dics;
+	public ToolInf()
+    {
+		dics = new Dictionary<ProductivityEnum, int>();
+    }
 }
 public abstract class ToolObj:GoodsObj
 {
@@ -74,4 +76,19 @@ public class Productivity
 			}
 		);
 	}
+	public int this[ProductivityEnum index]
+	{
+		get
+		{
+			if(productivities.ContainsKey(index))
+            {
+				return productivities[index];
+            }
+			else
+            {
+				return 0;
+            }
+		}
+	}
+
 }

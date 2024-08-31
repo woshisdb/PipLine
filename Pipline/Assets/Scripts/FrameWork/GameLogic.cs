@@ -46,13 +46,22 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
 	{
         return GameArchitect.get;
 	}
+    /// <summary>
+    /// 获得个人一天结束的行为
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator NPCBefCircle()
     {
         foreach (var npc in GameArchitect.get.npcs)
         {
-            yield return npc.befAct.Run();
+            npc.lifeStyle.job.SetDayJob();//设置一个人活动
+            yield return npc.befAct.Run();//执行
         }
     }
+    /// <summary>
+    /// 更新个人一天结束的行为
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator NPCEndCircle()
     {
         foreach (var npc in GameArchitect.get.npcs)
@@ -60,6 +69,10 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             yield return npc.endAct.Run();
 		}
     }
+    /// <summary>
+    /// 更新建筑的活动
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator BuildingCircle()
     {
         foreach (var building in GameArchitect.get.buildings)
@@ -67,13 +80,36 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
             yield return building.Update();//更新
         }
     }
+    /// <summary>
+    /// 对环境的更新
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator EnvirUpdate()
+    {
+        //时间加1
+        GameArchitect.get.saveData.timeSystem.time++;
+        yield return null;
+    }
+    /// <summary>
+    /// 迭代npc空闲工作
+    /// </summary>
+    public IEnumerator IterNPCSpareTime()
+    {
+        foreach(var npc in GameArchitect.get.npcs)
+        {
+            yield return npc.lifeStyle.timeWork.spareTimeAct.Run();
+        }    
+        yield return null;
+    }
     public IEnumerator IterCircle()
     {
-        NPCBefCircle();
+        NPCBefCircle();//NPC开始的行为
         yield return null;
-        BuildingCircle();
+        BuildingCircle();//建筑自己的循环
         yield return null;
-        NPCEndCircle();
+        NPCEndCircle();//更新NPC的结束循环
+        yield return null;
+        EnvirUpdate();//对环境的更新
         yield return null;
     }
     public void GameCircle()
