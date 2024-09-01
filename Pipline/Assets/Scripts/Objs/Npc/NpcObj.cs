@@ -47,7 +47,8 @@ public class LifeStyle
 	public LifeStyle(NpcObj npc)
     {
 		this.npc=npc;
-		this.job = new Job(npc);
+		this.job = new Job();
+		job.npc = npc;
 		this.timeWork = new SpareTimeWork(npc);
     }
 }

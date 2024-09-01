@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class DayWork
+public class DayWork
 {
     public Act preAct;
     public Act endAct;
     /// <summary>
     /// 前驱活动
     /// </summary>
-    public Act GetPreAct()
+    public Act GetPreAct(NpcObj npc)
     {
+        preAct.npc = npc;
         return preAct;
     }
     /// <summary>
     /// 后继活动
     /// </summary>
-    public Act GetEndAct()
+    public Act GetEndAct(NpcObj npc)
     {
+        endAct.npc = npc;
         return endAct;
     }
 
@@ -39,17 +41,21 @@ public class Job
     public string name;
     public List<DayWork> dayWorks;
     public NpcObj npc;
-    public Job(NpcObj npc)
+    public Job()
     {
         ps = 0;
-        this.npc = npc;
+        this.npc=null;
         dayWorks = new List<DayWork>();
+    }
+    public void Init(NpcObj npc)
+    {
+        this.npc=npc;
     }
     public void SetDayJob()
     {
         var dayWork = dayWorks[ps];
-        npc.befAct=dayWork.GetPreAct();
-        npc.endAct = dayWork.GetEndAct();
+        npc.befAct=dayWork.GetPreAct(npc);
+        npc.endAct = dayWork.GetEndAct(npc);
         ps = (ps + 1) % dayWorks.Count;
     }
 }

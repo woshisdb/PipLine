@@ -17,4 +17,14 @@ public class SceneObj : BaseObj,ISendEvent
     {
         this.SendEvent(new UpdateSceneEvent());
     }
+    public void Enter(NpcObj npc)
+    {
+        this.npcs.Add(npc);
+        npc.belong = this;
+    }
+    public void Leave(NpcObj npc)
+    {
+        this.npcs.Remove(npc);
+        npc.belong = null;
+    }
 }

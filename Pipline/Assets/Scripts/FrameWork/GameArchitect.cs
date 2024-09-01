@@ -126,4 +126,23 @@ public class GameArchitect : Architecture<GameArchitect>
             sceneControlers.Add(sc);
         }
     }
+    public void AddNpc(NpcObj npc,SceneObj scene=null)
+    {
+        npcs.Add(npc);
+        if(scene==null)
+        {
+            scene = scenes[0];
+        }
+        scene.Enter(npc);
+    }
+    public void MoveNpc(NpcObj npc,SceneObj to)
+    {
+        npc.belong.Leave(npc);
+        to.Enter(npc);
+    }
+    public void RemoveNpc(NpcObj npc)
+    {
+        npc.belong.Leave(npc);
+        npcs.Remove(npc);
+    }
 }

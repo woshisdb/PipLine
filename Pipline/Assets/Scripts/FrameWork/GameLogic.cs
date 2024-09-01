@@ -121,4 +121,12 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     {
         StartCoroutine(IterCircle());
     }
+    public void Save()
+    {
+        SaveSystem.Instance.Save();
+    }
+    public void Load()
+    {
+        SaveSystem.Instance.Load();
+    }
 }

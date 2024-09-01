@@ -1,0 +1,61 @@
+{
+    "$id": 0,
+    "$type": "0|SaveData, Assembly-CSharp",
+    "no": 0,
+    "npcs": {
+        "$id": 1,
+        "$type": "1|System.Collections.Generic.List`1[[NpcObj, Assembly-CSharp]], mscorlib",
+        "$rlength": 0,
+        "$rcontent": [
+        ]
+    },
+    "buildings": {
+        "$id": 2,
+        "$type": "2|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]], mscorlib",
+        "$rlength": 0,
+        "$rcontent": [
+        ]
+    },
+    "map": {
+        "$id": 3,
+        "$type": "3|WorldMap, Assembly-CSharp",
+        "scenes": {
+            "$id": 4,
+            "$type": "4|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib",
+            "$rlength": 1,
+            "$rcontent": [
+                {
+                    "$id": 5,
+                    "$type": "5|SceneObj, Assembly-CSharp",
+                    "sceneName": "\u6d4b\u8bd5\u573a\u666f",
+                    "npcs": {
+                        "$id": 6,
+                        "$type": 1,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    },
+                    "buildings": {
+                        "$id": 7,
+                        "$type": 2,
+                        "$rlength": 0,
+                        "$rcontent": [
+                        ]
+                    }
+                }
+            ]
+        },
+        "paths": {
+            "$id": 8,
+            "$type": "6|System.Collections.Generic.List`1[[Path, Assembly-CSharp]], mscorlib",
+            "$rlength": 0,
+            "$rcontent": [
+            ]
+        }
+    },
+    "timeSystem": {
+        "$id": 9,
+        "$type": "7|TimeSystem, Assembly-CSharp",
+        "time": 0
+    }
+}

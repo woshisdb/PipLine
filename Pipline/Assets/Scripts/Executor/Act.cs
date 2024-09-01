@@ -11,6 +11,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Act
 {
+    public NpcObj npc;
     /// <summary>
     /// 浪费的时间
     /// </summary>
@@ -37,7 +38,7 @@ public abstract class Activity
 
 public class SeqNpcAct : Act
 {
-    public List<Act> npcActs;
+    public Act[] npcActs;
     public override int WasterTime()
     {
         int sum = 0;
@@ -49,9 +50,13 @@ public class SeqNpcAct : Act
     }
     public override IEnumerator Run()
     {
-        for(int i=0;i<npcActs.Count;i++)
+        for(int i=0;i<npcActs.Length;i++)
         {
             yield return npcActs[i].Run();
         }
+    }
+    public SeqNpcAct(params Act[] npcActs)
+    {
+        this.npcActs = npcActs;
     }
 }
