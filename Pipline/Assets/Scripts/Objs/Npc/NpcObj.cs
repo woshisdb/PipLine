@@ -14,6 +14,12 @@ public class NpcObj : BaseObj
 	/// ÊôÓÚµÄ³¡¾°
 	/// </summary>
 	public SceneObj belong;
+	public NpcObj()
+    {
+		befAct = null;
+		endAct = null;
+		lifeStyle = new LifeStyle(this);
+    }
 }
 
 public class SpareTimeWork
