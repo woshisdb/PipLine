@@ -18,9 +18,44 @@ public class Resource
 
     public HashSet<GoodsObj> goods;
 
-    public Action<GoodsObj> remove;
-    public Action<GoodsObj> add;
+    protected Action<GoodsObj> remove;
+    protected Action<GoodsObj> add;
     
+    public void Add(GoodsEnum goodsEnum,int sum)
+    {
+        var goodsObj=GoodsGen.GetGoodsObj(goodsEnum);
+        GoodsObj val = null;
+        goods.TryGetValue(goodsObj, out val);
+        if (val == null)
+        {
+            add(goodsObj);
+            goods.Add(goodsObj);
+        }
+        else
+        {
+            val.sum += goodsObj.sum;
+        }
+    }
+    public void Remove(GoodsEnum goodsEnum,int sum)
+    {
+        var goodsObj = GoodsGen.GetGoodsObj(goodsEnum);
+        GoodsObj val = null;
+        goods.TryGetValue(goodsObj, out val);
+        if (val == null)
+        {
+            //goods.Add(goodsObj);
+        }
+        else
+        {
+            val.sum -= goodsObj.sum;
+            if (val.sum == 0)
+            {
+                remove(goodsObj);
+                goods.Remove(goodsObj);
+            }
+        }
+    }
+
     public void Add(GoodsObj goodsObj)
     {
         GoodsObj val=null;
@@ -107,6 +142,21 @@ public class Resource
     public int Get(GoodsObj obj)
     {
         GoodsObj val = null;
+        goods.TryGetValue(obj, out val);
+        if (val == null)
+        {
+            return 0;
+            //goods.Add(goodsObj);
+        }
+        else
+        {
+            return val.sum;
+        }
+    }
+    public int Get(GoodsEnum goodsEnum)
+    {
+        GoodsObj val = null;
+        var obj=GoodsGen.GetGoodsObj(goodsEnum);
         goods.TryGetValue(obj, out val);
         if (val == null)
         {

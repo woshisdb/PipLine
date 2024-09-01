@@ -12,6 +12,10 @@ public class HandInf : ToolInf
 
 public class HandObj : ToolObj
 {
+	public HandObj():base()
+    {
+
+    }
 	public override Dictionary<ProductivityEnum, int> GetProducs()
 	{
 		return ((ToolInf)get()).dics;

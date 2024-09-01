@@ -66,14 +66,14 @@ public class SaveData
 
     [SerializeField]
     public WorldMap map;
-    public List<SceneObj> scenes;//一系列的Land
 
     public TimeSystem timeSystem;
     public SaveData()
     {
         no = 0;
-        scenes = new List<SceneObj>();
         timeSystem = new TimeSystem();
         buildings = new List<BuildingObj>();
+        map = new WorldMap();
+        npcs = new List<NpcObj>();
     }
 }

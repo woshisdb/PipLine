@@ -23,11 +23,13 @@ public class Path
 
 public class WorldMap
 {
-	[SerializeField]
+    public List<SceneObj> scenes;//一系列的Land
+    [SerializeField]
 	public List<Path> paths;
     public WorldMap()
     {
         paths = new List<Path>();
+        scenes = new List<SceneObj>();
     }
 }
 
@@ -37,6 +39,7 @@ public class WorldMap
 [System.Serializable,CreateAssetMenu(fileName = "NewObjAsset", menuName = "ScriptableObjects/ObjAsset")]
 public class ObjAsset : SerializedScriptableObject
 {
+    [ShowInInspector]
     public SaveData saveData { get {
             return GameArchitect.get.saveData;
     } }
@@ -44,7 +47,7 @@ public class ObjAsset : SerializedScriptableObject
             return saveData.map;
     } }
     public List<SceneObj> scenes { get {
-            return saveData.scenes;
+            return saveData.map.scenes;
     } }
     public ObjAsset()
     {
@@ -102,7 +105,25 @@ public class ObjAsset : SerializedScriptableObject
         sb.Remove(sb.Length - 3, 1);
 
         sb.AppendLine("}");
-        File.WriteAllText($"Assets/Scripts/Base/PDDL/PDDLClass/GoodsEnum.cs", sb.ToString());
+
+        sb.AppendLine("public class GoodsGen{");
+        sb.AppendLine("     public static GoodsInf GetGoodsInf(GoodsEnum goodsEnum){");
+        foreach(var x in goodsInfs)
+        {
+            Debug.Log(x.name);
+            Debug.Log(x.GetType().Name);
+            sb.Append($"if(goodsEnum== GoodsEnum.{x.name}){{return new {x.GetType().Name}();}}\n");
+        }
+        sb.AppendLine("return null;}");
+        sb.AppendLine("     public static GoodsObj GetGoodsObj(GoodsEnum goodsEnum){");
+        foreach (var x in goodsInfs)
+        {
+            var tex = x.GetType().Name;
+            sb.Append($"if(goodsEnum== GoodsEnum.{x.name}){{return new {tex.Replace("Inf", "Obj")}();}}\n");
+        }
+        sb.AppendLine("return null;}");
+        sb.AppendLine("}");
+        File.WriteAllText($"Assets/Scripts/Enums/GoodsEnum.cs", sb.ToString());
         AssetDatabase.Refresh();
     }
     //////////////////////////////////

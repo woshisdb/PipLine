@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class BuildingObj :BaseObj
+public class BuildingObj :BaseObj,ISendEvent
 {
+    public string name="建筑";
     /// <summary>
     /// 管线管理器，管理商品
     /// </summary>
@@ -37,6 +37,10 @@ public class BuildingObj :BaseObj
     public IEnumerator Update()
     {
         return null;
+    }
+    public void UpdateEvent()
+    {
+        this.SendEvent(new UpdateBuildingEvent());
     }
 }
 

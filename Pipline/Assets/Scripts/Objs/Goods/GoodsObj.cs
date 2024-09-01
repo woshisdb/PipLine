@@ -12,8 +12,23 @@ public class GoodsInf : IEqualityComparer<GoodsInf>
     /// <summary>
     /// 商品序号
     /// </summary>
-    [SerializeField]
-    public int goodNo;
+    [HideInInspector]
+    public int goodNo
+    {
+        get
+        {
+            if (Enum.TryParse<GoodsEnum>(name, true, out GoodsEnum enumValue))
+            {
+                // 如果解析成功，返回对应的整数值
+                return Convert.ToInt32(enumValue);
+            }
+            else
+            {
+                // 如果解析失败，返回 null 或者可以选择返回一个默认值
+                return -1;
+            }
+        }
+    }
     [SerializeField]
     public int goodSize;
     public bool Equals(GoodsInf x, GoodsInf y)

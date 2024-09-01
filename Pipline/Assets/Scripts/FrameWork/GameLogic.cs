@@ -40,9 +40,14 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     public Camera mainCamera;
     protected TaskCompletionSource<bool> tcs;
     public static bool hasTime;
-    //public CodeControler codeControler;
+    public GameObject scenes;
 
-	public IArchitecture GetArchitecture()
+    public void Start()
+    {
+        var t=GameArchitect.Interface;
+    }
+
+    public IArchitecture GetArchitecture()
 	{
         return GameArchitect.get;
 	}

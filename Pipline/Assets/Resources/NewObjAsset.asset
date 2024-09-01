@@ -81,9 +81,6 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u624B"
-    - Name: goodNo
-      Entry: 3
-      Data: 1
     - Name: goodSize
       Entry: 3
       Data: 1
@@ -134,9 +131,6 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u5E26\u94C1\u77FF\u77F3"
-    - Name: goodNo
-      Entry: 3
-      Data: 2
     - Name: goodSize
       Entry: 3
       Data: 10
@@ -149,9 +143,6 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u94C1\u77FF\u77F3"
-    - Name: goodNo
-      Entry: 3
-      Data: 3
     - Name: goodSize
       Entry: 3
       Data: 5
@@ -164,9 +155,6 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u94C1"
-    - Name: goodNo
-      Entry: 3
-      Data: 4
     - Name: goodSize
       Entry: 3
       Data: 2
@@ -196,29 +184,18 @@ MonoBehaviour:
       Data: 13|Node, Assembly-CSharp
     - Name: source
       Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[GoodsObj, Assembly-CSharp]], mscorlib
+      Data: 14|System.Collections.Generic.List`1[[Pair`2[[GoodsEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 15|GoodsObj, Assembly-CSharp
-    - Name: goodsInf
-      Entry: 7
-      Data: 16|GoodsInf, Assembly-CSharp
-    - Name: name
-      Entry: 1
-      Data: "\u5E26\u94C1\u77FF\u77F3"
-    - Name: goodNo
+      Data: 15|Pair`2[[GoodsEnum, Assembly-CSharp],[System.Int32, mscorlib]], Assembly-CSharp
+    - Name: Item1
       Entry: 3
       Data: 2
-    - Name: goodSize
-      Entry: 3
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sum
+    - Name: Item2
       Entry: 3
       Data: 1
     - Name: 
@@ -235,32 +212,21 @@ MonoBehaviour:
       Data: 
     - Name: to
       Entry: 7
-      Data: 17|Node, Assembly-CSharp
+      Data: 16|Node, Assembly-CSharp
     - Name: source
       Entry: 7
-      Data: 18|System.Collections.Generic.List`1[[GoodsObj, Assembly-CSharp]], mscorlib
+      Data: 17|System.Collections.Generic.List`1[[Pair`2[[GoodsEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 19|GoodsObj, Assembly-CSharp
-    - Name: goodsInf
-      Entry: 7
-      Data: 20|GoodsInf, Assembly-CSharp
-    - Name: name
-      Entry: 1
-      Data: "\u94C1\u77FF\u77F3"
-    - Name: goodNo
+      Data: 18|Pair`2[[GoodsEnum, Assembly-CSharp],[System.Int32, mscorlib]], Assembly-CSharp
+    - Name: Item1
       Entry: 3
       Data: 3
-    - Name: goodSize
-      Entry: 3
-      Data: 5
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sum
+    - Name: Item2
       Entry: 3
       Data: 1
     - Name: 
@@ -277,14 +243,14 @@ MonoBehaviour:
       Data: 
     - Name: edge
       Entry: 7
-      Data: 21|Edge, Assembly-CSharp
+      Data: 19|Edge, Assembly-CSharp
     - Name: tras
       Entry: 7
-      Data: 22|System.Collections.Generic.Dictionary`2[[ProductivityEnum, Assembly-CSharp],[System.Int32,
+      Data: 20|System.Collections.Generic.Dictionary`2[[ProductivityEnum, Assembly-CSharp],[System.Int32,
         mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 23|System.Collections.Generic.EnumEqualityComparer`1[[ProductivityEnum,
+      Data: 21|System.Collections.Generic.EnumEqualityComparer`1[[ProductivityEnum,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -297,7 +263,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 

@@ -54,14 +54,14 @@ public class Source
 		var sourceMax = 99999999;
 		foreach(var x in trans.from.source)
         {
-			sum = Math.Min(sum,from.Get(x)/x.sum);
-			sourceMax = Math.Max(sourceMax, from.Get(x) / x.sum);
+            sum = Math.Min(sum, from.Get(x.Item1) / x.Item2);
+            sourceMax = Math.Max(sourceMax, from.Get(x.Item1) / x.Item2);
         }
 		foreach(var x in trans.from.source)
         {
-			x.sum *= sum;
-			from.remove(x);
-			x.sum /= sum;
+			x.Item2 *= sum;
+            from.Remove(x.Item1,x.Item2);
+            x.Item2 /= sum;
         }
 		foreach (var x in trans.edge.tras)
 		{
@@ -72,9 +72,9 @@ public class Source
 			//添加到里面
 			foreach (var retS in trans.to.source)
 			{
-				retS.sum *= sum;
-				to.Add(retS);
-				retS.sum /= sum;
+				retS.Item2 *= sum;
+                to.Add(retS.Item1,retS.Item2);
+                retS.Item2 /= sum;
 			}
 			return;
 		}
@@ -105,9 +105,9 @@ public class Source
 				}
 				foreach (var x in trans.from.source)
 				{
-					x.sum *= sum;
-					from.remove(x);
-					x.sum /= sum;
+					x.Item2 *= sum;
+                    from.Remove(x.Item1,x.Item2);
+                    x.Item2 /= sum;
 				}
 			}
 			if(i==0)
@@ -115,9 +115,9 @@ public class Source
 				//添加到里面
 				foreach(var retS in trans.to.source)
                 {
-					retS.sum*= retsum;
-					to.Add(retS);
-					retS.sum /= retsum;
+					retS.Item2 *= retsum;
+                    to.Add(retS.Item1,retS.Item2);
+                    retS.Item2 /= retsum;
                 }
             }
 			else
@@ -173,14 +173,15 @@ public class EdgeItem
 	[SerializeField]
 	public int y;
 }
+
 [System.Serializable]
 public class Node
 {
 	[SerializeField]
-	public List<GoodsObj> source;
+	public List<Pair<GoodsEnum,int>> source;
 	public Node()
     {
-		source=new List<GoodsObj>();
+		source=new List<Pair<GoodsEnum, int>>();
     }
 }
 [System.Serializable]
