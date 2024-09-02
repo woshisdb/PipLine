@@ -6,6 +6,12 @@ public class IronMiningObj : BuildingObj
 {
     public IronMiningObj():base()
     {
-        resource.Add(new GoodsObj());
+        var obj=GoodsGen.GetGoodsObj(GoodsEnum.´øÌú¿óÊ¯);
+        obj.sum = 10000000;
+        resource.Add(obj);
+        this.jobManager = new JobManager(this);
+        this.jobManager.jobs.Add(
+            typeof(CaiKuangJob),new CaiKuangJob(this)
+        );
     }
 }

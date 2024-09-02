@@ -41,13 +41,13 @@ public class SpareTimeWork
 /// </summary>
 public class LifeStyle
 {
-	public Job job;
+	public JobInstance job;
 	public SpareTimeWork timeWork;
 	public NpcObj npc;
 	public LifeStyle(NpcObj npc)
     {
 		this.npc=npc;
-		this.job = new Job();
+		this.job = null;
 		job.npc = npc;
 		this.timeWork = new SpareTimeWork(npc);
     }

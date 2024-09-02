@@ -25,6 +25,7 @@ public class BuildingObj :BaseObj,ISendEvent
     /// 提供的生产力
     /// </summary>
     public Productivity productivity;
+    public JobManager jobManager;
 
     public BuildingObj()
     {
@@ -33,6 +34,7 @@ public class BuildingObj :BaseObj,ISendEvent
         goodsRes = new Resource();
         goodsManager = new GoodsManager(goodsRes);
         productivity = new Productivity(resource,this);
+        jobManager = new JobManager();
     }
     public IEnumerator Update()
     {
