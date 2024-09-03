@@ -29,10 +29,14 @@ public class SceneObj : BaseObj,ISendEvent
     }
     public void AddBuilding(BuildingObj building)
     {
+        GameArchitect.get.buildings.Add(building);
         buildings.Add(building);
+        UpdateEvent();
     }
     public void RemoveBuilding(BuildingObj building)
     {
+        GameArchitect.get.buildings.Remove(building);
         buildings.Remove(building);
+        UpdateEvent();
     }
 }

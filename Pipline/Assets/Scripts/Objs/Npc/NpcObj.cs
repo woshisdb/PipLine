@@ -16,6 +16,7 @@ public class NpcObj : BaseObj
 	public SceneObj belong;
 	public NpcObj()
     {
+		GameArchitect.get.npcs.Add(this);
 		befAct = null;
 		endAct = null;
 		lifeStyle = new LifeStyle(this);
@@ -48,7 +49,7 @@ public class LifeStyle
     {
 		this.npc=npc;
 		this.job = null;
-		job.npc = npc;
+		//job.npc = npc;
 		this.timeWork = new SpareTimeWork(npc);
     }
 }

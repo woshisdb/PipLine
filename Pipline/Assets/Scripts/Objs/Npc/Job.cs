@@ -75,7 +75,9 @@ public abstract class Job
     public void RegisterJob(NpcObj npcObj)
     {
         var ins = func(this, npcObj);
+        sum--;
         npcs.Add(npcObj);
+        npcObj.lifeStyle.job = ins;
     }
 }
 
@@ -87,5 +89,20 @@ public class JobManager
     {
         this.buildingObj = buildingObj;
         jobs = new Dictionary<Type,Job>();
+    }
+    public bool RegisterJob<T>(NpcObj npc)
+    where T : Job
+    {
+        Job ret;
+        var t = jobs.TryGetValue(typeof(T),out ret);
+        if(ret!=null)
+        {
+            ret.RegisterJob(npc);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

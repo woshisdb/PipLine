@@ -118,7 +118,13 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         saveData.map.scenes.Add(map);
         var ironMining = new IronMiningObj();
         for(int i = 0; i < 1; i++)
-        map.buildings.Add(ironMining);
+        map.AddBuilding(ironMining);
+        for(int i = 0; i < 10; i++)
+        {
+            var npc = new NpcObj();
+            map.Enter(npc);
+            ironMining.jobManager.RegisterJob<CaiKuangJob>(npc);
+        }
     }
     /// <summary>
     /// 地图的更新
@@ -132,7 +138,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
             var sc= scenePool.Allocate(map);//初始化场景
             sc.gameObject.transform.position = new Vector3(i * 50, 0, 0);
             sceneControlers.Add(sc);
-            sc.OnUpdateScene(new UpdateSceneEvent());
+            map.UpdateEvent();
         }
     }
     public void AddNpc(NpcObj npc,SceneObj scene=null)
