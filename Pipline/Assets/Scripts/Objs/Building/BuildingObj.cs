@@ -34,7 +34,7 @@ public class BuildingObj :BaseObj,ISendEvent
         goodsRes = new Resource();
         goodsManager = new GoodsManager(goodsRes);
         productivity = new Productivity(resource,this);
-        jobManager = new JobManager();
+        jobManager = new JobManager(this);
     }
     public IEnumerator Update()
     {

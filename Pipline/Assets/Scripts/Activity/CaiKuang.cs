@@ -6,6 +6,8 @@ public class CaiKuangBeginAct : Act<CaiKuangJob,CaiKuangJobInstance> {
     public int wasterTime;
     public override IEnumerator Run()
     {
+        building.resource.Add(GoodsEnum.返,2);
+        building.resource.GetGoods<HandObj>(GoodsEnum.返).UseTool(npc,2,wasterTime);
         yield return null;
     }
 
@@ -24,7 +26,8 @@ public class CaiKuangEndAct : Act<CaiKuangJob, CaiKuangJobInstance>
     public int wasterTime;
     public override IEnumerator Run()
     {
-
+        building.resource.GetGoods<HandObj>(GoodsEnum.返).ReleaseTool(npc, 2, wasterTime);
+        building.resource.Remove(GoodsEnum.返,2);
         yield return null;
     }
 

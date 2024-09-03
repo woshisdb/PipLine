@@ -168,6 +168,14 @@ public class Resource
             return val.sum;
         }
     }
+    public T GetGoods<T>(GoodsEnum goodsEnum)
+    where T:GoodsObj
+    {
+        var obj = GoodsGen.GetGoodsObj(goodsEnum);
+        GoodsObj val = null;
+        goods.TryGetValue(obj, out val);
+        return (T)val;
+    }
     //r1->r2
     public static void Trans(GoodsObj obj, Resource r1, Resource r2)
     {
