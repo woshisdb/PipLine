@@ -61,9 +61,9 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
         {
             var x = sceneObj.buildings[i];
             var b = GameArchitect.get.buildingPool.Allocate(x);
-            b.transform.SetParent(transform);//创建子节点
+            b.transform.SetParent(buildings);//创建子节点
             buildingControls.Add(b);
-            b.transform.position = new Vector3(dx*(i%sum),-dy*(i/sum),0);
+            b.transform.localPosition = new Vector3(dx*(i%sum),-dy*(i/sum),0);
         }
     }
     public void Recycle()
@@ -72,7 +72,7 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
         this.Unregister<UpdateSceneEvent>(sceneObj, OnUpdateScene);
         ClearBuildings();
     }
-    private void OnUpdateScene(UpdateSceneEvent exampleEvent)
+    public void OnUpdateScene(UpdateSceneEvent exampleEvent)
     {
         this.tableNameUI.text = sceneObj.sceneName;
         ClearBuildings();

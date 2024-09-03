@@ -57,6 +57,6 @@ public class CaiKuangJob : Job
         workday.preAct= new CaiKuangBeginAct(this,8);
         workday.endAct = new CaiKuangEndAct(this,8);
         dayWorks.Add(workday);
-        sum = 0;
+        sum = 100;
     }
 }

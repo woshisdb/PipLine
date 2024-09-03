@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using QFramework;
 using UnityEngine;
 public interface ICanShowView
@@ -33,14 +34,16 @@ where T : IPutInPool<F>
     }
 }
 
-public class GameArchitect : Architecture<GameArchitect>
+public class GameArchitect : Architecture<GameArchitect>,ISendEvent
 {
     public static GameArchitect get
     {
         get { return (GameArchitect)GameArchitect.Interface; }
 
     }
+    public StringBuilder sb;
     public GameLogic gameLogic;
+    public Transform buildingPoolT;
     public SaveData saveData;
     public ObjAsset objAsset;
     public TimeSystem timeSystem { get { return saveData.timeSystem; } }
@@ -60,6 +63,8 @@ public class GameArchitect : Architecture<GameArchitect>
     public List<SceneControler> sceneControlers;
     protected override void Init()
     {
+        buildingPoolT = GameObject.Find("BuildingRoot").transform;
+        sb = new StringBuilder();
         Debug.Log(1);
         sceneControlers = new List<SceneControler>();
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
@@ -95,7 +100,7 @@ public class GameArchitect : Architecture<GameArchitect>
                 e.Recycle();
             }
         );
-        this.objAsset = Resources.Load<ObjAsset>("ObjAsset");
+        this.objAsset = Resources.Load<ObjAsset>("NewObjAsset");
         SaveSystem.Instance.Load();//加载数据
         if (SaveSystem.Instance.firstInit)
         {
@@ -111,6 +116,9 @@ public class GameArchitect : Architecture<GameArchitect>
         var map = new SceneObj();
         map.sceneName = "测试场景";
         saveData.map.scenes.Add(map);
+        var ironMining = new IronMiningObj();
+        for(int i = 0; i < 1; i++)
+        map.buildings.Add(ironMining);
     }
     /// <summary>
     /// 地图的更新
@@ -124,6 +132,7 @@ public class GameArchitect : Architecture<GameArchitect>
             var sc= scenePool.Allocate(map);//初始化场景
             sc.gameObject.transform.position = new Vector3(i * 50, 0, 0);
             sceneControlers.Add(sc);
+            sc.OnUpdateScene(new UpdateSceneEvent());
         }
     }
     public void AddNpc(NpcObj npc,SceneObj scene=null)

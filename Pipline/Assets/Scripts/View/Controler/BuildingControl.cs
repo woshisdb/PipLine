@@ -29,17 +29,19 @@ public class BuildingControl : MonoBehaviour,IRegisterEvent, IPutInPool<Building
     {
         this.buildingObj = buildingObj;
         this.Register<UpdateBuildingEvent>(buildingObj,OnUpdateBuilding);
+        OnUpdateBuilding(new UpdateBuildingEvent());
     }
 
     public void Recycle()
     {
+        transform.parent = GameArchitect.get.buildingPoolT;
         gameObject.SetActive(false);
         this.Unregister<UpdateBuildingEvent>(buildingObj,OnUpdateBuilding);
     }
     private void OnUpdateBuilding(UpdateBuildingEvent exampleEvent)
     {
         this.title.text = buildingObj.name;
-        this.content.text = "";
+        this.content.text = buildingObj.GetContent();
     }
 
 }

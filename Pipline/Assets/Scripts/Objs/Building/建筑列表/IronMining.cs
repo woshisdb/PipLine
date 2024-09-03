@@ -5,7 +5,8 @@ using UnityEngine;
 public class IronMiningObj : BuildingObj
 {
     public IronMiningObj():base()
-    {
+    { 
+        name = "Ìú¿ó";
         var obj=GoodsGen.GetGoodsObj(GoodsEnum.´øÌú¿óÊ¯);
         obj.sum = 10000000;
         resource.Add(obj);

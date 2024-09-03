@@ -27,4 +27,12 @@ public class SceneObj : BaseObj,ISendEvent
         this.npcs.Remove(npc);
         npc.belong = null;
     }
+    public void AddBuilding(BuildingObj building)
+    {
+        buildings.Add(building);
+    }
+    public void RemoveBuilding(BuildingObj building)
+    {
+        buildings.Remove(building);
+    }
 }

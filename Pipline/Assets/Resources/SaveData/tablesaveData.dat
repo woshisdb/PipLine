@@ -38,24 +38,224 @@
                     "buildings": {
                         "$id": 7,
                         "$type": 2,
-                        "$rlength": 0,
+                        "$rlength": 1,
                         "$rcontent": [
+                            {
+                                "$id": 8,
+                                "$type": "6|IronMiningObj, Assembly-CSharp",
+                                "name": "\u94c1\u77ff",
+                                "pipLineManager": {
+                                    "$id": 9,
+                                    "$type": "7|PipLineManager, Assembly-CSharp",
+                                    "buildingObj": $iref:8,
+                                    "piplines": {
+                                        "$id": 10,
+                                        "$type": "8|System.Collections.Generic.List`1[[Source, Assembly-CSharp]], mscorlib",
+                                        "$rlength": 0,
+                                        "$rcontent": [
+                                        ]
+                                    }
+                                },
+                                "resource": {
+                                    "$id": 11,
+                                    "$type": "9|Resource, Assembly-CSharp",
+                                    "maxSize": 0,
+                                    "nowSize": 0,
+                                    "goods": {
+                                        "$id": 12,
+                                        "$type": "10|System.Collections.Generic.HashSet`1[[GoodsObj, Assembly-CSharp]], System.Core",
+                                        "$rlength": 1,
+                                        "$rcontent": [
+                                            {
+                                                "$id": 13,
+                                                "$type": "11|GoodsObj, Assembly-CSharp",
+                                                "goodsInf": {
+                                                    "$id": 14,
+                                                    "$type": "12|GoodsInf, Assembly-CSharp",
+                                                    "name": "\u5e26\u94c1\u77ff\u77f3",
+                                                    "goodSize": 10
+                                                },
+                                                "sum": 10000000
+                                            }
+                                        ]
+                                    }
+                                },
+                                "goodsRes": {
+                                    "$id": 15,
+                                    "$type": 9,
+                                    "maxSize": 0,
+                                    "nowSize": 0,
+                                    "goods": {
+                                        "$id": 16,
+                                        "$type": 10,
+                                        "$rlength": 0,
+                                        "$rcontent": [
+                                        ]
+                                    }
+                                },
+                                "goodsManager": {
+                                    "$id": 17,
+                                    "$type": "13|GoodsManager, Assembly-CSharp",
+                                    "maxSize": 0,
+                                    "nowSize": 0,
+                                    "goods": {
+                                        "$id": 18,
+                                        "$type": 10,
+                                        "$rlength": 0,
+                                        "$rcontent": [
+                                        ]
+                                    },
+                                    "goodslist": {
+                                        "$id": 19,
+                                        "$type": "14|System.Collections.Generic.Dictionary`2[[GoodsObj, Assembly-CSharp],[System.Int32, mscorlib]], mscorlib",
+                                        "comparer": {
+                                            "$id": 20,
+                                            "$type": "15|System.Collections.Generic.ObjectEqualityComparer`1[[GoodsObj, Assembly-CSharp]], mscorlib"
+                                        },
+                                        "$rlength": 0,
+                                        "$rcontent": [
+                                        ]
+                                    },
+                                    "resource": $iref:15
+                                },
+                                "productivity": {
+                                    "$id": 21,
+                                    "$type": "16|Productivity, Assembly-CSharp",
+                                    "resource": $iref:11,
+                                    "building": $iref:8,
+                                    "productivities": {
+                                        "$id": 22,
+                                        "$type": "17|System.Collections.Generic.Dictionary`2[[ProductivityEnum, Assembly-CSharp],[System.Int32, mscorlib]], mscorlib",
+                                        "comparer": {
+                                            "$id": 23,
+                                            "$type": "18|System.Collections.Generic.EnumEqualityComparer`1[[ProductivityEnum, Assembly-CSharp]], mscorlib",
+                                            "$rlength": 0,
+                                            "$rcontent": [
+                                            ]
+                                        },
+                                        "$rlength": 1,
+                                        "$rcontent": [
+                                            {
+                                                "$k": 0,
+                                                "$v": 0
+                                            }
+                                        ]
+                                    }
+                                },
+                                "jobManager": {
+                                    "$id": 24,
+                                    "$type": "19|JobManager, Assembly-CSharp",
+                                    "jobs": {
+                                        "$id": 25,
+                                        "$type": "20|System.Collections.Generic.Dictionary`2[[System.Type, mscorlib],[Job, Assembly-CSharp]], mscorlib",
+                                        "comparer": {
+                                            "$id": 26,
+                                            "$type": "21|System.Collections.Generic.ObjectEqualityComparer`1[[System.Type, mscorlib]], mscorlib"
+                                        },
+                                        "$rlength": 1,
+                                        "$rcontent": [
+                                            {
+                                                "$k": {
+                                                    "$id": 27,
+                                                    "$type": "22|System.RuntimeType, mscorlib",
+                                                    "CaiKuangJob, Assembly-CSharp"
+                                                },
+                                                "$v": {
+                                                    "$id": 28,
+                                                    "$type": "23|CaiKuangJob, Assembly-CSharp",
+                                                    "name": null,
+                                                    "dayWorks": {
+                                                        "$id": 29,
+                                                        "$type": "24|System.Collections.Generic.List`1[[DayWork, Assembly-CSharp]], mscorlib",
+                                                        "$rlength": 1,
+                                                        "$rcontent": [
+                                                            {
+                                                                "$id": 30,
+                                                                "$type": "25|DayWork, Assembly-CSharp",
+                                                                "preAct": {
+                                                                    "$id": 31,
+                                                                    "$type": "26|CaiKuangBeginAct, Assembly-CSharp",
+                                                                    "job": $iref:28,
+                                                                    "instance": null,
+                                                                    "wasterTime": 8
+                                                                },
+                                                                "endAct": {
+                                                                    "$id": 32,
+                                                                    "$type": "27|CaiKuangEndAct, Assembly-CSharp",
+                                                                    "job": $iref:28,
+                                                                    "instance": null,
+                                                                    "wasterTime": 8
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    "npcs": {
+                                                        "$id": 33,
+                                                        "$type": 1,
+                                                        "$rlength": 0,
+                                                        "$rcontent": [
+                                                        ]
+                                                    },
+                                                    "buildingObj": null,
+                                                    "func": {
+                                                        "$id": 34,
+                                                        "$type": "28|System.Func`3[[Job, Assembly-CSharp],[NpcObj, Assembly-CSharp],[JobInstance, Assembly-CSharp]], mscorlib",
+                                                        "target": {
+                                                            "$id": 35,
+                                                            "$type": "29|CaiKuangJob+<>c, Assembly-CSharp"
+                                                        },
+                                                        "declaringType": {
+                                                            "$id": 36,
+                                                            "$type": 22,
+                                                            "CaiKuangJob+<>c, Assembly-CSharp"
+                                                        },
+                                                        "methodName": "<.ctor>b__0_0",
+                                                        "delegateType": {
+                                                            "$id": 37,
+                                                            "$type": 22,
+                                                            "System.Func`3[[Job, Assembly-CSharp],[NpcObj, Assembly-CSharp],[JobInstance, Assembly-CSharp]], mscorlib"
+                                                        },
+                                                        "signature": {
+                                                            "$id": 38,
+                                                            "$type": "30|System.Type[], mscorlib",
+                                                            "$rlength": 2,
+                                                            "$rcontent": [
+                                                                {
+                                                                    "$id": 39,
+                                                                    "$type": 22,
+                                                                    "Job, Assembly-CSharp"
+                                                                },
+                                                                {
+                                                                    "$id": 40,
+                                                                    "$type": 22,
+                                                                    "NpcObj, Assembly-CSharp"
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "sum": 100
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
                         ]
                     }
                 }
             ]
         },
         "paths": {
-            "$id": 8,
-            "$type": "6|System.Collections.Generic.List`1[[Path, Assembly-CSharp]], mscorlib",
+            "$id": 41,
+            "$type": "31|System.Collections.Generic.List`1[[Path, Assembly-CSharp]], mscorlib",
             "$rlength": 0,
             "$rcontent": [
             ]
         }
     },
     "timeSystem": {
-        "$id": 9,
-        "$type": "7|TimeSystem, Assembly-CSharp",
+        "$id": 42,
+        "$type": "32|TimeSystem, Assembly-CSharp",
         "time": 0
     }
 }

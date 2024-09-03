@@ -107,19 +107,17 @@ public class ObjAsset : SerializedScriptableObject
         sb.AppendLine("}");
 
         sb.AppendLine("public class GoodsGen{");
-        sb.AppendLine("     public static GoodsInf GetGoodsInf(GoodsEnum goodsEnum){");
-        foreach(var x in goodsInfs)
-        {
-            Debug.Log(x.name);
-            Debug.Log(x.GetType().Name);
-            sb.Append($"if(goodsEnum== GoodsEnum.{x.name}){{return new {x.GetType().Name}();}}\n");
-        }
-        sb.AppendLine("return null;}");
+        sb.Append(@$"public static GoodsInf GetGoodsInf(GoodsEnum goodsEnum){{
+        if (((int)goodsEnum) < GameArchitect.get.objAsset.goodsInfs.Count)
+            return GameArchitect.get.objAsset.goodsInfs[((int)goodsEnum) - 1];
+        else
+            return null;
+        }}");
         sb.AppendLine("     public static GoodsObj GetGoodsObj(GoodsEnum goodsEnum){");
         foreach (var x in goodsInfs)
         {
             var tex = x.GetType().Name;
-            sb.Append($"if(goodsEnum== GoodsEnum.{x.name}){{return new {tex.Replace("Inf", "Obj")}();}}\n");
+            sb.Append($"if (goodsEnum == GoodsEnum.{x.name}) {{ var x = GetGoodsInf(goodsEnum); var y = new { tex.Replace("Inf", "Obj") }(); y.goodsInf = x; return y; }}\n");
         }
         sb.AppendLine("return null;}");
         sb.AppendLine("}");

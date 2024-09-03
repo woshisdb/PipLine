@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class BuildingObj :BaseObj,ISendEvent
@@ -43,6 +44,19 @@ public class BuildingObj :BaseObj,ISendEvent
     public void UpdateEvent()
     {
         this.SendEvent(new UpdateBuildingEvent());
+    }
+    public virtual string GetContent()
+    {
+        var sb = GameArchitect.get.sb;
+        sb.Clear();
+        foreach(var x in resource.goods)
+        {
+            sb.Append(x.goodsInf.name);
+            sb.Append(":");
+            sb.Append(x.sum);
+            sb.Append("\n");
+        }
+        return sb.ToString();
     }
 }
 

@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc813008e5169884e9ff058cfec8952a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sum: 10
+  sum: 22
   dx: 2
   dy: 2
   buildings: {fileID: 221713949324900775}
