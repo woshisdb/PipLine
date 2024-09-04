@@ -52,6 +52,7 @@ public class CaiKuangJob : Job
 {
     public CaiKuangJob(BuildingObj building) : base((e,f) => { return new CaiKuangJobInstance(e, f); },building)
     {
+        this.buildingObj = building;
         dayWorks = new List<DayWork>();
         var workday=new DayWork();
         workday.preAct= new CaiKuangBeginAct(this,8);

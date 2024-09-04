@@ -17,7 +17,7 @@ using Newtonsoft.Json;
 /// <summary>
 /// ¸üÐÂ»·¾³
 /// </summary>
-public class EnvirUpdateEvent
+public struct EndUpdateEvent:IEvent
 {
 
 }
@@ -28,11 +28,8 @@ public class BeginSelectEvent
 {
 
 }
-public class EndSelectEvent
-{
-}
 
-public class GameLogic : MonoBehaviour,ICanRegisterEvent
+public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
 {
     //public static OptionUIEnum optionUIEnum;
     public static bool isCoding=false;
@@ -45,6 +42,12 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     public void Start()
     {
         var t=GameArchitect.Interface;
+        this.Register<EndUpdateEvent>(this,
+            (e)=> {
+                GameCircle();
+            }
+        );
+        this.SendEvent(new EndUpdateEvent());
     }
 
     public IArchitecture GetArchitecture()
@@ -59,6 +62,7 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     {
         foreach (var npc in GameArchitect.get.npcs)
         {
+            Debug.Log(npc.name);
             npc.lifeStyle.job.SetDayJob();//设置一个人活动
             yield return npc.befAct.Run();//执行
         }
@@ -108,18 +112,22 @@ public class GameLogic : MonoBehaviour,ICanRegisterEvent
     }
     public IEnumerator IterCircle()
     {
-        NPCBefCircle();//NPC开始的行为
+        yield return NPCBefCircle();//NPC开始的行为
         yield return null;
-        BuildingCircle();//建筑自己的循环
+        yield return BuildingCircle();//建筑自己的循环
         yield return null;
-        NPCEndCircle();//更新NPC的结束循环
+        yield return NPCEndCircle();//更新NPC的结束循环
         yield return null;
-        EnvirUpdate();//对环境的更新
+        yield return EnvirUpdate();//对环境的更新
+        yield return null;
+        this.SendEvent<EndUpdateEvent>(new EndUpdateEvent());
         yield return null;
     }
     public void GameCircle()
     {
+        Debug.Log("A1");
         StartCoroutine(IterCircle());
+        Debug.Log("A2");
     }
     public void Save()
     {

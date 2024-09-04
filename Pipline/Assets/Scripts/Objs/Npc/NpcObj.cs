@@ -14,9 +14,11 @@ public class NpcObj : BaseObj
 	/// ÊôÓÚµÄ³¡¾°
 	/// </summary>
 	public SceneObj belong;
+	public string name;
 	public NpcObj()
     {
 		GameArchitect.get.npcs.Add(this);
+		name = "N" + GameArchitect.get.npcs.Count;
 		befAct = null;
 		endAct = null;
 		lifeStyle = new LifeStyle(this);

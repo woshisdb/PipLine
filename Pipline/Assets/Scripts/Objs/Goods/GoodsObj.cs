@@ -35,12 +35,26 @@ public class GoodsInf : IEqualityComparer<GoodsInf>
     {
         return x.goodNo == y.goodNo;
     }
-
-    public int GetHashCode(GoodsInf obj)
-    {
-        return obj.goodNo.GetHashCode();
-    }
-    public virtual GoodsObj RetGoods()
+	public override bool Equals(object obj)
+	{
+        if (obj is GoodsInf other)
+        {
+            return other.goodNo == other.goodNo;
+        }
+        else
+        {
+            return false;
+        }
+	}
+	public override int GetHashCode()
+	{
+		return this.goodNo.GetHashCode();
+	}
+	public int GetHashCode(GoodsInf obj)
+	{
+		return obj.goodNo.GetHashCode();
+	}
+	public virtual GoodsObj RetGoods()
     {
         var t=new GoodsObj();
         t.goodsInf = this;
@@ -73,8 +87,18 @@ public class GoodsObj : BaseObj,IEqualityComparer<GoodsObj>
     {
         return x.goodsInf == y.goodsInf;
     }
-
-    private ValueDropdownList<GoodsInf> GoodsInf
+	public override bool Equals(object obj)
+	{
+        if (obj is GoodsObj other)
+        {
+            return other.goodsInf == goodsInf;
+        }
+        else
+        {
+            return false;
+        }
+	}
+	private ValueDropdownList<GoodsInf> GoodsInf
     {
         get
         {
@@ -92,5 +116,10 @@ public class GoodsObj : BaseObj,IEqualityComparer<GoodsObj>
     public GoodsInf get()
     {
         return (GoodsInf)goodsInf;
+    }
+
+	public override int GetHashCode()
+	{
+		return goodsInf.GetHashCode();
     }
 }
