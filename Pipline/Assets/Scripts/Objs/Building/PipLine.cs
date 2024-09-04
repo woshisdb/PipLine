@@ -59,9 +59,8 @@ public class Source
         }
 		foreach(var x in trans.from.source)
         {
-			x.Item2 *= sum;
-            from.Remove(x.Item1,x.Item2);
-            x.Item2 /= sum;
+			int sumV=x.Item2 *sum;
+            from.Remove(x.Item1,sumV);
         }
 		foreach (var x in trans.edge.tras)
 		{
@@ -72,9 +71,8 @@ public class Source
 			//添加到里面
 			foreach (var retS in trans.to.source)
 			{
-				retS.Item2 *= sum;
-                to.Add(retS.Item1,retS.Item2);
-                retS.Item2 /= sum;
+				int sumV = retS.Item2 *sum;
+				to.Add(retS.Item1, sumV);
 			}
 			return;
 		}
@@ -217,6 +215,12 @@ public struct TransNode
 	public Trans trans;
 	public Resource from;
 	public Resource to;
+	public TransNode(Trans trans,Resource from,Resource to)
+    {
+		this.trans = trans;
+		this.from = from;
+		this.to = to;
+    }
 }
 
 /// <summary>

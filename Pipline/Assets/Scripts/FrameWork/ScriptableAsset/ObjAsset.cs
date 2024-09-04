@@ -127,4 +127,8 @@ public class ObjAsset : SerializedScriptableObject
     //////////////////////////////////
     [BoxGroup("商品流水线"), ShowInInspector]
     public List<Trans> trans;
+    public Trans FindTrans(string name)
+    {
+        return trans.Find(e => { return e.title == name; });
+    }
 }

@@ -26,6 +26,9 @@ public class BuildingObj :BaseObj,ISendEvent
     /// 提供的生产力
     /// </summary>
     public Productivity productivity;
+    /// <summary>
+    /// 工作系统
+    /// </summary>
     public JobManager jobManager;
 
     public BuildingObj()
@@ -39,6 +42,19 @@ public class BuildingObj :BaseObj,ISendEvent
     }
     public IEnumerator Update()
     {
+        for(var i = 0; i <pipLineManager.piplines.Count;i++)
+        {
+            var line = pipLineManager.piplines[i];
+            line.Update();
+        }
+        return null;
+    }
+    public IEnumerator LaterUpdate()
+    {
+        foreach (var x in productivity.productivities)
+        {
+            productivity.productivities[x.Key] = 0;
+        }
         return null;
     }
     public void UpdateEvent()

@@ -47,7 +47,7 @@ public class Resource
         }
         else
         {
-            val.sum -= goodsObj.sum;
+            val.sum -= sum;
             if (val.sum == 0)
             {
                 remove(goodsObj);

@@ -88,6 +88,10 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         {
             yield return building.Update();//更新
         }
+        foreach(var building in GameArchitect.get.buildings)
+        {
+            yield return building.LaterUpdate();
+        }
     }
     /// <summary>
     /// 对环境的更新
