@@ -64,8 +64,8 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         {
             Debug.Log(npc.name);
             npc.lifeStyle.job.SetDayJob();//设置一个人活动
-            yield return npc.befAct.Run();//执行
-        }
+			yield return npc.befAct.Run();//执行
+		}
     }
     /// <summary>
     /// 更新个人一天结束的行为
@@ -90,8 +90,8 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         }
         foreach(var building in GameArchitect.get.buildings)
         {
-            yield return building.LaterUpdate();
-        }
+			yield return building.LaterUpdate();
+		}
     }
     /// <summary>
     /// 对环境的更新
@@ -118,10 +118,10 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     {
         yield return NPCBefCircle();//NPC开始的行为
         yield return null;
-        yield return BuildingCircle();//建筑自己的循环
-        yield return null;
-        yield return NPCEndCircle();//更新NPC的结束循环
-        yield return null;
+		yield return BuildingCircle();//建筑自己的循环
+		yield return null;
+		yield return NPCEndCircle();//更新NPC的结束循环
+		yield return null;
         yield return EnvirUpdate();//对环境的更新
         yield return null;
         this.SendEvent<EndUpdateEvent>(new EndUpdateEvent());

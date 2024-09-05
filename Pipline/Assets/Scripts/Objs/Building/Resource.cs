@@ -24,6 +24,7 @@ public class Resource
     public void Add(GoodsEnum goodsEnum,int sum)
     {
         var goodsObj=GoodsGen.GetGoodsObj(goodsEnum);
+        goodsObj.sum = sum;
         GoodsObj val = null;
         goods.TryGetValue(goodsObj, out val);
         if (val == null)
@@ -33,12 +34,13 @@ public class Resource
         }
         else
         {
-            val.sum += goodsObj.sum;
+            val.sum +=sum;
         }
     }
     public void Remove(GoodsEnum goodsEnum,int sum)
     {
         var goodsObj = GoodsGen.GetGoodsObj(goodsEnum);
+        goodsObj.sum = sum;
         GoodsObj val = null;
         goods.TryGetValue(goodsObj, out val);
         if (val == null)

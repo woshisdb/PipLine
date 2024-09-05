@@ -23,16 +23,16 @@ public abstract class ToolObj:GoodsObj
 		foreach (var eng in GetProducs())
 		{
 			productivity.productivities[eng.Key] += eng.Value*num*time;
-			sum -= num;
 		}
+		sum -= num;
 	}
 	public virtual void ReleaseTool(NpcObj npcObj, int num = 1,int time=1)
 	{
 		foreach (var eng in GetProducs())
 		{
-			productivity.productivities[eng.Key] -= eng.Value*num*time;
-			sum += num;
+			//productivity.productivities[eng.Key] -= eng.Value*num*time;
 		}
+		sum += num;
 	}
 }
 

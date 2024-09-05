@@ -57,11 +57,11 @@ public class Source
             sum = Math.Min(sum, from.Get(x.Item1) / x.Item2);
             sourceMax = Math.Max(sourceMax, from.Get(x.Item1) / x.Item2);
         }
-		foreach(var x in trans.from.source)
-        {
-			int sumV=x.Item2 *sum;
-            from.Remove(x.Item1,sumV);
-        }
+		foreach (var x in trans.from.source)
+		{
+			int sumV = x.Item2 * sum;
+			from.Remove(x.Item1, sumV);
+		}
 		foreach (var x in trans.edge.tras)
 		{
 			productivity.productivities[x.Key] -= sum * x.Value;

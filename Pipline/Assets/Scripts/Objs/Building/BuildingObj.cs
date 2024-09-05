@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -42,19 +43,20 @@ public class BuildingObj :BaseObj,ISendEvent
     }
     public IEnumerator Update()
     {
-        for(var i = 0; i <pipLineManager.piplines.Count;i++)
-        {
-            var line = pipLineManager.piplines[i];
-            line.Update();
-        }
-        return null;
+		for (var i = 0; i < pipLineManager.piplines.Count; i++)
+		{
+			var line = pipLineManager.piplines[i];
+			line.Update();
+		}
+		return null;
     }
     public IEnumerator LaterUpdate()
     {
-        foreach (var x in productivity.productivities)
-        {
-            productivity.productivities[x.Key] = 0;
-        }
+		foreach (var x in Enum.GetValues(typeof(ProductivityEnum)))
+		{
+			productivity.productivities[(ProductivityEnum)x] = 0;
+		}
+		this.SendEvent<UpdateBuildingEvent>(new UpdateBuildingEvent());
         return null;
     }
     public void UpdateEvent()
@@ -65,6 +67,7 @@ public class BuildingObj :BaseObj,ISendEvent
     {
         var sb = GameArchitect.get.sb;
         sb.Clear();
+        sb.AppendLine("原料:\n");
         foreach(var x in resource.goods)
         {
             sb.Append(x.goodsInf.name);
@@ -72,6 +75,15 @@ public class BuildingObj :BaseObj,ISendEvent
             sb.Append(x.sum);
             sb.Append("\n");
         }
+        sb.AppendLine("产品:\n");
+        foreach (var x in goodsRes.goods)
+        {
+            sb.Append(x.goodsInf.name);
+            sb.Append(":");
+            sb.Append(x.sum);
+            sb.Append("\n");
+        }
+
         return sb.ToString();
     }
 }
