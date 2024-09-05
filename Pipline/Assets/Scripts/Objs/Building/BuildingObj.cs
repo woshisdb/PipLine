@@ -24,10 +24,6 @@ public class BuildingObj :BaseObj,ISendEvent
     /// </summary>
     public GoodsManager goodsManager;
     /// <summary>
-    /// 提供的生产力
-    /// </summary>
-    public Productivity productivity;
-    /// <summary>
     /// 工作系统
     /// </summary>
     public JobManager jobManager;
@@ -38,7 +34,6 @@ public class BuildingObj :BaseObj,ISendEvent
         resource = new Resource();
         goodsRes = new Resource();
         goodsManager = new GoodsManager(goodsRes);
-        productivity = new Productivity(resource,this);
         jobManager = new JobManager(this);
     }
     public IEnumerator Update()
@@ -46,17 +41,13 @@ public class BuildingObj :BaseObj,ISendEvent
 		for (var i = 0; i < pipLineManager.piplines.Count; i++)
 		{
 			var line = pipLineManager.piplines[i];
-			line.Update();
+			line.Update();//更新每一条管线
 		}
 		return null;
     }
     public IEnumerator LaterUpdate()
     {
-		foreach (var x in Enum.GetValues(typeof(ProductivityEnum)))
-		{
-			productivity.productivities[(ProductivityEnum)x] = 0;
-		}
-		this.SendEvent<UpdateBuildingEvent>(new UpdateBuildingEvent());
+        UpdateEvent();
         return null;
     }
     public void UpdateEvent()

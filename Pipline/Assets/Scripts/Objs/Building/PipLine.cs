@@ -46,6 +46,10 @@ public class Source
 	public Productivity productivity;
 	public void Update()
     {
+		foreach(var x in productivity.productivities)
+        {
+			productivity.remain[x.Key] = x.Value;
+        }
 		int sum = 999999999;
 		foreach(var x in trans.edge.tras)
         {
@@ -64,7 +68,7 @@ public class Source
 		}
 		foreach (var x in trans.edge.tras)
 		{
-			productivity.productivities[x.Key] -= sum * x.Value;
+			productivity.remain[x.Key] -= sum * x.Value;
 		}
 		if (trans.wasterTimes == 1)
 		{
@@ -85,7 +89,7 @@ public class Source
             {
                 int val = Math.Min(trans.edge[x.Key] - productivity[x.Key], productivity[x.Key]);
 				node.Item1.tras[x.Key] += val;
-				productivity.productivities[x.Key] -= val;
+				productivity.remain[x.Key] -= val;
                 if (node.Item1.tras[x.Key]< trans.edge[x.Key])
                 {
 					canPro = false;
@@ -151,9 +155,9 @@ public class Trans
 	/// 所需要的时间
 	/// </summary>
 	public int wasterTimes;
-	public Source AddSource(Resource from,Resource to,Productivity productivity)
+	public Source AddSource(Resource from,Resource to,BuildingObj building)
 	{
-		return new Source(from,to, this,productivity);
+		return new Source(from,to, this,new Productivity(from,building));
 	}
 	public Trans()
     {
@@ -230,17 +234,26 @@ public class PipLineManager
 {
 	public BuildingObj buildingObj;
 	public List<Source> piplines;
+	public Dictionary<string, Source> pairs;
 	public void SetTrans(List<TransNode> trans)
 	{
 		piplines.Clear();
+		pairs.Clear();
 		foreach (var x in trans)
 		{
-			piplines.Add(x.trans.AddSource(x.from,x.to,buildingObj.productivity));
+			var data = x.trans.AddSource(x.from, x.to, buildingObj);
+			piplines.Add(data);
+			pairs.Add(x.trans.title,data);
 		}
 	}
+	public Source GetTrans(string name)
+    {
+		return pairs[name];
+    }
 	public PipLineManager(BuildingObj buildingObj)
     {
         piplines = new List<Source>();
+		pairs = new Dictionary<string, Source>();
         this.buildingObj = buildingObj;
     }
 }
