@@ -80,7 +80,7 @@ public class ObjAsset : SerializedScriptableObject
     public void GenEnum()
     {
         List<string> items = new List<string>();
-        foreach(var x in goodsInfs)
+        foreach (var x in goodsInfs)
         {
             items.Add(x.name);
         }
@@ -98,7 +98,7 @@ public class ObjAsset : SerializedScriptableObject
             }
 
             // 添加枚举项，使用逗号分隔并确保最后一项没有逗号
-            sb.AppendLine($"    {enumItem} = {i+1},");
+            sb.AppendLine($"    {enumItem} = {i + 1},");
         }
 
         // 删除最后一个逗号
@@ -117,7 +117,13 @@ public class ObjAsset : SerializedScriptableObject
         foreach (var x in goodsInfs)
         {
             var tex = x.GetType().Name;
-            sb.Append($"if (goodsEnum == GoodsEnum.{x.name}) {{ var x = GetGoodsInf(goodsEnum); var y = new { tex.Replace("Inf", "Obj") }(); y.goodsInf = x; return y; }}\n");
+            sb.Append($"if (goodsEnum == GoodsEnum.{x.name}) {{ var x = GetGoodsInf(goodsEnum); var y = new {tex.Replace("Inf", "Obj")}(); y.goodsInf = x; return y; }}\n");
+            //sb.Append(@$"if (goodsEnum == GoodsEnum.{x.name}){{
+            //    var x = GetGoodsInf(goodsEnum);
+            //    var y = new {tex.Replace("Inf", "Obj")}();
+            //    y.goodsInf = x;
+            //    return y;
+            //}}");
         }
         sb.AppendLine("return null;}");
         sb.AppendLine("}");

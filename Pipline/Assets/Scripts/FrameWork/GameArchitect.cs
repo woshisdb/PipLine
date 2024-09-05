@@ -116,14 +116,24 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         var map = new SceneObj();
         map.sceneName = "测试场景";
         saveData.map.scenes.Add(map);
+        //添加铁矿厂
         var ironMining = new IronMiningObj();
         for(int i = 0; i < 1; i++)
         map.AddBuilding(ironMining);
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 100; i++)
         {
             var npc = new NpcObj();
             map.Enter(npc);
             ironMining.jobManager.RegisterJob<CaiKuangJob>(npc);
+        }
+        //添加高炉
+        var gaoLu = new Gaolu();
+        map.AddBuilding(gaoLu);
+        for(int i=0;i<100;i++)
+        {
+            var npc = new NpcObj();
+            map.Enter(npc);
+            gaoLu.jobManager.RegisterJob<LianZhiJob>(npc);
         }
     }
     /// <summary>

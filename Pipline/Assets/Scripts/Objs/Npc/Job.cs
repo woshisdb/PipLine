@@ -56,10 +56,18 @@ public abstract class Job
     /// 工作的名称
     /// </summary>
     public string name;
+    /// <summary>
+    /// 
+    /// </summary>
+    public int beginWorkTime;
+    public int endWorkTime;
     public List<DayWork> dayWorks;
     public List<NpcObj> npcs;
     public BuildingObj buildingObj;
     public Func<Job,NpcObj,JobInstance> func;
+    /// <summary>
+    /// 工作的总数目
+    /// </summary>
     public int sum;
     public int signed { get { return npcs.Count; } }
     public Job(Func<Job, NpcObj, JobInstance> func,BuildingObj building)
@@ -78,6 +86,18 @@ public abstract class Job
         sum--;
         npcs.Add(npcObj);
         npcObj.lifeStyle.job = ins;
+    }
+    public bool InWorkTime(int time)
+    {
+        return time>=beginWorkTime&&time<=endWorkTime;
+    }
+    public bool InEndTime(int time)
+    {
+        return (time==endWorkTime+1);
+    }
+    public bool InStartTime(int time)
+    {
+        return (time == beginWorkTime + 1);
     }
 }
 

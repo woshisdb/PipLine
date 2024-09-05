@@ -28,6 +28,13 @@ public class BeginSelectEvent
 {
 
 }
+/// <summary>
+/// 不为空
+/// </summary>
+public struct PassDayEvent:IEvent
+{
+
+}
 
 public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
 {
@@ -44,12 +51,20 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         var t=GameArchitect.Interface;
         this.Register<EndUpdateEvent>(this,
             (e)=> {
-                GameCircle();
+                GameCircle();//一个时间步
+            }
+        );
+        this.Register<PassDayEvent>(//跨天活动
+            e => {
+                PassDay(e);
             }
         );
         this.SendEvent(new EndUpdateEvent());
     }
+    public void PassDay(PassDayEvent passDay)
+    {
 
+    }
     public IArchitecture GetArchitecture()
 	{
         return GameArchitect.get;
@@ -60,11 +75,13 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     /// <returns></returns>
     public IEnumerator NPCBefCircle()
     {
+        var nowT=GameArchitect.get.timeSystem.GetTime();
         foreach (var npc in GameArchitect.get.npcs)
         {
-            Debug.Log(npc.name);
-            npc.lifeStyle.job.SetDayJob();//设置一个人活动
-			yield return npc.befAct.Run();//执行
+            if (npc.lifeStyle.job.job.InStartTime(nowT))
+            {
+                yield return npc.befAct.Run();//执行
+            }
 		}
     }
     /// <summary>
@@ -73,9 +90,11 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     /// <returns></returns>
     public IEnumerator NPCEndCircle()
     {
+        var nowT = GameArchitect.get.timeSystem.GetTime();
         foreach (var npc in GameArchitect.get.npcs)
 		{
-            yield return npc.endAct.Run();
+            if (npc.lifeStyle.job.job.InEndTime(nowT))
+                yield return npc.endAct.Run();
 		}
     }
     /// <summary>
@@ -88,10 +107,6 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         {
             yield return building.Update();//更新
         }
-        foreach(var building in GameArchitect.get.buildings)
-        {
-			yield return building.LaterUpdate();
-		}
     }
     /// <summary>
     /// 对环境的更新
@@ -101,6 +116,13 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     {
         //时间加1
         GameArchitect.get.saveData.timeSystem.time++;
+        if(GameArchitect.get.saveData.timeSystem.GetTime()==0)//跨天了,重新计算今天的活动
+        {
+            foreach (var npc in GameArchitect.get.npcs)
+            {
+                npc.lifeStyle.job.SetDayJob();//设置一个人今天的活动
+            }
+        }
         yield return null;
     }
     /// <summary>
@@ -120,18 +142,18 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         yield return null;
 		yield return BuildingCircle();//建筑自己的循环
 		yield return null;
-		yield return NPCEndCircle();//更新NPC的结束循环
-		yield return null;
+        yield return NPCEndCircle();//结算收入
+        yield return null;
         yield return EnvirUpdate();//对环境的更新
         yield return null;
-        this.SendEvent<EndUpdateEvent>(new EndUpdateEvent());
+        this.SendEvent<EndUpdateEvent>(new EndUpdateEvent());//跨时间步
         yield return null;
     }
     public void GameCircle()
     {
-        Debug.Log("A1");
+        //Debug.Log("A1");
         StartCoroutine(IterCircle());
-        Debug.Log("A2");
+        //Debug.Log("A2");
     }
     public void Save()
     {

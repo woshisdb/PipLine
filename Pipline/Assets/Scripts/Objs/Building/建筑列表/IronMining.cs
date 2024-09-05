@@ -14,8 +14,7 @@ public class IronMiningObj : BuildingObj
         this.jobManager.jobs.Add(
             typeof(CaiKuangJob),new CaiKuangJob(this)
         );
-        var t=GameArchitect.get.objAsset.FindTrans("开采铁矿石");
-        Debug.Log(t.title);
+        var t = GameArchitect.get.objAsset.FindTrans("开采铁矿石");
         this.pipLineManager.SetTrans(
         new List<TransNode>()
         {

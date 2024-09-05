@@ -23,6 +23,7 @@ public class Resource
     
     public void Add(GoodsEnum goodsEnum,int sum)
     {
+        Debug.Log(goodsEnum);
         var goodsObj=GoodsGen.GetGoodsObj(goodsEnum);
         goodsObj.sum = sum;
         GoodsObj val = null;
@@ -50,11 +51,11 @@ public class Resource
         else
         {
             val.sum -= sum;
-            if (val.sum == 0)
-            {
-                remove(goodsObj);
-                goods.Remove(goodsObj);
-            }
+            //if (val.sum == 0)
+            //{
+            //    remove(goodsObj);
+            //    goods.Remove(goodsObj);
+            //}
         }
     }
 
