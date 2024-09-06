@@ -7,11 +7,13 @@ public class SceneObj : BaseObj,ISendEvent
     public string sceneName;
     public List<NpcObj> npcs;
     public List<BuildingObj> buildings;
+    public List<PathObj> paths;
     public SceneObj()
     {
         sceneName = "";
         npcs = new List<NpcObj>();
         buildings = new List<BuildingObj>();
+        paths = new List<PathObj>();
     }
     public void UpdateEvent()
     {

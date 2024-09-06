@@ -21,5 +21,11 @@ public class IronMiningObj : BuildingObj
             new TransNode(t,resource,goodsRes)
         });
 
+        var t1 = new Trans();
+        t1.title = "搬运商品";
+        t1.from.source.Add(new Pair<GoodsEnum, int>(GoodsEnum.带铁矿石,1));
+        t1.to.source.Add(new Pair<GoodsEnum, int>(GoodsEnum.铁矿石, 1));
+        var moveTrans = new TransNode();
+
     }
 }

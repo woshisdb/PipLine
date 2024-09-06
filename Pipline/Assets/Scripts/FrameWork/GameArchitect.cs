@@ -50,6 +50,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public List<BuildingObj> buildings { get { return GameArchitect.get.saveData.buildings; } }
     public List<SceneObj> scenes { get { return GameArchitect.get.saveData.map.scenes; } }
     public List<NpcObj> npcs { get { return GameArchitect.get.saveData.npcs; } }
+    public List<Path> paths { get { return GameArchitect.get.saveData.map.paths; } }
     /// <summary>
     /// 场景对象池
     /// </summary>
@@ -60,6 +61,9 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     /// </summary>
     public BaseObjectPool<BuildingControl, BuildingObj> buildingPool;
     protected GameObject cardTemplate;
+    public BaseObjectPool<PathControler, PathObj> pathPool;
+    protected GameObject pathTemplate;
+
     public List<SceneControler> sceneControlers;
     protected override void Init()
     {
@@ -70,6 +74,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         sceneTemplate= Resources.Load<GameObject>("Controler/Scene");
         cardTemplate= Resources.Load<GameObject>("Controler/Card");
+        pathTemplate= Resources.Load<GameObject>("Controler/Path");
         ///初始化场景池
         scenePool = new BaseObjectPool<SceneControler, SceneObj>(
             () =>
@@ -100,6 +105,20 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
                 e.Recycle();
             }
         );
+        pathPool = new BaseObjectPool<PathControler, PathObj>(
+            () =>
+            {
+                var t = GameObject.Instantiate<GameObject>(pathTemplate);
+                return t.GetComponent<PathControler>();
+            },
+            (e) => {
+                e.Allocate();
+            },
+            (e) =>
+            {
+                e.Recycle();
+            }
+        );
         this.objAsset = Resources.Load<ObjAsset>("NewObjAsset");
         SaveSystem.Instance.Load();//加载数据
         if (SaveSystem.Instance.firstInit)
@@ -118,17 +137,15 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         saveData.map.scenes.Add(map);
         //添加铁矿厂
         var ironMining = new IronMiningObj();
-        for(int i = 0; i < 1; i++)
-        map.AddBuilding(ironMining);
+        map.AddBuilding(ironMining);//添加铁矿
+        var gaoLu = new Gaolu();
+        map.AddBuilding(gaoLu);//添加熔炉
         for(int i = 0; i < 100; i++)
         {
             var npc = new NpcObj();
             map.Enter(npc);
             ironMining.jobManager.RegisterJob<CaiKuangJob>(npc);
         }
-        //添加高炉
-        var gaoLu = new Gaolu();
-        map.AddBuilding(gaoLu);
         for(int i=0;i<100;i++)
         {
             var npc = new NpcObj();
@@ -142,7 +159,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public void MapInit()
     {
         Debug.Log(scenes.Count);
-        for(int i=0;i<scenes.Count;i++)
+        for(int i=0;i<scenes.Count;i++)//场景初始化
         {
             var map = scenes[i];
             var sc= scenePool.Allocate(map);//初始化场景

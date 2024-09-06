@@ -42,12 +42,13 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     public static bool isCoding=false;
     //Ïà»ú
     public Camera mainCamera;
-    protected TaskCompletionSource<bool> tcs;
+    //protected TaskCompletionSource<bool> tcs;
     public static bool hasTime;
     public GameObject scenes;
 
     public void Start()
     {
+        TransEnum.Init();
         var t=GameArchitect.Interface;
         this.Register<EndUpdateEvent>(this,
             (e)=> {

@@ -33,8 +33,21 @@ public class Pair<T,F>
 {
 	public T Item1;
 	public F Item2;
+	public Pair()
+    {
+
+    }
+	public Pair(T item1, F item2)
+    {
+        Item1 = item1;
+        Item2 = item2;
+    }
 }
-public class Source
+public abstract class Source
+{
+	public abstract void Update();
+}
+public class PipLineSource:Source
 {
 	public Trans trans;//商品间的转移关系
 	public Resource from;
@@ -44,7 +57,7 @@ public class Source
 	/// </summary>
 	public CircularQueue<Pair<Edge, int>> trasSource;
 	public Productivity productivity;
-	public void Update()
+	public override void Update()
     {
 		foreach(var x in productivity.productivities)
         {
@@ -132,7 +145,7 @@ public class Source
 		last.Item2 += sum;
     }
 
-	public Source(Resource from, Resource to, Trans trans, Productivity productivity)
+	public PipLineSource(Resource from, Resource to, Trans trans, Productivity productivity)
     {
         this.from = from;
         this.to = to;

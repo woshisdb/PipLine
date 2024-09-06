@@ -8,7 +8,7 @@ using UnityEngine;
 /// <typeparam name="T"></typeparam>
 public class CircularQueue<T>
 {
-    private T[] _queue;
+    public  T[] _queue;
     private int _head;
     private int _tail;
     private int _size;
@@ -22,7 +22,15 @@ public class CircularQueue<T>
         _size = 0;
         _capacity = n;
     }
-
+    public void Enqueue()
+    {
+        if (_size == _capacity)
+        {
+            throw new InvalidOperationException("队列已满");
+        }
+        _tail = (_tail + 1) % _capacity;
+        _size++;
+    }
     // 添加元素到队列
     public void Enqueue(T item)
     {

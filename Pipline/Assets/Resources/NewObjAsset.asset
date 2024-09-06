@@ -42,6 +42,9 @@ MonoBehaviour:
     - Name: buildings
       Entry: 6
       Data: 
+    - Name: paths
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -64,6 +67,9 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: buildings
+      Entry: 6
+      Data: 
+    - Name: paths
       Entry: 6
       Data: 
     - Name: 
@@ -172,7 +178,7 @@ MonoBehaviour:
       Data: 11|System.Collections.Generic.List`1[[Trans, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 12|Trans, Assembly-CSharp
@@ -391,6 +397,100 @@ MonoBehaviour:
     - Name: $v
       Entry: 3
       Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: wasterTimes
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 32|Trans, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\u642C\u8FD0\u5546\u54C1"
+    - Name: from
+      Entry: 7
+      Data: 33|Node, Assembly-CSharp
+    - Name: source
+      Entry: 7
+      Data: 34|System.Collections.Generic.List`1[[Pair`2[[GoodsEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: to
+      Entry: 7
+      Data: 35|Node, Assembly-CSharp
+    - Name: source
+      Entry: 7
+      Data: 36|System.Collections.Generic.List`1[[Pair`2[[GoodsEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: edge
+      Entry: 7
+      Data: 37|Edge, Assembly-CSharp
+    - Name: tras
+      Entry: 7
+      Data: 38|System.Collections.Generic.Dictionary`2[[ProductivityEnum, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 39|System.Collections.Generic.EnumEqualityComparer`1[[ProductivityEnum,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
