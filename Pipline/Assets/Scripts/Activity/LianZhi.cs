@@ -2,62 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LianZhiBeginAct : Act<LianZhiJob, LianZhiJobInstance>
+public class LianZhiBeginAct : BeginJobAct<LianZhiJob, LianZhiJobInstance>
 {
-    public int wasterTime;
-    public override IEnumerator Run()
-    {
-        building.resource.Add(GoodsEnum.手, 2);
-        building.resource.GetGoods<HandObj>(GoodsEnum.手).UseTool(npc, building.pipLineManager, "炼制铁矿", 2, wasterTime);
-        yield return null;
-    }
-
     public override int WasterTime()
     {
         return wasterTime;
     }
-    public LianZhiBeginAct(Job job, int wasterTime) : base(job, null)
+    public LianZhiBeginAct(Job job, int wasterTime,string tranName) : base(job,GoodsEnum.手, tranName, wasterTime)
     {
         this.wasterTime = wasterTime;
     }
 }
 
-public class LianZhiEndAct : Act<LianZhiJob, LianZhiJobInstance>
+public class LianZhiEndAct : EndJobAct<LianZhiJob, LianZhiJobInstance>
 {
-    public int wasterTime;
-    public override IEnumerator Run()
-    {
-        building.resource.GetGoods<HandObj>(GoodsEnum.手).ReleaseTool(npc, building.pipLineManager, "炼制铁矿", 2, wasterTime);
-        building.resource.Remove(GoodsEnum.手, 2);
-        yield return null;
-    }
 
     public override int WasterTime()
     {
         return wasterTime;
     }
-    public LianZhiEndAct(Job job, int wasterTime) : base(job, null)
+    public LianZhiEndAct(Job job, int wasterTime,string tranName) : base(job,GoodsEnum.手, tranName, wasterTime)
     {
         this.wasterTime = wasterTime;
     }
 }
 
-public class LianZhiJobInstance : JobInstance
+public class LianZhiJobInstance : NormalJobInstance
 {
     public LianZhiJobInstance(Job job, NpcObj npc) : base(job, npc)
     {
     }
 }
 
-public class LianZhiJob : Job
+public class LianZhiJob : NormalJob
 {
-    public LianZhiJob(BuildingObj building) : base((e, f) => { return new LianZhiJobInstance(e, f); }, building)
+    public LianZhiJob(BuildingObj building) : base("炼制铁矿", (e, f) => { return new LianZhiJobInstance(e, f); }, building,8)
     {
         this.buildingObj = building;
         dayWorks = new List<DayWork>();
         var workday = new DayWork();
-        workday.preAct = new LianZhiBeginAct(this, 8);
-        workday.endAct = new LianZhiEndAct(this, 8);
+        workday.preAct = new LianZhiBeginAct(this, 8,tranName);
+        workday.endAct = new LianZhiEndAct(this, 8,tranName);
         dayWorks.Add(workday);
         sum = 100;
     }

@@ -157,7 +157,7 @@ public class Trans
 	public int wasterTimes;
 	public Source AddSource(Resource from,Resource to,BuildingObj building)
 	{
-		return new Source(from,to, this,new Productivity(from,building));
+		return TransEnum.AddSource(title,from, to, this,building);
 	}
 	public Trans()
     {
