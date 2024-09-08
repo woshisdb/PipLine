@@ -70,7 +70,6 @@ public class CarrySource : Source
         goods.sum = realcarry * trans.from.source[0].Item2;
         belong.scene.paths[to.building.scene].PushOrder(from, to, goods, trans.wasterTimes);
     }
-
 	public CarrySource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)
 	{
         this.belong = building;
@@ -78,5 +77,16 @@ public class CarrySource : Source
 		this.to = to;
         this.trans = trans;
 		this.productivity = productivity;
-	}
+    }
+    /// <summary>
+    /// 更新一系列的资源
+    /// </summary>
+    /// <param name="goodsEnum"></param>
+    public void UpdateResource(GoodsEnum goodsEnum)
+    {
+        var obj = GoodsGen.GetGoodsObj(goodsEnum);
+        var res = GameArchitect.get.economicSystem.GetGoods(obj, belong.scene);//获得原料
+        var result = res.FindMinElement(e => { return e.Item3; });
+    }
+
 }

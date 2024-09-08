@@ -28,7 +28,8 @@ public class BuildingObj :BaseObj,ISendEvent
     /// </summary>
     public JobManager jobManager;
     public SceneObj scene;
-
+    public GoodsEnum[] goodsEnums;
+    public Money money;
     public BuildingObj()
     {
         pipLineManager = new PipLineManager(this);
@@ -37,7 +38,7 @@ public class BuildingObj :BaseObj,ISendEvent
         goodsManager = new GoodsManager(goodsRes);
         jobManager = new JobManager(this);
     }
-    public IEnumerator Update()
+    public virtual IEnumerator Update()
     {
 		for (var i = 0; i < pipLineManager.piplines.Count; i++)
 		{
@@ -45,6 +46,14 @@ public class BuildingObj :BaseObj,ISendEvent
 			line.Update();//更新每一条管线
 		}
 		return null;
+    }
+    /// <summary>
+    /// 所需要的原材料
+    /// </summary>
+    /// <param name="goodsEnums"></param>
+    public void AddResources(params GoodsEnum[] goodsEnums)
+    {
+        this.goodsEnums = goodsEnums;
     }
     public IEnumerator LaterUpdate()
     {

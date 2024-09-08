@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class IronMiningObj : BuildingObj
@@ -31,8 +32,10 @@ public class IronMiningObj : BuildingObj
         //    new TransNode(t,resource,goodsRes),
         //    new TransNode(v,resource,goodsRes)
         //});
-
-
+    }
+    public override IEnumerator Update()
+    {
+        yield return base.Update();
     }
 }
 

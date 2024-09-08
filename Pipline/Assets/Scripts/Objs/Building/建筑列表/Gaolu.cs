@@ -7,7 +7,8 @@ public class Gaolu : BuildingObj
     public Gaolu():base()
     {
         name = "¸ßÂ¯";
-        var obj = GoodsGen.GetGoodsObj(GoodsEnum.Ìú¿óÊ¯);
+        AddResources(GoodsEnum.Ìú¿óÊ¯);
+        var obj = GoodsGen.GetGoodsObj(GoodsEnum.Ìú¿óÊ¯);//Ñ°ÕÒÌú¿ó
         obj.sum = 0;
         resource.Add(obj);
         this.jobManager = new JobManager(this);

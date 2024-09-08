@@ -101,9 +101,9 @@ public class EconomicSystem
     /// </summary>
     /// <param name="scene"></param>
     /// <returns></returns>
-    public List<Pair<BuildingObj, Pair<List<Path>, int>>> GetGoods(GoodsObj goods,SceneObj aim)
+    public List<Tuple<BuildingObj, List<Path>, int>> GetGoods(GoodsObj goods,SceneObj aim)
     {
-        var ret = new List<Pair<BuildingObj,Pair<List<Path>,int>>>();
+        var ret = new List<Tuple<BuildingObj, List<Path>, int>>();
         foreach(var item in GameArchitect.get.scenes)
         {
             foreach(var building in item.buildings)
@@ -111,7 +111,8 @@ public class EconomicSystem
                 if(building.goodsManager.goodslist.ContainsKey(goods))
                 {
                     var d=GameArchitect.get.pathFinder.FindWay(item, aim, (e) => { return 1; });
-                    ret.Add(new Pair<BuildingObj, Pair<List<Path>, int>>(building, d));
+                    d.Item2 += building.goodsManager.goodslist[goods];//添加商品价格
+                    ret.Add(new Tuple<BuildingObj,List<Path>, int>(building, d.Item1,d.Item2));
                 }
             }
         }

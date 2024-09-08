@@ -10,6 +10,40 @@ public interface ICanShowView
 {
 
 }
+
+/// <summary>
+/// 金钱
+/// </summary>
+public class Money
+{
+    public int money=0;
+}
+public static class ListExtensions
+{
+    // 泛型方法，传入列表和 lambda 表达式，返回最小元素
+    public static T FindMinElement<T, TResult>(this List<T> list, Func<T, TResult> selector)
+        where TResult : IComparable<TResult>
+    {
+        if (list == null || list.Count == 0)
+            throw new ArgumentException("List cannot be null or empty");
+
+        T minElement = list[0];
+        TResult minValue = selector(minElement);
+
+        foreach (T element in list)
+        {
+            TResult currentValue = selector(element);
+            if (currentValue.CompareTo(minValue) < 0)
+            {
+                minValue = currentValue;
+                minElement = element;
+            }
+        }
+
+        return minElement;
+    }
+}
+
 public class BaseObjectPool<T,F> : SimpleObjectPool<T>
 where F : BaseObj
 where T : IPutInPool<F>
