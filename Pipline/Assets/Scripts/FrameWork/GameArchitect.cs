@@ -67,8 +67,10 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     protected GameObject pathTemplate;
 
     public List<SceneControler> sceneControlers;
+    public EconomicSystem economicSystem;
     protected override void Init()
     {
+        economicSystem = new EconomicSystem();
         TransEnum.Init();
         buildingPoolT = GameObject.Find("BuildingRoot").transform;
         sb = new StringBuilder();
