@@ -27,12 +27,13 @@ public class BuildingObj :BaseObj,ISendEvent
     /// 工作系统
     /// </summary>
     public JobManager jobManager;
+    public SceneObj scene;
 
     public BuildingObj()
     {
         pipLineManager = new PipLineManager(this);
-        resource = new Resource();
-        goodsRes = new Resource();
+        resource = new Resource(this);
+        goodsRes = new Resource(this);
         goodsManager = new GoodsManager(goodsRes);
         jobManager = new JobManager(this);
     }
@@ -58,7 +59,7 @@ public class BuildingObj :BaseObj,ISendEvent
     {
         var sb = GameArchitect.get.sb;
         sb.Clear();
-        sb.AppendLine("原料:\n");
+        sb.AppendLine("原料:");
         foreach(var x in resource.goods)
         {
             sb.Append(x.goodsInf.name);
@@ -66,7 +67,7 @@ public class BuildingObj :BaseObj,ISendEvent
             sb.Append(x.sum);
             sb.Append("\n");
         }
-        sb.AppendLine("产品:\n");
+        sb.AppendLine("产品:");
         foreach (var x in goodsRes.goods)
         {
             sb.Append(x.goodsInf.name);

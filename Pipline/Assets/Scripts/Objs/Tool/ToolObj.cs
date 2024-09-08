@@ -22,7 +22,7 @@ public abstract class ToolObj:GoodsObj
 		var res = pipLine.GetTrans(name);
 		foreach (var eng in GetProducs())
 		{
-			((PipLineSource)res).productivity.productivities[eng.Key] += eng.Value*num*time;
+			((Source)res).productivity.productivities[eng.Key] += eng.Value*num*time;
 		}
 		sum -= num;
 	}
@@ -31,7 +31,7 @@ public abstract class ToolObj:GoodsObj
 		var res = pipLine.GetTrans(name);
 		foreach (var eng in GetProducs())
 		{
-			((PipLineSource)res).productivity.productivities[eng.Key] += eng.Value * num * time;
+			((Source)res).productivity.productivities[eng.Key] += eng.Value * num * time;
 		}
 		sum += num;
 	}

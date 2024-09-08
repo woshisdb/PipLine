@@ -53,7 +53,7 @@ public class CircularQueue<T>
         }
 
         T item = _queue[_head];
-        _queue[_head] = default(T); // 清除引用
+        //_queue[_head] = default(T); // 清除引用
         _head = (_head + 1) % _capacity;
         _size--;
         return item;

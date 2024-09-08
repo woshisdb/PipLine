@@ -12,8 +12,8 @@ where T: NormalJob
     public int wasterTime;
     public override IEnumerator Run()
     {
-        building.resource.Add(goodsEnum, 2);
-        building.resource.GetGoods<HandObj>(goodsEnum).UseTool(npc, building.pipLineManager, tranName, 2, wasterTime);
+        building.resource.Add(goodsEnum, 2*npc.sum);
+        building.resource.GetGoods<HandObj>(goodsEnum).UseTool(npc, building.pipLineManager, tranName, 2*npc.sum, wasterTime);
         yield return null;
     }
 
@@ -38,8 +38,8 @@ where T : NormalJob
     public int wasterTime;
     public override IEnumerator Run()
     {
-        building.resource.GetGoods<HandObj>(goodsEnum).ReleaseTool(npc,building.pipLineManager,"", 2, wasterTime);
-        building.resource.Remove(goodsEnum, 2);
+        building.resource.GetGoods<HandObj>(goodsEnum).ReleaseTool(npc,building.pipLineManager,tranName, 2 * npc.sum, wasterTime);
+        building.resource.Remove(goodsEnum, 2 * npc.sum);
         yield return null;
     }
 

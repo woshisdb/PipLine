@@ -15,8 +15,13 @@ public class NpcObj : BaseObj
 	/// </summary>
 	public SceneObj belong;
 	public string name;
+	/// <summary>
+	/// 有多少人过着这种生活
+	/// </summary>
+	public int sum;
 	public NpcObj()
     {
+		sum = 0;
 		GameArchitect.get.npcs.Add(this);
 		name = "N" + GameArchitect.get.npcs.Count;
 		befAct = null;
@@ -46,7 +51,14 @@ public class LifeStyle
 {
 	public JobInstance job;
 	public SpareTimeWork timeWork;
+	/// <summary>
+	/// 当前的npc
+	/// </summary>
 	public NpcObj npc;
+	/// <summary>
+	/// 所属的家
+	/// </summary>
+	public SceneObj belong;
 	public LifeStyle(NpcObj npc)
     {
 		this.npc=npc;

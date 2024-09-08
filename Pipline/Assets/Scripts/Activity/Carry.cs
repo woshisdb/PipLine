@@ -9,7 +9,7 @@ public class CarryBeginAct : BeginJobAct<CaiKuangJob, CaiKuangJobInstance>
     {
         return wasterTime;
     }
-    public CarryBeginAct(Job job, int wasterTime, string tranName) : base(job, GoodsEnum.带铁矿石, tranName, wasterTime)
+    public CarryBeginAct(Job job, int wasterTime, string tranName) : base(job, GoodsEnum.手, tranName, wasterTime)
     {
         this.wasterTime = wasterTime;
     }
@@ -47,19 +47,33 @@ public class CarryJob : NormalJob
         sum = 100;
     }
 }
+public class CarryTrans : Trans
+{
+    public int maxTrans;
+}
 public class CarrySource : Source
 {
-	public Resource from;
-	public Resource to;
-    public Trans trans;
-	public Productivity productivity;
 	public override void Update()
 	{
+        ///来源
+        var fromRes = from.GetGoods<GoodsObj>(trans.from.source[0].Item1);
+        var maxNum = 99999999;
+        foreach (var tran in trans.edge.tras)
+        {
+            var remain = productivity.remain[tran.Key] / tran.Value;
+            maxNum = Mathf.Min(maxNum, remain);
+        }
+        int carryNum = fromRes.sum / trans.from.source[0].Item2;
+        int realcarry = Mathf.Min(Mathf.Min(carryNum, maxNum), ((CarryTrans)trans).maxTrans);
+        fromRes.sum -= realcarry * trans.from.source[0].Item2;
+        var goods = GoodsGen.GetGoodsObj(trans.from.source[0].Item1);
+        goods.sum = realcarry * trans.from.source[0].Item2;
+        belong.scene.paths[to.building.scene].PushOrder(from, to, goods, trans.wasterTimes);
+    }
 
-	}
-
-	public CarrySource(Resource from, Resource to, Trans trans, Productivity productivity)
+	public CarrySource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)
 	{
+        this.belong = building;
 		this.from = from;
 		this.to = to;
         this.trans = trans;

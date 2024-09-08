@@ -11,7 +11,7 @@ public class GoodsManager : Resource
 	/// </summary>
 	public Dictionary<GoodsObj, int> goodslist;
 	public Resource resource;
-	public GoodsManager(Resource resource)
+	public GoodsManager(Resource resource):base(resource.building)
 	{
 		this.resource = resource;
 		resource.AddAddFunc((obj) =>//����
@@ -45,18 +45,16 @@ public class Pair<T,F>
 }
 public abstract class Source
 {
+	public Trans trans;//商品间的转移关系
+	public Resource from;
+	public Resource to;
+	public Productivity productivity;
+	public BuildingObj belong;
 	public abstract void Update();
 }
 public class PipLineSource:Source
 {
-	public Trans trans;//商品间的转移关系
-	public Resource from;
-	public Resource to;
-	/// <summary>
-	/// 表示
-	/// </summary>
 	public CircularQueue<Pair<Edge, int>> trasSource;
-	public Productivity productivity;
 	public override void Update()
     {
 		foreach(var x in productivity.productivities)
@@ -145,8 +143,9 @@ public class PipLineSource:Source
 		last.Item2 += sum;
     }
 
-	public PipLineSource(Resource from, Resource to, Trans trans, Productivity productivity)
+	public PipLineSource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)
     {
+		this.belong = building;
         this.from = from;
         this.to = to;
         this.trans = trans;
@@ -261,6 +260,7 @@ public class PipLineManager
 	}
 	public Source GetTrans(string name)
     {
+		//Debug.Log(name);
 		return pairs[name];
     }
 	public PipLineManager(BuildingObj buildingObj)

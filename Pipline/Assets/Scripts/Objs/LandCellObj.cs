@@ -7,13 +7,14 @@ public class SceneObj : BaseObj,ISendEvent
     public string sceneName;
     public List<NpcObj> npcs;
     public List<BuildingObj> buildings;
-    public List<PathObj> paths;
+    public Dictionary<SceneObj,PathObj> paths;
+
     public SceneObj()
     {
         sceneName = "";
         npcs = new List<NpcObj>();
         buildings = new List<BuildingObj>();
-        paths = new List<PathObj>();
+        paths = new Dictionary<SceneObj,PathObj>();
     }
     public void UpdateEvent()
     {
@@ -33,12 +34,14 @@ public class SceneObj : BaseObj,ISendEvent
     {
         GameArchitect.get.buildings.Add(building);
         buildings.Add(building);
+        building.scene = this;
         UpdateEvent();
     }
     public void RemoveBuilding(BuildingObj building)
     {
         GameArchitect.get.buildings.Remove(building);
         buildings.Remove(building);
+        building.scene = this;
         UpdateEvent();
     }
 }

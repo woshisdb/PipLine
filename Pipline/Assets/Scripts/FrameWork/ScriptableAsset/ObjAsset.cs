@@ -25,11 +25,23 @@ public class WorldMap
 {
     public List<SceneObj> scenes;//一系列的Land
     [SerializeField]
-	public List<Path> paths;
+	public Dictionary<SceneObj,List<Path>> paths;
     public WorldMap()
     {
-        paths = new List<Path>();
+        paths = new Dictionary<SceneObj, List<Path>>();
         scenes = new List<SceneObj>();
+    }
+    public void AddScene(SceneObj scene)
+    {
+        this.scenes.Add(scene);
+        paths.Add(scene, new List<Path>());
+        var p = new Path(scene, scene, 1);
+        paths[scene].Add(p);//自己移动花费1
+        scene.paths.Add(scene,new PathObj(p));
+    }
+    public void UpdateMap()
+    {
+
     }
 }
 
@@ -71,8 +83,12 @@ public class ObjAsset : SerializedScriptableObject
     [Button, BoxGroup("SaveMap")]
     public void Add()
     {
-        if(map!=null&& map.paths!=null)
-        map.paths.Add(new Path(from,to,wastTime));
+        if (map != null && map.paths != null)
+        {
+            var p = new Path(from, to, wastTime);
+            map.paths[from].Add(p);
+            from.paths.Add(to,new PathObj(p));
+        }
     }
     [BoxGroup("商品列表"),ShowInInspector]
     public List<GoodsInf> goodsInfs;

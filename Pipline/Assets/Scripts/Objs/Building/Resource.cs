@@ -20,10 +20,11 @@ public class Resource
 
     protected Action<GoodsObj> remove;
     protected Action<GoodsObj> add;
+    public BuildingObj building;
     
     public void Add(GoodsEnum goodsEnum,int sum)
     {
-        Debug.Log(goodsEnum);
+        //Debug.Log(goodsEnum);
         var goodsObj=GoodsGen.GetGoodsObj(goodsEnum);
         goodsObj.sum = sum;
         GoodsObj val = null;
@@ -65,6 +66,8 @@ public class Resource
         goods.TryGetValue(goodsObj, out val);
         if (val == null)
         {
+            Debug.Log(goodsObj);
+            if(add != null)
             add(goodsObj);
             goods.Add(goodsObj);
         }
@@ -73,9 +76,10 @@ public class Resource
             val.sum += goodsObj.sum;
         }
     }
-    public Resource()
+    public Resource(BuildingObj building)
     {
         goods = new HashSet<GoodsObj>();
+        this.building = building;
     }
     public void Remove(GoodsObj goodsObj)
     {
@@ -90,6 +94,7 @@ public class Resource
             val.sum -= goodsObj.sum;
             if (val.sum == 0)
             {
+                if(remove != null)
                 remove(goodsObj);
                 goods.Remove(goodsObj);
             }
@@ -177,6 +182,12 @@ public class Resource
         var obj = GoodsGen.GetGoodsObj(goodsEnum);
         GoodsObj val = null;
         goods.TryGetValue(obj, out val);
+        if(val == null)
+        {
+            val = GoodsGen.GetGoodsObj(goodsEnum);
+            val.sum = 0;
+            goods.Add(val);
+        }
         return (T)val;
     }
     //r1->r2

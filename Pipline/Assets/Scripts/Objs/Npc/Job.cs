@@ -97,7 +97,7 @@ public abstract class Job
     }
     public bool InStartTime(int time)
     {
-        return (time == beginWorkTime + 1);
+        return (time == beginWorkTime);
     }
 }
 

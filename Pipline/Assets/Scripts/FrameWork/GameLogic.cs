@@ -76,9 +76,12 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     /// <returns></returns>
     public IEnumerator NPCBefCircle()
     {
+        int n=0;
         var nowT=GameArchitect.get.timeSystem.GetTime();
         foreach (var npc in GameArchitect.get.npcs)
         {
+            Debug.Log(n);
+            n++;
             if (npc.lifeStyle.job.job.InStartTime(nowT))
             {
                 yield return npc.befAct.Run();//执行
@@ -116,7 +119,12 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     public IEnumerator EnvirUpdate()
     {
         //时间加1
+        foreach(var b in GameArchitect.get.saveData.buildings)
+        {
+            b.SendEvent(new UpdateBuildingEvent());
+        }
         GameArchitect.get.saveData.timeSystem.time++;
+        this.SendEvent(new TimeUpdateEvent());
         if(GameArchitect.get.saveData.timeSystem.GetTime()==0)//跨天了,重新计算今天的活动
         {
             foreach (var npc in GameArchitect.get.npcs)
@@ -137,15 +145,33 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         }    
         yield return null;
     }
+    public IEnumerator PathCircle()
+    {
+        foreach(var x in GameArchitect.get.scenes)
+        {
+            foreach(var y in x.paths)
+            {
+                y.Value.Update();
+            }
+        }
+        yield return null;
+    }
     public IEnumerator IterCircle()
     {
+        yield return PathCircle();
+        Debug.Log("PathCircle");
+        yield return null;
         yield return NPCBefCircle();//NPC开始的行为
+        Debug.Log("NPCBefCircle");
         yield return null;
 		yield return BuildingCircle();//建筑自己的循环
-		yield return null;
+        Debug.Log("BuildingCircle");
+        yield return null;
         yield return NPCEndCircle();//结算收入
+        Debug.Log("NPCEndCircle");
         yield return null;
         yield return EnvirUpdate();//对环境的更新
+        Debug.Log("EnvirUpdate");
         yield return null;
         this.SendEvent<EndUpdateEvent>(new EndUpdateEvent());//跨时间步
         yield return null;
