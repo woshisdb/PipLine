@@ -57,22 +57,33 @@ public struct NpcPathOrder : IOrder
 
 public class PathObj : BaseObj
 {
-    public Path path;
+    public int maxTime = 100;
+    public List<Path> path;
     public CircularQueue<List<IOrder>> orders;
-    public PathObj(Path path) : base()
+    public SceneObj scene;
+    public PathObj(List<Path> path) : base()
     {
         this.path = path;
-        orders = new CircularQueue<List<IOrder>>(path.wastTime);
-        for(var i=0;i<path.wastTime;i++)
+        orders = new CircularQueue<List<IOrder>>(maxTime);
+        for(var i=0;i<maxTime; i++)
         orders.Enqueue(new List<IOrder>());
     }
-    public void PushOrder(SceneObj from,SceneObj to,NpcObj npc)
-    {
-        var t = new NpcPathOrder(from, to, npc, path.wastTime);
-        t.Begin();
-        orders.Find(0).Add(t);
-    }
-    public void PushOrder(Resource from, Resource to,GoodsObj goods,int wasterTime)
+    //public void PushOrder(SceneObj from,SceneObj to,NpcObj npc)
+    //{
+    //    var t = new NpcPathOrder(from, to, npc, path.wastTime);
+    //    t.Begin();
+    //    orders.Find(0).Add(t);
+    //}
+    /// <summary>
+    /// 花费的价格
+    /// 时间
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    /// <param name="goods"></param>
+    /// <param name="cost"></param>
+    /// <param name="wasterTime"></param>
+    public void PushOrder(Resource from, Resource to,GoodsObj goods,int cost,int wasterTime)
     {
         var t=new CargoPathOrder(from, to, goods, wasterTime);
         t.Begin();

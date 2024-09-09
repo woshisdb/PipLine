@@ -7,14 +7,14 @@ public class SceneObj : BaseObj,ISendEvent
     public string sceneName;
     public List<NpcObj> npcs;
     public List<BuildingObj> buildings;
-    public Dictionary<SceneObj,PathObj> paths;
+    public PathObj paths;
 
     public SceneObj()
     {
         sceneName = "";
         npcs = new List<NpcObj>();
         buildings = new List<BuildingObj>();
-        paths = new Dictionary<SceneObj,PathObj>();
+        paths = new PathObj();
     }
     public void UpdateEvent()
     {

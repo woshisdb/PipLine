@@ -110,7 +110,7 @@ public class EconomicSystem
             {
                 if(building.goodsManager.goodslist.ContainsKey(goods))
                 {
-                    var d=GameArchitect.get.pathFinder.FindWay(item, aim, (e) => { return 1; });
+                    var d=GameArchitect.get.pathFinder.FindWay(item, aim, (e) => { return 10; });//每过一个场景需要花费的价格
                     d.Item2 += building.goodsManager.goodslist[goods];//添加商品价格
                     ret.Add(new Tuple<BuildingObj,List<Path>, int>(building, d.Item1,d.Item2));
                 }

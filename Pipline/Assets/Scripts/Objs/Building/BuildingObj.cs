@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+public class AI
+{
+
+}
+
 public class BuildingObj :BaseObj,ISendEvent
 {
     public string name="建筑";
@@ -27,6 +32,7 @@ public class BuildingObj :BaseObj,ISendEvent
     /// 工作系统
     /// </summary>
     public JobManager jobManager;
+    public AI ai;
     public SceneObj scene;
     public GoodsEnum[] goodsEnums;
     public Money money;
@@ -54,6 +60,8 @@ public class BuildingObj :BaseObj,ISendEvent
     public void AddResources(params GoodsEnum[] goodsEnums)
     {
         this.goodsEnums = goodsEnums;
+        var source=(CarrySource) pipLineManager.GetTrans("搬运商品");
+        source.UpdateAllResource();//更新所有的资源
     }
     public IEnumerator LaterUpdate()
     {

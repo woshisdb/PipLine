@@ -78,6 +78,18 @@ public class CircularQueue<T>
         int index = (_tail - n - 1 + _capacity) % _capacity;
         return _queue[index];
     }
+    // 查找距离队头后第s个元素
+    public T FindFront(int s)
+    {
+        if (s >= _size || s < 0)
+        {
+            throw new InvalidOperationException("索引超出队列范围");
+        }
+
+        // 计算队头后第 s 个元素的位置
+        int index = (_head + s) % _capacity;
+        return _queue[index];
+    }
 
     // 获取队列大小
     public int Size()

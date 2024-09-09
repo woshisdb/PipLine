@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class PathControler : MonoBehaviour, IRegisterEvent,IPutInPool<PathObj>
     public TextMeshPro title;
     public TextMeshPro content;
     public PathObj pathObj;
+    public StringBuilder sb;
     public void Allocate()
     {
         gameObject.SetActive(true);
@@ -15,6 +17,7 @@ public class PathControler : MonoBehaviour, IRegisterEvent,IPutInPool<PathObj>
 
     public void Init(PathObj pathObj)
     {
+        sb = new StringBuilder();
         this.pathObj = pathObj;
         this.Register<UpdateBuildingEvent>(OnUpdateBuilding);
         OnUpdateBuilding(new UpdateBuildingEvent());
@@ -28,7 +31,12 @@ public class PathControler : MonoBehaviour, IRegisterEvent,IPutInPool<PathObj>
     }
     private void OnUpdateBuilding(UpdateBuildingEvent exampleEvent)
     {
-        this.title.text = pathObj.path.from.sceneName+"->"+ pathObj.path.to.sceneName;
-        this.content.text = pathObj.path.wastTime+"";
+        sb.Clear();
+        foreach (var path in pathObj.path)
+        {
+            sb.AppendLine(path.from.sceneName+"->"+path.to.sceneName);
+        }
+        this.title.text = pathObj.scene.sceneName;
+        this.content.text = sb.ToString();
     }
 }
