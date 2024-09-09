@@ -149,10 +149,7 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
     {
         foreach(var x in GameArchitect.get.scenes)
         {
-            foreach(var y in x.paths)
-            {
-                y.Value.Update();
-            }
+            x.paths.Update();
         }
         yield return null;
     }

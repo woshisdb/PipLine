@@ -52,18 +52,53 @@ public class CarryTrans : Trans
 {
     public int maxTrans;
 }
-public class CarrySource : Source
+
+public struct UnSatifyGoods : ICommand
+{
+    RequestGoodsCommand requestGoods;
+    public void Execute()
+    {
+        requestGoods.to.ai
+    }
+    public UnSatifyGoods(RequestGoodsCommand requestGoods)
+    {
+        this.requestGoods = requestGoods;
+    }
+}
+public struct RequestGoodsCommand:ICommand
+{
+    public BuildingObj to;
+    public BuildingObj from;
+    public GoodsObj goods;
+    public int wasterTime;
+    public int cost;
+    public RequestGoodsCommand(BuildingObj from,BuildingObj to,GoodsObj goods,int wasterTime,int cost)
+    {
+        this.from = from;
+        this.to = to;
+        this.goods = goods;
+        this.wasterTime = wasterTime;
+        this.cost = cost;
+    }
+
+    public void Execute()
+    {
+        from.ReceiveRes(this);
+    }
+}
+
+public class CarrySource : Source,ISendEvent,ISendCommand
 {
     /// <summary>
     /// 所选择的最优路径
     /// </summary>
-    public Dictionary<GoodsEnum, Tuple<BuildingObj, List<Path>, int>> goods2Path;
+    public Dictionary<GoodsEnum, GoodPath> goods2Path;
 	public override void Update()
 	{
         ///来源
         foreach (var goodsPath in goods2Path)
         {
-            RequestRes(goodsPath.Key,,goodsPath.Value.Item3,);//去请求资源
+            RequestRes(goodsPath.Key,goodsPath.Value.from,10,goodsPath.Value.cost,goodsPath.Value.wasterTime);//去请求资源
         }
     }
     /// <summary>
@@ -71,7 +106,7 @@ public class CarrySource : Source
     /// </summary>
     /// <param name="goods"></param>
     /// <param name="sum"></param>
-    public void RequestRes(GoodsEnum goodsEnum,int sum,int cost,int time)
+    public void RequestRes(GoodsEnum goodsEnum,BuildingObj building,int sum,int cost,int time)
     {
         var fromRes = GoodsGen.GetGoodsObj(goodsEnum);//获取商品
         var maxNum = sum;//请求的资源数目
@@ -80,13 +115,9 @@ public class CarrySource : Source
             var remain = productivity.remain[tran.Key] / tran.Value;
             maxNum = Mathf.Min(maxNum, remain);
         }
-        //int carryNum = fromRes.sum / trans.from.source[0].Item2;
-        //int realcarry = Mathf.Min(Mathf.Min(carryNum, maxNum), ((CarryTrans)trans).maxTrans);
-        //fromRes.sum -= maxNum * trans.from.source[0].Item2;
         var goods = GoodsGen.GetGoodsObj(goodsEnum);
         goods.sum =maxNum;
-        //goods.sum = maxNum * trans.from.source[0].Item2;
-        belong.scene.paths[to.building.scene].PushOrder(from, to, goods, cost,time);
+        this.Execute(new RequestGoodsCommand(building,this.belong,goods,time,cost*maxNum));
     }
 
 	public CarrySource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)
@@ -96,7 +127,7 @@ public class CarrySource : Source
 		this.to = to;
         this.trans = trans;
 		this.productivity = productivity;
-        goods2Path = new Dictionary<GoodsEnum, Tuple<BuildingObj, List<Path>, int>>();
+        goods2Path = new Dictionary<GoodsEnum, GoodPath>();
     }
     /// <summary>
     /// 更新一系列的资源
@@ -114,7 +145,7 @@ public class CarrySource : Source
     {
         var obj = GoodsGen.GetGoodsObj(goodsEnum);
         var res = GameArchitect.get.economicSystem.GetGoods(obj, belong.scene);//获得原料中的最小的获取成本
-        var result = res.FindMinElement(e => { return e.Item3; });//获得所有成本中最小的那个
+        var result = res.FindMinElement(e => { return e.cost; });//获得所有成本中最小的那个
         goods2Path.Add(goodsEnum,result);//结果与资源的合集
     }
 

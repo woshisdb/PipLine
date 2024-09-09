@@ -20,7 +20,7 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
     public Transform center;
     public TextMeshPro tableNameUI;
     public List<BuildingControl> buildingControls=new List<BuildingControl>();
-    public List<PathControler> pathControls=new List<PathControler>();
+    public PathControler pathControls=new PathControler();
     int num = 0;
     public IArchitecture GetArchitecture()
     {
@@ -57,11 +57,7 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
             GameArchitect.get.buildingPool.Recycle(c);
         }
         buildingControls.Clear();
-        foreach (PathControler c in pathControls)
-        {
-            GameArchitect.get.pathPool.Recycle(c);
-        }
-        pathControls.Clear();
+        GameArchitect.get.pathPool.Recycle(pathControls);
     }
     public void AddBuildings()
     {
@@ -77,15 +73,10 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
     }
     public void AddPaths()
     {
-        foreach (var path in sceneObj.paths)
-        {
-            var x = sceneObj.paths[ path.Key ];
-            var b = GameArchitect.get.pathPool.Allocate(x);
-            b.transform.SetParent(buildings);//创建子节点
-            pathControls.Add(b);
-            b.transform.localPosition = new Vector3(dx * (num % sum), -dy * (num / sum), 0);
-            num++;
-        }
+        var b = GameArchitect.get.pathPool.Allocate(sceneObj.paths);
+        b.transform.SetParent(buildings);//创建子节点
+        b.transform.localPosition = new Vector3(dx * (num % sum), -dy * (num / sum), 0);
+        num++;
     }
     public void Recycle()
     {

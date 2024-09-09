@@ -14,7 +14,6 @@ public class SceneObj : BaseObj,ISendEvent
         sceneName = "";
         npcs = new List<NpcObj>();
         buildings = new List<BuildingObj>();
-        paths = new PathObj();
     }
     public void UpdateEvent()
     {

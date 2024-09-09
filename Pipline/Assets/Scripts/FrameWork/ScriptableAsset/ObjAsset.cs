@@ -37,7 +37,7 @@ public class WorldMap
         paths.Add(scene, new List<Path>());
         var p = new Path(scene, scene, 1);
         paths[scene].Add(p);//自己移动花费1
-        scene.paths.Add(scene,new PathObj(p));
+        scene.paths = new PathObj(paths[scene]);
     }
     public void UpdateMap()
     {
@@ -87,7 +87,7 @@ public class ObjAsset : SerializedScriptableObject
         {
             var p = new Path(from, to, wastTime);
             map.paths[from].Add(p);
-            from.paths.Add(to,new PathObj(p));
+            from.paths.path.Add(p);
         }
     }
     [BoxGroup("商品列表"),ShowInInspector]

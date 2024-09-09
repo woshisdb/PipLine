@@ -20,9 +20,8 @@ public class PathFinder
     }
 
     // 修改返回类型为FindWayResult
-    public Pair<List<Path>,int> FindWay(SceneObj start, SceneObj end,Func<Path,int> cost)
+    public GoodPath FindWay(SceneObj start, SceneObj end, Func<Path, int> cost)
     {
-        // 初始化
         foreach (var node in paths.Keys)
         {
             distances[node] = int.MaxValue;
@@ -31,8 +30,13 @@ public class PathFinder
 
         distances[start] = 0;
 
+        // 总时间和总成本
+        int totalTime = 0;
+        int totalCost = 0;
+
         while (unvisited.Count > 0)
         {
+            // 获取距离最小的未访问节点
             var current = unvisited.OrderBy(n => distances[n]).First();
 
             if (current.Equals(end))
@@ -40,6 +44,7 @@ public class PathFinder
 
             unvisited.Remove(current);
 
+            // 处理当前节点的邻居
             if (paths.ContainsKey(current))
             {
                 foreach (var neighborPath in paths[current])
@@ -47,6 +52,7 @@ public class PathFinder
                     var neighbor = neighborPath.to;
                     var tentativeDist = distances[current] + cost(neighborPath);
 
+                    // 如果找到更短的路径，则更新距离和前置节点
                     if (tentativeDist < distances[neighbor])
                     {
                         distances[neighbor] = tentativeDist;
@@ -56,40 +62,47 @@ public class PathFinder
             }
         }
 
-        // 回溯路径
-        var pathStack = new Stack<SceneObj>();
-        var currentPathObj = end;
+        // 计算总时间和总成本
+        SceneObj currentScene = end;
 
-        while (previous.ContainsKey(currentPathObj))
+        while (previous.ContainsKey(currentScene))
         {
-            pathStack.Push(currentPathObj);
-            currentPathObj = previous[currentPathObj];
+            var prevScene = previous[currentScene];
+            var pathSegment = paths[prevScene].First(p => p.to.Equals(currentScene));
+
+            // 累积总时间和总成本
+            totalTime += pathSegment.wastTime;
+            totalCost += cost(pathSegment);
+
+            currentScene = prevScene;
         }
 
-        if (!currentPathObj.Equals(start)) return null;
-
-        pathStack.Push(start);
-
-        var resultPath = new List<Path>();
-        int totalWastTime = 0;
-        SceneObj fromNode = pathStack.Pop();
-
-        while (pathStack.Count > 0)
+        // 如果目标节点不可达，总时间和总成本设为-1或其他标记
+        if (distances[end] == int.MaxValue)
         {
-            var toNode = pathStack.Pop();
-            var path = paths[fromNode].FirstOrDefault(p => p.to.Equals(toNode));
-            if (path != null)
-            {
-                resultPath.Add(path);
-                totalWastTime += path.wastTime;  // 计算总的wastTime
-                fromNode = toNode;
-            }
+            totalCost = -1;
+            totalTime = -1;
         }
 
-        return new Pair<List<Path>, int>(resultPath, totalWastTime);
+        // 返回总成本和总时间
+        return new GoodPath(null,totalCost, totalTime);
     }
+
 }
 
+
+public class GoodPath
+{
+    public BuildingObj from;
+    public int cost;//perGoods
+    public int wasterTime; 
+    public GoodPath(BuildingObj from, int cost, int wasterTime)
+    {
+        this.from = from;
+        this.cost = cost;
+        this.wasterTime = wasterTime;
+    }
+}
 
 /// <summary>
 /// 经济系统
@@ -101,9 +114,9 @@ public class EconomicSystem
     /// </summary>
     /// <param name="scene"></param>
     /// <returns></returns>
-    public List<Tuple<BuildingObj, List<Path>, int>> GetGoods(GoodsObj goods,SceneObj aim)
+    public List<GoodPath> GetGoods(GoodsObj goods,SceneObj aim)
     {
-        var ret = new List<Tuple<BuildingObj, List<Path>, int>>();
+        var ret = new List<GoodPath>();
         foreach(var item in GameArchitect.get.scenes)
         {
             foreach(var building in item.buildings)
@@ -111,8 +124,9 @@ public class EconomicSystem
                 if(building.goodsManager.goodslist.ContainsKey(goods))
                 {
                     var d=GameArchitect.get.pathFinder.FindWay(item, aim, (e) => { return 10; });//每过一个场景需要花费的价格
-                    d.Item2 += building.goodsManager.goodslist[goods];//添加商品价格
-                    ret.Add(new Tuple<BuildingObj,List<Path>, int>(building, d.Item1,d.Item2));
+                    d.cost += building.goodsManager.goodslist[goods];//添加商品价格
+                    d.from = building;
+                    ret.Add(d);
                 }
             }
         }

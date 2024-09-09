@@ -3,13 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-
-public class AI
+/// <summary>
+/// 一个请求规划类
+/// </summary>
+public interface IAiRequest
 {
-
+    public Start()
+    public void Plan();
 }
 
-public class BuildingObj :BaseObj,ISendEvent
+public class BuildingAI
+{
+    public BuildingObj BuildingObj;
+    public void RegS
+}
+
+public class BuildingObj :BaseObj,ISendEvent,ISendCommand
 {
     public string name="建筑";
     /// <summary>
@@ -32,7 +41,7 @@ public class BuildingObj :BaseObj,ISendEvent
     /// 工作系统
     /// </summary>
     public JobManager jobManager;
-    public AI ai;
+    public BuildingAI ai;
     public SceneObj scene;
     public GoodsEnum[] goodsEnums;
     public Money money;
@@ -94,6 +103,21 @@ public class BuildingObj :BaseObj,ISendEvent
         }
 
         return sb.ToString();
+    }
+    /// <summary>
+    /// 接受请求
+    /// </summary>
+    public void ReceiveRes(RequestGoodsCommand requestGoods)
+    {
+        ///能够满足
+        if (requestGoods.goods.sum <= goodsRes.Get(requestGoods.goods))
+        {
+            scene.paths.PushOrder(requestGoods.from.goodsRes,requestGoods.to.resource,requestGoods.goods,requestGoods.wasterTime);
+        }
+        else
+        {
+            this.Execute(new UnSatifyGoods(requestGoods));//这个商品没有满足
+        }
     }
 }
 

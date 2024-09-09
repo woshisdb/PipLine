@@ -83,11 +83,11 @@ public class PathObj : BaseObj
     /// <param name="goods"></param>
     /// <param name="cost"></param>
     /// <param name="wasterTime"></param>
-    public void PushOrder(Resource from, Resource to,GoodsObj goods,int cost,int wasterTime)
+    public void PushOrder(Resource from, Resource to,GoodsObj goods,int wasterTime)
     {
         var t=new CargoPathOrder(from, to, goods, wasterTime);
         t.Begin();
-        orders.Find(orders.Size()-wasterTime).Add(t);
+        orders.FindFront(wasterTime-1).Add(t);
     }
     public void Update()
     {
