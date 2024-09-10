@@ -127,6 +127,7 @@ public class GameLogic : MonoBehaviour,ISendEvent,IRegisterEvent
         this.SendEvent(new TimeUpdateEvent());
         if(GameArchitect.get.saveData.timeSystem.GetTime()==0)//跨天了,重新计算今天的活动
         {
+            GameArchitect.get.economicSystem.Update();//更新价格列表
             foreach (var npc in GameArchitect.get.npcs)
             {
                 npc.lifeStyle.job.SetDayJob();//设置一个人今天的活动

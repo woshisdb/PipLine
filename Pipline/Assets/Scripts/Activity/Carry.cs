@@ -58,7 +58,6 @@ public struct UnSatifyGoods : ICommand
     RequestGoodsCommand requestGoods;
     public void Execute()
     {
-        requestGoods.to.ai
     }
     public UnSatifyGoods(RequestGoodsCommand requestGoods)
     {
@@ -80,10 +79,13 @@ public struct RequestGoodsCommand:ICommand
         this.wasterTime = wasterTime;
         this.cost = cost;
     }
-
+    /// <summary>
+    /// 执行请求资源
+    /// </summary>
     public void Execute()
     {
         from.ReceiveRes(this);
+        GameArchitect.get.economicSystem.AddBuy(cost,to.scene,goods.sum,goods.goodsInf.goodsEnum);
     }
 }
 
@@ -108,8 +110,7 @@ public class CarrySource : Source,ISendEvent,ISendCommand
     /// <param name="sum"></param>
     public void RequestRes(GoodsEnum goodsEnum,BuildingObj building,int sum,int cost,int time)
     {
-        var fromRes = GoodsGen.GetGoodsObj(goodsEnum);//获取商品
-        var maxNum = sum;//请求的资源数目
+        var maxNum = Math.Min(sum,belong.money.money/cost);//请求的资源数目
         foreach (var tran in trans.edge.tras)
         {
             var remain = productivity.remain[tran.Key] / tran.Value;
@@ -117,7 +118,7 @@ public class CarrySource : Source,ISendEvent,ISendCommand
         }
         var goods = GoodsGen.GetGoodsObj(goodsEnum);
         goods.sum =maxNum;
-        this.Execute(new RequestGoodsCommand(building,this.belong,goods,time,cost*maxNum));
+        this.Execute(new RequestGoodsCommand(building,this.belong,goods,time,cost));
     }
 
 	public CarrySource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)

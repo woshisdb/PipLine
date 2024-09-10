@@ -107,8 +107,17 @@ public class GoodPath
 /// <summary>
 /// 经济系统
 /// </summary>
+public class GoodsEC
+{
+    public int buySum=0;//购买的数量
+    public float buyCost=0;//买入的价格
+    public int sellSum= 0;//卖出的数量
+    public float sellCost = 0;//卖出的价格
+}
 public class EconomicSystem
 {
+    public Dictionary<SceneObj, Dictionary<GoodsEnum, CircularQueue<GoodsEC>>> sceneGoodsPrices;
+    public Dictionary<BuildingObj,Dictionary<>>
     /// <summary>
     /// 获取最好的商品
     /// </summary>
@@ -131,5 +140,58 @@ public class EconomicSystem
             }
         }
         return ret;
+    }
+    public EconomicSystem()
+    {
+        sceneGoodsPrices= new Dictionary<SceneObj, Dictionary<GoodsEnum, CircularQueue<GoodsEC>>>();
+        foreach(var x in GameArchitect.get.scenes)
+        {
+            sceneGoodsPrices.Add(x, new Dictionary<GoodsEnum, CircularQueue<GoodsEC>>());
+            foreach(var y in Enum.GetValues(typeof(GoodsEnum)))
+            {
+                sceneGoodsPrices[x].Add((GoodsEnum)y,new CircularQueue<GoodsEC>(20));//每天的价格
+                for(int i = 0; i < 20; i++)
+                {
+                    sceneGoodsPrices[x][(GoodsEnum)y].Enqueue(new GoodsEC());
+                }
+            }
+        }
+    }
+    public void AddBuy(int cost,SceneObj scene,int sum,GoodsEnum goods)
+    {
+        var t = sceneGoodsPrices[scene][goods].Find(0);
+        t.buyCost= (t.buyCost*t.buySum+cost*sum)/(t.buySum+sum);
+        t.buySum += sum;
+
+
+    }
+    public void AddSell(int cost,SceneObj scene,int sum,GoodsEnum goods)
+    {
+        var t = sceneGoodsPrices[scene][goods].Find(0);
+        t.sellCost = (t.sellCost * t.sellSum + cost * sum) / (t.sellSum + sum);
+        t.sellSum += sum;
+    }
+    /// <summary>
+    /// 交易价格
+    /// </summary>
+    public void Ec(int money,Money from,Money to)
+    {
+        from.money += money;
+        to.money -= money;
+    }
+    public void Update()
+    {
+        foreach (var x in GameArchitect.get.scenes)
+        {
+            foreach(var y in sceneGoodsPrices[x])
+            {
+                y.Value.Dequeue();
+                y.Value.Enqueue();
+                y.Value.Find(0).sellSum = 0;
+                y.Value.Find(0).sellCost=0;
+                y.Value.Find(0).buySum = 0;
+                y.Value.Find(0).buyCost = 0;
+            }
+        }
     }
 }

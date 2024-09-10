@@ -8,14 +8,32 @@ using UnityEngine;
 /// </summary>
 public interface IAiRequest
 {
-    public Start()
-    public void Plan();
+    /// <summary>
+    /// 注册规划器
+    /// </summary>
+    public void RegisterPlan();
+    /// <summary>
+    /// 请求规划
+    /// </summary>
+    public void RequestPlan();
+    public void CollectData();
 }
-
+/// <summary>
+/// 建筑AI
+/// </summary>
 public class BuildingAI
 {
     public BuildingObj BuildingObj;
-    public void RegS
+    public List<IAiRequest> RequestList;
+    public BuildingAI(BuildingObj buildingObj)
+    {
+        BuildingObj = buildingObj;
+        RequestList = new List<IAiRequest>();
+    }
+    public void AddAi(IAiRequest ai)
+    {
+        RequestList.Add(ai);
+    }
 }
 
 public class BuildingObj :BaseObj,ISendEvent,ISendCommand
@@ -112,6 +130,8 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
         ///能够满足
         if (requestGoods.goods.sum <= goodsRes.Get(requestGoods.goods))
         {
+            GameArchitect.get.economicSystem.AddSell(requestGoods.cost,this.scene,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
+            GameArchitect.get.economicSystem.Ec(requestGoods.cost*requestGoods.goods.sum,requestGoods.from.money,requestGoods.to.money);//交易
             scene.paths.PushOrder(requestGoods.from.goodsRes,requestGoods.to.resource,requestGoods.goods,requestGoods.wasterTime);
         }
         else

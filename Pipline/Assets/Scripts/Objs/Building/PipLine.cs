@@ -50,7 +50,8 @@ public abstract class Source
 	public Resource to;
 	public Productivity productivity;
 	public BuildingObj belong;
-	public abstract void Update();
+
+    public abstract void Update();
 }
 public class PipLineSource:Source
 {
@@ -141,6 +142,11 @@ public class PipLineSource:Source
         }
 		var last=trasSource.Find(0);
 		last.Item2 += sum;
+    }
+
+	public void ToList()
+    {
+
     }
 
 	public PipLineSource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)

@@ -29,6 +29,7 @@ public class GoodsInf : IEqualityComparer<GoodsInf>
             }
         }
     }
+    public GoodsEnum goodsEnum { get { return (GoodsEnum)Enum.Parse<GoodsEnum>(name); } }
     [SerializeField]
     public int goodSize;
     public bool Equals(GoodsInf x, GoodsInf y)
