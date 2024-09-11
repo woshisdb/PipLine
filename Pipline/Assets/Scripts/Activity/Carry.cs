@@ -85,6 +85,7 @@ public struct RequestGoodsCommand:ICommand
     public void Execute()
     {
         from.ReceiveRes(this);
+        GameArchitect.get.economicSystem.AddBuyB(cost,from,to,goods.sum, goods.goodsInf.goodsEnum);
         GameArchitect.get.economicSystem.AddBuy(cost,to.scene,goods.sum,goods.goodsInf.goodsEnum);
     }
 }

@@ -110,14 +110,14 @@ public class GoodPath
 public class GoodsEC
 {
     public int buySum=0;//购买的数量
-    public float buyCost=0;//买入的价格
+    public float buyCost=0;//买入的平均价格
     public int sellSum= 0;//卖出的数量
-    public float sellCost = 0;//卖出的价格
+    public float sellCost = 0;//卖出的平均价格
 }
 public class EconomicSystem
 {
     public Dictionary<SceneObj, Dictionary<GoodsEnum, CircularQueue<GoodsEC>>> sceneGoodsPrices;
-    public Dictionary<BuildingObj,Dictionary<>>
+    public Dictionary<BuildingObj, Dictionary<GoodsEnum, CircularQueue<GoodsEC>>> buildingGoodsPrices;
     /// <summary>
     /// 获取最好的商品
     /// </summary>
@@ -144,7 +144,8 @@ public class EconomicSystem
     public EconomicSystem()
     {
         sceneGoodsPrices= new Dictionary<SceneObj, Dictionary<GoodsEnum, CircularQueue<GoodsEC>>>();
-        foreach(var x in GameArchitect.get.scenes)
+        buildingGoodsPrices = new Dictionary<BuildingObj, Dictionary<GoodsEnum, CircularQueue<GoodsEC>>>();
+        foreach (var x in GameArchitect.get.scenes)
         {
             sceneGoodsPrices.Add(x, new Dictionary<GoodsEnum, CircularQueue<GoodsEC>>());
             foreach(var y in Enum.GetValues(typeof(GoodsEnum)))
@@ -156,14 +157,36 @@ public class EconomicSystem
                 }
             }
         }
+        foreach (var x in GameArchitect.get.buildings)
+        {
+            buildingGoodsPrices.Add(x, new Dictionary<GoodsEnum, CircularQueue<GoodsEC>>());
+            foreach (var y in Enum.GetValues(typeof(GoodsEnum)))
+            {
+                buildingGoodsPrices[x].Add((GoodsEnum)y, new CircularQueue<GoodsEC>(20));//每天的价格
+                for (int i = 0; i < 20; i++)
+                {
+                    buildingGoodsPrices[x][(GoodsEnum)y].Enqueue(new GoodsEC());
+                }
+            }
+        }
+    }
+    public void AddBuyB(int cost, BuildingObj from,BuildingObj to, int sum, GoodsEnum goods)
+    {
+        var t = buildingGoodsPrices[to][goods].Find(0);
+        t.buyCost = (t.buyCost * t.buySum + cost * sum) / (t.buySum + sum);
+        t.buySum += sum;
+    }
+    public void AddSellB(int cost,BuildingObj from, BuildingObj to, int sum, GoodsEnum goods)
+    {
+        var t = buildingGoodsPrices[from][goods].Find(0);
+        t.sellCost = (t.sellCost * t.sellSum + cost * sum) / (t.sellSum + sum);
+        t.sellSum += sum;
     }
     public void AddBuy(int cost,SceneObj scene,int sum,GoodsEnum goods)
     {
         var t = sceneGoodsPrices[scene][goods].Find(0);
         t.buyCost= (t.buyCost*t.buySum+cost*sum)/(t.buySum+sum);
         t.buySum += sum;
-
-
     }
     public void AddSell(int cost,SceneObj scene,int sum,GoodsEnum goods)
     {
@@ -193,5 +216,18 @@ public class EconomicSystem
                 y.Value.Find(0).buyCost = 0;
             }
         }
+        foreach(var x in GameArchitect.get.buildings)
+        {
+            var t=buildingGoodsPrices[x];
+            foreach(var y in t)
+            {
+                y.Value.Dequeue();
+                y.Value.Enqueue();
+                y.Value.Find(0).sellSum = 0;
+                y.Value.Find(0).sellCost = 0;
+                y.Value.Find(0).buySum = 0;
+                y.Value.Find(0).buyCost = 0;
+            }
+        }    
     }
 }

@@ -130,6 +130,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
         ///ÄÜ¹»Âú×ã
         if (requestGoods.goods.sum <= goodsRes.Get(requestGoods.goods))
         {
+            GameArchitect.get.economicSystem.AddSellB(requestGoods.cost,requestGoods.from,requestGoods.to,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
             GameArchitect.get.economicSystem.AddSell(requestGoods.cost,this.scene,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
             GameArchitect.get.economicSystem.Ec(requestGoods.cost*requestGoods.goods.sum,requestGoods.from.money,requestGoods.to.money);//½»Ò×
             scene.paths.PushOrder(requestGoods.from.goodsRes,requestGoods.to.resource,requestGoods.goods,requestGoods.wasterTime);
@@ -140,5 +141,3 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
         }
     }
 }
-
-
