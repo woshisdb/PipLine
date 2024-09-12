@@ -13,10 +13,13 @@ public class ToolInf : GoodsInf
 		dics = new Dictionary<ProductivityEnum, int>();
     }
 }
-public abstract class ToolObj:GoodsObj
+public class ToolObj:GoodsObj
 {
 	public Resource resource;
-	public abstract Dictionary<ProductivityEnum, int> GetProducs();
+	public virtual Dictionary<ProductivityEnum, int> GetProducs()
+    {
+		return ((ToolInf)get()).dics;
+	}
 	public virtual void UseTool(NpcObj npcObj,PipLineManager pipLine,string name, int num = 1,int time=1)
 	{
 		var res = pipLine.GetTrans(name);
@@ -57,7 +60,7 @@ public class Productivity
 		}
 		this.resource = resource;
 		this.building = building;
-		resource.AddAddFunc(
+		building.resource.AddAddFunc(
 			(e) =>
 			{
 				var tool = e as ToolObj;
@@ -67,7 +70,7 @@ public class Productivity
 				}
 			}
 		);
-		resource.AddRemoveFunc(
+		building.resource.AddRemoveFunc(
 			(e) =>
 			{
 				var tool = e as ToolObj;

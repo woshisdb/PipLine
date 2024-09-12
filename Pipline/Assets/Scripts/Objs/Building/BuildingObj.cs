@@ -16,7 +16,10 @@ public interface IAiRequest
     /// 请求规划
     /// </summary>
     public void RequestPlan();
-    public void CollectData();
+    /// <summary>
+    /// 获取Ai的数据
+    /// </summary>
+    public string CollectData();
 }
 /// <summary>
 /// 建筑AI
@@ -71,6 +74,44 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
         goodsManager = new GoodsManager(goodsRes);
         jobManager = new JobManager(this);
     }
+    public void InitTrans(string workname,bool needTrans=true)
+    {
+        var t = GameArchitect.get.objAsset.FindTrans(workname);
+        if (needTrans)
+        {
+            var v = new CarryTrans();
+            v.title = "搬运商品";
+            v.maxTrans = 2;
+            v.wasterTimes = 1;
+            foreach (var sor in t.from.source)
+            {
+                v.from.source.Add(new Pair<GoodsEnum, int>(sor.Item1, sor.Item2));
+                v.to.source.Add(new Pair<GoodsEnum, int>(sor.Item1, sor.Item2));
+            }
+            pipLineManager.SetTrans(
+            new List<TransNode>()
+            {
+                new TransNode(t,resource,goodsRes),
+                new TransNode(v,null,resource)
+            });
+        }
+        else
+        {
+            pipLineManager.SetTrans(
+            new List<TransNode>()
+            {
+                new TransNode(t,resource,goodsRes)
+            });
+        }
+        AddResources();
+    }
+    public void InitJob(params Job[] jobs)
+    {
+        foreach(Job job in jobs)
+        {
+            this.jobManager.jobs.Add(job.GetType(), job);
+        }
+    }
     public virtual IEnumerator Update()
     {
 		for (var i = 0; i < pipLineManager.piplines.Count; i++)
@@ -84,10 +125,24 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
     /// 所需要的原材料
     /// </summary>
     /// <param name="goodsEnums"></param>
-    public void AddResources(params GoodsEnum[] goodsEnums)
+    public void AddResources()
     {
-        this.goodsEnums = goodsEnums;
         var source=(CarrySource) pipLineManager.GetTrans("搬运商品");
+        if (source != null)
+        {
+            List<GoodsEnum> goodsEnums = new List<GoodsEnum>();
+            foreach (var node in source.trans.from.source)
+            {
+                goodsEnums.Add(node.Item1);
+            }
+            this.goodsEnums = goodsEnums.ToArray();
+        }
+        //source.UpdateAllResource();//更新所有的资源
+    }
+    public void FindResourceWay()
+    {
+        var source = (CarrySource)pipLineManager.GetTrans("搬运商品");
+        if (source != null)
         source.UpdateAllResource();//更新所有的资源
     }
     public IEnumerator LaterUpdate()

@@ -51,6 +51,10 @@ public class CarryJob : NormalJob
 public class CarryTrans : Trans
 {
     public int maxTrans;
+    public CarryTrans()
+    {
+        title = "搬运商品";
+    }
 }
 
 public struct UnSatifyGoods : ICommand
@@ -138,7 +142,7 @@ public class CarrySource : Source,ISendEvent,ISendCommand
     public void UpdateAllResource()
     {
         goods2Path.Clear();
-        foreach (var goods in from.building.goodsEnums)//选择最优路线
+        foreach (var goods in belong.goodsEnums)//选择最优路线
         {
             UpdateResource(goods);
         }
@@ -148,7 +152,10 @@ public class CarrySource : Source,ISendEvent,ISendCommand
         var obj = GoodsGen.GetGoodsObj(goodsEnum);
         var res = GameArchitect.get.economicSystem.GetGoods(obj, belong.scene);//获得原料中的最小的获取成本
         var result = res.FindMinElement(e => { return e.cost; });//获得所有成本中最小的那个
-        goods2Path.Add(goodsEnum,result);//结果与资源的合集
+        if(result != null)
+        {
+            goods2Path.Add(goodsEnum, result);//结果与资源的合集
+        }
     }
 
 }

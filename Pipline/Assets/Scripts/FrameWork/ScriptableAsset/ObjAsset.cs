@@ -37,7 +37,7 @@ public class WorldMap
         paths.Add(scene, new List<Path>());
         var p = new Path(scene, scene, 1);
         paths[scene].Add(p);//自己移动花费1
-        scene.paths = new PathObj(paths[scene]);
+        scene.paths = new PathObj(paths[scene],scene);
     }
     public void UpdateMap()
     {
@@ -129,11 +129,11 @@ public class ObjAsset : SerializedScriptableObject
         else
             return null;
         }}");
-        sb.AppendLine("     public static GoodsObj GetGoodsObj(GoodsEnum goodsEnum){");
+        sb.AppendLine("     public static GoodsObj GetGoodsObj(GoodsEnum goodsEnum,int sum=0){");
         foreach (var x in goodsInfs)
         {
             var tex = x.GetType().Name;
-            sb.Append($"if (goodsEnum == GoodsEnum.{x.name}) {{ var x = GetGoodsInf(goodsEnum); var y = new {tex.Replace("Inf", "Obj")}(); y.goodsInf = x; return y; }}\n");
+            sb.Append($"if (goodsEnum == GoodsEnum.{x.name}) {{ var x = GetGoodsInf(goodsEnum); var y = new {tex.Replace("Inf", "Obj")}(); y.sum=sum; y.goodsInf = x; return y; }}\n");
             //sb.Append(@$"if (goodsEnum == GoodsEnum.{x.name}){{
             //    var x = GetGoodsInf(goodsEnum);
             //    var y = new {tex.Replace("Inf", "Obj")}();

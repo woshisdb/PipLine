@@ -7,19 +7,13 @@ public class Gaolu : BuildingObj
     public Gaolu():base()
     {
         name = "高炉";
-        AddResources(GoodsEnum.铁矿石);
-        var obj = GoodsGen.GetGoodsObj(GoodsEnum.铁矿石);//寻找铁矿
-        obj.sum = 0;
+        //AddResources(GoodsEnum.铁矿石);
+        var obj = GoodsGen.GetGoodsObj(GoodsEnum.铁矿石,0);//寻找铁矿
+        var obj1 = GoodsGen.GetGoodsObj(GoodsEnum.煤炭, 0);
         resource.Add(obj);
-        this.jobManager = new JobManager(this);
-        this.jobManager.jobs.Add(
-            typeof(LianZhiJob), new LianZhiJob(this)
-        );
-        var t = GameArchitect.get.objAsset.FindTrans("炼制铁矿");
-        this.pipLineManager.SetTrans(
-        new List<TransNode>()
-        {
-            new TransNode(t,resource,goodsRes)
-        });
+        resource.Add(obj1);
+        InitJob(new LianZhiJob(this), new CarryJob(this));
+        ///构建管线
+        InitTrans("炼制铁矿");
     }
 }

@@ -6,32 +6,12 @@ using UnityEngine;
 public class IronMiningObj : BuildingObj
 {
     public IronMiningObj():base()
-    { 
+    {
         name = "铁矿厂";
-        var obj=GoodsGen.GetGoodsObj(GoodsEnum.带铁矿石);
-        obj.sum = 10000000;
+        var obj=GoodsGen.GetGoodsObj(GoodsEnum.带铁矿石, 10000000);
         resource.Add(obj);
-        this.jobManager = new JobManager(this);
-        this.jobManager.jobs.Add(
-            typeof(CaiKuangJob),new CaiKuangJob(this)
-        );
-        this.jobManager.jobs.Add(
-            typeof(CarryJob),new CarryJob(this)
-        );
-        //var t = GameArchitect.get.objAsset.FindTrans("开采铁矿石");
-        ////var v = GameArchitect.get.objAsset.FindTrans("搬运商品");
-        //var v = new CarryTrans();
-        //v.title = "搬运商品";
-        //v.maxTrans = 2;
-        //v.wasterTimes = 1;
-        //v.from.source.Add(new Pair<GoodsEnum, int>(GoodsEnum.带铁矿石, 1));
-        //v.to.source.Add(new Pair<GoodsEnum, int>(GoodsEnum.铁矿石, 1));
-        //this.pipLineManager.SetTrans(
-        //new List<TransNode>()
-        //{
-        //    new TransNode(t,resource,goodsRes),
-        //    new TransNode(v,resource,goodsRes)
-        //});
+        InitJob(new CaiKuangJob(this));
+        InitTrans("开采铁矿石");
     }
     public override IEnumerator Update()
     {

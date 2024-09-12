@@ -20,7 +20,7 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
     public Transform center;
     public TextMeshPro tableNameUI;
     public List<BuildingControl> buildingControls=new List<BuildingControl>();
-    public PathControler pathControls=new PathControler();
+    public PathControler pathControls=null;
     int num = 0;
     public IArchitecture GetArchitecture()
     {
@@ -57,6 +57,7 @@ public class SceneControler : MonoBehaviour,IRegisterEvent,IPutInPool<SceneObj>
             GameArchitect.get.buildingPool.Recycle(c);
         }
         buildingControls.Clear();
+        if(pathControls!= null)
         GameArchitect.get.pathPool.Recycle(pathControls);
     }
     public void AddBuildings()

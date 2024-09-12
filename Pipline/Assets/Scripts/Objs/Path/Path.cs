@@ -61,9 +61,10 @@ public class PathObj : BaseObj
     public List<Path> path;
     public CircularQueue<List<IOrder>> orders;
     public SceneObj scene;
-    public PathObj(List<Path> path) : base()
+    public PathObj(List<Path> path,SceneObj scene) : base()
     {
         this.path = path;
+        this.scene = scene;
         orders = new CircularQueue<List<IOrder>>(maxTime);
         for(var i=0;i<maxTime; i++)
         orders.Enqueue(new List<IOrder>());

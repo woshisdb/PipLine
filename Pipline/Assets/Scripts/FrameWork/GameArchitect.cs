@@ -25,8 +25,7 @@ public static class ListExtensions
         where TResult : IComparable<TResult>
     {
         if (list == null || list.Count == 0)
-            throw new ArgumentException("List cannot be null or empty");
-
+            return default(T);
         T minElement = list[0];
         TResult minValue = selector(minElement);
 
@@ -85,7 +84,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public List<SceneObj> scenes { get { return GameArchitect.get.saveData.map.scenes; } }
     public List<NpcObj> npcs { get { return GameArchitect.get.saveData.npcs; } }
     public Dictionary<SceneObj, List<Path>> paths { get { return GameArchitect.get.saveData.map.paths; } }
-    public WorldMap worldMap { get { return GameArchitect.get.worldMap; } }
+    public WorldMap worldMap { get { return GameArchitect.get.saveData.map; } }
     public PathFinder pathFinder;
     /// <summary>
     /// 场景对象池
@@ -104,7 +103,6 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public EconomicSystem economicSystem;
     protected override void Init()
     {
-        economicSystem = new EconomicSystem();
         TransEnum.Init();
         buildingPoolT = GameObject.Find("BuildingRoot").transform;
         sb = new StringBuilder();
@@ -164,6 +162,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         {
             FirstInit();
         }
+        economicSystem = new EconomicSystem();
         MapInit();
     }
     /// <summary>
@@ -175,40 +174,51 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         var map = new SceneObj();
         map.sceneName = "测试场景";
         saveData.map.AddScene(map);
-        //添加铁矿厂
+        ///////////////////////这么多人采矿///////////////////////////////////
         var ironMining = new IronMiningObj();
         map.AddBuilding(ironMining);//添加铁矿
-        var gaoLu = new Gaolu();
-        ///////////////////////////////////
-        var t = GameArchitect.get.objAsset.FindTrans("开采铁矿石");
-        var v = new CarryTrans();
-        v.title = "搬运商品";
-        v.maxTrans = 2;
-        v.wasterTimes = 1;
-        v.from.source.Add(new Pair<GoodsEnum, int>(GoodsEnum.铁矿石, 1));
-        v.to.source.Add(new Pair<GoodsEnum, int>(GoodsEnum.铁矿石, 1));
-        ironMining.pipLineManager.SetTrans(
-        new List<TransNode>()
-        {
-            new TransNode(t,ironMining.resource,ironMining.goodsRes),
-            new TransNode(v,ironMining.goodsRes,gaoLu.resource)
-        });
-        map.AddBuilding(gaoLu);//添加熔炉
-        ///////////////////////这么多人采矿///////////////////////////////////
         var npc1 = new NpcObj();
-        npc1.sum = 1000000;
+        npc1.sum = 1;
         map.Enter(npc1);
         ironMining.jobManager.RegisterJob<CaiKuangJob>(npc1);
+        //var npc3 = new NpcObj();
+        //npc3.sum = 1;
+        //map.Enter(npc3);
+        //ironMining.jobManager.RegisterJob<CarryJob>(npc3);
         ///////////////////////这么多人炼铁//////////////////////////////////
+        var gaoLu = new Gaolu();
+        map.AddBuilding(gaoLu);//添加熔炉
         var npc2 = new NpcObj();
-        npc2.sum = 1000000;
+        npc2.sum = 1;
         map.Enter(npc2);
         gaoLu.jobManager.RegisterJob<LianZhiJob>(npc2);
-        //////////////////////这么多人搬运//////////////////////////////////////
-        var npc3 = new NpcObj();
-        npc3.sum = 1000000;
-        map.Enter(npc3);
-        ironMining.jobManager.RegisterJob<CarryJob>(npc3);
+        var npc4 = new NpcObj();
+        npc4.sum = 2;
+        map.Enter(npc4);
+        gaoLu.jobManager.RegisterJob<CarryJob>(npc4);
+        //////////////////////这么多人煤矿//////////////////////////////////////
+        var meikuang = new Meikuang();
+        map.AddBuilding(meikuang);//添加熔炉
+        var npc5 = new NpcObj();
+        npc5.sum = 1;
+        map.Enter(npc5);
+        meikuang.jobManager.RegisterJob<LianZhiJob>(npc5);
+        //var npc6 = new NpcObj();
+        //npc6.sum = 1;
+        //map.Enter(npc6);
+        //meikuang.jobManager.RegisterJob<CarryJob>(npc6);
+        //////////////////////这么多人农场//////////////////////////////////////
+        var nongchang = new NongChangObj();
+        map.AddBuilding(nongchang);//添加熔炉
+        var npc7 = new NpcObj();
+        npc7.sum = 1;
+        map.Enter(npc7);
+        nongchang.jobManager.RegisterJob<CaiKuangJob>(npc7);
+        //var npc8 = new NpcObj();
+        //npc8.sum = 1;
+        //map.Enter(npc8);
+        //nongchang.jobManager.RegisterJob<CarryJob>(npc8);
+        //////////////////////初始化工作/////////////////////////////////////////
         foreach (var x in npcs)
         {
             x.lifeStyle.job.SetDayJob();
@@ -220,6 +230,10 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     /// </summary>
     public void MapInit()
     {
+        foreach(var x in buildings)
+        {
+            x.FindResourceWay();
+        }
         Debug.Log(scenes.Count);
         for(int i=0;i<scenes.Count;i++)//场景初始化
         {

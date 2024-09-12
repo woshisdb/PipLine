@@ -58,7 +58,7 @@ public class LifeStyle
 	/// <summary>
 	/// ËùÊôµÄ¼Ò
 	/// </summary>
-	public SceneObj belong;
+	public SceneObj belong { get { return npc.belong; } }
 	public LifeStyle(NpcObj npc)
     {
 		this.npc=npc;
