@@ -13,6 +13,7 @@ where T: NormalJob
     public override IEnumerator Run()
     {
         building.resource.Add(goodsEnum, 2*npc.sum);
+        Debug.Log(goodsEnum.ToString());
         building.resource.GetGoods<HandObj>(goodsEnum).UseTool(npc, building.pipLineManager, tranName, 2*npc.sum, wasterTime);
         yield return null;
     }

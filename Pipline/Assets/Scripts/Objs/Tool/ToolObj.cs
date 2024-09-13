@@ -22,6 +22,7 @@ public class ToolObj:GoodsObj
 	}
 	public virtual void UseTool(NpcObj npcObj,PipLineManager pipLine,string name, int num = 1,int time=1)
 	{
+		Debug.Log(name);
 		var res = pipLine.GetTrans(name);
 		foreach (var eng in GetProducs())
 		{

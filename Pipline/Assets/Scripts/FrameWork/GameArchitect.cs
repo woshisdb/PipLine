@@ -202,7 +202,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         var npc5 = new NpcObj();
         npc5.sum = 1;
         map.Enter(npc5);
-        meikuang.jobManager.RegisterJob<LianZhiJob>(npc5);
+        meikuang.jobManager.RegisterJob<CaiMeiJob>(npc5);
         //var npc6 = new NpcObj();
         //npc6.sum = 1;
         //map.Enter(npc6);
@@ -213,7 +213,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         var npc7 = new NpcObj();
         npc7.sum = 1;
         map.Enter(npc7);
-        nongchang.jobManager.RegisterJob<CaiKuangJob>(npc7);
+        nongchang.jobManager.RegisterJob<ZuoFanJob>(npc7);
         //var npc8 = new NpcObj();
         //npc8.sum = 1;
         //map.Enter(npc8);
