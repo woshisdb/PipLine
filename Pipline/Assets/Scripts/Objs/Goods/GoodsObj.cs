@@ -10,6 +10,10 @@ public class GoodsInf : IEqualityComparer<GoodsInf>
 {
     public string name;
     /// <summary>
+    /// 价值
+    /// </summary>
+    public int price;
+    /// <summary>
     /// 商品序号
     /// </summary>
     [HideInInspector]

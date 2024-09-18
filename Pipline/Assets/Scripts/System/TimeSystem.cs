@@ -18,4 +18,8 @@ public class TimeSystem
     {
         return time % dayTime;
     }
+    public string GetTimeStr()
+    {
+        return GetDay() + ":" + GetTime();
+    }
 }

@@ -68,6 +68,8 @@ public class SaveData
     public WorldMap map;
 
     public TimeSystem timeSystem;
+
+    public ShuiWuJu shuiWuJu;
     public SaveData()
     {
         no = 0;
@@ -75,5 +77,6 @@ public class SaveData
         buildings = new List<BuildingObj>();
         map = new WorldMap();
         npcs = new List<NpcObj>();
+        shuiWuJu = new ShuiWuJu();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gaolu : BuildingObj
 {
-    public Gaolu():base()
+    public Gaolu():base("炼制铁矿",true,typeof(LianZhiJob),typeof(CarryJob))
     {
         name = "高炉";
         //AddResources(GoodsEnum.铁矿石);
@@ -12,8 +12,8 @@ public class Gaolu : BuildingObj
         var obj1 = GoodsGen.GetGoodsObj(GoodsEnum.煤炭, 0);
         resource.Add(obj);
         resource.Add(obj1);
-        InitJob(new LianZhiJob(this), new CarryJob(this));
-        ///构建管线
-        InitTrans("炼制铁矿");
+        //InitJob(new LianZhiJob(this), new CarryJob(this));
+        /////构建管线
+        //InitTrans("炼制铁矿");
     }
 }

@@ -24,6 +24,7 @@ public struct CargoPathOrder:IOrder
     }
     public void Complete()
     {
+        to.building.pipLineManager.carrySource.allOrders[cargo.goodsInf.goodsEnum].orderSum -= cargo.sum;
         to.Add(cargo);
     }
     public void Begin()

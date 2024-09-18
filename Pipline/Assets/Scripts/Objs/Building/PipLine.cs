@@ -1,32 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.Serialization;
 using UnityEngine;
 
-public class GoodsManager : Resource
+public class GoodsManager : Resource,IRegisterEvent
 {
-	/// <summary>
-	/// ��Ʒ�ͼ۸�
-	/// </summary>
-	public Dictionary<GoodsObj, int> goodslist;
+	public Dictionary<GoodsEnum, Money> goodslist;
 	public Resource resource;
-	public GoodsManager(Resource resource):base(resource.building)
+	public int FindGoodsCost(GoodsEnum goodsObj)
+    {
+		if(goodslist.ContainsKey(goodsObj))
+        {
+			return goodslist[goodsObj].money;
+        }
+		else
+        {
+			return 0;
+        }
+    }
+	public GoodsManager(Resource resource) : base(resource.building)
 	{
 		this.resource = resource;
-		resource.AddAddFunc((obj) =>//����
-		{
-			goodslist.Add(obj, 1);
-		});
-		resource.AddRemoveFunc( (obj) =>//ɾ��
-		{
-			goodslist.Remove(obj);
-		});
-		goodslist = new Dictionary<GoodsObj, int>();
-		foreach (var x in resource.goods)
-		{
-			goodslist.Add(x, 1);
-		}
+		var from =building.pipLineManager.piplineSource.trans.from.source;
+		goodslist = new Dictionary<GoodsEnum, Money>();
+		goodslist.Add(building.outputGoods, new Money(100));
+		goodslist[building.outputGoods].money = InitGoodsMoney(building.outputGoods);
+	}
+	/// <summary>
+	/// 商品的最低价格
+	/// </summary>
+	/// <param name="goods"></param>
+	/// <returns></returns>
+	public int InitGoodsMoney(GoodsEnum goods)
+	{
+		if (GameArchitect.get.economicSystem==null)
+        {
+			return GoodsGen.GetGoodsInf(goods).price;//价格围绕价值上下波动
+        }
+		var ave=GameArchitect.get.economicSystem.GoodsAveCost(goods);
+		return ave;
 	}
 }
 public class Pair<T,F>
@@ -54,6 +68,7 @@ public abstract class Source
 }
 public class PipLineSource:Source
 {
+	public int maxSum= 99999999;//每回合生产资源的数目
 	public CircularQueue<Pair<Edge, int>> trasSource;
 	public override void Update()
     {
@@ -61,7 +76,7 @@ public class PipLineSource:Source
         {
 			productivity.remain[x.Key] = x.Value;
         }
-		int sum = 999999999;
+		int sum = maxSum;
 		foreach(var x in trans.edge.tras)
         {
 			sum = Math.Min(sum, productivity[x.Key] /x.Value);
@@ -87,7 +102,7 @@ public class PipLineSource:Source
 			foreach (var retS in trans.to.source)
 			{
 				int sumV = retS.Item2 *sum;
-				to.Add(retS.Item1, sumV);
+				to.Add(retS.Item1, sumV);//将商品添加到里面商品列表
 			}
 			return;
 		}
@@ -246,6 +261,11 @@ public class PipLineManager
 	public BuildingObj buildingObj;
 	public List<Source> piplines;
 	public Dictionary<string, Source> pairs;
+	/// <summary>
+	/// 管线
+	/// </summary>
+	public PipLineSource piplineSource { get { return (PipLineSource)GetTrans(buildingObj.mainWorkName); } }
+	public CarrySource carrySource { get { return (CarrySource)GetTrans("搬运商品"); } }
 	public void SetTrans(List<TransNode> trans)
 	{
 		piplines.Clear();
@@ -269,6 +289,18 @@ public class PipLineManager
         piplines = new List<Source>();
 		pairs = new Dictionary<string, Source>();
         this.buildingObj = buildingObj;
+    }
+	public Trans FindInput(GoodsEnum goods)
+    {
+		foreach(var x in piplines)
+        {
+			var ret=x.trans.to.source.Find(e => { return e.Item1 == goods; });
+			if (ret!=null)
+            {
+				return x.trans;
+            }
+        }
+		return null;
     }
 }
 

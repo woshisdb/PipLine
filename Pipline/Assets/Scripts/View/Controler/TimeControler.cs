@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public struct TimeUpdateEvent:IEvent
+public struct EndStepEvent:IEvent
 {
 }
 
@@ -14,6 +14,6 @@ public class TimeControler : MonoBehaviour,IRegisterEvent
     void Start()
     {
         text.text = GameArchitect.get.timeSystem.time.ToString();
-        this.Register<TimeUpdateEvent>((e) => { text.text = GameArchitect.get.timeSystem.time.ToString(); });
+        this.Register<NewStepEvent>((e) => { text.text = GameArchitect.get.timeSystem.GetTimeStr(); });
     }
 }

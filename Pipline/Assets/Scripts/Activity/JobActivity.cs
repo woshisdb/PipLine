@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //JobActivity
-public class BeginJobAct<T,F> : Act<T, F>
-where F: NormalJobInstance
+public class BeginJobAct<T> : Act<T>
 where T: NormalJob
 {
     public string tranName;
@@ -12,9 +11,8 @@ where T: NormalJob
     public int wasterTime;
     public override IEnumerator Run()
     {
-        building.resource.Add(goodsEnum, 2*npc.sum);
-        Debug.Log(goodsEnum.ToString());
-        building.resource.GetGoods<HandObj>(goodsEnum).UseTool(npc, building.pipLineManager, tranName, 2*npc.sum, wasterTime);
+        building.resource.Add(goodsEnum, 2* job.npcSum);
+        building.resource.GetGoods<HandObj>(goodsEnum).UseTool(building.pipLineManager, tranName, 2* job.npcSum, wasterTime);
         yield return null;
     }
 
@@ -22,7 +20,7 @@ where T: NormalJob
     {
         return wasterTime;
     }
-    public BeginJobAct(Job job,GoodsEnum goodsEnum,string tranName, int wasterTime) : base(job, null)
+    public BeginJobAct(Job job,GoodsEnum goodsEnum,string tranName, int wasterTime) : base(job)
     {
         this.tranName = tranName;
         this.wasterTime = wasterTime;
@@ -30,8 +28,7 @@ where T: NormalJob
     }
 }
 
-public class EndJobAct<T,F> : Act<T, F>
-where F : NormalJobInstance
+public class EndJobAct<T> : Act<T>
 where T : NormalJob
 {
     public string tranName;
@@ -39,8 +36,8 @@ where T : NormalJob
     public int wasterTime;
     public override IEnumerator Run()
     {
-        building.resource.GetGoods<HandObj>(goodsEnum).ReleaseTool(npc,building.pipLineManager,tranName, 2 * npc.sum, wasterTime);
-        building.resource.Remove(goodsEnum, 2 * npc.sum);
+        building.resource.GetGoods<HandObj>(goodsEnum).ReleaseTool(building.pipLineManager,tranName, 2 * job.npcSum, wasterTime);
+        building.resource.Remove(goodsEnum, 2 * job.npcSum);
         yield return null;
     }
 
@@ -48,7 +45,7 @@ where T : NormalJob
     {
         return wasterTime;
     }
-    public EndJobAct(Job job, GoodsEnum goodsEnum,string tranName, int wasterTime) : base(job, null)
+    public EndJobAct(Job job, GoodsEnum goodsEnum,string tranName, int wasterTime) : base(job)
     {
         this.tranName = tranName;
         this.wasterTime = wasterTime;
@@ -56,17 +53,17 @@ where T : NormalJob
     }
 }
 
-public class NormalJobInstance : JobInstance
-{
-    public NormalJobInstance(Job job, NpcObj npc) : base(job, npc)
-    {
-    }
-}
+//public class NormalJobInstance : JobInstance
+//{
+//    public NormalJobInstance(Job job, NpcObj npc) : base(job, npc)
+//    {
+//    }
+//}
 
 public class NormalJob : Job
 {
     public string tranName;
-    public NormalJob(string tranName, Func<Job, NpcObj, JobInstance> func, BuildingObj building, int wastertime) : base((e, f) => { return new LianZhiJobInstance(e, f); }, building)
+    public NormalJob(string tranName, BuildingObj building, int wastertime) : base(building)
     {
         this.tranName = tranName;
         this.buildingObj = building;
@@ -76,5 +73,6 @@ public class NormalJob : Job
         workday.endAct = new LianZhiEndAct(this, wastertime, tranName);
         dayWorks.Add(workday);
         sum = 100;
+        money = 10;
     }
 }

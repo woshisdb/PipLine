@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaiKuangBeginAct : BeginJobAct<CaiKuangJob,CaiKuangJobInstance> {
+public class CaiKuangBeginAct : BeginJobAct<CaiKuangJob> {
     public override int WasterTime()
     {
         return wasterTime;
@@ -13,7 +13,7 @@ public class CaiKuangBeginAct : BeginJobAct<CaiKuangJob,CaiKuangJobInstance> {
     }
 }
 
-public class CaiKuangEndAct : EndJobAct<CaiKuangJob, CaiKuangJobInstance>
+public class CaiKuangEndAct : EndJobAct<CaiKuangJob>
 {
     public override int WasterTime()
     {
@@ -25,16 +25,9 @@ public class CaiKuangEndAct : EndJobAct<CaiKuangJob, CaiKuangJobInstance>
     }
 }
 
-public class CaiKuangJobInstance : NormalJobInstance
-{
-    public CaiKuangJobInstance(Job job, NpcObj npc) : base(job, npc)
-    {
-    }
-}
-
 public class CaiKuangJob : NormalJob
 {
-    public CaiKuangJob(BuildingObj building) : base("开采铁矿石",(e,f) => { return new CaiKuangJobInstance(e, f); },building,8)
+    public CaiKuangJob(BuildingObj building) : base("开采铁矿石",building,8)
     {
         this.buildingObj = building;
         dayWorks = new List<DayWork>();

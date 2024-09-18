@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class IronMiningObj : BuildingObj
 {
-    public IronMiningObj():base()
+    public IronMiningObj():base("开采铁矿石", false, typeof(CaiKuangJob))
     {
         name = "铁矿厂";
         var obj=GoodsGen.GetGoodsObj(GoodsEnum.带铁矿石, 10000000);
         resource.Add(obj);
-        InitJob(new CaiKuangJob(this));
-        InitTrans("开采铁矿石");
+        //InitJob(new CaiKuangJob(this));
+        //InitTrans("开采铁矿石",false);
     }
     public override IEnumerator Update()
     {

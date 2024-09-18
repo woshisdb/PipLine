@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcObj : BaseObj
+
+/// <summary>
+/// 角色集合
+/// </summary>
+public class NpcObj : BaseObj,IRegisterEvent
 {
-	public Act befAct;
-	public Act endAct;
 	/// <summary>
 	/// 生活方式
 	/// </summary>
@@ -15,17 +17,12 @@ public class NpcObj : BaseObj
 	/// </summary>
 	public SceneObj belong;
 	public string name;
-	/// <summary>
-	/// 有多少人过着这种生活
-	/// </summary>
-	public int sum;
+	public Money money;
 	public NpcObj()
     {
-		sum = 0;
+		money = new Money(10);
 		GameArchitect.get.npcs.Add(this);
 		name = "N" + GameArchitect.get.npcs.Count;
-		befAct = null;
-		endAct = null;
 		lifeStyle = new LifeStyle(this);
     }
 }
@@ -44,15 +41,16 @@ public class SpareTimeWork
     }
 }
 
+
 /// <summary>
 /// 生活方式
 /// </summary>
 public class LifeStyle
 {
-	public JobInstance job;
+	public Job job;
 	public SpareTimeWork timeWork;
 	/// <summary>
-	/// 当前的npc
+	/// 当前的npc0
 	/// </summary>
 	public NpcObj npc;
 	/// <summary>

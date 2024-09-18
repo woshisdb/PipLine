@@ -87,6 +87,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u624B"
+    - Name: price
+      Entry: 3
+      Data: 0
     - Name: goodSize
       Entry: 3
       Data: 1
@@ -137,6 +140,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u5E26\u94C1\u77FF\u77F3"
+    - Name: price
+      Entry: 3
+      Data: 500
     - Name: goodSize
       Entry: 3
       Data: 10
@@ -149,6 +155,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u94C1\u77FF\u77F3"
+    - Name: price
+      Entry: 3
+      Data: 800
     - Name: goodSize
       Entry: 3
       Data: 7
@@ -161,6 +170,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u94C1"
+    - Name: price
+      Entry: 3
+      Data: 1400
     - Name: goodSize
       Entry: 3
       Data: 4
@@ -173,6 +185,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u571F\u8C46"
+    - Name: price
+      Entry: 3
+      Data: 100
     - Name: goodSize
       Entry: 3
       Data: 2
@@ -185,6 +200,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u571F\u8C46\u5757"
+    - Name: price
+      Entry: 3
+      Data: 120
     - Name: goodSize
       Entry: 3
       Data: 1
@@ -197,6 +215,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u7164\u70AD"
+    - Name: price
+      Entry: 3
+      Data: 400
     - Name: goodSize
       Entry: 3
       Data: 5
@@ -209,6 +230,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u7164\u77FF"
+    - Name: price
+      Entry: 3
+      Data: 600
     - Name: goodSize
       Entry: 3
       Data: 10
@@ -221,6 +245,9 @@ MonoBehaviour:
     - Name: name
       Entry: 1
       Data: "\u65A7\u5934"
+    - Name: price
+      Entry: 3
+      Data: 2600
     - Name: goodSize
       Entry: 3
       Data: 3

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LianZhiBeginAct : BeginJobAct<LianZhiJob, LianZhiJobInstance>
+public class LianZhiBeginAct : BeginJobAct<LianZhiJob>
 {
     public override int WasterTime()
     {
@@ -14,7 +14,7 @@ public class LianZhiBeginAct : BeginJobAct<LianZhiJob, LianZhiJobInstance>
     }
 }
 
-public class LianZhiEndAct : EndJobAct<LianZhiJob, LianZhiJobInstance>
+public class LianZhiEndAct : EndJobAct<LianZhiJob>
 {
 
     public override int WasterTime()
@@ -27,16 +27,10 @@ public class LianZhiEndAct : EndJobAct<LianZhiJob, LianZhiJobInstance>
     }
 }
 
-public class LianZhiJobInstance : NormalJobInstance
-{
-    public LianZhiJobInstance(Job job, NpcObj npc) : base(job, npc)
-    {
-    }
-}
 
 public class LianZhiJob : NormalJob
 {
-    public LianZhiJob(BuildingObj building) : base("Á¶ÖÆÌú¿ó", (e, f) => { return new LianZhiJobInstance(e, f); }, building,8)
+    public LianZhiJob(BuildingObj building) : base("Á¶ÖÆÌú¿ó", building,8)
     {
         this.buildingObj = building;
         dayWorks = new List<DayWork>();

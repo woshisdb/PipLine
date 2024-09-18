@@ -5,12 +5,10 @@ using System.Linq;
 using QFramework;
 using UnityEngine;
 
-public interface IAct<T,F>
+public interface IAct<T>
 where T : Job
-where F:JobInstance
 {
     public T GetJob();
-    public F GetInstance();
 }
 
 /// <summary>
@@ -19,31 +17,22 @@ where F:JobInstance
 public abstract class Act
 {
     public Job job;
-    public JobInstance instance;
-    public NpcObj npc { get { return instance.npc; } }
     public BuildingObj building { get { return job.buildingObj; } }
     /// <summary>
     /// 浪费的时间
     /// </summary>
     public abstract int WasterTime();
     public abstract IEnumerator Run();
-    public Act(Job job,JobInstance instance)
+    public Act(Job job)
     {
         this.job = job;
-        this.instance = instance;
     }
 }
-public abstract class Act<T, F> : Act,IAct<T, F>
+public abstract class Act<T> : Act,IAct<T>
 where T : Job
-where F : JobInstance
 {
-    protected Act(Job job, JobInstance instance) : base(job, instance)
+    protected Act(Job job) : base(job)
     {
-    }
-
-    public F GetInstance()
-    {
-        return (F)instance;
     }
 
     public T GetJob()
@@ -88,7 +77,7 @@ public class SeqNpcAct : Act
             yield return npcActs[i].Run();
         }
     }
-    public SeqNpcAct(Job job,JobInstance instance, params Act[] npcActs):base(job,instance)
+    public SeqNpcAct(Job job, params Act[] npcActs):base(job)
     {
         this.npcActs = npcActs;
     }

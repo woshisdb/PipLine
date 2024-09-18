@@ -31,6 +31,7 @@ public class Resource
         goods.TryGetValue(goodsObj, out val);
         if (val == null)
         {
+            if(add != null)
             add(goodsObj);
             goods.Add(goodsObj);
         }
@@ -66,7 +67,7 @@ public class Resource
         goods.TryGetValue(goodsObj, out val);
         if (val == null)
         {
-            Debug.Log(goodsObj);
+            //Debug.Log(goodsObj);
             if(add != null)
             add(goodsObj);
             goods.Add(goodsObj);

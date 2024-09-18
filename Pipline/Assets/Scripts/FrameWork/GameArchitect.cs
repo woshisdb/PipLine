@@ -11,12 +11,31 @@ public interface ICanShowView
 
 }
 
+public static class Meta
+{
+    public static int unInitVal = -99999999;
+    public static int historySum = 1000;
+}
+
 /// <summary>
 /// 金钱
 /// </summary>
 public class Money
 {
     public int money=0;
+    public CircularArray<int> passInf;
+    public Money(int maxn= 1000)
+    {
+        passInf = new CircularArray<int>(maxn, () => { return 0; });
+    }
+    public void Update()
+    {
+        passInf.Add(0);
+    }
+    public void Add(int money)
+    {
+        this.money += money;
+    }
 }
 public static class ListExtensions
 {
@@ -85,6 +104,8 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public List<NpcObj> npcs { get { return GameArchitect.get.saveData.npcs; } }
     public Dictionary<SceneObj, List<Path>> paths { get { return GameArchitect.get.saveData.map.paths; } }
     public WorldMap worldMap { get { return GameArchitect.get.saveData.map; } }
+    public ShuiWuJu shuiWuJu { get { return GameArchitect.get.saveData.shuiWuJu; } }
+    public NPCManager npcManager;
     public PathFinder pathFinder;
     /// <summary>
     /// 场景对象池
@@ -103,6 +124,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public EconomicSystem economicSystem;
     protected override void Init()
     {
+        npcManager = new NPCManager();
         TransEnum.Init();
         buildingPoolT = GameObject.Find("BuildingRoot").transform;
         sb = new StringBuilder();
@@ -178,51 +200,53 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         var ironMining = new IronMiningObj();
         map.AddBuilding(ironMining);//添加铁矿
         var npc1 = new NpcObj();
-        npc1.sum = 1;
         map.Enter(npc1);
         ironMining.jobManager.RegisterJob<CaiKuangJob>(npc1);
         //var npc3 = new NpcObj();
         //npc3.sum = 1;
         //map.Enter(npc3);
         //ironMining.jobManager.RegisterJob<CarryJob>(npc3);
+        int allpersons = 100;
+        for(int i=0;i< allpersons; i++)
+        {
+            var npc = new NpcObj();
+            map.Enter(npc);
+        }
         ///////////////////////这么多人炼铁//////////////////////////////////
         var gaoLu = new Gaolu();
-        map.AddBuilding(gaoLu);//添加熔炉
-        var npc2 = new NpcObj();
-        npc2.sum = 1;
-        map.Enter(npc2);
-        gaoLu.jobManager.RegisterJob<LianZhiJob>(npc2);
-        var npc4 = new NpcObj();
-        npc4.sum = 2;
-        map.Enter(npc4);
-        gaoLu.jobManager.RegisterJob<CarryJob>(npc4);
+        map.AddBuilding(gaoLu);
+        //gaoLu.jobManager.RegisterJob<LianZhiJob>(npc2);
+        //gaoLu.jobManager.RegisterJob<CarryJob>(npc4);
+        for(int i=0;i< allpersons/5; i++)
+        {
+            gaoLu.jobManager.RegisterJob<LianZhiJob>(npcs[i]);
+        }
+        for (int i = allpersons / 5*1; i < allpersons / 5*2; i++)
+        {
+            gaoLu.jobManager.RegisterJob<CarryJob>(npcs[i]);
+        }
         //////////////////////这么多人煤矿//////////////////////////////////////
         var meikuang = new Meikuang();
-        map.AddBuilding(meikuang);//添加熔炉
-        var npc5 = new NpcObj();
-        npc5.sum = 1;
-        map.Enter(npc5);
-        meikuang.jobManager.RegisterJob<CaiMeiJob>(npc5);
-        //var npc6 = new NpcObj();
-        //npc6.sum = 1;
-        //map.Enter(npc6);
-        //meikuang.jobManager.RegisterJob<CarryJob>(npc6);
+        map.AddBuilding(meikuang);
+        for (int i = allpersons / 5*2; i < allpersons / 5*3; i++)
+        {
+            meikuang.jobManager.RegisterJob<CaiMeiJob>(npcs[i]);
+        }
         //////////////////////这么多人农场//////////////////////////////////////
         var nongchang = new NongChangObj();
-        map.AddBuilding(nongchang);//添加熔炉
-        var npc7 = new NpcObj();
-        npc7.sum = 1;
-        map.Enter(npc7);
-        nongchang.jobManager.RegisterJob<ZuoFanJob>(npc7);
-        //var npc8 = new NpcObj();
-        //npc8.sum = 1;
-        //map.Enter(npc8);
-        //nongchang.jobManager.RegisterJob<CarryJob>(npc8);
-        //////////////////////初始化工作/////////////////////////////////////////
-        foreach (var x in npcs)
+        map.AddBuilding(nongchang);
+        for (int i = allpersons / 5*3; i < allpersons / 5*4; i++)
         {
-            x.lifeStyle.job.SetDayJob();
+            nongchang.jobManager.RegisterJob<ZuoFanJob>(npcs[i]);
         }
+        var nongchang1 = new NongChangObj();
+        map.AddBuilding(nongchang1);
+        for (int i = allpersons / 5*4; i < allpersons / 5*5; i++)
+        {
+            nongchang1.jobManager.RegisterJob<ZuoFanJob>(npcs[i]);
+        }
+        //////////////////////初始化工作/////////////////////////////////////////
+        npcManager.jobContainer.Update();
         Debug.Log("初始化结束");
     }
     /// <summary>
@@ -230,9 +254,12 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     /// </summary>
     public void MapInit()
     {
-        foreach(var x in buildings)
+        pathFinder = new PathFinder(worldMap.paths);
+        foreach (var x in buildings)
         {
             x.FindResourceWay();
+            GameArchitect.get.economicSystem.RegBuildingOut(x);
+            GameArchitect.get.economicSystem.RegBuildingIn(x);//请求输入
         }
         Debug.Log(scenes.Count);
         for(int i=0;i<scenes.Count;i++)//场景初始化
@@ -243,7 +270,6 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
             sceneControlers.Add(sc);
             map.UpdateEvent();
         }
-        pathFinder = new PathFinder(worldMap.paths);
     }
     public void AddNpc(NpcObj npc,SceneObj scene=null)
     {

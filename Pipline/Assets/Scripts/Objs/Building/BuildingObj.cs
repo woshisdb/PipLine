@@ -39,7 +39,7 @@ public class BuildingAI
     }
 }
 
-public class BuildingObj :BaseObj,ISendEvent,ISendCommand
+public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
 {
     public string name="建筑";
     /// <summary>
@@ -64,18 +64,36 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
     public JobManager jobManager;
     public BuildingAI ai;
     public SceneObj scene;
-    public GoodsEnum[] goodsEnums;
+    public GoodsEnum[] inputGoods;
+    public GoodsEnum outputGoods;
     public Money money;
-    public BuildingObj()
+    public string mainWorkName;
+    public BuildingObj(string mainWorkName,bool needTrans, params Type[] job)
     {
         pipLineManager = new PipLineManager(this);
         resource = new Resource(this);
         goodsRes = new Resource(this);
-        goodsManager = new GoodsManager(goodsRes);
+        var jobs=new List<Job>();
+        foreach(Type type in job)
+        {
+            var jobI = Activator.CreateInstance(type, this);
+            jobs.Add((Job)jobI);
+        }
         jobManager = new JobManager(this);
+        InitJob(jobs.ToArray());
+        InitTrans(mainWorkName,needTrans);
+        goodsManager = new GoodsManager(goodsRes);
+        money = new Money();
+        money.money = 1000000;
+        this.Register<EndUpdateEvent>(
+            (e) => {
+                money.Update();//更新信息
+            }
+        );
     }
     public void InitTrans(string workname,bool needTrans=true)
     {
+        mainWorkName=workname;
         var t = GameArchitect.get.objAsset.FindTrans(workname);
         if (needTrans)
         {
@@ -103,6 +121,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
                 new TransNode(t,resource,goodsRes)
             });
         }
+        this.outputGoods = t.to.source[0].Item1;
         AddResources();
     }
     public void InitJob(params Job[] jobs)
@@ -110,6 +129,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
         foreach(Job job in jobs)
         {
             this.jobManager.jobs.Add(job.GetType(), job);
+            GameArchitect.get.npcManager.jobContainer.Add(job);
         }
     }
     public virtual IEnumerator Update()
@@ -128,6 +148,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
     public void AddResources()
     {
         var source=(CarrySource) pipLineManager.GetTrans("搬运商品");
+        this.outputGoods = pipLineManager.GetTrans(this.mainWorkName).trans.to.source[0].Item1;
         if (source != null)
         {
             List<GoodsEnum> goodsEnums = new List<GoodsEnum>();
@@ -135,9 +156,9 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
             {
                 goodsEnums.Add(node.Item1);
             }
-            this.goodsEnums = goodsEnums.ToArray();
+            this.inputGoods = goodsEnums.ToArray();
+            this.Register<NewStepEvent>((e) =>{ FindResourceWay(); });
         }
-        //source.UpdateAllResource();//更新所有的资源
     }
     public void FindResourceWay()
     {
@@ -172,9 +193,11 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
             sb.Append(x.goodsInf.name);
             sb.Append(":");
             sb.Append(x.sum);
+            sb.Append(":" + goodsManager.Get(x.goodsInf.goodsEnum) + "$");
             sb.Append("\n");
         }
-
+        sb.AppendLine("钱:");
+        sb.AppendLine(money.money+"$");
         return sb.ToString();
     }
     /// <summary>
@@ -185,9 +208,11 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand
         ///能够满足
         if (requestGoods.goods.sum <= goodsRes.Get(requestGoods.goods))
         {
-            GameArchitect.get.economicSystem.AddSellB(requestGoods.cost,requestGoods.from,requestGoods.to,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
-            GameArchitect.get.economicSystem.AddSell(requestGoods.cost,this.scene,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
-            GameArchitect.get.economicSystem.Ec(requestGoods.cost*requestGoods.goods.sum,requestGoods.from.money,requestGoods.to.money);//交易
+
+            GameArchitect.get.economicSystem.AddSellB(requestGoods.cost,requestGoods.govCost,requestGoods.from,requestGoods.to,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
+            GameArchitect.get.economicSystem.AddSell(requestGoods.cost,requestGoods.govCost,this.scene,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
+            GameArchitect.get.economicSystem.Ec(requestGoods.cost*requestGoods.goods.sum, requestGoods.govCost * requestGoods.goods.sum, requestGoods.from.money,requestGoods.to.money);//交易
+            requestGoods.to.pipLineManager.carrySource.allOrders[requestGoods.goods.goodsInf.goodsEnum].orderSum += requestGoods.goods.sum;
             scene.paths.PushOrder(requestGoods.from.goodsRes,requestGoods.to.resource,requestGoods.goods,requestGoods.wasterTime);
         }
         else
