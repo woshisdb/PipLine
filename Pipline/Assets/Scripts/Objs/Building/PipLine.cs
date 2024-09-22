@@ -25,7 +25,7 @@ public class GoodsManager : Resource,IRegisterEvent
 		this.resource = resource;
 		var from =building.pipLineManager.piplineSource.trans.from.source;
 		goodslist = new Dictionary<GoodsEnum, Money>();
-		goodslist.Add(building.outputGoods, new Money(100));
+		goodslist.Add(building.outputGoods, new Money());
 		goodslist[building.outputGoods].money = InitGoodsMoney(building.outputGoods);
 	}
 	/// <summary>
@@ -96,6 +96,7 @@ public class PipLineSource:Source
 		{
 			productivity.remain[x.Key] -= sum * x.Value;
 		}
+        GameArchitect.get.economicSystem.buildingGoodsPrices[belong].outputPipline.Find(0).goodsCreate += sum;
 		if (trans.wasterTimes == 1)
 		{
 			//添加到里面

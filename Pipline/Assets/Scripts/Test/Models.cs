@@ -5,143 +5,231 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+public abstract class Need
+{
+    /// <summary>
+    /// NPC对象
+    /// </summary>
+    public NpcObj npc;
+    public double rate;
+    /// <summary>
+    /// 获取比例
+    /// </summary>
+    public abstract double FoodGoodsRate(SortGoods goods);
+    /// <summary>
+    /// 获取是否开启
+    /// </summary>
+    /// <returns></returns>
+    public abstract bool IsOpen();
+    public Need(NpcObj npc)
+    {
+        this.npc = npc;
+        rate = 1;
+    }
+    public double GetRate()
+    {
+        return rate;
+    }
+}
+
+/// <summary>
+/// 对生命的需要
+/// </summary>
+public class LifeNeed : Need
+{
+    /// <summary>
+    /// 剩余的资源
+    /// </summary>
+    public double remainPower =7;
+    public double maxPowner = 7;
+    public LifeNeed(NpcObj npc) : base(npc)
+    {
+    }
+
+    public override double FoodGoodsRate(SortGoods goods)
+    {
+        return 1;
+    }
+
+    public override bool IsOpen()
+    {
+        return remainPower > 0;
+    }
+    public bool isSatAmuse()
+    {
+        return remainPower > 5;
+    }
+}
+
+/// <summary>
+/// 对资源的需要
+/// </summary>
+public class ResourceNeed : Need
+{
+    public double ExponentialDecayFunction(double t, double s)
+    {
+        // 计算 k = ln(2) / s
+        double k = Math.Log(2) / s;
+        // 返回衰减函数值
+        return Math.Exp(-k * t);
+    }
+    public double midCost=2;
+    public ResourceNeed(NpcObj npc) : base(npc)
+    {
+    }
+
+    public override double FoodGoodsRate(SortGoods goods)
+    {
+        return ExponentialDecayFunction(goods.cost.money,GameArchitect.get.economicSystem.GetMinLifeCost()*midCost);
+    }
+
+    public override bool IsOpen()
+    {
+        return npc.GetNeedManager().lifeNeed.IsOpen();
+    }
+}
+
+/// <summary>
+/// 对享乐的需要
+/// </summary>
+public class AmuseNeed : Need
+{
+    public double style;
+    /// <summary>
+    /// 越高对低质量的反应越低,越追求高质量
+    /// </summary>
+    public double qualityRate;
+    public AmuseNeed(NpcObj npc) : base(npc)
+    {
+    }
+    public double Mod1Distance(double a, double b)
+    {
+        // 计算两者的线性距离和环绕距离
+        double linearDistance = Math.Abs(a - b);
+        double wrapAroundDistance = 1 - linearDistance;
+        // 取较小的距离
+        return Math.Min(linearDistance, wrapAroundDistance);
+    }
+
+    /// <summary>
+    /// 0到1
+    /// </summary>
+    /// <param name="a"></param>
+    /// <returns></returns>
+    public double QualityRate(double a)
+    {
+        var rate=Math.Pow(a, qualityRate);
+        return rate;
+    }
+    public override double FoodGoodsRate(SortGoods goods)
+    {
+        FoodInf foodInf = (FoodInf)goods.goodsObj.goodsInf;
+        var rate= Mod1Distance(foodInf.style,style) + QualityRate(foodInf.quality);
+        return rate;
+    }
+
+    public override bool IsOpen()
+    {
+        return npc.GetNeedManager().lifeNeed.isSatAmuse();
+    }
+}
+
 /// <summary>
 /// 对需求的满足情况
 /// </summary>
-public interface INeed
+public abstract class Selector<T>
 {
-    /// <summary>
-    /// 更新满意度
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public double CalNext(double input);
+    public NpcObj npc;
     /// <summary>
     /// 获取满意度,(1,0.5)为较为满足,(0.5,0)为较不满足
     /// </summary>
     /// <returns></returns>
-    public double get();
+    public abstract double Rate(SortGoods sortGoods);
+    public Selector(NpcObj npc)
+    {
+        this.npc = npc;
+    }
+    public abstract void Init();
+    public abstract void Update(List<T> values);
 }
 /// <summary>
-/// 对食物的需求
+/// 选择的食品
 /// </summary>
-public class FoodNeed : INeed
+public class FoodSelector : Selector<SortGoods>
 {
-    double maxn = 5;
-    double count;//饿了多少天
+    ResourceNeed resourceNeed;
+    AmuseNeed amuseNeed;
+    public FoodSelector(NpcObj npc) : base(npc)
+    {
+        
+    }
+
     /// <summary>
-    /// 有吃的为1,没吃的为0
+    /// 获取食物的满足情况
     /// </summary>
-    /// <param name="input"></param>
+    /// <param name="goods"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public double CalNext(double input)
+    public override double Rate(SortGoods sortGoods)
     {
-        if(input>0.5)
+        var v1= resourceNeed.FoodGoodsRate(sortGoods) * resourceNeed.rate;
+        var v2= amuseNeed.FoodGoodsRate(sortGoods) * amuseNeed.rate;
+        double allRate = 0;
+        if (npc.GetNeedManager().resourceNeed.IsOpen())
         {
-            count = 0;
+            allRate += v1;
         }
-        else
+        if(npc.GetNeedManager().amuseNeed.IsOpen())
         {
-            count = Math.Min(count+1, maxn);
+            allRate += v2;
         }
-        return get();
+        //获取所有的需求
+        return allRate;
     }
 
-    public double get()
+    public static SortGoods GetMaxValue(List<SortGoods> numbers, Func<SortGoods, bool> condition,Func<SortGoods,double> val)
     {
-        return 1-(count/maxn);
-    }
-    public FoodNeed()
-    {
-        count = 0;
-    }
-}
+        SortGoods maxValue = null; // 使用可空类型以处理未找到的情况
 
+        foreach (var number in numbers)
+        {
+            // 检查是否满足条件
+            if (condition(number))
+            {
+                // 如果是第一个满足条件的值或当前值大于当前最大值，则更新
+                if (maxValue == null || val(number) > val(maxValue))
+                {
+                    maxValue = number;
+                }
+            }
+        }
 
-/// <summary>
-/// 对当下享乐需求
-/// </summary>
-[Serializable]
-public class JoyNeed : INeed
-{
-    public int size = 30;
+        return maxValue; // 返回找到的最大值，如果没有找到则返回 null
+    }
+
     /// <summary>
-    /// 刺激值
+    /// 选择商品,已经排好序的
     /// </summary>
-    public LinkedList<double> activ;
-    public double[] input;
-    /// <summary>
-    /// 当前的满足感.(1,0.5)为较为满足,(0.5,0)为较不满足
-    /// </summary>
-    public double befActiv;
-    public double upRate;
-    public double downRate;
-    public JoyNeed()
+    public override void Update(List<SortGoods> sortGoods)
     {
-        activ = new LinkedList<double>();
-        for (int i = 0; i < size; i++)
+        var money=npc.money.money;//总收入
+        var ret=GetMaxValue(sortGoods, (goods) => { return goods.cost.money <= money && goods.goodsObj.sum > 0; }, goods => { return Rate(goods); });
+        if(ret==null)//没有商品可以买
         {
-            activ.AddLast(0.5);
+
         }
-        input = new double[size];
-        for (int i = 0; i < size; i++)
+        else//有商品则买
         {
-            input[i] = i;
+            var ec = GameArchitect.get.economicSystem;      
+            ec.Ec(ret, npc);//商品与经济
         }
-        befActiv = 0.5;
-    }
-    // 训练和预测方法
-    public double PredictNextValue()
-    {
-        int n = activ.Count;
-        // 将数据转换为双精度数组
-        double[] inputs = input.ToArray();
-        double[] outputs = activ.ToArray();
-
-        // 创建并训练简单线性回归模型
-        var regression = new SimpleLinearRegression();
-        regression.Regress(inputs, outputs);
-
-        // 预测下一个值
-        double nextIndex = n; // 下一个索引
-        double predictedValue = regression.Transform(nextIndex);
-
-        return predictedValue;
-    }
-    public double CalNext(double input)
-    {
-        double val = PredictNextValue();
-        Debug.Log(val);
-        if (input > val)
-            befActiv = 0.5 + upRate * (input - val);
-        else
-            befActiv = 0.5 + downRate * (input - val);
-        befActiv = Math.Clamp(befActiv, 0, 1);
-        activ.AddLast(input);
-        activ.RemoveFirst();
-        return befActiv;
     }
 
-    public double get()
+    public override void Init()
     {
-        return befActiv;
+        resourceNeed = npc.GetNeedManager().resourceNeed;
+        amuseNeed = npc.GetNeedManager().amuseNeed;
     }
 }
 
-/// <summary>
-/// 对生存安全的满足情况
-/// </summary>
-public class SafetyNeed : INeed
-{
-    public double CalNext(double input)//每天能分配的收入
-    {
-        double val=(input-GameArchitect.get.economicSystem.GetMinLifeCost());
-        return val;
-    }
 
-    public double get()
-    {
-        return 1;
-    }
-}

@@ -8,12 +8,13 @@ public class SceneObj : BaseObj,ISendEvent
     public List<NpcObj> npcs;
     public List<BuildingObj> buildings;
     public PathObj paths;
-
+    public SortManager sortManager;
     public SceneObj()
     {
         sceneName = "";
         npcs = new List<NpcObj>();
         buildings = new List<BuildingObj>();
+        sortManager = new SortManager(this);
     }
     public void UpdateEvent()
     {
@@ -35,11 +36,13 @@ public class SceneObj : BaseObj,ISendEvent
         buildings.Add(building);
         building.scene = this;
         UpdateEvent();
+        sortManager.Reg(building);
     }
     public void RemoveBuilding(BuildingObj building)
     {
         GameArchitect.get.buildings.Remove(building);
         buildings.Remove(building);
+        sortManager.UnReg(building);
         building.scene = this;
         UpdateEvent();
     }

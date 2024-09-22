@@ -3,16 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+
+public class FoodInf:GoodsInf
+{
+    public double style;
+}
+public class FoodObj:GoodsObj
+{
+
+}
 /// <summary>
 /// 保存这类商品的具体信息
 /// </summary>
 public class GoodsInf : IEqualityComparer<GoodsInf>
 {
+    [ReadOnly]
+    public int no;
     public string name;
     /// <summary>
-    /// 价值
+    /// 初始价值
     /// </summary>
     public int price;
+    /// <summary>
+    /// 产品质量
+    /// </summary>
+    public double quality;
     /// <summary>
     /// 商品序号
     /// </summary>

@@ -119,14 +119,12 @@ public class GoodsEC: HistoryItem
     public float buyCost=0;//买入的平均价格
     public int sellSum= 0;//卖出的数量
     public float sellCost = 0;//卖出的平均价格
-    public int allMoney=0;//总收入
     public override void Update()
     {
         buySum = 0;//购买的数量
         buyCost = 0;//买入的平均价格
         sellSum = 0;//卖出的数量
         sellCost = 0;//卖出的平均价格
-        allMoney = 0;//总收入
     }
 }
 /// <summary>
@@ -139,14 +137,18 @@ public class PipLineHistory:HistoryItem
     /// </summary>
     public int goodsCreate=0;
     /// <summary>
-    /// 剩余的订单数目
+    /// 下令生产的数目
     /// </summary>
-    public int remainOrder=0;
+    public int orderSum=0;
+    public int carraySum = 0;
+    /// <summary>
+    /// 所有的商品数目
+    /// </summary>
     public int allGoods=0;
 
     public override void Update()
     {
-        remainOrder = 0;
+        orderSum = 0;
         goodsCreate = 0;
         allGoods = 0;
     }
@@ -163,10 +165,23 @@ public class EarnHistory:HistoryItem
         cost = 0;
     }
 }
+public class JobHistory:HistoryItem
+{
+    public int jobSum = 0;
+    public int jobCost = 0;
+    public override void Update()
+    {
+        jobSum = 0;
+        jobCost = 0;
+    }
+
+}
 public class History<T> : CircularQueue<T> where T:HistoryItem,new()
 {
-    public History(int n) : base(n)
+    public Action<T> action;
+    public History(int n,Action<T> action=null) : base(n)
     {
+        this.action = action;
         for(int i=0; i<n; i++)
         {
             Enqueue(new T());
@@ -174,6 +189,10 @@ public class History<T> : CircularQueue<T> where T:HistoryItem,new()
     }
     public void Update()
     {
+        if(action!=null)
+        {
+            action(Find(0));
+        }
         Dequeue();
         Enqueue();
         FindFront(0).Update();
@@ -185,19 +204,39 @@ public class BuildingEc
     public BuildingObj building;
     public Dictionary<GoodsEnum, History<GoodsEC>> buildingGoodsPrices;//商品交易价格(天)
     public History<PipLineHistory> outputPipline;//生产的管线(天)
-    public History<EarnHistory> moneyHis;//收益情况(小时)
+    public History<EarnHistory> moneyHis;//收益情况(天)
+    public Dictionary<Job, History<JobHistory>> jobHis;
     public BuildingEc(BuildingObj building)
     {
         buildingGoodsPrices = new Dictionary<GoodsEnum, History<GoodsEC>>();
         if(building.inputGoods != null)
         foreach (var y in building.inputGoods)
         {
-            buildingGoodsPrices.Add((GoodsEnum)y, new History<GoodsEC>(Meta.historySum));//每天的价格
+                var value = (GoodsEnum)y;
+            buildingGoodsPrices.Add(value, new History<GoodsEC>(Meta.historySum));//每天的价格
         }
-        //Debug.Log(building.name);
         buildingGoodsPrices.Add(building.outputGoods, new History<GoodsEC>(Meta.historySum));//每天的价格
-        outputPipline = new History<PipLineHistory>(Meta.historySum);
-        moneyHis=new History<EarnHistory>(Meta.historySum);
+        outputPipline = new History<PipLineHistory>(Meta.historySum, e =>
+        {
+            e.orderSum=building.ai.piplineSum;
+            e.allGoods = building.goodsRes.Get(building.outputGoods);
+            //e.goodsCreate =;
+            e.carraySum = building.ai.carraySum;
+        });
+        moneyHis=new History<EarnHistory>(Meta.historySum, e =>
+        {
+            e.cost = building.money.money;
+        });
+        jobHis = new Dictionary<Job,History<JobHistory>>();
+        foreach(var x in building.jobManager.jobs)
+        {
+            jobHis.Add(x.Value, new History<JobHistory>(Meta.historySum,
+                e=>
+                {
+                    e.jobSum = building.ai.jobSums[x.Value].jobSum;
+                    e.jobCost = building.ai.jobSums[x.Value].jobCost;
+                }));
+        }
         this.building = building;
     }
     public void Update()
@@ -215,31 +254,87 @@ public class SortGoods
     public GoodsObj goodsObj;
     public Money cost;
     public BuildingObj building;
-    public float SortVal;
+    public Func<int> SortVal;
     public SortGoods(BuildingObj buildingObj)
     {
         this.building = buildingObj;
-        GoodsObj goods = building.goodsManager.GetGoods<GoodsObj>(building.outputGoods);
+        GoodsObj goods = building.goodsRes.GetGoods<GoodsObj>(building.outputGoods);
         cost = buildingObj.goodsManager.goodslist[building.outputGoods];
         goodsObj = goods;
+        SortVal = () => { return cost.money; };
     }
 }
 
 
 public class SortManager
 {
+    /// <summary>
+    /// 食物最小价格
+    /// </summary>
+    public double foodminVal;
     public List<SortGoods> foodSorter;
+    public SceneObj scene;
     public void Reg(BuildingObj building)
     {
-        GoodsObj goods = building.goodsManager.GetGoods<GoodsObj>(building.outputGoods);
+        //GoodsObj goods = building.goodsManager.GetGoods<GoodsObj>(building.outputGoods);
         if(EconomicSystem.IsFood( building.outputGoods))
         {
             foodSorter.Add(new SortGoods(building));
         }
     }
-    public SortManager()
+    public void UnReg(BuildingObj building)
+    {
+        foodSorter.RemoveAll(e => { return e.building == building; });
+    }
+    public void Update()
+    {
+        foodSorter.Sort((x, y) => x.cost.money.CompareTo(y.cost.money));//更新商品价格
+    }
+    public void UpdateMinFoodVal()
+    {
+        int allPerson = scene.npcs.Count;
+        
+    }
+    /// <summary>
+    /// 能获得食物的最低价格
+    /// </summary>
+    /// <returns></returns>
+    public double getMinFoodVal()
+    {
+        return foodminVal;
+    }
+    public SortManager(SceneObj scene)
     {
         foodSorter = new List<SortGoods>();
+    }
+}
+/// <summary>
+/// 钱的历史
+/// </summary>
+public class MoneyHistory : HistoryItem
+{
+    public int money=0;
+
+    public override void Update()
+    {
+        money = 0;
+    }
+}
+public class NpcEc
+{
+    public NpcObj npc;
+    public History<MoneyHistory> moneyHistory;
+    public NpcEc(NpcObj npc)
+    {
+        moneyHistory = new History<MoneyHistory>(Meta.historySum, e =>
+        {
+            e.money = npc.money.money;
+        });
+        this.npc = npc;
+    }
+    public void Update()
+    {
+        moneyHistory.Update();
     }
 }
 
@@ -247,7 +342,7 @@ public class EconomicSystem:IRegisterEvent
 {
     public static bool IsFood(GoodsEnum goodsEnum)
     {
-        if (goodsEnum == GoodsEnum.土豆)
+        if (GoodsGen.GetGoodsInf(goodsEnum) is FoodInf)
         {
             return true;
         }
@@ -264,6 +359,9 @@ public class EconomicSystem:IRegisterEvent
     /// 建筑商品的价格生产量等信息
     /// </summary>
     public Dictionary<BuildingObj, BuildingEc> buildingGoodsPrices;
+
+    public Dictionary<NpcObj, NpcEc> npcPrices;
+
     /// <summary>
     /// 哪些建筑会生产这种商品
     /// </summary>
@@ -342,7 +440,8 @@ public class EconomicSystem:IRegisterEvent
         buildingGoodsPrices = new Dictionary<BuildingObj, BuildingEc>();
         output2building = new Dictionary<GoodsEnum, List<BuildingObj>>();
         input2building = new Dictionary<GoodsEnum, List<BuildingObj>>();
-        foreach(GoodsEnum x in Enum.GetValues(typeof(GoodsEnum)))
+        npcPrices = new Dictionary<NpcObj, NpcEc>();
+        foreach (GoodsEnum x in Enum.GetValues(typeof(GoodsEnum)))
         {
             output2building.Add(x, new List<BuildingObj>());
             input2building.Add(x, new List<BuildingObj>());
@@ -358,6 +457,10 @@ public class EconomicSystem:IRegisterEvent
         foreach (var x in GameArchitect.get.buildings)
         {
             buildingGoodsPrices.Add(x, new BuildingEc(x));
+        }
+        foreach(var x in GameArchitect.get.npcs)
+        {
+            npcPrices.Add(x, new NpcEc(x));
         }
         this.Register<NewStepEvent>(
         (e) =>
@@ -406,12 +509,24 @@ public class EconomicSystem:IRegisterEvent
         t.sellSum += sum;
     }
     /// <summary>
+    /// 购买商品
+    /// </summary>
+    /// <param name="sort"></param>
+    /// <param name="npcObj"></param>
+    public void Ec(SortGoods sort,NpcObj npcObj)
+    {
+        AddBuy(sort.cost.money, 0, npcObj.belong, 1, sort.goodsObj.goodsInf.goodsEnum);
+        AddSell(sort.cost.money, 0, npcObj.belong, 1, sort.goodsObj.goodsInf.goodsEnum);
+        AddSellB(sort.cost.money, 0, null, sort.building, 1, sort.goodsObj.goodsInf.goodsEnum);
+        Ec(sort.cost.money,0,npcObj.money,sort.building.money);
+    }
+    /// <summary>
     /// 交易价格
     /// </summary>
     public void Ec(int money,int govCost,Money from,Money to)
     {
         from.money += money-govCost;
-        GameArchitect.get.shuiWuJu.money.money += govCost;
+        GameArchitect.get.shuiWuJu.money.money += govCost;//待优化
         to.money -= money;
     }
     /// <summary>
@@ -435,6 +550,10 @@ public class EconomicSystem:IRegisterEvent
         {
             var t=buildingGoodsPrices[x];
             t.Update();
-        }    
+        }
+        foreach(var x in npcPrices)
+        {
+            x.Value.Update();
+        }
     }
 }

@@ -92,9 +92,29 @@ public class ObjAsset : SerializedScriptableObject
     }
     [BoxGroup("商品列表"),ShowInInspector]
     public List<GoodsInf> goodsInfs;
+    /// <summary>
+    /// 添加商品信息
+    /// </summary>
+    [ReadOnly]
+    public int beginNo=1;
+    [ReadOnly]
+    public Dictionary<GoodsEnum, GoodsInf> goodsMap;
     [BoxGroup("商品列表"), Button]
     public void GenEnum()
     {
+        for(int i=0;i<goodsInfs.Count;i++)
+        {
+            var good = goodsInfs[i];
+            if (good.no==0)
+            {
+                good.no=beginNo;
+                beginNo++;
+            }
+            else
+            {
+
+            }
+        }
         List<string> items = new List<string>();
         foreach (var x in goodsInfs)
         {
@@ -114,7 +134,7 @@ public class ObjAsset : SerializedScriptableObject
             }
 
             // 添加枚举项，使用逗号分隔并确保最后一项没有逗号
-            sb.AppendLine($"    {enumItem} = {i + 1},");
+            sb.AppendLine($"    {enumItem} = {goodsInfs[i].no},");
         }
 
         // 删除最后一个逗号
@@ -124,10 +144,7 @@ public class ObjAsset : SerializedScriptableObject
 
         sb.AppendLine("public class GoodsGen{");
         sb.Append(@$"public static GoodsInf GetGoodsInf(GoodsEnum goodsEnum){{
-        if (((int)goodsEnum) < GameArchitect.get.objAsset.goodsInfs.Count)
-            return GameArchitect.get.objAsset.goodsInfs[((int)goodsEnum) - 1];
-        else
-            return null;
+        return GameArchitect.get.objAsset.goodsMap[goodsEnum];
         }}");
         sb.AppendLine("     public static GoodsObj GetGoodsObj(GoodsEnum goodsEnum,int sum=0){");
         foreach (var x in goodsInfs)
@@ -145,6 +162,11 @@ public class ObjAsset : SerializedScriptableObject
         sb.AppendLine("}");
         File.WriteAllText($"Assets/Scripts/Enums/GoodsEnum.cs", sb.ToString());
         AssetDatabase.Refresh();
+        goodsMap = new Dictionary<GoodsEnum, GoodsInf>();
+        foreach(GoodsEnum key in Enum.GetValues(typeof(GoodsEnum)))
+        {
+            goodsMap.Add(key, goodsInfs.Find(e => { return e.name==key.ToString(); }));
+        }
     }
     //////////////////////////////////
     [BoxGroup("商品流水线"), ShowInInspector]

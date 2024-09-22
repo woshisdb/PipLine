@@ -3,39 +3,110 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-/// <summary>
-/// 一个请求规划类
-/// </summary>
-public interface IAiRequest
-{
-    /// <summary>
-    /// 注册规划器
-    /// </summary>
-    public void RegisterPlan();
-    /// <summary>
-    /// 请求规划
-    /// </summary>
-    public void RequestPlan();
-    /// <summary>
-    /// 获取Ai的数据
-    /// </summary>
-    public string CollectData();
-}
+
 /// <summary>
 /// 建筑AI
 /// </summary>
 public class BuildingAI
 {
-    public BuildingObj BuildingObj;
-    public List<IAiRequest> RequestList;
+    public BuildingObj building;
+    /// <summary>
+    /// 总收入(Input)
+    /// </summary>
+    public Money money 
+    { get { return building.money; } }
+    /// <summary>
+    /// 管线的生产数量
+    /// </summary>
+    public int piplineSum
+    {
+        get
+        {
+            var pip = (PipLineSource)building.GetMainWork();//管线管理
+            return pip.maxSum;
+        }
+        set
+        {
+            var pip = (PipLineSource)building.GetMainWork();//管线管理
+            pip.maxSum=value;
+        }
+    }
+    /// <summary>
+    /// 进口商品(Input)
+    /// </summary>
+    public int carraySum
+    {
+        get
+        {
+            var pip = (CarrySource)building.GetCarryWork();//管线管理
+            return pip.resourceSum;
+        }
+        set
+        {
+            var pip = (CarrySource)building.GetCarryWork();//管线管理
+            pip.resourceSum = value;
+        }
+    }
+    /// <summary>
+    /// 工作的信息
+    /// </summary>
+    public Dictionary<Job,JobCal> jobSums;
+
+
+    public BuildingEc BuildingEc { get {
+            ///经济系统的模型
+            return GameArchitect.get.economicSystem.buildingGoodsPrices[building];
+    } }
+
+    public class JobCal
+    {
+        public Job job;
+        /// <summary>
+        /// 提供工作的数目
+        /// </summary>
+        public int jobSum
+        {
+            get
+            {
+                var pip = job.sum;
+                return pip;
+            }
+            set
+            {
+                job.sum=value;//管线管理
+            }
+        }
+        /// <summary>
+        /// 一个工人的收入
+        /// </summary>
+        public int jobCost
+        {
+            get
+            {
+                return job.money;
+            }
+            set
+            {
+                job.money = value;
+            }
+        }
+        public JobCal(Job job)
+        {
+            this.job = job;
+        }
+    }
     public BuildingAI(BuildingObj buildingObj)
     {
-        BuildingObj = buildingObj;
-        RequestList = new List<IAiRequest>();
+        building = buildingObj;
+        jobSums = new Dictionary<Job, JobCal>();
+        foreach(var x in buildingObj.jobManager.jobs)
+        {
+            jobSums.Add(x.Value,new JobCal(x.Value));
+        }
     }
-    public void AddAi(IAiRequest ai)
+    public void Update()
     {
-        RequestList.Add(ai);
+        
     }
 }
 
@@ -68,8 +139,20 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     public GoodsEnum outputGoods;
     public Money money;
     public string mainWorkName;
+    public bool hasTrans;
+    public Source GetMainWork()
+    {
+        return pipLineManager.GetTrans(mainWorkName);
+    }
+
+    public Source GetCarryWork()
+    {
+        return pipLineManager.GetTrans("搬运商品");
+    }
+
     public BuildingObj(string mainWorkName,bool needTrans, params Type[] job)
     {
+        hasTrans=needTrans;
         pipLineManager = new PipLineManager(this);
         resource = new Resource(this);
         goodsRes = new Resource(this);
@@ -90,6 +173,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
                 money.Update();//更新信息
             }
         );
+        ai = new BuildingAI(this);
     }
     public void InitTrans(string workname,bool needTrans=true)
     {
@@ -109,8 +193,8 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
             pipLineManager.SetTrans(
             new List<TransNode>()
             {
-                new TransNode(t,resource,goodsRes),
-                new TransNode(v,null,resource)
+                new TransNode(t,resource,goodsRes),//生产
+                new TransNode(v,null,resource)//搬运
             });
         }
         else
@@ -131,6 +215,13 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
             this.jobManager.jobs.Add(job.GetType(), job);
             GameArchitect.get.npcManager.jobContainer.Add(job);
         }
+    }
+    /// <summary>
+    /// 每天一开始的更新
+    /// </summary>
+    public void DayUpdate()
+    {
+
     }
     public virtual IEnumerator Update()
     {

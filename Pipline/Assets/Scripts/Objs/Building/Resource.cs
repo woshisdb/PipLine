@@ -183,12 +183,13 @@ public class Resource
         var obj = GoodsGen.GetGoodsObj(goodsEnum);
         GoodsObj val = null;
         goods.TryGetValue(obj, out val);
-        if(val == null)
-        {
-            val = GoodsGen.GetGoodsObj(goodsEnum);
-            val.sum = 0;
-            goods.Add(val);
-        }
+        //return goods;
+        //if(val == null)
+        //{
+        //    val = GoodsGen.GetGoodsObj(goodsEnum);
+        //    val.sum = 0;
+        //    goods.Add(val);
+        //}
         return (T)val;
     }
     //r1->r2

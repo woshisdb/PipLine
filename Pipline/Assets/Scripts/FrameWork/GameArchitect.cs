@@ -23,14 +23,11 @@ public static class Meta
 public class Money
 {
     public int money=0;
-    public CircularArray<int> passInf;
-    public Money(int maxn= 1000)
+    public Money()
     {
-        passInf = new CircularArray<int>(maxn, () => { return 0; });
     }
     public void Update()
     {
-        passInf.Add(0);
     }
     public void Add(int money)
     {
@@ -206,7 +203,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         //npc3.sum = 1;
         //map.Enter(npc3);
         //ironMining.jobManager.RegisterJob<CarryJob>(npc3);
-        int allpersons = 100;
+        int allpersons = 10;
         for(int i=0;i< allpersons; i++)
         {
             var npc = new NpcObj();
