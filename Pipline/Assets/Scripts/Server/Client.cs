@@ -1,65 +1,86 @@
 using System;
 using System.Net.Sockets;
 using System.Text;
+using Newtonsoft.Json;
 using UnityEngine;
-using Newtonsoft.Json;  // 确保已安装 Newtonsoft.Json 库
-/// <summary>
-/// 设计规划
-/// </summary>
-public struct PlanEvent:IEvent
-{
-
-}
 
 public class Client : MonoBehaviour
 {
-    TcpClient client;
-    NetworkStream stream;
+    private TcpClient client;
+    private NetworkStream stream;
 
+    // 设置更新的时间间隔
+    private float updateInterval = 2.0f;
+    private float timeSinceLastUpdate = 0f;
+
+    // 初始化连接
     void Start()
     {
-        ConnectToServer();
+        //ConnectToServer();
     }
 
+    //void Update()
+    //{
+    //    timeSinceLastUpdate += Time.deltaTime;
+
+    //    if (timeSinceLastUpdate >= updateInterval)
+    //    {
+    //        SendRequest();
+    //        timeSinceLastUpdate = 0f;
+    //    }
+    //}
+
+    // 连接到 Python 服务器
     void ConnectToServer()
     {
         try
         {
-            // 连接到 Python 服务器
             client = new TcpClient("127.0.0.1", 8080);
             stream = client.GetStream();
-
-            // 创建要发送的 JSON 数据
-            var jsonData = new
-            {
-                message = "Hello from Unity",
-                time = DateTime.Now.ToString()
-            };
-
-            // 将数据序列化为 JSON 字符串
-            string jsonString = JsonConvert.SerializeObject(jsonData);
-            byte[] data = Encoding.UTF8.GetBytes(jsonString);
-
-            // 发送数据
-            stream.Write(data, 0, data.Length);
-            Debug.Log("已发送 JSON 数据到 Python 服务器");
-
-            // 接收来自服务器的响应
-            byte[] buffer = new byte[1024];
-            int bytesRead = stream.Read(buffer, 0, buffer.Length);
-            string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-            Debug.Log($"从服务器接收到的响应: {response}");
-
+            Debug.Log("已连接到 Python 服务器");
         }
         catch (Exception e)
         {
-            Debug.LogError("Socket 错误: " + e.Message);
+            Debug.LogError("连接失败: " + e.Message);
         }
-        finally
+    }
+
+    // 发送请求到 Python 服务器
+    public void SendRequest()
+    {
+        if (client == null || !client.Connected)
         {
-            // 关闭连接
-            if (stream != null) stream.Close();
-            if (client != null) client.Close();
+            Debug.LogError("未连接到服务器");
+            return;
         }
+
+        // 构建请求数据（例如，用 sinValue 和 cosValue 随机调整服务器的图表）
+        var requestData = new
+        {
+            BuildingEc = GameArchitect.get.economicSystem.buildingGoodsPrices[GameArchitect.get.buildings[0]].RetHis()
+        };
+        // 将数据序列化为 JSON 字符串
+        string jsonString = JsonConvert.SerializeObject(requestData);
+        //Debug.Log(jsonString);
+        byte[] data = Encoding.UTF8.GetBytes(jsonString);
+
+        // 发送数据到服务器
+        stream.Write(data, 0, data.Length);
+        Debug.Log("已发送数据到服务器");
+
+        // 接收来自服务器的响应
+        byte[] buffer = new byte[1024];
+        int bytesRead = stream.Read(buffer, 0, buffer.Length);
+        string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+        // 处理服务器响应
+        Debug.Log($"从服务器接收到的响应: {response}");
+    }
+
+    // 关闭连接
+    private void OnApplicationQuit()
+    {
+        if (stream != null) stream.Close();
+        if (client != null) client.Close();
     }
 }

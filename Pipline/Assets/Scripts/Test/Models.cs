@@ -214,14 +214,15 @@ public class FoodSelector : Selector<SortGoods>
     {
         var money=npc.money.money;//总收入
         var ret=GetMaxValue(sortGoods, (goods) => { return goods.cost.money <= money && goods.goodsObj.sum > 0; }, goods => { return Rate(goods); });
+        Debug.Log(ret);
         if(ret==null)//没有商品可以买
         {
 
         }
         else//有商品则买
         {
-            var ec = GameArchitect.get.economicSystem;      
-            ec.Ec(ret, npc);//商品与经济
+            var ec = GameArchitect.get.economicSystem;
+            ec.Ec(ret, npc, 1);//商品与经济
         }
     }
 

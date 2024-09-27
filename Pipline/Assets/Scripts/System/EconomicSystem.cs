@@ -90,6 +90,15 @@ public class PathFinder
 
 }
 
+public class RetEc
+{
+    public Dictionary<string,object> ret=new Dictionary<string, object>();
+}
+
+public interface Ec
+{
+    public RetEc RetHis();
+}
 
 public class GoodPath
 {
@@ -113,7 +122,7 @@ public abstract class HistoryItem
 /// <summary>
 /// 经济系统
 /// </summary>
-public class GoodsEC: HistoryItem
+public class GoodsHistory: HistoryItem
 {
     public int buySum=0;//购买的数量
     public float buyCost=0;//买入的平均价格
@@ -176,15 +185,30 @@ public class JobHistory:HistoryItem
     }
 
 }
+
+
 public class History<T> : CircularQueue<T> where T:HistoryItem,new()
 {
     public Action<T> action;
+    List<T> list;
     public History(int n,Action<T> action=null) : base(n)
     {
+        list = new List<T>();
         this.action = action;
         for(int i=0; i<n; i++)
         {
-            Enqueue(new T());
+            var data = new T();
+            Enqueue(data);
+            list.Add(data);
+        }
+    }
+    public List<T> values { get
+        {
+            for(int i=0;i< _capacity; i++)
+            {
+                list[i]= FindFront(i);
+            }
+            return list; 
         }
     }
     public void Update()
@@ -195,32 +219,34 @@ public class History<T> : CircularQueue<T> where T:HistoryItem,new()
         }
         Dequeue();
         Enqueue();
-        FindFront(0).Update();
+        Find(0).Update();
     }
 }
 
-public class BuildingEc
+public class BuildingEc: Ec
 {
+    RetEc retEc;
     public BuildingObj building;
-    public Dictionary<GoodsEnum, History<GoodsEC>> buildingGoodsPrices;//商品交易价格(天)
+    public Dictionary<GoodsEnum, History<GoodsHistory>> buildingGoodsPrices;//商品交易价格(天)
     public History<PipLineHistory> outputPipline;//生产的管线(天)
     public History<EarnHistory> moneyHis;//收益情况(天)
     public Dictionary<Job, History<JobHistory>> jobHis;
     public BuildingEc(BuildingObj building)
     {
-        buildingGoodsPrices = new Dictionary<GoodsEnum, History<GoodsEC>>();
+        buildingGoodsPrices = new Dictionary<GoodsEnum, History<GoodsHistory>>();
         if(building.inputGoods != null)
         foreach (var y in building.inputGoods)
         {
                 var value = (GoodsEnum)y;
-            buildingGoodsPrices.Add(value, new History<GoodsEC>(Meta.historySum));//每天的价格
+            buildingGoodsPrices.Add(value, new History<GoodsHistory>(Meta.historySum));//每天的价格
         }
-        buildingGoodsPrices.Add(building.outputGoods, new History<GoodsEC>(Meta.historySum));//每天的价格
+        buildingGoodsPrices.Add(building.outputGoods, new History<GoodsHistory>(Meta.historySum));//每天的价格
         outputPipline = new History<PipLineHistory>(Meta.historySum, e =>
         {
             e.orderSum=building.ai.piplineSum;
             e.allGoods = building.goodsRes.Get(building.outputGoods);
             //e.goodsCreate =;
+            if(building.hasTrans)
             e.carraySum = building.ai.carraySum;
         });
         moneyHis=new History<EarnHistory>(Meta.historySum, e =>
@@ -247,6 +273,48 @@ public class BuildingEc
         }
         outputPipline.Update();
         moneyHis.Update();
+    }
+
+    //public dynamic GetChart()
+    //{
+    //    return new
+    //    {
+    //        outputPipline = outputPipline.values
+    //        ,moneyHis =moneyHis.values
+    //        job
+    //    };
+    //}
+
+    public RetEc RetHis()
+    {
+        if (retEc == null)
+        {
+            retEc = new RetEc();
+            retEc.ret.Add("moneyHis", moneyHis.values);
+            retEc.ret.Add("outputPipline", outputPipline.values);
+            foreach (var x in buildingGoodsPrices)
+            {
+                retEc.ret.Add(x.Key.ToString(), x.Value.values);
+            }
+            foreach (var x in jobHis)
+            {
+                retEc.ret.Add(x.Key.GetType().Name, x.Value.values);
+            }
+        }
+        else
+        {
+            retEc.ret["moneyHis"]= moneyHis.values;
+            retEc.ret["outputPipline"]=outputPipline.values;
+            foreach (var x in buildingGoodsPrices)
+            {
+                retEc.ret[x.Key.ToString()]= x.Value.values;
+            }
+            foreach (var x in jobHis)
+            {
+                retEc.ret[x.Key.GetType().Name]= x.Value.values;
+            }
+        }
+        return retEc;
     }
 }
 public class SortGoods
@@ -320,8 +388,9 @@ public class MoneyHistory : HistoryItem
         money = 0;
     }
 }
-public class NpcEc
+public class NpcEc:Ec
 {
+    RetEc retEc;
     public NpcObj npc;
     public History<MoneyHistory> moneyHistory;
     public NpcEc(NpcObj npc)
@@ -332,9 +401,59 @@ public class NpcEc
         });
         this.npc = npc;
     }
+
+    public RetEc RetHis()
+    {
+        if (retEc == null)
+        {
+            retEc = new RetEc();
+            retEc.ret.Add("moneyHistory", moneyHistory.values);
+        }
+        else
+        {
+            retEc.ret["moneyHistory"] = moneyHistory.values;
+        }
+        return retEc;
+    }
+
     public void Update()
     {
         moneyHistory.Update();
+    }
+}
+
+public class SceneEc : Ec
+{
+    public RetEc retEc;
+    public SceneObj scene;
+    public Dictionary<GoodsEnum, History<GoodsHistory>> goodsPrice;
+    public SceneEc(SceneObj scene)
+    {
+        this.scene = scene;
+        goodsPrice = new Dictionary<GoodsEnum, History<GoodsHistory>>();
+        foreach (var y in Enum.GetValues(typeof(GoodsEnum)))
+        {
+            goodsPrice.Add((GoodsEnum)y, new History<GoodsHistory>(Meta.historySum));//每天的价格
+        }
+    }
+    public RetEc RetHis()
+    {
+        if (retEc == null)
+        {
+            retEc = new RetEc();
+            foreach(var x in goodsPrice)
+            {
+                retEc.ret.Add(x.Key.ToString(), x.Value.values);
+            }
+        }
+        else
+        {
+            foreach (var x in goodsPrice)
+            {
+                retEc.ret.Add(x.Key.ToString(), x.Value.values);
+            }
+        }
+        return retEc;
     }
 }
 
@@ -354,7 +473,7 @@ public class EconomicSystem:IRegisterEvent
     /// <summary>
     /// 场景的信息.以一天为单位
     /// </summary>
-    public Dictionary<SceneObj, Dictionary<GoodsEnum, History<GoodsEC>>> sceneGoodsPrices;
+    public Dictionary<SceneObj,SceneEc > sceneGoodsPrices;
     /// <summary>
     /// 建筑商品的价格生产量等信息
     /// </summary>
@@ -436,7 +555,7 @@ public class EconomicSystem:IRegisterEvent
     }
     public EconomicSystem()
     {
-        sceneGoodsPrices = new Dictionary<SceneObj, Dictionary<GoodsEnum, History<GoodsEC>>>();
+        sceneGoodsPrices = new Dictionary<SceneObj, SceneEc>();
         buildingGoodsPrices = new Dictionary<BuildingObj, BuildingEc>();
         output2building = new Dictionary<GoodsEnum, List<BuildingObj>>();
         input2building = new Dictionary<GoodsEnum, List<BuildingObj>>();
@@ -448,11 +567,8 @@ public class EconomicSystem:IRegisterEvent
         }
         foreach (var x in GameArchitect.get.scenes)
         {
-            sceneGoodsPrices.Add(x, new Dictionary<GoodsEnum, History<GoodsEC>>());
-            foreach(var y in Enum.GetValues(typeof(GoodsEnum)))
-            {
-                sceneGoodsPrices[x].Add((GoodsEnum)y,new History<GoodsEC>(Meta.historySum));//每天的价格
-            }
+            sceneGoodsPrices.Add(x,new SceneEc(x));
+            
         }
         foreach (var x in GameArchitect.get.buildings)
         {
@@ -462,10 +578,11 @@ public class EconomicSystem:IRegisterEvent
         {
             npcPrices.Add(x, new NpcEc(x));
         }
-        this.Register<NewStepEvent>(
+        this.Register<PassDayEvent>(
         (e) =>
         {
             this.Update();
+            //GameArchitect.get.gameLogic.client.SendRequest();
         }
         );
     }
@@ -489,7 +606,7 @@ public class EconomicSystem:IRegisterEvent
         t.buySum += sum;
 
     }
-    //记录公司价格
+    //记录公司售卖商品价格
     public void AddSellB(int cost, int govCost, BuildingObj from, BuildingObj to, int sum, GoodsEnum goods)
     {
         var t = buildingGoodsPrices[from].buildingGoodsPrices[goods].Find(0);
@@ -498,13 +615,13 @@ public class EconomicSystem:IRegisterEvent
     }
     public void AddBuy(int cost, int govCost, SceneObj scene,int sum,GoodsEnum goods)
     {
-        var t = sceneGoodsPrices[scene][goods].Find(0);
+        var t = sceneGoodsPrices[scene].goodsPrice[goods].Find(0);
         t.buyCost= (t.buyCost*t.buySum+cost*sum)/(t.buySum+sum);
         t.buySum += sum;
     }
     public void AddSell(int cost, int govCost, SceneObj scene,int sum,GoodsEnum goods)
     {
-        var t = sceneGoodsPrices[scene][goods].Find(0);
+        var t = sceneGoodsPrices[scene].goodsPrice[goods].Find(0);
         t.sellCost = (t.sellCost * t.sellSum + cost * sum) / (t.sellSum + sum);
         t.sellSum += sum;
     }
@@ -513,12 +630,13 @@ public class EconomicSystem:IRegisterEvent
     /// </summary>
     /// <param name="sort"></param>
     /// <param name="npcObj"></param>
-    public void Ec(SortGoods sort,NpcObj npcObj)
+    public void Ec(SortGoods sort,NpcObj npcObj,int sum)
     {
+        sort.goodsObj.sum -= sum;
         AddBuy(sort.cost.money, 0, npcObj.belong, 1, sort.goodsObj.goodsInf.goodsEnum);
         AddSell(sort.cost.money, 0, npcObj.belong, 1, sort.goodsObj.goodsInf.goodsEnum);
-        AddSellB(sort.cost.money, 0, null, sort.building, 1, sort.goodsObj.goodsInf.goodsEnum);
-        Ec(sort.cost.money,0,npcObj.money,sort.building.money);
+        AddSellB(sort.cost.money, 0, sort.building,null, 1, sort.goodsObj.goodsInf.goodsEnum);
+        Ec(sort.cost.money, 0, npcObj.money, sort.building.money);
     }
     /// <summary>
     /// 交易价格
@@ -541,7 +659,7 @@ public class EconomicSystem:IRegisterEvent
     {
         foreach (var x in GameArchitect.get.scenes)
         {
-            foreach(var y in sceneGoodsPrices[x])
+            foreach(var y in sceneGoodsPrices[x].goodsPrice)
             {
                 y.Value.Update();
             }

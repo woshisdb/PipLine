@@ -12,7 +12,7 @@ public class CircularQueue<T>
     private int _head;
     private int _tail;
     private int _size;
-    private int _capacity;
+    public int _capacity;
 
     public CircularQueue(int n)
     {

@@ -66,65 +66,63 @@ public class CircularArray<T>
 
 public class Tester : MonoBehaviour
 {
-//    public LineChart chart;
-//    [ShowInInspector]
-//    public FoodNeed satisfaction;
-//public LinkedList<double> sat;
-//public LinkedList<double> act;
-//int maxsum = 30;
-//// Start is called before the first frame update
-//void Start()
-//{
-//    sat = new LinkedList<double>();
-//    act = new LinkedList<double>();
-//    for (int i = 0; i < maxsum; i++)
-//    {
-//        sat.AddLast(0.5);
-//        act.AddLast(0.5);
-//    }
-//    for (int i = 0; i < maxsum; i++)
-//    {
-//        chart.AddXAxisData("x" + i);
-//    }
-//    // 昨天的刺激程度是 0.4，今天是 0.6
-//    //satisfaction.CalNext(0.6);
-//    chart.RemoveData();
-//    chart.AddSerie<Line>("lineSat");
-//    // 获取第一个节点
-//    LinkedListNode<double> currentNode = sat.First;
-//    while (currentNode != null)
-//    {
-//        chart.AddData(0, currentNode.Value);
-//        currentNode = currentNode.Next;  // 移动到下一个节点
-//    }
-//    chart.AddSerie<Line>("lineAct");
-//    currentNode = act.First;
-//    for (int i = 0; i < maxsum; i++)
-//    {
-//        chart.AddData(1, currentNode.Value);
-//        currentNode = currentNode.Next;  // 移动到下一个节点
-//    }
-//}
-//[Button]
-//public void Add(float sati)
-//{
-//    var level=satisfaction.CalNext(sati);
-//    sat.AddLast(level);
-//    sat.RemoveFirst();
-//    act.AddLast(sati);
-//    act.RemoveFirst();
-//    LinkedListNode<double> currentNode = sat.First;
-//    for (int i = 0; i < maxsum; i++)
-//    {
-//        chart.UpdateData(0, i, currentNode.Value);
-//        currentNode = currentNode.Next;  // 移动到下一个节点
-//    }
-//    currentNode = act.First;
-//    for (int i = 0; i < maxsum; i++)
-//    {
-//        chart.UpdateData(1, i, currentNode.Value);
-//        currentNode = currentNode.Next;  // 移动到下一个节点
-//    }
-//}
+    public LineChart chart;
+    public LinkedList<double> sat;
+    public LinkedList<double> act;
+    int maxsum = 30;
+    // Start is called before the first frame update
+    void Start()
+    {
+        sat = new LinkedList<double>();
+        act = new LinkedList<double>();
+        for (int i = 0; i < maxsum; i++)
+        {
+            sat.AddLast(0.5);
+            act.AddLast(0.5);
+        }
+        for (int i = 0; i < maxsum; i++)
+        {
+            chart.AddXAxisData("x" + i);
+        }
+        // 昨天的刺激程度是 0.4，今天是 0.6
+        //satisfaction.CalNext(0.6);
+        chart.RemoveData();
+        chart.AddSerie<Line>("lineSat");
+        // 获取第一个节点
+        LinkedListNode<double> currentNode = sat.First;
+        while (currentNode != null)
+        {
+            chart.AddData(0, currentNode.Value);
+            currentNode = currentNode.Next;  // 移动到下一个节点
+        }
+        chart.AddSerie<Line>("lineAct");
+        currentNode = act.First;
+        for (int i = 0; i < maxsum; i++)
+        {
+            chart.AddData(1, currentNode.Value);
+            currentNode = currentNode.Next;  // 移动到下一个节点
+        }
+    }
+    [Button]
+    public void Add(float sati)
+    {
+        //var level = satisfaction.CalNext(sati);
+        //sat.AddLast(level);
+        sat.RemoveFirst();
+        act.AddLast(sati);
+        act.RemoveFirst();
+        LinkedListNode<double> currentNode = sat.First;
+        for (int i = 0; i < maxsum; i++)
+        {
+            chart.UpdateData(0, i, currentNode.Value);
+            currentNode = currentNode.Next;  // 移动到下一个节点
+        }
+        currentNode = act.First;
+        for (int i = 0; i < maxsum; i++)
+        {
+            chart.UpdateData(1, i, currentNode.Value);
+            currentNode = currentNode.Next;  // 移动到下一个节点
+        }
+    }
 
 }

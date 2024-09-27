@@ -14,7 +14,7 @@ public interface ICanShowView
 public static class Meta
 {
     public static int unInitVal = -99999999;
-    public static int historySum = 1000;
+    public static int historySum = 10;
 }
 
 /// <summary>
@@ -194,41 +194,35 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         map.sceneName = "测试场景";
         saveData.map.AddScene(map);
         ///////////////////////这么多人采矿///////////////////////////////////
-        var ironMining = new IronMiningObj();
-        map.AddBuilding(ironMining);//添加铁矿
-        var npc1 = new NpcObj();
-        map.Enter(npc1);
-        ironMining.jobManager.RegisterJob<CaiKuangJob>(npc1);
-        //var npc3 = new NpcObj();
-        //npc3.sum = 1;
-        //map.Enter(npc3);
-        //ironMining.jobManager.RegisterJob<CarryJob>(npc3);
         int allpersons = 10;
         for(int i=0;i< allpersons; i++)
         {
             var npc = new NpcObj();
             map.Enter(npc);
         }
-        ///////////////////////这么多人炼铁//////////////////////////////////
-        var gaoLu = new Gaolu();
-        map.AddBuilding(gaoLu);
-        //gaoLu.jobManager.RegisterJob<LianZhiJob>(npc2);
-        //gaoLu.jobManager.RegisterJob<CarryJob>(npc4);
-        for(int i=0;i< allpersons/5; i++)
-        {
-            gaoLu.jobManager.RegisterJob<LianZhiJob>(npcs[i]);
-        }
-        for (int i = allpersons / 5*1; i < allpersons / 5*2; i++)
-        {
-            gaoLu.jobManager.RegisterJob<CarryJob>(npcs[i]);
-        }
-        //////////////////////这么多人煤矿//////////////////////////////////////
-        var meikuang = new Meikuang();
-        map.AddBuilding(meikuang);
-        for (int i = allpersons / 5*2; i < allpersons / 5*3; i++)
-        {
-            meikuang.jobManager.RegisterJob<CaiMeiJob>(npcs[i]);
-        }
+        /////////////////////////这么多人炼铁//////////////////////////////////
+        //var ironMining = new IronMiningObj();
+        //map.AddBuilding(ironMining);//添加铁矿
+        //var npc1 = new NpcObj();
+        //ironMining.jobManager.RegisterJob<CaiKuangJob>(npc1);
+        //map.Enter(npc1);
+        //var gaoLu = new Gaolu();
+        //map.AddBuilding(gaoLu);
+        //for(int i=0;i< allpersons/5; i++)
+        //{
+        //    gaoLu.jobManager.RegisterJob<LianZhiJob>(npcs[i]);
+        //}
+        //for (int i = allpersons / 5*1; i < allpersons / 5*2; i++)
+        //{
+        //    gaoLu.jobManager.RegisterJob<CarryJob>(npcs[i]);
+        //}
+        ////////////////////////这么多人煤矿//////////////////////////////////////
+        //var meikuang = new Meikuang();
+        //map.AddBuilding(meikuang);
+        //for (int i = allpersons / 5*2; i < allpersons / 5*3; i++)
+        //{
+        //    meikuang.jobManager.RegisterJob<CaiMeiJob>(npcs[i]);
+        //}
         //////////////////////这么多人农场//////////////////////////////////////
         var nongchang = new NongChangObj();
         map.AddBuilding(nongchang);
@@ -236,12 +230,12 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         {
             nongchang.jobManager.RegisterJob<ZuoFanJob>(npcs[i]);
         }
-        var nongchang1 = new NongChangObj();
-        map.AddBuilding(nongchang1);
-        for (int i = allpersons / 5*4; i < allpersons / 5*5; i++)
-        {
-            nongchang1.jobManager.RegisterJob<ZuoFanJob>(npcs[i]);
-        }
+        //var nongchang1 = new NongChangObj();
+        //map.AddBuilding(nongchang1);
+        //for (int i = allpersons / 5*4; i < allpersons / 5*5; i++)
+        //{
+        //    nongchang1.jobManager.RegisterJob<ZuoFanJob>(npcs[i]);
+        //}
         //////////////////////初始化工作/////////////////////////////////////////
         npcManager.jobContainer.Update();
         Debug.Log("初始化结束");
