@@ -204,7 +204,7 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
                     //对每一个场景的npc进行计算
                     for (int i = scene.npcs.Count - 1; i >= 0; i--)
                     {
-                        Debug.Log(i);
+                        //Debug.Log(i);
                         var npc = scene.npcs[i];//每一个npc购买物品
                         npc.GetNeedManager().Update();//更新需求管理器
                         npc.GetNeedManager().foodSelector.Update(scene.sortManager.foodSorter);

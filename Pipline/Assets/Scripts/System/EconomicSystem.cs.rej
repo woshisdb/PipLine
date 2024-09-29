@@ -1,0 +1,10 @@
+diff a/Pipline/Assets/Scripts/System/EconomicSystem.cs b/Pipline/Assets/Scripts/System/EconomicSystem.cs	(rejected hunks)
+@@ -649,7 +649,7 @@
+     /// <summary>
+     /// ���׼۸�
+     /// </summary>
+-    public void Ec(int money,int govCost,Money from,Money to)
++    public void Ec(int money,int govCost,Moneys from,Moneys to)
+     {
+         from.money += money-govCost;
+         GameArchitect.get.shuiWuJu.money.money += govCost;//���Ż�

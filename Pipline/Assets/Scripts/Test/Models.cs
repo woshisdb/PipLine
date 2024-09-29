@@ -1,5 +1,5 @@
-using Accord.Statistics;
-using Accord.Statistics.Models.Regression.Linear;
+//using Accord.Statistics;
+//using Accord.Statistics.Models.Regression.Linear;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -214,7 +214,7 @@ public class FoodSelector : Selector<SortGoods>
     {
         var money=npc.money.money;//总收入
         var ret=GetMaxValue(sortGoods, (goods) => { return goods.cost.money <= money && goods.goodsObj.sum > 0; }, goods => { return Rate(goods); });
-        Debug.Log(ret);
+        //Debug.Log(ret);
         if(ret==null)//没有商品可以买
         {
 

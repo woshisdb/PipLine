@@ -95,6 +95,9 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
     public Transform buildingPoolT;
     public SaveData saveData;
     public ObjAsset objAsset;
+    static uint no = 0;
+    public static uint No { get { no++;return no; } }
+    public Client client { get { return gameLogic.client; } }
     public TimeSystem timeSystem { get { return saveData.timeSystem; } }
     public List<BuildingObj> buildings { get { return GameArchitect.get.saveData.buildings; } }
     public List<SceneObj> scenes { get { return GameArchitect.get.saveData.map.scenes; } }
@@ -252,7 +255,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
             GameArchitect.get.economicSystem.RegBuildingOut(x);
             GameArchitect.get.economicSystem.RegBuildingIn(x);//请求输入
         }
-        Debug.Log(scenes.Count);
+        //Debug.Log(scenes.Count);
         for(int i=0;i<scenes.Count;i++)//场景初始化
         {
             var map = scenes[i];

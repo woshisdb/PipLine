@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class BaseObj
 {
+    /// <summary>
+    /// µ±Ç°ID
+    /// </summary>
+    public uint id=GameArchitect.No;
 }

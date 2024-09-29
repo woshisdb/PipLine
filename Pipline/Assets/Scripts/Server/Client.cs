@@ -1,86 +1,94 @@
 using System;
+using System.Collections;
 using System.Net.Sockets;
 using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class Client : MonoBehaviour
 {
-    private TcpClient client;
-    private NetworkStream stream;
-
-    // 设置更新的时间间隔
-    private float updateInterval = 2.0f;
-    private float timeSinceLastUpdate = 0f;
-
-    // 初始化连接
-    void Start()
+    private void Start()
     {
-        //ConnectToServer();
     }
 
-    //void Update()
-    //{
-    //    timeSinceLastUpdate += Time.deltaTime;
-
-    //    if (timeSinceLastUpdate >= updateInterval)
-    //    {
-    //        SendRequest();
-    //        timeSinceLastUpdate = 0f;
-    //    }
-    //}
-
-    // 连接到 Python 服务器
-    void ConnectToServer()
+    public IEnumerator SendSceneRequest(uint id, SceneItem ecItem)
     {
-        try
+        var str=JsonConvert.SerializeObject(new {id=id,ec=ecItem });
+        byte[] postData = Encoding.UTF8.GetBytes(str);
+        // 创建 UnityWebRequest
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/scene", "POST"))
         {
-            client = new TcpClient("127.0.0.1", 8080);
-            stream = client.GetStream();
-            Debug.Log("已连接到 Python 服务器");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("连接失败: " + e.Message);
+            www.uploadHandler = new UploadHandlerRaw(postData);
+            // 设置请求头
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            // 发送请求并等待响应
+            yield return www.SendWebRequest();
+
+            // 检查请求是否出错
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Error: {www.error}");
+            }
+            else
+            {
+                // 打印返回的数据
+                Debug.Log($"Response: {www.downloadHandler.text}");
+            }
         }
     }
 
-    // 发送请求到 Python 服务器
-    public void SendRequest()
+    public IEnumerator SendNpcRequest(uint id, NpcItem ecItem)
     {
-        if (client == null || !client.Connected)
+        // 创建要发送的数据
+        var jsonData = JsonUtility.ToJson(new { id = id, data = ecItem });
+
+        // 创建 UnityWebRequest
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/npc", jsonData))
         {
-            Debug.LogError("未连接到服务器");
-            return;
+            // 设置请求头
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            // 发送请求并等待响应
+            yield return www.SendWebRequest();
+
+            // 检查请求是否出错
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Error: {www.error}");
+            }
+            else
+            {
+                // 打印返回的数据
+                Debug.Log($"Response: {www.downloadHandler.text}");
+            }
         }
-
-        // 构建请求数据（例如，用 sinValue 和 cosValue 随机调整服务器的图表）
-        var requestData = new
-        {
-            BuildingEc = GameArchitect.get.economicSystem.buildingGoodsPrices[GameArchitect.get.buildings[0]].RetHis()
-        };
-        // 将数据序列化为 JSON 字符串
-        string jsonString = JsonConvert.SerializeObject(requestData);
-        //Debug.Log(jsonString);
-        byte[] data = Encoding.UTF8.GetBytes(jsonString);
-
-        // 发送数据到服务器
-        stream.Write(data, 0, data.Length);
-        Debug.Log("已发送数据到服务器");
-
-        // 接收来自服务器的响应
-        byte[] buffer = new byte[1024];
-        int bytesRead = stream.Read(buffer, 0, buffer.Length);
-        string response = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-
-        // 处理服务器响应
-        Debug.Log($"从服务器接收到的响应: {response}");
     }
-
-    // 关闭连接
-    private void OnApplicationQuit()
+    public IEnumerator SendBuildingRequest(uint id, BuildingItem ecItem)
     {
-        if (stream != null) stream.Close();
-        if (client != null) client.Close();
+        // 创建要发送的数据
+        var jsonData = JsonUtility.ToJson(new { id = id, data = ecItem });
+
+        // 创建 UnityWebRequest
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/building", jsonData))
+        {
+            // 设置请求头
+            www.SetRequestHeader("Content-Type", "application/json");
+
+            // 发送请求并等待响应
+            yield return www.SendWebRequest();
+
+            // 检查请求是否出错
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Error: {www.error}");
+            }
+            else
+            {
+                // 打印返回的数据
+                Debug.Log($"Response: {www.downloadHandler.text}");
+            }
+        }
     }
 }

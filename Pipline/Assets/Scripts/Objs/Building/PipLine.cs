@@ -96,7 +96,7 @@ public class PipLineSource:Source
 		{
 			productivity.remain[x.Key] -= sum * x.Value;
 		}
-        GameArchitect.get.economicSystem.buildingGoodsPrices[belong].outputPipline.Find(0).goodsCreate += sum;
+        GameArchitect.get.economicSystem.buildingGoodsPrices[belong].history.Find(0).pipLineHistory.GoodsCreate += sum;
 		if (trans.wasterTimes == 1)
 		{
 			//添加到里面
