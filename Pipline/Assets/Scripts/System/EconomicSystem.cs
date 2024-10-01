@@ -674,7 +674,7 @@ public class EconomicSystem:IRegisterEvent
         foreach(var x in GameArchitect.get.buildings)
         {
             var t=buildingGoodsPrices[x];
-            //yield return GameArchitect.get.client.SendBuildingRequest(x.id,(BuildingItem) t.RetNow());
+            yield return GameArchitect.get.client.SendBuildingRequest(x.id, (BuildingItem)t.RetNow());
             t.Update();
         }
         ///npcµÄÐÅÏ¢

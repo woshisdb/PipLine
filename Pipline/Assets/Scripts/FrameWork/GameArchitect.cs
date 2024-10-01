@@ -197,7 +197,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         map.sceneName = "测试场景";
         saveData.map.AddScene(map);
         ///////////////////////这么多人采矿///////////////////////////////////
-        int allpersons = 10;
+        int allpersons = 1000;
         for(int i=0;i< allpersons; i++)
         {
             var npc = new NpcObj();
@@ -229,7 +229,7 @@ public class GameArchitect : Architecture<GameArchitect>,ISendEvent
         //////////////////////这么多人农场//////////////////////////////////////
         var nongchang = new NongChangObj();
         map.AddBuilding(nongchang);
-        for (int i = allpersons / 5*3; i < allpersons / 5*4; i++)
+        for (int i = 0; i < allpersons ; i++)
         {
             nongchang.jobManager.RegisterJob<ZuoFanJob>(npcs[i]);
         }

@@ -14,12 +14,13 @@ public class Client : MonoBehaviour
 
     public IEnumerator SendSceneRequest(uint id, SceneItem ecItem)
     {
-        var str=JsonConvert.SerializeObject(new {id=id,ec=ecItem });
-        byte[] postData = Encoding.UTF8.GetBytes(str);
         // 创建 UnityWebRequest
         using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/scene", "POST"))
         {
+            var str = JsonConvert.SerializeObject(new { id = id, ec = ecItem });
+            byte[] postData = Encoding.UTF8.GetBytes(str);
             www.uploadHandler = new UploadHandlerRaw(postData);
+
             // 设置请求头
             www.SetRequestHeader("Content-Type", "application/json");
 
@@ -36,13 +37,13 @@ public class Client : MonoBehaviour
                 // 打印返回的数据
                 Debug.Log($"Response: {www.downloadHandler.text}");
             }
-        }
+        } // 这里会自动释放 www 及其处理器
     }
 
     public IEnumerator SendNpcRequest(uint id, NpcItem ecItem)
     {
         // 创建要发送的数据
-        var jsonData = JsonUtility.ToJson(new { id = id, data = ecItem });
+        var jsonData = JsonUtility.ToJson(new { id = id, ec = ecItem });
 
         // 创建 UnityWebRequest
         using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/npc", jsonData))
@@ -57,22 +58,28 @@ public class Client : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError($"Error: {www.error}");
+                www.uploadHandler.Dispose();
+                www.downloadHandler.Dispose();
+                www.Dispose();
             }
             else
             {
                 // 打印返回的数据
                 Debug.Log($"Response: {www.downloadHandler.text}");
+                www.uploadHandler.Dispose();
+                www.downloadHandler.Dispose();
+                www.Dispose();
             }
         }
     }
     public IEnumerator SendBuildingRequest(uint id, BuildingItem ecItem)
     {
-        // 创建要发送的数据
-        var jsonData = JsonUtility.ToJson(new { id = id, data = ecItem });
-
         // 创建 UnityWebRequest
-        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/building", jsonData))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://127.0.0.1:8080/building","POST"))
         {
+            var str = JsonConvert.SerializeObject(new { id = id, ec = ecItem });
+            byte[] postData = Encoding.UTF8.GetBytes(str);
+            www.uploadHandler = new UploadHandlerRaw(postData);
             // 设置请求头
             www.SetRequestHeader("Content-Type", "application/json");
 
