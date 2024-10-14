@@ -9,10 +9,10 @@ where T: NormalJob
     public string tranName;
     public GoodsEnum goodsEnum;
     public int wasterTime;
+    public Source source;
     public override IEnumerator Run()
     {
-        building.resource.Add(goodsEnum, 2* job.npcSum);
-        building.resource.GetGoods<HandObj>(goodsEnum).UseTool(building.pipLineManager, tranName, 2* job.npcSum, wasterTime);
+        source.productivity.UseTools(job.npcs);
         yield return null;
     }
 
@@ -25,6 +25,7 @@ where T: NormalJob
         this.tranName = tranName;
         this.wasterTime = wasterTime;
         this.goodsEnum = goodsEnum;
+        source = building.pipLineManager.GetTrans(tranName);
     }
 }
 
@@ -34,10 +35,9 @@ where T : NormalJob
     public string tranName;
     public GoodsEnum goodsEnum;
     public int wasterTime;
+    public Source source;
     public override IEnumerator Run()
     {
-        building.resource.GetGoods<HandObj>(goodsEnum).ReleaseTool(building.pipLineManager,tranName, 2 * job.npcSum, wasterTime);
-        building.resource.Remove(goodsEnum, 2 * job.npcSum);
         yield return null;
     }
 
@@ -50,15 +50,9 @@ where T : NormalJob
         this.tranName = tranName;
         this.wasterTime = wasterTime;
         this.goodsEnum = goodsEnum;
+        this.source = building.pipLineManager.GetTrans(tranName);
     }
 }
-
-//public class NormalJobInstance : JobInstance
-//{
-//    public NormalJobInstance(Job job, NpcObj npc) : base(job, npc)
-//    {
-//    }
-//}
 
 public class NormalJob : Job
 {

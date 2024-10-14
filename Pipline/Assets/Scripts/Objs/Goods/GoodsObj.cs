@@ -103,6 +103,11 @@ public class GoodsObj : BaseObj,IEqualityComparer<GoodsObj>
     /// </summary>
     [SerializeField]
     public int sum;
+    /// <summary>
+    /// ¼Û¸ñ
+    /// </summary>
+    [SerializeField]
+    public Money price;
     public bool Equals(GoodsObj x, GoodsObj y)
     {
         return x.goodsInf == y.goodsInf;

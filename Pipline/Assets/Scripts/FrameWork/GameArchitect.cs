@@ -11,10 +11,42 @@ public interface ICanShowView
 
 }
 
+public enum TransEnum
+{
+    烹饪食物,
+}
+
 public static class Meta
 {
     public static int unInitVal = -99999999;
     public static int historySum = 10;
+    public static Dictionary<string, Trans> trans;
+    public static void Init()
+    {
+        trans = new Dictionary<string, Trans>();
+        trans[TransEnum.烹饪食物] = new Trans()
+        {
+            title = TransEnum.烹饪食物,
+            from = new Node(
+                new Pair<GoodsEnum,int>(GoodsEnum.土豆,1)
+            ),
+            to = new Pair<GoodsEnum, int>(GoodsEnum.土豆块,1),
+            edge = new Edge(
+                new Pair<ProductivityEnum, int>(ProductivityEnum.KaiCai,1)
+            )
+        };
+        trans[TransEnum.烹饪食物] = new Trans()
+        {
+            title = TransEnum.烹饪食物,
+            from = new Node(
+                new Pair<GoodsEnum, int>(GoodsEnum.土豆, 1)
+            ),
+            to = new Pair<GoodsEnum, int>(GoodsEnum.土豆块, 1),
+            edge = new Edge(
+                new Pair<ProductivityEnum, int>(ProductivityEnum.KaiCai, 1)
+            )
+        };
+    }
 }
 
 /// <summary>

@@ -16,28 +16,33 @@ public class ToolInf : GoodsInf
 public class ToolObj:GoodsObj
 {
 	public Resource resource;
+	public Source source;
 	public virtual Dictionary<ProductivityEnum, int> GetProducs()
     {
 		return ((ToolInf)get()).dics;
 	}
-	public virtual void UseTool(PipLineManager pipLine,string name, int num = 1,int time=1)
+	public virtual void UseTool(NpcObj npc,int wasterTime, ref Dictionary<ProductivityEnum, int> ret)
 	{
-		var res = pipLine.GetTrans(name);
 		foreach (var eng in GetProducs())
 		{
-			((Source)res).productivity.productivities[eng.Key] += eng.Value*num*time;
+			ret[eng.Key] += eng.Value* wasterTime;
 		}
-		sum -= num;
 	}
-	public virtual void ReleaseTool(PipLineManager pipLine, string name, int num = 1,int time=1)
+	public virtual void ReleaseTool(NpcObj npc,ref Dictionary<ProductivityEnum, int> ret)
 	{
-		var res = pipLine.GetTrans(name);
 		foreach (var eng in GetProducs())
 		{
-			((Source)res).productivity.productivities[eng.Key] += eng.Value * num * time;
+			ret[eng.Key] += eng.Value;
 		}
-		sum += num;
 	}
+	/// <summary>
+	/// 初始化要制作的工具
+	/// </summary>
+	public void Init(Resource resource,Source source)
+    {
+		this.resource = resource;
+		this.source = source;
+    }
 }
 
 /// <summary>
@@ -45,55 +50,51 @@ public class ToolObj:GoodsObj
 /// </summary>
 public class Productivity
 {
-	public Resource resource;
+	/// <summary>
+	/// 使用工具类
+	/// </summary>
+	public ToolObj toolObj;
 	public BuildingObj building;
 	public Dictionary<ProductivityEnum, int> productivities;//当前时间步产生的生产力
-	public Dictionary<ProductivityEnum, int> remain;
-	public Productivity(Resource resource,BuildingObj building)
+	public Productivity(BuildingObj building)
 	{
 		productivities = new Dictionary<ProductivityEnum, int>();
-		remain = new Dictionary<ProductivityEnum, int>();
 		foreach (var x in Enum.GetValues(typeof(ProductivityEnum)))
 		{
 			productivities.Add((ProductivityEnum)x,0);
-			remain.Add((ProductivityEnum)x,0);
 		}
-		this.resource = resource;
 		this.building = building;
-		building.resource.AddAddFunc(
-			(e) =>
-			{
-				var tool = e as ToolObj;
-				if (tool != null)
-				{
-					tool.resource = resource;
-				}
-			}
-		);
-		building.resource.AddRemoveFunc(
-			(e) =>
-			{
-				var tool = e as ToolObj;
-				if (tool != null)
-				{
-					tool.resource = null;
-				}
-			}
-		);
 	}
+	/// <summary>
+	/// NPC们使用工具
+	/// </summary>
+	/// <param name="npc"></param>
+	public void UseTools(List<NpcObj> npcs,int wasterTime=8)
+    {		
+		for(int i = 0; i < npcs.Count; i++)
+        {
+			var npc = npcs[i];
+			toolObj.UseTool(npc,wasterTime,ref productivities);
+        }
+	}
+
 	public int this[ProductivityEnum index]
 	{
 		get
 		{
-			if(remain.ContainsKey(index))
+			if(productivities.ContainsKey(index))
             {
-				return remain[index];
+				return productivities[index];
             }
 			else
             {
 				return 0;
             }
 		}
+		set
+        {
+			productivities[index] = value;
+        }
 	}
 
 }

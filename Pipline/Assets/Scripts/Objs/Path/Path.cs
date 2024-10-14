@@ -70,12 +70,6 @@ public class PathObj : BaseObj
         for(var i=0;i<maxTime; i++)
         orders.Enqueue(new List<IOrder>());
     }
-    //public void PushOrder(SceneObj from,SceneObj to,NpcObj npc)
-    //{
-    //    var t = new NpcPathOrder(from, to, npc, path.wastTime);
-    //    t.Begin();
-    //    orders.Find(0).Add(t);
-    //}
     /// <summary>
     /// 花费的价格
     /// 时间
@@ -91,15 +85,21 @@ public class PathObj : BaseObj
         t.Begin();
         orders.FindFront(wasterTime-1).Add(t);
     }
+    /// <summary>
+    /// 更新一天的时间
+    /// </summary>
     public void Update()
     {
-        var last=orders.Find(orders.Size() - 1);
-        foreach(var o in last)
+        for(int i=0;i<GameArchitect.get.timeSystem.dayTime;i++)
         {
-            o.Complete();
+            var last = orders.Find(orders.Size() - 1);
+            foreach (var o in last)
+            {
+                o.Complete();
+            }
+            orders.Dequeue();
+            orders.Enqueue();
+            orders.Find(0).Clear();
         }
-        orders.Dequeue();
-        orders.Enqueue();
-        orders.Find(0).Clear();
     }
 }

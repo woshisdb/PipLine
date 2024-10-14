@@ -4,29 +4,30 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.Serialization;
 using UnityEngine;
-
-public class GoodsManager : Resource,IRegisterEvent
+/// <summary>
+/// 商品管理器
+/// </summary>
+public class GoodsManager : IRegisterEvent
 {
-	public Dictionary<GoodsEnum, Money> goodslist;
+	/// <summary>
+	/// 一系列的商品
+	/// </summary>
+	public HashSet<GoodsObj> goodslist { get { return resource.goods; } }
 	public Resource resource;
+	public BuildingObj buildingObj;
 	public int FindGoodsCost(GoodsEnum goodsObj)
     {
-		if(goodslist.ContainsKey(goodsObj))
-        {
-			return goodslist[goodsObj].money;
-        }
+		var x=GoodsGen.GetGoodsObj(goodsObj);
+		goodslist.TryGetValue(x, out var cost);
+		if (cost == null)
+			return cost.price.money;
 		else
-        {
 			return 0;
-        }
     }
-	public GoodsManager(Resource resource) : base(resource.building)
+	public GoodsManager(Resource resource)
 	{
+		this.buildingObj = resource.building;
 		this.resource = resource;
-		var from =building.pipLineManager.piplineSource.trans.from.source;
-		goodslist = new Dictionary<GoodsEnum, Money>();
-		goodslist.Add(building.outputGoods, new Money());
-		goodslist[building.outputGoods].money = InitGoodsMoney(building.outputGoods);
 	}
 	/// <summary>
 	/// 商品的最低价格
@@ -64,110 +65,71 @@ public abstract class Source
 	public Resource to;
 	public Productivity productivity;
 	public BuildingObj belong;
+    public int wasterTimes;
     public abstract void Update();
 }
-public class PipLineSource:Source
-{
-	public int maxSum= 99999999;//每回合生产资源的数目
-	public CircularQueue<Pair<Edge, int>> trasSource;
-	public override void Update()
-    {
-		foreach(var x in productivity.productivities)
-        {
-			productivity.remain[x.Key] = x.Value;
-        }
-		int sum = maxSum;
-		foreach(var x in trans.edge.tras)
-        {
-			sum = Math.Min(sum, productivity[x.Key] /x.Value);
-        }
-		var sourceMax = 99999999;
-		foreach(var x in trans.from.source)
-        {
-            sum = Math.Min(sum, from.Get(x.Item1) / x.Item2);
-            sourceMax = Math.Max(sourceMax, from.Get(x.Item1) / x.Item2);
-        }
-		foreach (var x in trans.from.source)
-		{
-			int sumV = x.Item2 * sum;
-			from.Remove(x.Item1, sumV);
-		}
-		foreach (var x in trans.edge.tras)
-		{
-			productivity.remain[x.Key] -= sum * x.Value;
-		}
-        GameArchitect.get.economicSystem.buildingGoodsPrices[belong].history.Find(0).pipLineHistory.GoodsCreate += sum;
-		if (trans.wasterTimes == 1)
-		{
-			//添加到里面
-			foreach (var retS in trans.to.source)
-			{
-				int sumV = retS.Item2 *sum;
-				to.Add(retS.Item1, sumV);//将商品添加到里面商品列表
-			}
-			return;
-		}
-		for (int i=1;i<trans.wasterTimes;i++)//倒数某个元素
-        {
-			var node=trasSource.Find(trans.wasterTimes-i-1);//拿到节点
-			int retsum = Math.Min(node.Item2,sum);//先升级
-			bool canPro = true;
-			foreach(var x in node.Item1.tras)
-            {
-                int val = Math.Min(trans.edge[x.Key] - productivity[x.Key], productivity[x.Key]);
-				node.Item1.tras[x.Key] += val;
-				productivity.remain[x.Key] -= val;
-                if (node.Item1.tras[x.Key]< trans.edge[x.Key])
-                {
-					canPro = false;
-                }
-			}
-			sum -= retsum;
-			node.Item2 = retsum;
-			if (canPro&& sourceMax>0)
-            {
-				retsum++;
-				sourceMax--;
-				foreach (var x in node.Item1.tras)
-				{
-					node.Item1.tras[x.Key] = 0;
-				}
-				foreach (var x in trans.from.source)
-				{
-					x.Item2 *= sum;
-                    from.Remove(x.Item1,x.Item2);
-                    x.Item2 /= sum;
-				}
-			}
-			if(i==0)
-            {
-				//添加到里面
-				foreach(var retS in trans.to.source)
-                {
-					retS.Item2 *= retsum;
-                    to.Add(retS.Item1,retS.Item2);
-                    retS.Item2 /= retsum;
-                }
-            }
-			else
-            {
-				var after = trasSource.Find(trans.wasterTimes - i);
-				after.Item2 += retsum;
-			}
-        }
-		var last=trasSource.Find(0);
-		last.Item2 += sum;
-    }
-	public PipLineSource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)
-    {
-		this.belong = building;
-        this.from = from;
-        this.to = to;
-        this.trans = trans;
-		trasSource = new CircularQueue<Pair<Edge, int>>(trans.wasterTimes-1);
-        this.productivity = productivity;
-    }
-}
+//public class PipLineSource:Source
+//{
+//    public override void Update()
+//    {
+//        double prodSum = maxSum;//生产力能生产的数目
+//        // 计算最小的生产力比例
+//        foreach (var edge in trans.edge.tras)
+//        {
+//			prodSum = Math.Min(prodSum, ((double)productivity[edge.Key]) / ((double)edge.Value));
+//        }
+//        int sourceMax = int.MaxValue;//能生产商品的数目
+//        foreach (var source in trans.from.source)
+//        {
+//            sourceMax = Math.Min(sourceMax, from.Get(source.Item1) / source.Item2);
+//        }
+//        // 移除生产过程中的原材料
+//        foreach (var source in trans.from.source)
+//        {
+//            int sumValue = source.Item2 * sourceMax;
+//            from.Remove(source.Item1, sumValue);
+//        }
+
+//        // 减少生产力
+//        foreach (var edge in trans.edge.tras)
+//        {
+//            productivity[edge.Key] -= (int)(prodSum * edge.Value);
+//        }
+//		piplineList[0] = sourceMax;//剩余产品的数量
+//		// 循环处理每个传输阶段
+//		for (int i = piplineList.Count-1; i>=1; i--)
+//        {
+//			var val=piplineList[i];
+//			var temp= Math.Min(prodSum, val);
+//			prodSum -= temp;
+//			piplineList[i]-=temp;
+//			var createSum = ((int)Math.Ceiling(val)-(int)Math.Ceiling(piplineList[i]));
+//			if (i==piplineList.Count-1)//最后一个
+//            {
+//                to.Add(trans.to.source[0].Item1,createSum* trans.to.source[0].Item2);
+//            }
+//			else
+//            {
+//				piplineList[i + 1] += createSum; 
+//            }
+//        }
+//    }
+
+//    public PipLineSource(BuildingObj building,Resource from, Resource to, Trans trans, Productivity productivity)
+//    {
+//		this.belong = building;
+//        this.from = from;
+//        this.to = to;
+//        this.trans = trans;
+//        wasterTimes =trans.wasterTimes;
+//        piplineList = new List<double>();
+//        for(int i=0;i<wasterTimes;i++)
+//        {
+//            piplineList.Add(0);
+//        }
+//        this.productivity = productivity;
+//    }
+//}
 public class Trans
 {
 	[OdinSerialize]
@@ -175,7 +137,7 @@ public class Trans
 	[OdinSerialize]
 	public Node from;
 	[OdinSerialize]
-	public Node to;
+	public Pair<GoodsEnum, int> to;
 	[OdinSerialize]
 	public Edge edge;
 	/// <summary>
@@ -189,7 +151,7 @@ public class Trans
 	public Trans()
     {
 		from=new Node();
-		to=new Node();
+		to=new Pair<GoodsEnum, int>();
 		edge=new Edge();
     }
 }
@@ -208,9 +170,10 @@ public class Node
 {
 	[SerializeField]
 	public List<Pair<GoodsEnum,int>> source;
-	public Node()
+	public Node(params Pair<GoodsEnum, int>[] pairs)
     {
 		source=new List<Pair<GoodsEnum, int>>();
+		source.AddRange(pairs);
     }
 }
 [System.Serializable]
@@ -221,9 +184,13 @@ public class Edge
 	/// </summary>
 	[SerializeField]
 	public Dictionary<ProductivityEnum,int> tras;
-	public Edge()
+	public Edge(params Pair<ProductivityEnum, int>[] pairs)
     {
 		tras = new Dictionary<ProductivityEnum, int>();
+		foreach(var x in pairs)
+        {
+			tras[x.Item1] = x.Item2;
+        }
     }
 	public int this[ProductivityEnum index]
 	{
@@ -255,53 +222,16 @@ public struct TransNode
 }
 
 /// <summary>
-/// ���߹�����������������Ʒ
+/// 管线管理器
 /// </summary>
 public class PipLineManager
-{
+{ 
 	public BuildingObj buildingObj;
-	public List<Source> piplines;
-	public Dictionary<string, Source> pairs;
-	/// <summary>
-	/// 管线
-	/// </summary>
-	public PipLineSource piplineSource { get { return (PipLineSource)GetTrans(buildingObj.mainWorkName); } }
-	public CarrySource carrySource { get { return (CarrySource)GetTrans("搬运商品"); } }
-	public void SetTrans(List<TransNode> trans)
-	{
-		piplines.Clear();
-		pairs.Clear();
-		foreach (var x in trans)
-		{
-			var data = x.trans.AddSource(x.from, x.to, buildingObj);
-			piplines.Add(data);
-			pairs.Add(x.trans.title,data);
-		}
-	}
-	public Source GetTrans(string name)
-    {
-		if (pairs.ContainsKey(name))
-			return pairs[name];
-		else
-			return null;
-    }
+	public List<Pipline> pairs;
 	public PipLineManager(BuildingObj buildingObj)
     {
-        piplines = new List<Source>();
-		pairs = new Dictionary<string, Source>();
+		pairs = new List<Pipline>();
         this.buildingObj = buildingObj;
-    }
-	public Trans FindInput(GoodsEnum goods)
-    {
-		foreach(var x in piplines)
-        {
-			var ret=x.trans.to.source.Find(e => { return e.Item1 == goods; });
-			if (ret!=null)
-            {
-				return x.trans;
-            }
-        }
-		return null;
     }
 }
 

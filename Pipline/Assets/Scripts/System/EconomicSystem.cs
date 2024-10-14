@@ -153,6 +153,9 @@ public class PipLineHistory:HistoryItem
     /// 下令生产的数目
     /// </summary>
     public int OrderSum { get; set; }
+    /// <summary>
+    /// 进口商品的数目
+    /// </summary>
     public int CarraySum { get; set; }
     /// <summary>
     /// 所有的商品数目
@@ -684,5 +687,17 @@ public class EconomicSystem:IRegisterEvent
             x.Value.Update();
         }
         yield return null;
+    }
+    /// <summary>
+    /// 多少天内生产某商品的最低价和它提出的公司
+    /// price:表示因为时间问题无法满足
+    /// Day表示工作需要的完成的时间
+    /// </summary>
+    /// <param name="building"></param>
+    /// <param name="sum"></param>
+    /// <returns></returns>
+    public Tuple<int,BuildingObj,int> GetMinGoodsCost(GoodsEnum goodsEnum,int sum,int Day)
+    {
+        return new Tuple<int, BuildingObj, int>(1,null,1);
     }
 }

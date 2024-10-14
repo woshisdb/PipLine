@@ -24,21 +24,11 @@ public class Resource
     
     public void Add(GoodsEnum goodsEnum,int sum)
     {
-        //Debug.Log(goodsEnum);
         var goodsObj=GoodsGen.GetGoodsObj(goodsEnum);
         goodsObj.sum = sum;
         GoodsObj val = null;
         goods.TryGetValue(goodsObj, out val);
-        if (val == null)
-        {
-            if(add != null)
-            add(goodsObj);
-            goods.Add(goodsObj);
-        }
-        else
-        {
-            val.sum +=sum;
-        }
+        val.sum += sum;
     }
     public void Remove(GoodsEnum goodsEnum,int sum)
     {
@@ -46,19 +36,7 @@ public class Resource
         goodsObj.sum = sum;
         GoodsObj val = null;
         goods.TryGetValue(goodsObj, out val);
-        if (val == null)
-        {
-            //goods.Add(goodsObj);
-        }
-        else
-        {
-            val.sum -= sum;
-            //if (val.sum == 0)
-            //{
-            //    remove(goodsObj);
-            //    goods.Remove(goodsObj);
-            //}
-        }
+        val.sum -= sum;
     }
 
     public void Add(GoodsObj goodsObj)
@@ -67,7 +45,6 @@ public class Resource
         goods.TryGetValue(goodsObj, out val);
         if (val == null)
         {
-            //Debug.Log(goodsObj);
             if(add != null)
             add(goodsObj);
             goods.Add(goodsObj);
@@ -77,29 +54,20 @@ public class Resource
             val.sum += goodsObj.sum;
         }
     }
-    public Resource(BuildingObj building)
+    public Resource(BuildingObj building,params GoodsEnum[] goodsEnums)
     {
         goods = new HashSet<GoodsObj>();
+        for(int i=0;i<goodsEnums.Length;i++)
+        {
+            goods.Add(GoodsGen.GetGoodsObj(goodsEnums[i]));
+        }
         this.building = building;
     }
     public void Remove(GoodsObj goodsObj)
     {
         GoodsObj val = null;
         goods.TryGetValue(goodsObj, out val);
-        if (val == null)
-        {
-            //goods.Add(goodsObj);
-        }
-        else
-        {
-            val.sum -= goodsObj.sum;
-            if (val.sum == 0)
-            {
-                if(remove != null)
-                remove(goodsObj);
-                goods.Remove(goodsObj);
-            }
-        }
+        val.sum -= goodsObj.sum;
     }
     public void AddAddFunc(Action<GoodsObj> action)
     {
@@ -152,30 +120,14 @@ public class Resource
     {
         GoodsObj val = null;
         goods.TryGetValue(obj, out val);
-        if (val == null)
-        {
-            return 0;
-            //goods.Add(goodsObj);
-        }
-        else
-        {
-            return val.sum;
-        }
+        return val.sum;
     }
     public int Get(GoodsEnum goodsEnum)
     {
         GoodsObj val = null;
         var obj=GoodsGen.GetGoodsObj(goodsEnum);
         goods.TryGetValue(obj, out val);
-        if (val == null)
-        {
-            return 0;
-            //goods.Add(goodsObj);
-        }
-        else
-        {
-            return val.sum;
-        }
+        return val.sum;
     }
     public T GetGoods<T>(GoodsEnum goodsEnum)
     where T:GoodsObj
@@ -183,13 +135,6 @@ public class Resource
         var obj = GoodsGen.GetGoodsObj(goodsEnum);
         GoodsObj val = null;
         goods.TryGetValue(obj, out val);
-        //return goods;
-        //if(val == null)
-        //{
-        //    val = GoodsGen.GetGoodsObj(goodsEnum);
-        //    val.sum = 0;
-        //    goods.Add(val);
-        //}
         return (T)val;
     }
     //r1->r2

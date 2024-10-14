@@ -1,47 +1,122 @@
+import gym
+from gym import spaces
 import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
-from econml.dml import LinearDML
-import matplotlib.pyplot as plt
+import random
+from stable_baselines3 import PPO
 
-# Step 1: 模拟数据
-np.random.seed(42)
+# 模拟消费者需求的类
+class People:
+    def __init__(self, demand_sensitivity=1.0):
+        self.demand_sensitivity = demand_sensitivity
 
-# X 表示特征变量（如人口统计信息）
-n_samples = 1000
-X = np.random.normal(0, 1, size=(n_samples, 3))
+    def calculate_demand(self, price, time):
+        # 计算消费者对当前价格的需求量，考虑季节性因素
+        base_demand = 100
+        seasonal_factor = np.sin(time / 365 * 2 * np.pi) + 1  # 季节性影响
+        price_sensitivity = np.exp(-self.demand_sensitivity * price)  # 对价格的敏感度
+        return base_demand * price_sensitivity * seasonal_factor
 
-# T 表示干预变量（如广告支出）
-T = np.random.normal(0, 1, size=n_samples)
+# 模拟市场价格波动的类
+class Market:
+    def __init__(self, num_materials=3):
+        self.num_materials = num_materials
+        self.material_prices = [100.0 for _ in range(self.num_materials)]  # 原材料初始价格
 
-# Y 表示结果变量（如销售收入），假设有一个因果影响 T 对 Y 的影响
-# Y = 2*T + 0.5*X[:, 0] + 0.3*X[:, 1] + noise
-noise = np.random.normal(0, 0.1, size=n_samples)
-Y = 2 * T + 0.5 * X[:, 0] + 0.3 * X[:, 1] + noise
+    def update_material_prices(self, time):
+        # 更新原材料价格，考虑季节性和随机波动
+        for i in range(self.num_materials):
+            base_price = 100
+            seasonal_factor = np.sin(time / 365 * 2 * np.pi) + 1  # 季节性影响
+            random_fluctuation = random.uniform(-10, 10)  # 随机波动
+            self.material_prices[i] = base_price * seasonal_factor + random_fluctuation
 
-# Step 2: 数据集划分
-X_train, X_test, T_train, T_test, Y_train, Y_test = train_test_split(X, T, Y, test_size=0.2, random_state=42)
+# 工厂的强化学习环境类
+class FactoryEnv(gym.Env):
+    def __init__(self):
+        super(FactoryEnv, self).__init__()
 
-# Step 3: 建立模型
-est = LinearDML(
-    model_y=RandomForestRegressor(),  # Y 的回归模型
-    model_t=RandomForestRegressor(),  # T 的回归模型
-    random_state=42
-)
+        # 定义动作空间：连续的价格和生产量调整
+        self.action_space = spaces.Box(low=np.array([-10.0, -20.0]), high=np.array([10.0, 20.0]), dtype=np.float32)
 
-# Step 4: 训练模型
-est.fit(Y_train, T_train, X=X_train)
+        # 定义状态空间：产品价格和生产量
+        self.observation_space = spaces.Box(low=np.array([50.0, 50.0]), high=np.array([200.0, 200.0]), dtype=np.float32)
 
-# Step 5: 估计因果影响
-treatment_effect = est.effect(X_test)
+        # 工厂参数
+        self.price = 100.0  # 产品初始价格
+        self.production_level = 100.0  # 初始生产水平
+        self.time = 0  # 初始时间
 
-# 打印平均处理效应
-print("Estimated Average Treatment Effect (ATE):", treatment_effect.mean())
+        # 初始化消费者和市场
+        self.people = People(demand_sensitivity=1.0)
+        self.market = Market(num_materials=3)
 
-# Step 6: 可视化
-plt.hist(treatment_effect, bins=30, alpha=0.7)
-plt.xlabel("Treatment Effect")
-plt.ylabel("Frequency")
-plt.title("Distribution of Estimated Treatment Effects")
-plt.show()
+    def reset(self):
+        # 重置环境状态
+        self.price = 100.0
+        self.production_level = 100.0
+        self.time = 0
+        self.market = Market(num_materials=3)  # 重置市场
+        return np.array([self.price, self.production_level], dtype=np.float32)
+
+    def step(self, action):
+        # 解析动作
+        price_adjustment, production_adjustment = action
+
+        # 更新价格和生产水平
+        self.price = np.clip(self.price + price_adjustment, 50.0, 200.0)
+        self.production_level = np.clip(self.production_level + production_adjustment, 50.0, 200.0)
+
+        # 更新时间
+        self.time += 1
+
+        # 更新原材料价格
+        self.market.update_material_prices(self.time)
+
+        # 计算需求和利润
+        demand = self.people.calculate_demand(self.price, self.time)
+        cost = sum(self.market.material_prices[i] * 10 for i in range(self.market.num_materials))  # 假设每种原材料需要 10 单位
+        revenue = self.price * min(demand, self.production_level)
+        profit = revenue - cost
+
+        # 计算奖励 (使用利润作为奖励)
+        reward = profit
+
+        # 检查是否结束 (例如达到一定时间步数)
+        done = self.time >= 365
+
+        # 构建状态
+        state = np.array([self.price, self.production_level], dtype=np.float32)
+
+        return state, reward, done, {}
+
+    def render(self, mode='human'):
+        # 打印当前状态（可选）
+        print(f"Time: {self.time}, Price: {self.price}, Production: {self.production_level}, Material Prices: {self.market.material_prices}")
+
+    def close(self):
+        pass
+
+# 使用 Stable Baselines3 训练模型
+def train_factory_model():
+    # 创建环境
+    env = FactoryEnv()
+
+    # 使用 PPO 算法进行训练
+    model = PPO('MlpPolicy', env, verbose=1)
+    model.learn(total_timesteps=10000)
+
+    # 保存模型
+    model.save("factory_ppo")
+
+    # 测试模型
+    obs = env.reset()
+    for _ in range(1000):
+        action, _states = model.predict(obs)
+        obs, rewards, done, info = env.step(action)
+        env.render()
+        if done:
+            break
+
+# 运行训练过程
+if __name__ == "__main__":
+    train_factory_model()

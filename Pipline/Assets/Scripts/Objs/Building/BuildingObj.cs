@@ -2,115 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Accord.MachineLearning;
 using UnityEngine;
 
-/// <summary>
-/// 建筑AI
-/// </summary>
-public class BuildingAI
-{
-    public BuildingObj building;
-    /// <summary>
-    /// 总收入(Input)
-    /// </summary>
-    public Money money 
-    { get { return building.money; } }
-    /// <summary>
-    /// 管线的生产数量
-    /// </summary>
-    public int piplineSum
-    {
-        get
-        {
-            var pip = (PipLineSource)building.GetMainWork();//管线管理
-            return pip.maxSum;
-        }
-        set
-        {
-            var pip = (PipLineSource)building.GetMainWork();//管线管理
-            pip.maxSum=value;
-        }
-    }
-    /// <summary>
-    /// 进口商品(Input)
-    /// </summary>
-    public int carraySum
-    {
-        get
-        {
-            var pip = (CarrySource)building.GetCarryWork();//管线管理
-            return pip.resourceSum;
-        }
-        set
-        {
-            var pip = (CarrySource)building.GetCarryWork();//管线管理
-            pip.resourceSum = value;
-        }
-    }
-    /// <summary>
-    /// 工作的信息
-    /// </summary>
-    public Dictionary<Job,JobCal> jobSums;
-
-
-    public BuildingEc BuildingEc { get {
-            ///经济系统的模型
-            return GameArchitect.get.economicSystem.buildingGoodsPrices[building];
-    } }
-
-    public class JobCal
-    {
-        public Job job;
-        /// <summary>
-        /// 提供工作的数目
-        /// </summary>
-        public int jobSum
-        {
-            get
-            {
-                var pip = job.sum;
-                return pip;
-            }
-            set
-            {
-                job.sum=value;//管线管理
-            }
-        }
-        /// <summary>
-        /// 一个工人的收入
-        /// </summary>
-        public int jobCost
-        {
-            get
-            {
-                return job.money;
-            }
-            set
-            {
-                job.money = value;
-            }
-        }
-        public JobCal(Job job)
-        {
-            this.job = job;
-        }
-    }
-    public BuildingAI(BuildingObj buildingObj)
-    {
-        building = buildingObj;
-        jobSums = new Dictionary<Job, JobCal>();
-        foreach(var x in buildingObj.jobManager.jobs)
-        {
-            jobSums.Add(x.Value,new JobCal(x.Value));
-        }
-    }
-    public void Update()
-    {
-        
-    }
-}
-
-public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
+public abstract class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
 {
     public string name="建筑";
     /// <summary>
@@ -118,11 +13,11 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     /// </summary>
     public PipLineManager pipLineManager;
     /// <summary>
-    /// 流水线中间产物
+    /// 原材料的资源
     /// </summary>
     public Resource resource;
     /// <summary>
-    /// 商品资源
+    /// 生产的商品
     /// </summary>
     public Resource goodsRes;
     /// <summary>
@@ -134,79 +29,51 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     /// </summary>
     public JobManager jobManager;
     public BuildingAI ai;
+    /// <summary>
+    /// 场景对象
+    /// </summary>
     public SceneObj scene;
-    public GoodsEnum[] inputGoods;
-    public GoodsEnum outputGoods;
+    /// <summary>
+    /// 需要的商品
+    /// </summary>
     public Money money;
-    public string mainWorkName;
-    public bool hasTrans;
-    public Source GetMainWork()
+
+    public T GetPipline<T>()
     {
-        return pipLineManager.GetTrans(mainWorkName);
+        return default(T);
     }
 
-    public Source GetCarryWork()
+    public BuildingObj(Pipline[] e)
     {
-        return pipLineManager.GetTrans("搬运商品");
-    }
-
-    public BuildingObj(string mainWorkName,bool needTrans, params Type[] job)
-    {
-        hasTrans=needTrans;
         pipLineManager = new PipLineManager(this);
         resource = new Resource(this);
         goodsRes = new Resource(this);
-        var jobs=new List<Job>();
-        foreach(Type type in job)
-        {
-            var jobI = Activator.CreateInstance(type, this);
-            jobs.Add((Job)jobI);
-        }
         jobManager = new JobManager(this);
-        InitJob(jobs.ToArray());
-        InitTrans(mainWorkName,needTrans);
         goodsManager = new GoodsManager(goodsRes);
         money = new Money();
         money.money = 1000000;
+        ai = new BuildingAI(this);
+        foreach (var pip in e)//每个管线的更新
+        {
+            if(pip is GenGoodsPipline)
+            {
+                GenGoodsPipline= (GenGoodsPipline)pip;
+            }
+            if(pip is GoodsPricePipline)
+            {
+                GoodsPricePipline = (GoodsPricePipline)pip;
+            }
+            if (pip is CarrayPipline)
+            {
+                CarrayPipline = (CarrayPipline)pip;
+            }
+            pip.Init(this);
+        }
         this.Register<EndUpdateEvent>(
             (e) => {
                 money.Update();//更新信息
             }
         );
-        ai = new BuildingAI(this);
-    }
-    public void InitTrans(string workname,bool needTrans=true)
-    {
-        mainWorkName=workname;
-        var t = GameArchitect.get.objAsset.FindTrans(workname);
-        if (needTrans)
-        {
-            var v = new CarryTrans();
-            v.title = "搬运商品";
-            v.maxTrans = 2;
-            v.wasterTimes = 1;
-            foreach (var sor in t.from.source)
-            {
-                v.from.source.Add(new Pair<GoodsEnum, int>(sor.Item1, sor.Item2));
-                v.to.source.Add(new Pair<GoodsEnum, int>(sor.Item1, sor.Item2));
-            }
-            pipLineManager.SetTrans(
-            new List<TransNode>()
-            {
-                new TransNode(t,resource,goodsRes),//生产
-                new TransNode(v,null,resource)//搬运
-            });
-        }
-        else
-        {
-            pipLineManager.SetTrans(
-            new List<TransNode>()
-            {
-                new TransNode(t,resource,goodsRes)
-            });
-        }
-        this.outputGoods = t.to.source[0].Item1;
-        AddResources();
     }
     public void InitJob(params Job[] jobs)
     {
@@ -219,18 +86,19 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     /// <summary>
     /// 每天一开始的更新
     /// </summary>
-    public void DayUpdate()
+    public void AiUpdate()
     {
-
+        ///ai更新信息
+        ai.Update();
     }
     public virtual IEnumerator Update()
     {
-		for (var i = 0; i < pipLineManager.piplines.Count; i++)
-		{
-			var line = pipLineManager.piplines[i];
-			line.Update();//更新每一条管线
-		}
-		return null;
+        var line = pipLineManager.pairs;
+        foreach(var x in line)///更新管线的信息
+        {
+            x.Update();
+        }
+        yield return null;
     }
     /// <summary>
     /// 所需要的原材料
@@ -240,6 +108,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     {
         var source=(CarrySource) pipLineManager.GetTrans("搬运商品");
         this.outputGoods = pipLineManager.GetTrans(this.mainWorkName).trans.to.source[0].Item1;
+        goodsRes.Add(outputGoods,0);
         if (source != null)
         {
             List<GoodsEnum> goodsEnums = new List<GoodsEnum>();
@@ -248,6 +117,10 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
                 goodsEnums.Add(node.Item1);
             }
             this.inputGoods = goodsEnums.ToArray();
+            foreach(var inr in this.inputGoods)
+            {
+                resource.Add(inr, 0);
+            }
             this.Register<NewStepEvent>((e) =>{ FindResourceWay(); });
         }
     }
@@ -299,7 +172,6 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
         ///能够满足
         if (requestGoods.goods.sum <= goodsRes.Get(requestGoods.goods))
         {
-
             GameArchitect.get.economicSystem.AddSellB(requestGoods.cost,requestGoods.govCost,requestGoods.from,requestGoods.to,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
             GameArchitect.get.economicSystem.AddSell(requestGoods.cost,requestGoods.govCost,this.scene,requestGoods.goods.sum,requestGoods.goods.goodsInf.goodsEnum);
             GameArchitect.get.economicSystem.Ec(requestGoods.cost*requestGoods.goods.sum, requestGoods.govCost * requestGoods.goods.sum, requestGoods.from.money,requestGoods.to.money);//交易
@@ -310,5 +182,44 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
         {
             this.Execute(new UnSatifyGoods(requestGoods));//这个商品没有满足
         }
+    }
+    /// <summary>
+    /// 获取一系列输出的商品
+    /// </summary>
+    /// <returns></returns>
+    public abstract GoodsEnum[] getOut();
+    /// <summary>
+    /// 获取一系列输入的商品
+    /// </summary>
+    /// <returns></returns>
+    public abstract GoodsEnum[] getIn();
+    public GenGoodsPipline GenGoodsPipline;
+    public GoodsPricePipline GoodsPricePipline;
+    public CarrayPipline CarrayPipline;
+}
+
+/// <summary>
+/// ToB的建筑
+/// </summary>
+public abstract class TobBuildingObj : BuildingObj
+{
+    /// <summary>
+    /// 生成管线,生成工作
+    /// </summary>
+    /// <param name="e"></param>
+    /// <param name="job"></param>
+    public TobBuildingObj(params Pipline[] piplines) : base(piplines)
+    {
+        ai = new TobAi(this);
+    }
+}
+/// <summary>
+/// ToC的建筑,各种商场,流程:定价,进口
+/// </summary>
+public abstract class TocBuildingObj : BuildingObj
+{
+    public TocBuildingObj(Pipline[] piplines) : base(piplines)
+    {
+        ai = new TocAi(this);
     }
 }

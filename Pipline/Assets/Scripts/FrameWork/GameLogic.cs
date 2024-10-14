@@ -57,10 +57,24 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
     public GameObject scenes;
     public Toggle auto;
     public Client client;
+    public bool playEnum;
+
+    public void PlayEnm(int state)
+    {
+        if(state==0)
+        {
+            playEnum = false;
+        }
+        else
+        {
+            playEnum=true;
+        }
+    }
     public bool isAuto{
         get { return auto.isOn; }
         set { auto.isOn = value; }
         }
+    public bool isPlay;
     public void Start()
     {
         TransEnum.Init();
@@ -91,7 +105,7 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
         ///对建筑的更新
         foreach(var building in GameArchitect.get.buildings)
         {
-            building.DayUpdate();
+            building.AiUpdate();
         }
         //client.SendRequest();
 
@@ -106,7 +120,6 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
     /// <returns></returns>
     public IEnumerator NPCBefCircle()
     {
-        var nowT=GameArchitect.get.timeSystem.GetTime();
         foreach(var job in GameArchitect.get.npcManager.jobContainer.npcContainers)
         {
             yield return job.Key.befAct.Run();
@@ -119,11 +132,9 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
     /// <returns></returns>
     public IEnumerator NPCEndCircle()
     {
-        var nowT = GameArchitect.get.timeSystem.GetTime();
         foreach (var job in GameArchitect.get.npcManager.jobContainer.npcContainers)
         {
-            if (job.Key.InEndTime(nowT))
-                yield return job.Key.endAct.Run();
+            yield return job.Key.endAct.Run();
         }
     }
     /// <summary>
@@ -149,74 +160,69 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
         }
         //当前时间结束
         this.SendEvent(new EndStepEvent());
-        GameArchitect.get.saveData.timeSystem.time++;
-
-        if(GameArchitect.get.saveData.timeSystem.GetTime()==0)//跨天了,重新计算今天的活动
+        GameArchitect.get.saveData.timeSystem.Update();
+        parallelTasks.Clear();
+        foreach (var x in GameArchitect.get.npcManager.jobContainer.npcContainers)
         {
-            parallelTasks.Clear();
-            foreach (var x in GameArchitect.get.npcManager.jobContainer.npcContainers)
+            var job = x.Key;
+            var b = job.buildingObj;
+            int allmoney = job.money * job.npcs.Count; // 需要发的工资
+            if (allmoney > job.buildingObj.money.money) // 不够钱
             {
-                var job = x.Key;
-                var b = job.buildingObj;
-                int allmoney = job.money * job.npcs.Count; // 需要发的工资
-                if (allmoney > job.buildingObj.money.money) // 不够钱
-                {
-                    allmoney = job.buildingObj.money.money;
-                }
-                b.money.money -= allmoney;
-                int perMoney = allmoney / job.npcs.Count;
-
-                // 启动并行任务，并将其添加到任务列表中
-                Task parallelTask = Task.Run(() =>
-                {
-                    Parallel.For(0, job.npcs.Count, i =>
-                    {
-                        job.npcs[i].money.Add(perMoney);
-                    });
-                });
-
-                parallelTasks.Add(parallelTask); // 将任务添加到列表中
+                allmoney = job.buildingObj.money.money;
             }
+            b.money.money -= allmoney;
+            int perMoney = allmoney / job.npcs.Count;
 
-            // 等待所有并行任务完成
-            Task.WaitAll(parallelTasks.ToArray());
-            //更新收入情况
-            Task parallelTask2 = Task.Run(() =>
+            // 启动并行任务，并将其添加到任务列表中
+            Task parallelTask = Task.Run(() =>
             {
-                Parallel.For(0, GameArchitect.get.npcs.Count, i =>
+                Parallel.For(0, job.npcs.Count, i =>
                 {
-                    GameArchitect.get.npcs[i].money.Update();
+                    job.npcs[i].money.Add(perMoney);
                 });
             });
 
-            // Wait for the parallel task to complete
-            while (!parallelTask2.IsCompleted)
-            {
-                yield return null; // Yield control back to Unity until the task is complete
-            }
-            //每个场景单独运算
-            Task parallelTask3 = Task.Run(() =>
-            {
-                Parallel.ForEach(GameArchitect.get.scenes, scene =>
-                {
-                    scene.sortManager.Update();//更新商品的价格列表
-                    scene.npcs.Sort((x, y) => x.money.money.CompareTo(y.money.money));//按照收入排序
-                    //对每一个场景的npc进行计算
-                    for (int i = scene.npcs.Count - 1; i >= 0; i--)
-                    {
-                        //Debug.Log(i);
-                        var npc = scene.npcs[i];//每一个npc购买物品
-                        npc.GetNeedManager().Update();//更新需求管理器
-                        npc.GetNeedManager().foodSelector.Update(scene.sortManager.foodSorter);
-                    }
-                });
-            });
-            while (!parallelTask3.IsCompleted)
-            {
-                yield return null; // Yield control back to Unity until the task is complete
-            }
-            this.SendEvent<PassDayEvent>(new PassDayEvent());//跨天事件
+            parallelTasks.Add(parallelTask); // 将任务添加到列表中
         }
+
+        // 等待所有并行任务完成
+        Task.WaitAll(parallelTasks.ToArray());
+        // 更新收入情况
+        Task parallelTask2 = Task.Run(() =>
+        {
+            Parallel.For(0, GameArchitect.get.npcs.Count, i =>
+            {
+                GameArchitect.get.npcs[i].money.Update();
+            });
+        });
+        // Wait for the parallel task to complete
+        while (!parallelTask2.IsCompleted)
+        {
+            yield return null; // Yield control back to Unity until the task is complete
+        }
+        // 每个场景单独运算
+        Task parallelTask3 = Task.Run(() =>
+        {
+            Parallel.ForEach(GameArchitect.get.scenes, scene =>
+            {
+                scene.sortManager.Update();//更新商品的价格列表
+                scene.npcs.Sort((x, y) => x.money.money.CompareTo(y.money.money));//按照收入排序
+                                                                                  //对每一个场景的npc进行计算
+                for (int i = scene.npcs.Count - 1; i >= 0; i--)
+                {
+                    //Debug.Log(i);
+                    var npc = scene.npcs[i];//每一个npc购买物品
+                    npc.GetNeedManager().Update();//更新需求管理器
+                    npc.GetNeedManager().foodSelector.Update(scene.sortManager.foodSorter);
+                }
+            });
+        });
+        while (!parallelTask3.IsCompleted)
+        {
+            yield return null; // Yield control back to Unity until the task is complete
+        }
+        this.SendEvent<PassDayEvent>(new PassDayEvent());//跨天事件
         yield return null;   
     }
     /// <summary>
@@ -240,23 +246,23 @@ public class GameLogic : MonoBehaviour, ISendEvent, IRegisterEvent
     }
     public IEnumerator IterCircle()
     {
-        yield return new WaitUntil(() => isAuto);
+        if(!isAuto)//不是自动的则要等到执行
+        {
+            yield return new WaitUntil(() => playEnum);
+        }
         ///新的时间步更新
         this.SendEvent<NewStepEvent>(new NewStepEvent());
-        //更新路径上的商品
+        //更新路径上的商品,今日到货的商品
         yield return PathCircle();
         yield return null;
         yield return NPCBefCircle();//NPC开始的行为
         yield return null;
 		yield return BuildingCircle();//建筑自己的循环
         yield return null;
-        yield return NPCEndCircle();//结算收入
-        yield return null;
         yield return EnvirUpdate();//对环境的更新
         yield return null;
         this.SendEvent<EndUpdateEvent>(new EndUpdateEvent());//跨时间步
         yield return null;
-        isAuto = false;//再次暂停
 
     }
     public void GameCircle()

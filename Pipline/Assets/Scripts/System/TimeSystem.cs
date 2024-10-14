@@ -22,4 +22,8 @@ public class TimeSystem
     {
         return GetDay() + ":" + GetTime();
     }
+    public void Update()
+    {
+        time++;
+    }
 }
