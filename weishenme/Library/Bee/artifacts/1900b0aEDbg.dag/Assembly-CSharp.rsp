@@ -360,6 +360,9 @@
 "Assets/Scripts/Base/Singlent/Singleton.cs"
 "Assets/Scripts/Base/Singlent/SingletonCreator.cs"
 "Assets/Scripts/BuildingObj/BuildingObj.cs"
+"Assets/Scripts/BuildingObj/GoodsBuilding.cs"
+"Assets/Scripts/BuildingObj/HouseBuilding.cs"
+"Assets/Scripts/BuildingObj/Interfaces.cs"
 "Assets/Scripts/EconmicSystem/EconmicSystem.cs"
 "Assets/Scripts/GameArchitect.cs"
 "Assets/Scripts/GoodsObj/GoodsInf.cs"
@@ -368,9 +371,16 @@
 "Assets/Scripts/GoodsObj/GoodsObjs/Goods2Obj1.cs"
 "Assets/Scripts/Government/Government.cs"
 "Assets/Scripts/Meta.cs"
+"Assets/Scripts/NpcObj/Actions/Action.cs"
+"Assets/Scripts/NpcObj/Actions/GoAction.cs"
+"Assets/Scripts/NpcObj/Contracts/Contract.cs"
+"Assets/Scripts/NpcObj/Contracts/Contracts.cs"
+"Assets/Scripts/NpcObj/LifeStyle.cs"
+"Assets/Scripts/NpcObj/NpcEc.cs"
 "Assets/Scripts/NpcObj/NpcObj.cs"
 "Assets/Scripts/Obj/BaseObj.cs"
 "Assets/Scripts/SceneObj/SceneObj.cs"
+"Assets/Scripts/System/MapSystem.cs"
 -langversion:9.0
 
 /deterministic

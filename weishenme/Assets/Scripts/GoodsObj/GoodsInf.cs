@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class GoodsInf : IEqualityComparer<GoodsInf>
 {
-    [ReadOnly]
-    public int no;
     public string name;
     /// <summary>
     /// 初始价值
@@ -17,7 +15,13 @@ public class GoodsInf : IEqualityComparer<GoodsInf>
     /// 产品质量
     /// </summary>
     public double quality;
+    /// <summary>
+    /// 商品的标签
+    /// </summary>
     public GoodsEnum goodsEnum;
+    /// <summary>
+    /// 构造对象的函数
+    /// </summary>
     public Func<GoodsObj> func;
     public GoodsInf(double quality,GoodsEnum goodsEnum,Func<GoodsObj> func)
     {

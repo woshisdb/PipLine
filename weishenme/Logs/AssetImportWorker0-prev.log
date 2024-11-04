@@ -15,7 +15,7 @@ G:/gitP/weishenme
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51442
+51005
 Successfully changed project path to: G:/gitP/weishenme
 G:/gitP/weishenme
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -48,7 +48,7 @@ G:/gitP/weishenme
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
 AS: AutoStreaming module initializing.
-Refreshing native plugins compatible for Editor in 200.24 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 68.74 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.5f1c1 (23e20ff61267)
 [Subsystems] Discovering subsystems at path C:/Users/sdb/Desktop/software/unityEditor/2021.3.5f1c1/Editor/Data/Resources/UnitySubsystems
@@ -58,59 +58,316 @@ Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
     Renderer: NVIDIA GeForce RTX 3070 (ID=0x2488)
     Vendor:   NVIDIA
-    VRAM:     8031 MB
-    Driver:   31.0.15.3742
+    VRAM:     8018 MB
+    Driver:   32.0.15.6603
 Initialize mono
 Mono path[0] = 'C:/Users/sdb/Desktop/software/unityEditor/2021.3.5f1c1/Editor/Data/Managed'
 Mono path[1] = 'C:/Users/sdb/Desktop/software/unityEditor/2021.3.5f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Users/sdb/Desktop/software/unityEditor/2021.3.5f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56748
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56888
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Users/sdb/Desktop/software/unityEditor/2021.3.5f1c1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Users/sdb/Desktop/software/unityEditor/2021.3.5f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.040775 seconds.
+Registered in 0.035613 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 71.90 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 69.70 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.779 seconds
+- Completed reload, in  0.733 seconds
 Domain Reload Profiling:
-	ReloadAssembly (780ms)
-		BeginReloadAssembly (142ms)
+	ReloadAssembly (733ms)
+		BeginReloadAssembly (128ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (428ms)
-			LoadAssemblies (127ms)
+		EndReloadAssembly (395ms)
+			LoadAssemblies (114ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (92ms)
+			SetupTypeCache (78ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (26ms)
-			SetupLoadedEditorAssemblies (237ms)
+			RebuildScriptCaches (23ms)
+			SetupLoadedEditorAssemblies (225ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (17ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (72ms)
+				RefreshPlugins (70ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (103ms)
-				ProcessInitializeOnLoadMethodAttributes (43ms)
+				ProcessInitializeOnLoadAttributes (98ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.025447 seconds.
+Registered in 0.019023 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image G:\gitP\weishenme\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image G:\gitP\weishenme\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.63 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.58 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.813 seconds
+- Completed reload, in  1.055 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1056ms)
+		BeginReloadAssembly (149ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (17ms)
+		EndReloadAssembly (760ms)
+			LoadAssemblies (130ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (190ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (42ms)
+			SetupLoadedEditorAssemblies (376ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (109ms)
+				ProcessInitializeOnLoadAttributes (190ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (39ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 0.59 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3399 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 25 unused Assets / (55.6 KB). Loaded Objects now: 3858.
+Memory consumption went from 116.5 MB to 116.5 MB.
+Total: 2.911100 ms (FindLiveObjects: 0.235900 ms CreateObjectMapping: 0.201600 ms MarkObjects: 2.404700 ms  DeleteObjects: 0.068300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 227.313031 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f715bea1a15374f8e62d4c031740a87') in 0.048024 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.878116 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf789c5616bd95926d45f3bf38e6e80c') in 0.003029 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 30.494767 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c440560d44ad613cf64d3d3237e0b2ed') in 0.002524 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.107374 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e26bb963afd48757be51aa4292a084d8') in 0.003468 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 129.695879 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3716912de81b2bbc0c952282b69556bc') in 0.002960 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.284682 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c930dbc719e5e70905b581c803639ad') in 0.002745 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 116.862609 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f139606878de248db8fe140c136cad0') in 0.002741 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.378261 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95e15c89ceb708f363247cf35ce69fd3') in 0.002571 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.710136 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4afb1773224acfe71dbb978a594381a') in 0.002660 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.075906 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2515fab67d770da99dcc2168919af22c') in 0.003147 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.369204 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '72453ea3e3a07303c5cdfe906437d0e7') in 0.002874 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 244.408797 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0a5cf01b5de0c980503284d446830a3') in 0.003576 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.090903 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '525db8f1ce4bac73d14a731d66d627a2') in 0.003056 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.112517 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed9e04ddd6a3c646eb1cc354cb8fe7fa') in 0.002919 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.255355 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '939e4598267798767a8264658bf8cff2') in 0.002803 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.802165 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17bc02657728df0779a145666aa032ce') in 0.003229 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 178.951033 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '635a0e3ecab1b0c20ce7ce75d26e09f8') in 0.002804 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.991224 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae0387288da0f421bbf95dab92368a64') in 0.002964 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.601673 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0200cac43569c3c301d3ece655b8aa08') in 0.002449 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.862504 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bed82c1f5bd3cf93584ea068e0ce3850') in 0.002994 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.548957 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d4cdce766b306743ddeb2fb5168b0a9') in 0.002873 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 20.340546 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97f1132ae284ca5c599f96667f70f3d5') in 0.004644 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 22.552103 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11a089266cce499338ed3cf24edf0ea1') in 0.002913 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.038545 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2cf550813a1fdbf36030d031235819c') in 0.002917 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.835094 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1d9b888b1726da085bc3d70553854f8') in 0.002328 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.619453 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da0d956658ef22f8332a1bda9926e98c') in 0.002877 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.171515 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f136568f21977df11d772a6dbee17a8') in 0.002795 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 60.221221 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05c4cfb7c6bba5af898f3bbdcd543623') in 0.002542 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 51.819444 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92b60a6d634a55c97cd0959cb5a17fc1') in 0.002834 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 41.626041 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da9aa21d08377428ee1d51dbf9b1ee6b') in 0.002889 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.934407 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9e5707abd9673ed89916b124e816fc0') in 0.002753 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6004.801721 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c40c51a59f9812171bab5b6b84fa9b8d') in 0.003942 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 191.475911 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '949844af6c233813df80f3bc0cdb3086') in 0.003979 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 83.017598 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6585ee18fb59a24b2e926350930c44b9') in 0.002724 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 32.654685 seconds.
+  path: Assets/Scripts/NpcObj/Contracts/Contracts.cs
+  artifactKey: Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/NpcObj/Contracts/Contracts.cs using Guid(f2b9bf614369ce4488fcc236f45f0d69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b1e92d85de11a1dcb80aaab195208ee') in 0.003327 seconds 

@@ -40,6 +40,7 @@ public class GoodsStateMeta : MetaI
 
 public class Meta
 {
+    public static int dayTime;
     public static Dictionary<GoodsEnum, GoodsInf> goodsInfs;
     public static Dictionary<Type, MetaI> pairs;
     public static MetaI GetMeta<T>()

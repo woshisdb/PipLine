@@ -6,6 +6,23 @@ using UnityEngine;
 
 public class EconmicSystem:Singleton<EconmicSystem>
 {
+    public static EconmicSystem get { get { return EconmicSystem.Instance; } }
+    /// <summary>
+    /// 根据当前的一系列资源算一个预期收益
+    /// </summary>
+    /// <returns></returns>
+    public float CPI(Dictionary<GoodsEnum, Goods> pairs,int day)
+    {
+
+    }
+    /// <summary>
+    /// 交易,将钱给npc,然后获得收益
+    /// </summary>
+    /// <param name="buildingState"></param>
+    public void GiveMoney(GoodsBuildingObj buildingState,NpcState npcState,Float money)
+    {
+    }
+
     /// <summary>
     /// 购买商品
     /// </summary>
@@ -24,9 +41,15 @@ public class EconmicSystem:Singleton<EconmicSystem>
     /// <param name="num"></param>
     /// <param name="day"></param>
     /// <returns></returns>
-    public GoodsOrder GetProdMoney(BaseState state,Tuple<ProdEnum, Int>[] prods, Int num,int day=0,bool predicate=false)
-    {//为0时候为当前天,predicate为是否为预测值,而不是真的
-        return null;
+    public float GetProdMoney(BaseState state,Tuple<ProdEnum, Int>[] prods, Int num,int day=0,bool isPredic=false)
+    {
+        if(isPredic)//如果是预测的话则进行推理
+        {
+        }
+        else//则直接出结果
+        {
+
+        }
     }
     /// <summary>
     /// 获取要购买商品的价格
@@ -35,140 +58,102 @@ public class EconmicSystem:Singleton<EconmicSystem>
     /// <param name="num"></param>
     /// <param name="day"></param>
     /// <returns></returns>
-    public GoodsOrder GetGoodsMoney(BaseState state, Tuple<GoodsEnum, Int>[] prods, Int num,int day=0, bool predicate = false)
+    public float GetGoodsMoney(BaseState state, Tuple<GoodsEnum, Int>[] prods, Int num,int day=0, bool isPredic = false)
+    {
+        if(isPredic)//如果是预测的话则进行推理
+        {
+
+        }
+        else//则直接出结果
+        {
+
+        }
+    }
+    /// <summary>
+    /// 获取一个道路,从A到B,用于人的走路,根据最大花费,最大时间,获取一个路径列表
+    /// </summary>
+    /// <returns></returns>
+    public List<PathObj> GetRoad(SceneObj a,SceneObj b,Float maxCost,Int maxTime)
     {
         return null;
     }
-}
 
+    public void AddPathOrder(SceneObj sceneObj)
+    {
+
+    }
+
+    /// <summary>
+    /// 根据提供的生产时间预测获取的收入
+    /// </summary>
+    /// <returns></returns>
+    public float PredicateProdEarn()
+    {
+
+    }
+    /// <summary>
+    /// 转移钱,根据协议
+    /// </summary>
+    /// <returns></returns>
+    public float TransMoney(TransMoneyMode ContractMode)
+    {
+
+    }
+    /// <summary>
+    /// 预测某一个人获得的钱
+    /// </summary>
+    /// <param name="ContractMode"></param>
+    /// <returns></returns>
+    public float PredicTransMoney(TransMoneyMode ContractMode,NpcState npcState)
+    {
+
+    }
+    /// <summary>
+    /// 道路的钱
+    /// </summary>
+    /// <returns></returns>
+    public float GetRoadMoney(SceneObj a,SceneObj b,int time)
+    {
+
+    }
+    public float PredicateRoadMoney()
+    {
+
+    }
+}
+public enum TransMoneyEnum
+{
+    paySalary,//发薪水
+    buyGoods,//购买商品
+    transGoods,//转移商品
+    npcPath,//路径转移
+}
 /// <summary>
-/// 订单信息
+/// 转移金钱的类型
 /// </summary>
-public class Order
+public class TransMoneyMode
 {
+    public TransMoneyEnum transMoney;
+    public Float money;
     /// <summary>
-    /// 是否为预测值,是的话就不用执行效果
+    /// 由A转移到B的钱
     /// </summary>
-    public bool isPredict;
-    /// <summary>
-    /// 对订单人提供商的效果
-    /// </summary>
-    /// <param name="state"></param>
-    /// <param name="orderUser"></param>
-    public virtual void Accept(BaseState state,IOrderUser orderUser)
-    {
-        
-    }
-    public virtual void Effect(IOrderUser orderUser, BaseState state)
-    {
-
-    }
+    public IContractUser toA;
+    public IContractUser toB;
 }
-
-/// <summary>
-/// 商品订单
-/// </summary>
-public class GoodsOrder:Order
-{
-    /// <summary>
-    /// 订单的花费
-    /// </summary>
-    public Float cost;
-    public override void Effect(IOrderUser orderUser, BaseState state)
-    {
-        orderUser.reduceMoney(state, cost);
-    }
-}
-public class GoodsOrderInf
+public class PaySalaryMode: TransMoneyMode
 {
 
 }
-public class NormalGoodsInf: GoodsOrderInf
+public class BuyGoodsMode : TransMoneyMode
 {
-    /// <summary>
-    /// 商品类型
-    /// </summary>
     public GoodsEnum goodsEnum;
-    /// <summary>
-    /// 订单数目
-    /// </summary>
-    public int sum;
-    /// <summary>
-    /// 接取订单的人
-    /// </summary>
-    public ICanReceiveNormalGoodsOrder ReceiveOrder;
-    /// <summary>
-    /// 应转给她的开销
-    /// </summary>
-    public Float goodsPrice;
 }
-
-/// <summary>
-/// 购买一系列商品的订单
-/// </summary>
-public class NormalGoodsOrder : GoodsOrder
+public class TransGoodsMode : TransMoneyMode
 {
-    /// <summary>
-    /// 商品的列表
-    /// </summary>
-    public NormalGoodsInf[] goods;
-    public int sum;
-    public override void Accept(BaseState state, IOrderUser orderUser)
-    {
-        foreach (var good in goods)//更新每个商品提供商转钱
-        {
-            //处理收入,然后修改订单
-            good.ReceiveOrder.receiveMoney(good.goodsPrice, good);
-        }
-    }
-    /// <summary>
-    /// 将商品添加进去
-    /// </summary>
-    /// <param name="orderUser"></param>
-    /// <param name="state"></param>
-    public override void Effect(IOrderUser orderUser, BaseState state)
-    {
-        base.Effect(orderUser, state);
-        var user=(INormalGoodsOrderUser)orderUser;
-        var value=user.GetPipline(state).FindFront(0);
-        value.Value += sum;
-    }
-}
-public class ProdGoodsInf: GoodsOrderInf
-{
-    public ProdEnum prodEnum;
-    /// <summary>
-    /// 应转给她的开销
-    /// </summary>
-    public float goodsPrice;
-    public float prodAmount;
-    public ICanReceiveProdOrder canReceiveProdOrder;
-}
-/// <summary>
-/// 购买一系列生产力的订单
-/// </summary>
-public class ProdGoodsOrder : GoodsOrder
-{
-    /// <summary>
-    /// 生产力商品
-    /// </summary>
-    public ProdGoodsInf[] goods;
-    public float sum;
-    public override void Accept(BaseState state, IOrderUser orderUser)
-    {
-        foreach (var good in goods)//更新每个商品提供商转钱
-        {
-            //处理收入,然后修改订单
-            good.canReceiveProdOrder.receiveMoney(good.goodsPrice, good);
-        }
-    }
-    public override void Effect(IOrderUser orderUser, BaseState state)
-    {
-        base.Effect(orderUser, state);
-        var user =(IProdOrderUser)orderUser;
-        Float prod=user.GetProdState(state);
-        prod.Value += sum;
-    }
-}
 
+}
+public class NpcPathMode : TransMoneyMode
+{
 
+}
