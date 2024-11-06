@@ -363,6 +363,8 @@
 "Assets/Scripts/BuildingObj/GoodsBuilding.cs"
 "Assets/Scripts/BuildingObj/HouseBuilding.cs"
 "Assets/Scripts/BuildingObj/Interfaces.cs"
+"Assets/Scripts/BuildingObj/New Folder/ToBBuilding.cs"
+"Assets/Scripts/BuildingObj/New Folder/ToCBuilding.cs"
 "Assets/Scripts/EconmicSystem/EconmicSystem.cs"
 "Assets/Scripts/GameArchitect.cs"
 "Assets/Scripts/GoodsObj/GoodsInf.cs"
