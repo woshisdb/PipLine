@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 可以接收工作
+/// 可以提供工作
 /// </summary>
-public class ReceiveWork
+public class NeedWork
 {
     /// <summary>
     /// 所住的位置
@@ -15,11 +15,10 @@ public class ReceiveWork
     /// <summary>
     /// 对象
     /// </summary>
-    public IReceiveWork obj;
+    public INeedWork obj;
     /// <summary>
-    /// 最少给我的钱
+    /// 期望的最低工资
     /// </summary>
-    public Func<Float> minPrice;
     public float minMoney;
 }
 /// <summary>
@@ -36,38 +35,44 @@ public class SendWork
     /// </summary>
     public ISendWork obj;
     /// <summary>
-    /// 最多可以付的钱
+    /// 最多的给的工资
     /// </summary>
-    public Func<Float> maxPrice;
     public float maxMoney;
+    /// <summary>
+    /// 是否能满足工作
+    /// </summary>
+    public Func<NeedWork, bool> isSatify;
+    /// <summary>
+    /// 满足度
+    /// </summary>
+    public Func<NeedWork, float> satifyRate;
 }
 /// <summary>
 /// 接收商品
 /// </summary>
-public class ReceiveGoods
+public class SendGoods
 {
     /// <summary>
     /// 商品
     /// </summary>
-    public GoodsObj[] goods;
+    public GoodsObj goods;
     /// <summary>
     /// 所住的位置
     /// </summary>
     public Func<SceneObj> scene;
     /// <summary>
-    /// 最少给我的钱
+    /// 想要到手的钱
     /// </summary>
-    public Func<Float> minPrice;
     public float minMoney;
     /// <summary>
     /// 接收对象
     /// </summary>
-    public IReceiveGoods obj;
+    public ISendGoods obj;
 }
 /// <summary>
 /// 可以发送订单
 /// </summary>
-public class SendGoods
+public class NeedGoods
 {
     /// <summary>
     /// 商品
@@ -80,10 +85,21 @@ public class SendGoods
     /// <summary>
     /// 传输商品
     /// </summary>
-    public ISendGoods obj;
+    public INeedGoods obj;
     /// <summary>
     /// 最多可以付的钱
     /// </summary>
     public Func<Float> maxPrice;
+    /// <summary>
+    /// 最大的钱
+    /// </summary>
     public float maxMoney;
+    /// <summary>
+    /// 是否能满足
+    /// </summary>
+    public Func<SendGoods, bool> isSatify;
+    /// <summary>
+    /// 是否能满足
+    /// </summary>
+    public Func<SendGoods, bool> satifyRate;
 }

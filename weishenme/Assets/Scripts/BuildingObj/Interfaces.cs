@@ -35,7 +35,7 @@ public interface ISendWork : IMarketUser
     /// </summary>
     /// <param name="state"></param>
     /// <param name="prods"></param>
-    public void GetProdProcess(NpcObj npc,SendWork sendWork);
+    public void GetProdProcess(INeedWork worker);
     /// <summary>
     /// 注册一系列生产力订单
     /// </summary>
@@ -56,24 +56,18 @@ public interface ISendWork : IMarketUser
 /// <summary>
 /// 接收生产力订单
 /// </summary>
-public interface IReceiveWork : IMarketUser
+public interface INeedWork : IMarketUser
 {
     /// <summary>
     /// 注册监听来请求一系列的工作
     /// </summary>
     /// <param name="money"></param>
     /// <param name="goodsInf"></param>
-    public ReceiveWork[] RegisterReceiveWork();
+    public NeedWork[] RegisterReceiveWork();
     /// <summary>
     /// 不愿意接收工作协议
     /// </summary>
     public void UnRegisterReceiveWork();
-    /// <summary>
-    /// 选择一系列工作中的后续处理
-    /// </summary>
-    /// <param name="works"></param>
-    /// <returns></returns>
-    public void DecisionBestWork(WorkContract[] works);
     /// <summary>
     /// 当前位置
     /// </summary>
@@ -99,12 +93,12 @@ public interface ICanEmploySelf:IMarketUser
 /// <summary>
 /// 可以接收请求商品的订单
 /// </summary>
-public interface IReceiveGoods : IMarketUser
+public interface ISendGoods : IMarketUser
 {
     /// <summary>
     /// 接收商品的订单
     /// </summary>
-    public ReceiveGoods[] RegisterReceiveGoods();
+    public SendGoods[] RegisterReceiveGoods();
     /// <summary>
     /// 取消接收商品订单
     /// </summary>
@@ -114,13 +108,13 @@ public interface IReceiveGoods : IMarketUser
 /// <summary>
 /// 可以请求商品的订单
 /// </summary>
-public interface ISendGoods : IMarketUser
+public interface INeedGoods : IMarketUser
 {
     /// <summary>
     /// 获取商品列表,用来加进来
     /// </summary>
     public void GetGoodsProcess(BaseState state,GoodsEnum goodsEnum,int sum);
-    public SendGoods[] RegisterSendGoods();
+    public NeedGoods[] RegisterSendGoods();
     public void UnRegisterSendGoods();
 }
 
