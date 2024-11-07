@@ -101,5 +101,5 @@ public class NeedGoods
     /// <summary>
     /// ÊÇ·ñÄÜÂú×ã
     /// </summary>
-    public Func<SendGoods, bool> satifyRate;
+    public Func<SendGoods, float> satifyRate;
 }

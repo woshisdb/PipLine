@@ -1,58 +1,63 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Matcher
 {
     /// <summary>
-    /// 匹配发送者和接收者的工作请求。
+    /// 匹配工作需求
     /// </summary>
-    /// <param name="sendWorks">发送工作请求的列表</param>
-    /// <param name="receiveWorks">接收工作请求的列表</param>
-    /// <returns>匹配到的工作请求对</returns>
-    public List<(SendWork, ReceiveWork)> MatchWorks(List<SendWork> sendWorks, List<ReceiveWork> receiveWorks)
+    public List<(SendWork, NeedWork)> MatchWork(List<SendWork> sendWorks, List<NeedWork> needWorks)
     {
-        var matchedWorks = new List<(SendWork, ReceiveWork)>();
-        foreach (var sender in sendWorks)
+        var matchedWorks = new List<(SendWork, NeedWork)>();
+        // 排序：SendWork 按 maxMoney 降序，NeedWork 按 minMoney 降序
+        sendWorks = sendWorks.OrderByDescending(s => s.maxMoney).ToList();
+        needWorks = needWorks.OrderByDescending(n => n.minMoney).ToList();
+        while (sendWorks.Any() && needWorks.Any())
         {
-            foreach (var receiver in receiveWorks)
+            // 定义变量来存储当前最佳匹配
+            SendWork bestSender = null;
+            NeedWork bestNeeder = null;
+            float bestSatisfaction = float.MinValue;
+            // 遍历 SendWork 和 NeedWork 组合，选择满足条件且具有最高满足度的组合
+            foreach (var sender in sendWorks)
             {
-                // 检查是否满足位置和价格条件
-                if (sender.scene() == receiver.scene() &&
-                    sender.maxPrice() >= receiver.minPrice())
+                foreach (var needer in needWorks)
                 {
-                    matchedWorks.Add((sender, receiver));
+                    if (sender.scene() == needer.scene() && sender.maxMoney >= needer.minMoney && sender.isSatify(needer))
+                    {
+                        float satisfaction = sender.satifyRate(needer);
+
+                        // 如果该组合的满足度更高，则更新最佳组合
+                        if (satisfaction > bestSatisfaction)
+                        {
+                            bestSender = sender;
+                            bestNeeder = needer;
+                            bestSatisfaction = satisfaction;
+                        }
+                    }
                 }
+            }
+            // 如果找到最佳匹配，则将其加入匹配列表
+            if (bestSender != null && bestNeeder != null)
+            {
+                matchedWorks.Add((bestSender, bestNeeder));
+                sendWorks.Remove(bestSender);  // 移除已匹配的 SendWork 
+                needWorks.Remove(bestNeeder);  // 移除已匹配的 NeedWork 
+            }
+            else
+            {
+                // 如果没有找到满足条件的匹配项，退出循环
+                break;
             }
         }
         return matchedWorks;
     }
-
-    /// <summary>
-    /// 匹配发送者和接收者的商品请求。
-    /// </summary>
-    /// <param name="sendGoodsList">发送商品请求的列表</param>
-    /// <param name="receiveGoodsList">接收商品请求的列表</param>
-    /// <returns>匹配到的商品请求对</returns>
-    public List<(SendGoods, ReceiveGoods)> MatchGoods(List<SendGoods> sendGoodsList, List<ReceiveGoods> receiveGoodsList)
-    {
-        var matchedGoods = new List<(SendGoods, ReceiveGoods)>();
-        foreach (var sender in sendGoodsList)
-        {
-            foreach (var receiver in receiveGoodsList)
-            {
-                // 检查是否满足位置和价格条件
-                if (sender.scene() == receiver.scene() &&
-                    sender.maxPrice() >= receiver.minPrice())
-                {
-                    matchedGoods.Add((sender, receiver));
-                }
-            }
-        }
-        return matchedGoods;
-    }
 }
+
+
 
 
 /// <summary>
@@ -69,10 +74,7 @@ public class Market
     /// </summary>
     public void MatchOrder()
     {
-        for()
-        {
-
-        }
+        
     }
     /// <summary>
     /// 两个场景之间的距离和花钱
@@ -106,7 +108,7 @@ public class MarketScene
     /// <summary>
     /// 可以接收商品的协议
     /// </summary>
-    public List<ReceiveGoods> receiveGoods;
+    public List<NeedGoods> receiveGoods;
     //****************************************************
     /// <summary>
     /// 一系列请求工作的协议
@@ -115,5 +117,5 @@ public class MarketScene
     /// <summary>
     /// 请求工作的NPC
     /// </summary>
-    public List<ReceiveWork> receiveWorks;
+    public List<NeedWork> receiveWorks;
 }
