@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class GoodsInf : IEqualityComparer<GoodsInf>
 {
+    /// <summary>
+    /// 商品的名字
+    /// </summary>
     public string name;
     /// <summary>
     /// 初始价值

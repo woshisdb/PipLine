@@ -3,22 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-public class Goods
-{
-    public GoodsEnum GoodsEnum;
-    public Int sum=0;
-    public Float cost=0;
-    public BuildingObj inPlace;
-    public NpcObj belong;
-}
 public class BuildingState:BaseState
 {
-    public Float money;//总的资金
-    public Dictionary<GoodsEnum, Goods> goodslist;
+    /// <summary>
+    /// 所属于的人
+    /// </summary>
+    public NpcObj belong;
+    /// <summary>
+    /// 商品列表
+    /// </summary>
+    public Dictionary<GoodsEnum, GoodsObj> goodslist;
     public BuildingState():base()
     {
-        goodslist = new Dictionary<GoodsEnum, Goods>();
-        money = 0;
+        goodslist = new Dictionary<GoodsEnum, GoodsObj>();
         Init();
     }
     public override void Init()
@@ -27,7 +24,7 @@ public class BuildingState:BaseState
         money = 0;
         foreach(var item in goodslist)
         {
-            goodslist[item.Key] = new Goods();
+            goodslist[item.Key] = new GoodsObj();
         }
     }
 }
@@ -59,15 +56,12 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     public override void Update(BaseState input)
     {
     }
-    public override void Predict(BaseState input,int day)
-    {
-
-    }
     /// <summary>
-    /// 预测一个未来的收益
+    /// 预测状态
     /// </summary>
-    /// <returns></returns>
-    public float Rate()
+    /// <param name="input"></param>
+    /// <param name="day"></param>
+    public override void Predict(BaseState input,int day)
     {
 
     }

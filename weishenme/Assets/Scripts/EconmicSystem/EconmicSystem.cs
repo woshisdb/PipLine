@@ -11,7 +11,7 @@ public class EconmicSystem:Singleton<EconmicSystem>
     /// 根据当前的一系列资源算一个预期收益
     /// </summary>
     /// <returns></returns>
-    public float CPI(Dictionary<GoodsEnum, Goods> pairs,int day)
+    public float CPI(Dictionary<GoodsEnum, GoodsObj> pairs,int day)
     {
 
     }

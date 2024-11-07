@@ -15,28 +15,22 @@ public abstract class Contract
     /// 乙方
     /// </summary>
     public NpcState b;
+    public NpcState ruleNpc;
     /// <summary>
     /// 协议同意时候的初始化
     /// </summary>
     /// <param name="baseState"></param>
-    public abstract void Init();
+    public virtual void Init(NpcState a,NpcState b,NpcState ruleNpc)
+    {
+        this.a = a;
+        this.b = b;
+        this.ruleNpc = ruleNpc;
+    }
     /// <summary>
     /// 判断协议是否生效
     /// </summary>
     /// <returns></returns>
     public abstract bool Condition();
-}
-
-
-/// <summary>
-/// 每天都需要执行的协议
-/// </summary>
-public abstract class EveryDayContract:Contract
-{
-    /// <summary>
-    /// 每一天的更新
-    /// </summary>
-    public abstract void DayUpdate();
     /// <summary>
     /// B破坏协议的影响
     /// </summary>
@@ -48,11 +42,40 @@ public abstract class EveryDayContract:Contract
 }
 
 /// <summary>
+/// 每过多久更新一次
+/// </summary>
+public abstract class CircleContract:Contract
+{
+    /// <summary>
+    /// 更新倒计时的时间
+    /// </summary>
+    /// <returns></returns>
+    public abstract int EndCircle();
+    /// <summary>
+    /// 当天的更新
+    /// </summary>
+    public abstract void DayUpdate();
+}
+
+/// <summary>
+/// 每天都需要执行的协议
+/// </summary>
+public abstract class EveryDayContract:Contract
+{
+    public int EndCircle()
+    {
+        return 0;
+    }
+}
+
+
+/// <summary>
 /// 一次执行的协议
 /// </summary>
 public abstract class OnceDayContract : Contract
 {
 }
+
 
 /// <summary>
 /// 协议列表

@@ -18,8 +18,16 @@ public interface MetaI
 
 }
 
+public enum GoodsStateEnum
+{
+    source,//原材料生产型:不需要进口只需要出口
+    process,//中间产物生成
+    final,//最终生产商品
+}
+
 public class GoodsStateMeta : MetaI
 {
+    public GoodsStateEnum state=GoodsStateEnum.process;
     /// <summary>
     /// 需要的生产力列表
     /// </summary>

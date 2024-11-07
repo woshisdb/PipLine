@@ -361,11 +361,11 @@
 "Assets/Scripts/Base/Singlent/SingletonCreator.cs"
 "Assets/Scripts/BuildingObj/BuildingObj.cs"
 "Assets/Scripts/BuildingObj/GoodsBuilding.cs"
-"Assets/Scripts/BuildingObj/HouseBuilding.cs"
 "Assets/Scripts/BuildingObj/Interfaces.cs"
-"Assets/Scripts/BuildingObj/New Folder/ToBBuilding.cs"
-"Assets/Scripts/BuildingObj/New Folder/ToCBuilding.cs"
+"Assets/Scripts/BuildingObj/生产力建筑/HouseBuilding.cs"
 "Assets/Scripts/EconmicSystem/EconmicSystem.cs"
+"Assets/Scripts/EconmicSystem/Market.cs"
+"Assets/Scripts/EconmicSystem/MarketContracts.cs"
 "Assets/Scripts/GameArchitect.cs"
 "Assets/Scripts/GoodsObj/GoodsInf.cs"
 "Assets/Scripts/GoodsObj/GoodsObj.cs"
@@ -383,6 +383,7 @@
 "Assets/Scripts/Obj/BaseObj.cs"
 "Assets/Scripts/SceneObj/SceneObj.cs"
 "Assets/Scripts/System/MapSystem.cs"
+"Assets/Scripts/System/TimeSystem.cs"
 -langversion:9.0
 
 /deterministic
