@@ -31,12 +31,6 @@ public interface IMarketUser
 public interface ISendWork : IMarketUser
 {
     /// <summary>
-    /// 招聘人的个数
-    /// </summary>
-    /// <returns></returns>
-    public Int getProdSum();
-    public void setProdSum(Int prodSum);
-    /// <summary>
     /// 获取完生产力后的处理
     /// </summary>
     /// <param name="state"></param>
@@ -74,7 +68,6 @@ public interface IReceiveWork : IMarketUser
     /// 不愿意接收工作协议
     /// </summary>
     public void UnRegisterReceiveWork();
-
     /// <summary>
     /// 选择一系列工作中的后续处理
     /// </summary>
@@ -127,8 +120,7 @@ public interface ISendGoods : IMarketUser
     /// 获取商品列表,用来加进来
     /// </summary>
     public void GetGoodsProcess(BaseState state,GoodsEnum goodsEnum,int sum);
-
-    public SendGoods RegisterSendGoods();
+    public SendGoods[] RegisterSendGoods();
     public void UnRegisterSendGoods();
 }
 
@@ -195,9 +187,6 @@ public interface EmploymentFactory : IBuilding,ISendWork,ISendGoods,IReceiveGood
 {
 
 }
-
-
-
 /// <summary>
 /// 原材料的工厂,能够请求生产力,然后,出口商品
 /// </summary>
@@ -219,7 +208,6 @@ public interface MarketFactory:IBuilding, ISendWork, ISendGoods, IReceiveGoods
 {
 
 }
-
 /// <summary>
 /// 转移商品和人的工厂
 /// </summary>
@@ -227,4 +215,3 @@ public interface TransGoodsFactory : IBuilding, ICanEmploySelf
 {
 
 }
-
