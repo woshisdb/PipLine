@@ -75,7 +75,7 @@ public class ReceiveWork
     /// <summary>
     /// npc
     /// </summary>
-    public IReceiveWork npc;
+    public IReceiveWork receiver;
     /// <summary>
     /// 最少给我的钱
     /// </summary>

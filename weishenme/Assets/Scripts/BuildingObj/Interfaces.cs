@@ -8,6 +8,10 @@ using UnityEngine;
 /// </summary>
 public interface IMarketUser
 {
+    /// <summary>
+    /// 所属的NPC
+    /// </summary>
+    /// <returns></returns>
     public NpcObj GetNpc();
     /// <summary>
     /// 添加钱
@@ -31,19 +35,18 @@ public interface ISendWork : IMarketUser
     /// </summary>
     /// <returns></returns>
     public Int getProdSum();
-
     public void setProdSum(Int prodSum);
     /// <summary>
     /// 获取完生产力后的处理
     /// </summary>
     /// <param name="state"></param>
     /// <param name="prods"></param>
-    public void GetProdProcess(NpcObj npc);
+    public void GetProdProcess(NpcObj npc,SendWork sendWork);
     /// <summary>
     /// 注册一系列生产力订单
     /// </summary>
     /// <returns></returns>
-    public SendWork RegisterSendWork();
+    public SendWork[] RegisterSendWork();
     /// <summary>
     /// 取消注册一系列生产力订单
     /// </summary>
@@ -66,7 +69,7 @@ public interface IReceiveWork : IMarketUser
     /// </summary>
     /// <param name="money"></param>
     /// <param name="goodsInf"></param>
-    public ReceiveWork RegisterReceiveWork();
+    public ReceiveWork[] RegisterReceiveWork();
     /// <summary>
     /// 不愿意接收工作协议
     /// </summary>
@@ -90,7 +93,6 @@ public interface IReceiveWork : IMarketUser
 /// </summary>
 public interface ICanEmploySelf:IMarketUser
 {
-    public NpcObj GetNpc();
     /// <summary>
     /// 雇佣自己
     /// </summary>
@@ -109,7 +111,7 @@ public interface IReceiveGoods : IMarketUser
     /// <summary>
     /// 接收商品的订单
     /// </summary>
-    public ReceiveGoods RegisterReceiveGoods();
+    public ReceiveGoods[] RegisterReceiveGoods();
     /// <summary>
     /// 取消接收商品订单
     /// </summary>
@@ -129,7 +131,6 @@ public interface ISendGoods : IMarketUser
     public SendGoods RegisterSendGoods();
     public void UnRegisterSendGoods();
 }
-
 
 /// <summary>
 /// 可以请求转移东西
@@ -155,7 +156,6 @@ public interface IReceiveTransGoods : IMarketUser
     /// 获取商品列表,用来加进来
     /// </summary>
     public void TransGoodsProcess(BaseState state, GoodsObj goods);
-
     public void RegisterProcessTransThings();
     public void UnRegisterProcessTransThings();
     /// <summary>
@@ -191,30 +191,31 @@ public interface IBuilding
 /// <summary>
 /// 普通的工厂,能够请求生产力,然后进口商品,出口商品
 /// </summary>
-public interface EmploymentFactory : IBuilding,ISendWorkContract, ISendGoodsContract, ICanReceiveGoodsContract, ICanRequestTransGoods, ICanRaiseMoney, ICanEmploySelf
+public interface EmploymentFactory : IBuilding,ISendWork,ISendGoods,IReceiveGoods
 {
 
 }
 
 
+
 /// <summary>
 /// 原材料的工厂,能够请求生产力,然后,出口商品
 /// </summary>
-public interface SourceEmploymentFactory : IBuilding,ISendWorkContract, ICanReceiveGoodsContract, ICanRequestTransGoods, ICanRaiseMoney, ICanEmploySelf
+public interface SourceEmploymentFactory : IBuilding,ISendGoods,ISendWork
 {
 
 }
 /// <summary>
 /// 生产最终商品的工厂
 /// </summary>
-public interface FinalEmploymentFactory
+public interface FinalEmploymentFactory: IBuilding, ISendWork, ISendGoods, IReceiveGoods
 {
 
 }
 /// <summary>
 /// 市场,用来向NPC销售商品
 /// </summary>
-public interface MarketFactory
+public interface MarketFactory:IBuilding, ISendWork, ISendGoods, IReceiveGoods
 {
 
 }
@@ -222,7 +223,7 @@ public interface MarketFactory
 /// <summary>
 /// 转移商品和人的工厂
 /// </summary>
-public interface TransGoodsFactory : IBuilding,ISendWorkContract, ICanReceiveGoodsContract, ICanRequestTransGoods, ICanRaiseMoney, ICanEmploySelf
+public interface TransGoodsFactory : IBuilding, ICanEmploySelf
 {
 
 }
