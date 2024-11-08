@@ -26,6 +26,29 @@ public interface IMarketUser
 }
 
 /// <summary>
+/// 接收生产力订单
+/// </summary>
+public interface INeedWork : IMarketUser
+{
+    /// <summary>
+    /// 注册监听来请求一系列的工作
+    /// </summary>
+    /// <param name="money"></param>
+    /// <param name="goodsInf"></param>
+    public NeedWork[] RegisterReceiveWork();
+    /// <summary>
+    /// 不愿意接收工作协议
+    /// </summary>
+    public void UnRegisterReceiveWork();
+    /// <summary>
+    /// 当前位置
+    /// </summary>
+    /// <returns></returns>
+    public SceneObj nowPos();
+}
+
+
+/// <summary>
 /// 可以请求生产力的订单
 /// </summary>
 public interface ISendWork : IMarketUser
@@ -54,28 +77,6 @@ public interface ISendWork : IMarketUser
 }
 
 /// <summary>
-/// 接收生产力订单
-/// </summary>
-public interface INeedWork : IMarketUser
-{
-    /// <summary>
-    /// 注册监听来请求一系列的工作
-    /// </summary>
-    /// <param name="money"></param>
-    /// <param name="goodsInf"></param>
-    public NeedWork[] RegisterReceiveWork();
-    /// <summary>
-    /// 不愿意接收工作协议
-    /// </summary>
-    public void UnRegisterReceiveWork();
-    /// <summary>
-    /// 当前位置
-    /// </summary>
-    /// <returns></returns>
-    public SceneObj nowPos();
-}
-
-/// <summary>
 /// 可以雇佣自己
 /// </summary>
 public interface ICanEmploySelf:IMarketUser
@@ -91,6 +92,19 @@ public interface ICanEmploySelf:IMarketUser
 }
 
 /// <summary>
+/// 可以请求商品的订单
+/// </summary>
+public interface INeedGoods : IMarketUser
+{
+    /// <summary>
+    /// 获取商品列表,用来加进来
+    /// </summary>
+    public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum);
+    public NeedGoods[] RegisterSendGoods();
+    public void UnRegisterSendGoods();
+}
+
+/// <summary>
 /// 可以接收请求商品的订单
 /// </summary>
 public interface ISendGoods : IMarketUser
@@ -103,19 +117,6 @@ public interface ISendGoods : IMarketUser
     /// 取消接收商品订单
     /// </summary>
     public void UnRegisterReceiveGoods();
-}
-
-/// <summary>
-/// 可以请求商品的订单
-/// </summary>
-public interface INeedGoods : IMarketUser
-{
-    /// <summary>
-    /// 获取商品列表,用来加进来
-    /// </summary>
-    public void GetGoodsProcess(BaseState state,GoodsEnum goodsEnum,int sum);
-    public NeedGoods[] RegisterSendGoods();
-    public void UnRegisterSendGoods();
 }
 
 /// <summary>
@@ -177,7 +178,7 @@ public interface IBuilding
 /// <summary>
 /// 普通的工厂,能够请求生产力,然后进口商品,出口商品
 /// </summary>
-public interface EmploymentFactory : IBuilding,ISendWork,ISendGoods,IReceiveGoods
+public interface EmploymentFactory : IBuilding,ISendWork,ISendGoods,INeedGoods
 {
 
 }
@@ -191,14 +192,14 @@ public interface SourceEmploymentFactory : IBuilding,ISendGoods,ISendWork
 /// <summary>
 /// 生产最终商品的工厂
 /// </summary>
-public interface FinalEmploymentFactory: IBuilding, ISendWork, ISendGoods, IReceiveGoods
+public interface FinalEmploymentFactory: IBuilding, ISendWork, ISendGoods, INeedGoods
 {
 
 }
 /// <summary>
 /// 市场,用来向NPC销售商品
 /// </summary>
-public interface MarketFactory:IBuilding, ISendWork, ISendGoods, IReceiveGoods
+public interface MarketFactory:IBuilding, ISendWork, ISendGoods, INeedGoods
 {
 
 }

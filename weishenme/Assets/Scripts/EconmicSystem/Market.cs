@@ -55,6 +55,8 @@ public class Matcher
         }
         return matchedWorks;
     }
+
+
 }
 
 
@@ -80,17 +82,17 @@ public class Market
     /// 两个场景之间的距离和花钱
     /// </summary>
     /// <returns></returns>
-    public Tuple<int,float> GoodsDistanceCost(SceneObj a,SceneObj b)
+    public (int,float) GoodsDistanceCost(SceneObj a,SceneObj b)
     {
-        return new Tuple<int, float>(1,0);
+        return (1,0);
     }
     /// <summary>
     /// NPC之间的距离和花钱
     /// </summary>
     /// <returns></returns>
-    public Tuple<int, float> NpcDistanceCost(SceneObj a, SceneObj b)
+    public (int, float) NpcDistanceCost(SceneObj a, SceneObj b)
     {
-        return new Tuple<int, float>(1, 0);
+        return (1, 0);
     }
 }
 

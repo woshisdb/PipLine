@@ -20,6 +20,14 @@ public class NeedWork
     /// 期望的最低工资
     /// </summary>
     public float minMoney;
+    /// <summary>
+    /// 是否能满足工作
+    /// </summary>
+    public Func<SendWork, bool> isSatify;
+    /// <summary>
+    /// 满足度
+    /// </summary>
+    public Func<SendWork, float> satifyRate;
 }
 /// <summary>
 /// 可以发送订单
@@ -68,6 +76,14 @@ public class SendGoods
     /// 接收对象
     /// </summary>
     public ISendGoods obj;
+    /// <summary>
+    /// 是否能满足
+    /// </summary>
+    public Func<NeedGoods, bool> isSatify;
+    /// <summary>
+    /// 是否能满足
+    /// </summary>
+    public Func<NeedGoods, float> satifyRate;
 }
 /// <summary>
 /// 可以发送订单
