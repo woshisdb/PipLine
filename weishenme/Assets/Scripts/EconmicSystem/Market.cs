@@ -65,7 +65,7 @@ public class Matcher
 /// <summary>
 /// 市场
 /// </summary>
-public class Market
+public class Market :Singleton<Market>
 {
     /// <summary>
     /// 每个场景中请求与接收信息
@@ -93,6 +93,15 @@ public class Market
     public (int, float) NpcDistanceCost(SceneObj a, SceneObj b)
     {
         return (1, 0);
+    }
+    public float PredicateWorkMoney(SendWork sendWork, NeedWork needWork)
+    {
+        return sendWork.maxMoney;
+    }
+    public float PredicateMoney(SendWork sendWork,NeedWork needWork)
+    {
+        var disCost = NpcDistanceCost(needWork.obj.nowPos(), sendWork.obj.aimPos()).Item2;
+        return PredicateWorkMoney(sendWork,needWork)-disCost;
     }
 }
 
