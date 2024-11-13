@@ -20,7 +20,7 @@ public class DetailUI : MonoBehaviour,IRegisterEvent
     {
         this.Register<SelectViewEvent>(e =>
         {
-            inspector.Inspect(e.view);
+            inspector.Inspect(e.view.obj);
         });
     }
 }

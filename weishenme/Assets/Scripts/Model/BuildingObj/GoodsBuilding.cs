@@ -32,9 +32,9 @@ public class GoodsBuildingState : BuildingState
         generateList = new CircularQueue<Float>(10);
         foreach (var item in goodsStateMeta.inputs)
         {
-            goodslist[item.Item1] = new GoodsObj();
+            goodslist[item.Item1] = 0;
         }
-        goodslist[goodsStateMeta.output.Item1] = new GoodsObj();
+        goodslist[goodsStateMeta.output.Item1] = 0;
     }
     public override void Init()
     {
@@ -118,7 +118,7 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
                     foreach (var input in ((GoodsStateMeta)Meta.GetMeta<GoodsBuildingState>()).inputs)
                     {
                         // 更新商品数量
-                        state.goodslist[input.Item1].sum += input.Item2 * allCreate;
+                        state.goodslist[input.Item1] += input.Item2 * allCreate;
                     }
                 }
                 else // 处理其他节点（非队尾）

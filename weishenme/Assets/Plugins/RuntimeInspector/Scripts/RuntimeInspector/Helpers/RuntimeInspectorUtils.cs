@@ -724,10 +724,10 @@ namespace RuntimeInspectorNamespace
 			else if( type.GetTypeInfo().IsGenericType )
 #endif
 			{
-				if( type.GetGenericTypeDefinition() != typeof( List<> ) )
-					return false;
+				//if( type.GetGenericTypeDefinition() != typeof( List<> ) || type.GetGenericTypeDefinition() != typeof(Dictionary<,>))
+				//	return false;
 
-				return type.GetGenericArguments()[0].IsSerializable();
+				return true;
 			}
 
 #if UNITY_EDITOR || !NETFX_CORE

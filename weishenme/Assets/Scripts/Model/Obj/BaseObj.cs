@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
 /// <summary>
 /// ¶ÔÏóµÄ×´Ì¬
 /// </summary>
+[Serializable]
 public abstract class BaseState
 {
     public BaseObj obj;
+    public Dictionary<int, int> goist = new Dictionary<int, int>();
     public virtual void Init()
     {
 

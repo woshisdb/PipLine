@@ -103,7 +103,8 @@ namespace RuntimeInspectorNamespace
 		{
 			if( variables == null || variables.Length == 0 )
 			{
-				foreach( MemberInfo variable in Inspector.GetExposedVariablesForType( Value.GetType() ) )
+				var temp = Inspector.GetExposedVariablesForType(Value.GetType());
+				foreach ( MemberInfo variable in temp )
 					CreateDrawerForVariable( variable );
 			}
 			else

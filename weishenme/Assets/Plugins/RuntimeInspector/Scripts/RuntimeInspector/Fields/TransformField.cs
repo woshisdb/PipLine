@@ -13,7 +13,6 @@ namespace RuntimeInspectorNamespace
 		public override void Initialize()
 		{
 			base.Initialize();
-
 			positionProp = typeof( Transform ).GetProperty( "localPosition" );
 			rotationProp = typeof( Transform ).GetProperty( "localEulerAngles" );
 			scaleProp = typeof( Transform ).GetProperty( "localScale" );
