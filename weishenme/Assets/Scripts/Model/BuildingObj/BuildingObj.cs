@@ -90,15 +90,5 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     {
         throw new NotImplementedException();
     }
-    public virtual (StringInputItem, List<TextInputItem>) showInf()
-    {
-        var item1 = new StringInputItem("Building");
-        var item2=new List<TextInputItem>();
-        foreach (var g in now.goodslist)
-        {
-            item2.Add(new IntInputItem(g.Key.ToString(), () => { return 1; }, e => { }));
-        }
-        return (item1, item2);
-    }
 }
 

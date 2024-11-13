@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RuntimeInspectorNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,36 +15,12 @@ public struct SelectViewEvent:IEvent
 
 public class DetailUI : MonoBehaviour,IRegisterEvent
 {
-    public ScrollRect detail;
-    public RectTransform contentTransform;
-    public (StringInputItem, TextInputItem[])? detailContent;
+    public RuntimeInspector inspector;
     public void Start()
     {
         this.Register<SelectViewEvent>(e =>
         {
-            detailContent=e.view.SelectIt();//选择对象
-            //var item1=detailContent.;
-            //var item2=detailContent.Item2;
-            //foreach(var item in item2)
-            //{
-            //    ///三种类型
-            //    if(item is BoolInputItem)
-            //    {
-
-            //    }
-            //    else if(item is FloatInputItem)
-            //    {
-
-            //    }
-            //    else if(item is IntInputItem)
-            //    {
-
-            //    }
-            //}
+            inspector.Inspect(e.view);
         });
-    }
-    public void RefreshScrollRect()
-    {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(contentTransform);
     }
 }

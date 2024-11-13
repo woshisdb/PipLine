@@ -7,9 +7,14 @@ public class GameArchitect : Singleton<GameArchitect>
 {
     public MapSystem mapSystem;
     public Market market;
+    public UIManager uiManager;
     public GameArchitect()
     {
 
+    }
+    public override void OnSingletonInit()
+    {
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
     public List<NpcObj> npcs;
 
