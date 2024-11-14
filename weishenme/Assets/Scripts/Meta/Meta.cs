@@ -38,6 +38,7 @@ public class Meta:Singleton<Meta>
     /// 商品的信息
     /// </summary>
     public static Dictionary<GoodsEnum, GoodsInf> goodsInfs;
+    public static Dictionary<BuildingEnum, GoodsInf> buildingInfs;
     /// <summary>
     /// 生产商品的信息
     /// </summary>
