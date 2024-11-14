@@ -72,7 +72,7 @@ public class SceneObj : BaseObj,IRegisterEvent
     }
 
     public override void Update()
-    {
+    { 
         throw new System.NotImplementedException();
     }
     public void AddBuilding(BuildingObj buildingObj)
