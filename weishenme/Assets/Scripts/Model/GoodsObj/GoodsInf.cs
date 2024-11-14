@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class GoodsInf : IEqualityComparer<GoodsInf>
+public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI
 {
     /// <summary>
     /// 商品的名字

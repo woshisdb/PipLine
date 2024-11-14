@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class GoodsStateMeta : MetaI
+public class BuildingMeta : MetaI
 {
     /// <summary>
     /// ÉÌÆ·µÄEnum
