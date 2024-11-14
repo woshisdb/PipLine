@@ -401,6 +401,7 @@
 "Assets/Scripts/WorldView/BaseView.cs"
 "Assets/Scripts/WorldView/BuildingView.cs"
 "Assets/Scripts/WorldView/CameraView.cs"
+"Assets/Scripts/WorldView/ClickPlant.cs"
 "Assets/Scripts/WorldView/SceneView.cs"
 "Assets/Scripts/WorldView/ViewManager.cs"
 "Assets/Scripts/WorldView/WorldView.cs"

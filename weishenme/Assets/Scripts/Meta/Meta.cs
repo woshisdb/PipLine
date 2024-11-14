@@ -13,6 +13,12 @@ public enum ProdEnum
     prod1,
 }
 
+
+public enum BuildingEnum
+{
+    building1,
+}
+
 public interface MetaI
 {
 

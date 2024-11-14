@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+
 [Serializable]
 public class BuildingState:BaseState
 {
-    public int data;
     /// <summary>
     /// 所属于的人
     /// </summary>
@@ -16,12 +16,9 @@ public class BuildingState:BaseState
     /// 商品列表
     /// </summary>
     public Dictionary<GoodsEnum, int> goodslist;
-    
     public BuildingState(BuildingObj buildingObj):base(buildingObj)
     {
         goodslist = new Dictionary<GoodsEnum, int>();
-        goist.Add(1, 1);
-        goist.Add(2, 2);
         Init();
     }
     public override void Init()

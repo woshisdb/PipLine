@@ -11,7 +11,6 @@ using UnityEngine;
 public abstract class BaseState
 {
     public BaseObj obj;
-    public Dictionary<int, int> goist = new Dictionary<int, int>();
     public virtual void Init()
     {
 
