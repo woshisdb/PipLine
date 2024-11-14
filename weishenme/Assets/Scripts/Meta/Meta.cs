@@ -19,9 +19,9 @@ public enum BuildingEnum
     building1,
 }
 
-public interface MetaI
+public interface MetaI<T>
 {
-
+    public T ReturnEnum();
 }
 
 public enum GoodsStateEnum
@@ -50,7 +50,7 @@ public class Meta:Singleton<Meta>
         return goodsInfs[goodsEnum];
     }
 
-    public Meta()
+    private Meta()
     {
         goodsInfs = new Dictionary<GoodsEnum, GoodsInf>();//商品信息
         goodsInfs.Add(GoodsEnum.goods1, new GoodsInf(1, GoodsEnum.goods1, () => { return new Goods1Obj(); }));

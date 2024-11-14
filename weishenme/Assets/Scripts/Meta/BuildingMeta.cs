@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BuildingMeta : MetaI
+public class BuildingMeta : MetaI<BuildingEnum>
 {
     /// <summary>
     /// 商品的Enum
@@ -26,7 +26,7 @@ public class BuildingMeta : MetaI
     /// 输出列表
     /// </summary>
     public Tuple<GoodsEnum, Int> output = new Tuple<GoodsEnum, Int>(GoodsEnum.goods2, 1);
-    public GameObject obj;
+    public GameObject view;
     /// <summary>
     /// 获取商品关联信息
     /// </summary>
@@ -34,5 +34,17 @@ public class BuildingMeta : MetaI
     public GoodsEnum[] GetGoods()
     {
         return new GoodsEnum[] { GoodsEnum.goods1, GoodsEnum.goods2 };
+    }
+    public BuildingMeta()
+    {
+        view = (GameObject)Resources.Load("Prefab/building");
+    }
+    public BuildingObj createBuildingObj()
+    {
+        return new GoodsBuildingObj();
+    }
+    public BuildingEnum ReturnEnum()
+    {
+        return BuildingEnum.building1;
     }
 }

@@ -8,7 +8,7 @@ public class GoodsBuildingState : BuildingState
     /// <summary>
     /// 商品的生产信息
     /// </summary>
-    public GoodsStateMeta goodsStateMeta;
+    public BuildingMeta buildingMeta;
     /// <summary>
     /// 循环序列
     /// </summary>
@@ -27,14 +27,14 @@ public class GoodsBuildingState : BuildingState
     public SendWork sendWork;//请求的一系列工作
     public GoodsBuildingState(GoodsBuildingObj obj) : base(obj)
     {
-        goodsStateMeta = (GoodsStateMeta)Meta.GetMeta<GoodsBuildingState>();
-        goodsManager = new GoodsManager(goodsStateMeta.GetGoods());
+        buildingMeta = Meta.Instance.getMeta(BuildingEnum.building1);
+        goodsManager = new GoodsManager(buildingMeta.GetGoods());
         generateList = new CircularQueue<Float>(10);
-        foreach (var item in goodsStateMeta.inputs)
+        foreach (var item in buildingMeta.inputs)
         {
             goodslist[item.Item1] = 0;
         }
-        goodslist[goodsStateMeta.output.Item1] = 0;
+        goodslist[buildingMeta.output.Item1] = 0;
     }
     public override void Init()
     {
@@ -59,8 +59,8 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
     {
         now.needs = new Dictionary<GoodsEnum, NeedGoods>();
         var state = (GoodsBuildingState)now;
-        var inputs=state.goodsStateMeta.inputs;
-        var output = state.goodsStateMeta.output;
+        var inputs=state.buildingMeta.inputs;
+        var output = state.buildingMeta.output;
         now.sends = new Dictionary<GoodsEnum, SendGoods>();
         foreach(var item in inputs)
         {
@@ -115,7 +115,7 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
                     node -= needRed;
                     int allCreate = Mathf.CeilToInt(tempNow) - Mathf.CeilToInt(node);
                     // 检查该商品是否完成生产，如果完成则加入到 goodslist 中
-                    foreach (var input in ((GoodsStateMeta)Meta.GetMeta<GoodsBuildingState>()).inputs)
+                    foreach (var input in now.buildingMeta.inputs)
                     {
                         // 更新商品数量
                         state.goodslist[input.Item1] += input.Item2 * allCreate;

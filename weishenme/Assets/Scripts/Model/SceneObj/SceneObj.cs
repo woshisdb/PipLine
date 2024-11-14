@@ -40,7 +40,7 @@ public class PathObj : BaseObj
 }
 
 
-public class SceneObj : BaseObj
+public class SceneObj : BaseObj,IRegisterEvent
 {
     /// <summary>
     /// 一系列的前往目标地的路径
@@ -74,5 +74,13 @@ public class SceneObj : BaseObj
     public override void Update()
     {
         throw new System.NotImplementedException();
+    }
+    public void AddBuilding(BuildingObj buildingObj)
+    {
+
+    }
+    public void RemoveBuilding(BuildingObj buildingObj)
+    {
+
     }
 }

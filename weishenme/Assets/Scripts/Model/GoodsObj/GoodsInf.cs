@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI
+public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI<GoodsEnum>
 {
     /// <summary>
     /// 商品的名字
@@ -60,5 +60,10 @@ public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI
     public GoodsObj RetGoods()
     {
         return func();
+    }
+
+    public GoodsEnum ReturnEnum()
+    {
+        return goodsEnum;
     }
 }
