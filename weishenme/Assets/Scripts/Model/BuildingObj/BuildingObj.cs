@@ -8,26 +8,18 @@ using UnityEngine;
 public class BuildingState:BaseState
 {
     /// <summary>
+    /// 建筑的各种信息
+    /// </summary>
+    public BuildingMeta buildingMeta { get { return Meta.Instance.getMeta(buildingEnum); } }
+    /// <summary>
     /// 所属于的人
     /// </summary>
     public NpcObj belong;
-    [SerializeField]
-    /// <summary>
-    /// 商品列表
-    /// </summary>
-    public Dictionary<GoodsEnum, int> goodslist;
-    public BuildingState(BuildingObj buildingObj):base(buildingObj)
+    public BuildingEnum buildingEnum;
+    public BuildingState(BuildingObj buildingObj,BuildingEnum buildingEnum):base(buildingObj)
     {
-        goodslist = new Dictionary<GoodsEnum, int>();
-        Init();
-    }
-    public override void Init()
-    {
-        base.Init();
-        foreach(var item in goodslist)
-        {
-            goodslist[item.Key] = 0;
-        }
+        this.buildingEnum = buildingEnum;
+        //buildingMeta=Meta.Instance.getMeta(buildingEnum);
     }
 
 }
@@ -49,6 +41,8 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
 {
     [SerializeField]
     public BuildingState now { get { return (BuildingState)getNow(); } }
+    public int x;
+    public int y;
     /// <summary>
     /// 场景所在的位置
     /// </summary>
@@ -58,7 +52,7 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
     /// </summary>
     public BuildingObj():base()
     {
-
+        
     }
     public override void Update()
     {
@@ -80,7 +74,6 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
 
     public override void InitBaseState()
     {
-        state= new BuildingState(this);
     }
 
     public override void InitEconomicInf()
@@ -90,7 +83,14 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent
 
     public override string ShowString()
     {
-        throw new NotImplementedException();
+        return null;
+    }
+    /// <summary>
+    /// 创建对象后初始化
+    /// </summary>
+    public virtual void Init()
+    {
+
     }
 }
 

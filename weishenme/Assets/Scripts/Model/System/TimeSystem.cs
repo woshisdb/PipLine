@@ -12,5 +12,9 @@ public class TimeSystem : Singleton<TimeSystem>
     {
         return nowDay;
     }
-    public int dayTime;
+    public int dayTime=24;
+    private TimeSystem()
+    {
+
+    }
 }

@@ -7,6 +7,7 @@ public enum GoodsEnum
 {
     goods1,
     goods2,
+    goods3,
 }
 public enum ProdEnum
 {
@@ -17,6 +18,7 @@ public enum ProdEnum
 public enum BuildingEnum
 {
     building1,
+    building0,
 }
 
 public interface MetaI<T>
@@ -37,8 +39,8 @@ public class Meta:Singleton<Meta>
     /// <summary>
     /// 商品的信息
     /// </summary>
-    public static Dictionary<GoodsEnum, GoodsInf> goodsInfs;
-    public static Dictionary<BuildingEnum, BuildingMeta> buildingInfs;
+    public Dictionary<GoodsEnum, GoodsInf> goodsInfs;
+    public Dictionary<BuildingEnum, BuildingMeta> buildingInfs;
 
     public BuildingMeta getMeta(BuildingEnum buildingEnum)
     {
@@ -53,9 +55,10 @@ public class Meta:Singleton<Meta>
     private Meta()
     {
         goodsInfs = new Dictionary<GoodsEnum, GoodsInf>();//商品信息
-        goodsInfs.Add(GoodsEnum.goods1, new GoodsInf(1, GoodsEnum.goods1, () => { return new Goods1Obj(); }));
-        goodsInfs.Add(GoodsEnum.goods2, new GoodsInf(1, GoodsEnum.goods2, () => { return new Goods2Obj(); }));
+        goodsInfs.Add(GoodsEnum.goods1, new GoodsInf(1, GoodsEnum.goods1));
+        goodsInfs.Add(GoodsEnum.goods2, new GoodsInf(1, GoodsEnum.goods2));
         buildingInfs = new Dictionary<BuildingEnum, BuildingMeta>();//Meta数据
-        buildingInfs[BuildingEnum.building1] = new BuildingMeta();
+        buildingInfs[BuildingEnum.building1] = new Building1Meta();
+        buildingInfs[BuildingEnum.building0]=new Building0Meta();
     }
 }

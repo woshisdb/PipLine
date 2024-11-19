@@ -12,56 +12,37 @@ public class PhysicalState
     /// 个人状态,身体情况,饥饿导致下降,每一天下降1点,到0则
     /// </summary>
     public int strength;
+    public NpcObj npcObj;
+    public PhysicalState(NpcObj obj)
+    {
+        this.npcObj = obj;
+    }
 }
 
 public class EcState
 {
     /// <summary>
+    /// 想要的一系列商品
+    /// </summary>
+    public List<NeedGoods> needGoods;
+    public NeedWork needWork;
+    /// <summary>
     /// 是否需要工作
     /// </summary>
-    public bool needWork;
-    /// <summary>
-    /// 是否允许寻找工作
-    /// </summary>
-    public bool allowFindJob;
-    /// <summary>
-    /// 允许执行跑动的行为
-    /// </summary>
-    public bool allowGo;
-    /// <summary>
-    /// 允许购买商品
-    /// </summary>
-    public bool allowBuyThing;
-    /// <summary>
-    /// 是否是自由人
-    /// </summary>
-    public bool isFreedom { get { return belong == null; } }
-    /// <summary>
-    /// 所属于的人
-    /// </summary>
-    public NpcState belong;
+    public bool needWorkB;
     /// <summary>
     /// 金钱
     /// </summary>
     public Float money;
-    /// <summary>
-    /// 签署的合约
-    /// </summary>
-    public ContractList contracts;
-    /// <summary>
-    /// 一系列的生产资料
-    /// </summary>
-    public List<EmploymentFactory> EmploymentFactories;
-    public List<SourceEmploymentFactory> SourceEmploymentFactories;
-    public List<TransGoodsFactory> transGoodsFactories;
-    ///// <summary>
-    ///// 自己的家
-    ///// </summary>
-    //public HouseBuildingState homeState;
-    /// <summary>
-    /// 收入的类型
-    /// </summary>
-    public IncomeType incomeEnum;
+    public NpcObj npcObj;
+    public EcState(NpcObj npcObj)
+    {
+        this.npcObj = npcObj;
+        money=new Float(0);
+        needGoods=new List<NeedGoods>();
+        var needGood = new NeedGoods(npcObj);
+        needGoods.Add(needGood);
+    }
 }
 
 public class ProdState
@@ -86,6 +67,11 @@ public class ProdState
     /// 生活方式
     /// </summary>
     public LifeStyle lifeStyle;
+    public NpcObj npcObj;
+    public ProdState(NpcObj npc)
+    {
+        this.npcObj = npc;
+    }
 }
 /// <summary>
 /// 每个人的个人能力
@@ -110,35 +96,38 @@ public class NpcState:BaseState
     /// 身体
     /// </summary>
     public PhysicalState physicalState;
-    //****************************************
-    /// <summary>
-    /// 获得当前的NPCState的情况
-    /// </summary>
-    /// <returns></returns>
-    public float Rate()
-    {
-        float ret = 0;
-        foreach (var building in ecState.EmploymentFactories)
-        {
-            //ret+=building.Rate();//获取当前每个生产资料的总收入
-        }
-        return ret;
-    }
+
     public NpcState(BaseObj obj):base(obj)
     {
-        ecState.money = 0;
+        ecState = new EcState((NpcObj)obj);
+        prodState = new ProdState((NpcObj)obj);
+        physicalState = new PhysicalState((NpcObj)obj);
     }
-    public override void Init()
+}
+public class NpcEc : EconomicInf
+{
+    public NpcEc(BaseObj obj) : base(obj)
     {
-        base.Init();
-        ecState.money = 0;
     }
 }
 
 public class NpcObj : BaseObj,INpc
 {
-    public NeedWork needWork;
+    public NeedWork needWork { get { return now.ecState.needWork; } }
     public NpcState now { get { return (NpcState)getNow(); } }
+    public void Init(SceneObj sceneObj)
+    {
+        now.sceneObj = sceneObj;
+        ///注册一系列的订单
+        var goods=RegisterNeedGoods();
+        if(goods!=null)
+        {
+            foreach(var need in goods)
+            {
+                Market.Instance.Register(need);
+            }
+        }
+    }
     /// <summary>
     /// 更新每一个生产资料的数据,并更新完npc.根据contract
     /// </summary>
@@ -150,7 +139,7 @@ public class NpcObj : BaseObj,INpc
     public void BefThink()
     {
         //遍历每一个协议
-        var works = RegisterReceiveWork();
+        var works = RegisterNeedWork();
         foreach (var work in works)
         {
             Market.Instance.Register(work);
@@ -163,20 +152,20 @@ public class NpcObj : BaseObj,INpc
 
     public override void InitBaseState()
     {
-        throw new System.NotImplementedException();
+        state=new NpcState(this);
     }
 
     public override void InitEconomicInf()
     {
-        throw new System.NotImplementedException();
+        ecInf=new NpcEc(this);
     }
 
-    public NeedWork[] RegisterReceiveWork()
+    public NeedWork[] RegisterNeedWork()
     {
         return new NeedWork[] { needWork };
     }
 
-    public NeedWork[] UnRegisterReceiveWork()
+    public NeedWork[] UnRegisterNeedWork()
     {
         return new NeedWork[] { needWork};
     }
@@ -188,7 +177,7 @@ public class NpcObj : BaseObj,INpc
 
     public NpcObj GetNpc()
     {
-        return (NpcObj)now.ecState.belong.GetObj();
+        return this;
     }
 
     public void addMoney(Float money)
@@ -203,6 +192,36 @@ public class NpcObj : BaseObj,INpc
 
     public override string ShowString()
     {
+        return "";
+    }
+
+    public float GetNeedWorkRate(SendWork sendWork)
+    {
         throw new System.NotImplementedException();
+    }
+
+    public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public NeedGoods[] RegisterNeedGoods()
+    {
+        return now.ecState.needGoods.ToArray();
+    }
+
+    public NeedGoods[] UnRegisterNeedGoods()
+    {
+        return now.ecState.needGoods.ToArray();
+    }
+
+    public SceneObj aimPos()
+    {
+        return now.sceneObj;
+    }
+
+    public float NeedGoodsSatifyRate(SendGoods sendGoods)
+    {
+        return 0.5f;
     }
 }

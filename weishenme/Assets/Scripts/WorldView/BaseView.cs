@@ -9,8 +9,8 @@ public class BaseView : MonoBehaviour, ISendEvent
     public BaseObj obj;
     public void Start()
     {
-        obj=new BuildingObj();
-        ((BuildingObj)obj).now.goodslist.Add(GoodsEnum.goods1, 1);
+        //obj=new BuildingObj();
+        //((BuildingObj)obj).now.goodslist.Add(GoodsEnum.goods1, 1);
     }
     public void OnMouseDown()
     {

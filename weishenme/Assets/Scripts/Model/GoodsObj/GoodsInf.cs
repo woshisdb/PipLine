@@ -22,16 +22,11 @@ public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI<GoodsEnum>
     /// 商品的标签
     /// </summary>
     public GoodsEnum goodsEnum;
-    /// <summary>
-    /// 构造对象的函数
-    /// </summary>
-    public Func<GoodsObj> func;
-    public GoodsInf(double quality,GoodsEnum goodsEnum,Func<GoodsObj> func)
+    public GoodsInf(double quality,GoodsEnum goodsEnum)
     {
         this.name = goodsEnum.ToString();
         this.quality = quality;
         this.goodsEnum = goodsEnum;
-        this.func = func;
     }
 
     public bool Equals(GoodsInf x, GoodsInf y)
@@ -56,10 +51,6 @@ public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI<GoodsEnum>
     public int GetHashCode(GoodsInf obj)
     {
         return obj.goodsEnum.GetHashCode();
-    }
-    public GoodsObj RetGoods()
-    {
-        return func();
     }
 
     public GoodsEnum ReturnEnum()

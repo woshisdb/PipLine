@@ -35,17 +35,19 @@ public interface INeedWork : IMarketUser
     /// </summary>
     /// <param name="money"></param>
     /// <param name="goodsInf"></param>
-    public NeedWork[] RegisterReceiveWork();
+    public NeedWork[] RegisterNeedWork();
     /// <summary>
     /// 不愿意接收工作协议
     /// </summary>
-    public NeedWork[] UnRegisterReceiveWork();
+    public NeedWork[] UnRegisterNeedWork();
 
     /// <summary>
     /// 当前位置
     /// </summary>
     /// <returns></returns>
     public SceneObj nowPos();
+
+    public float GetNeedWorkRate(SendWork sendWork);
 }
 
 
@@ -75,6 +77,7 @@ public interface ISendWork : IMarketUser
     /// </summary>
     /// <returns></returns>
     public SceneObj aimPos();
+    public float GetSendWorkRate(NeedWork needWork);
 }
 
 /// <summary>
@@ -101,9 +104,11 @@ public interface INeedGoods : IMarketUser
     /// 获取商品列表,用来加进来
     /// </summary>
     public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum);
-    public NeedGoods[] RegisterSendGoods();
-    public NeedGoods[] UnRegisterSendGoods();
+    public NeedGoods[] RegisterNeedGoods();
+    public NeedGoods[] UnRegisterNeedGoods();
     public SceneObj aimPos();
+
+    public float NeedGoodsSatifyRate(SendGoods sendGoods);
 }
 
 /// <summary>
@@ -114,12 +119,14 @@ public interface ISendGoods : IMarketUser
     /// <summary>
     /// 接收商品的订单
     /// </summary>
-    public SendGoods[] RegisterReceiveGoods();
+    public SendGoods[] RegisterSendGoods();
     /// <summary>
     /// 取消接收商品订单
     /// </summary>
-    public SendGoods[] UnRegisterReceiveGoods();
+    public SendGoods[] UnRegisterSendGoods();
     public SceneObj nowPos();
+
+    public float SendGoodsSatifyRate(NeedGoods goods);
 }
 
 /// <summary>
@@ -214,7 +221,7 @@ public interface TransGoodsFactory : IBuilding, ICanEmploySelf
 
 }
 
-public interface INpc:INeedWork
+public interface INpc:INeedWork,INeedGoods
 {
 
 }

@@ -84,53 +84,57 @@ public class NeedWork
     /// <summary>
     /// 满足度
     /// </summary>
-    public Func<SendWork, float> satifyRate;
+    public float satifyRate(SendWork sendWork)
+    {
+        return obj.GetNeedWorkRate(sendWork);
+    }
     /// <summary>
     /// 对距离的满足度
-    /// </summary>
-    public Func<SendWork, float> pathSatifyRate;
-    /// <summary>
-    /// 对金钱的满足程度
-    /// </summary>
-    public Func<SendWork, float> moneySatify;
-    /// <summary>
-    /// 对工作内容本身的满足度
-    /// </summary>
-    public Func<SendWork, float> workStateSatify;
-    public Func<float[]> getRates;
-    public NeedWork(Func<SendWork, float> f1, Func<SendWork, float> f2, Func<SendWork, float> f3)
-    {
-        pathSatifyRate = f1;
-        moneySatify= f2;
-        workStateSatify = f3;
-        satifyRate = new Func<SendWork, float>(e => {
-            var path=pathSatifyRate(e);
-            var money = moneySatify(e);
-            var work = workStateSatify(e);
-            var satRate=Math.Min(path,Math.Min(money, work)); 
-            if(satRate<=0)
-            return 0;
-            var rates=getRates();
-            satRate = path* rates[0] + money* rates[1] + work* rates[2];
-            return satRate;
-        });
-    }
+    ///// </summary>
+    //public Func<SendWork, float> pathSatifyRate;
+    ///// <summary>
+    ///// 对金钱的满足程度
+    ///// </summary>
+    //public Func<SendWork, float> moneySatify;
+    ///// <summary>
+    ///// 对工作内容本身的满足度
+    ///// </summary>
+    //public Func<SendWork, float> workStateSatify;
+    //public Func<float[]> getRates;
     public NeedWork()
     {
-        moneySatify = new Func<SendWork, float>(e =>
-        {
-            return Market.Instance.PredicateRealWorkMoney(e,this) - minMoney;
-        });
-        pathSatifyRate = new Func<SendWork, float>(e =>
-        {
-            var inf= Market.Instance.NpcDistanceCost(obj.nowPos(),e.obj.aimPos());
-            var goTime = inf.Item1*2;//通勤时间
-            return ((float)(goTime+e.workTime))/24f;//总的工作时间
-        });
-        workStateSatify = new Func<SendWork, float>(e =>
-        {
-            return (float)(3*24-e.wastEnerge);
-        });
+        //pathSatifyRate = f1;
+        //moneySatify= f2;
+        //workStateSatify = f3;
+        //satifyRate = new Func<SendWork, float>(e => {
+        //    var path=pathSatifyRate(e);
+        //    var money = moneySatify(e);
+        //    var work = workStateSatify(e);
+        //    var satRate=Math.Min(path,Math.Min(money, work)); 
+        //    if(satRate<=0)
+        //    return 0;
+        //    var rates=getRates();
+        //    satRate = path* rates[0] + money* rates[1] + work* rates[2];
+        //    return satRate;
+        //});
+    }
+    public NeedWork(INeedWork needer)
+    {
+        obj = needer;
+        //moneySatify = new Func<SendWork, float>(e =>
+        //{
+        //    return Market.Instance.PredicateRealWorkMoney(e,this) - minMoney;
+        //});
+        //pathSatifyRate = new Func<SendWork, float>(e =>
+        //{
+        //    var inf= Market.Instance.NpcDistanceCost(obj.nowPos(),e.obj.aimPos());
+        //    var goTime = inf.Item1*2;//通勤时间
+        //    return ((float)(goTime+e.workTime))/24f;//总的工作时间
+        //});
+        //workStateSatify = new Func<SendWork, float>(e =>
+        //{
+        //    return (float)(3*24-e.wastEnerge);
+        //});
     }
 }
 /// <summary>
@@ -161,10 +165,14 @@ public class SendWork
     /// <summary>
     /// 满足度
     /// </summary>
-    public Func<NeedWork, float> satifyRate;
-    public SendWork()
+    public float satifyRate(NeedWork needWork)
     {
-        satifyRate = new Func<NeedWork, float>(e => { return 1; });//都为1
+        return obj.GetSendWorkRate(needWork);
+    }
+    public SendWork(ISendWork sender)
+    {
+        obj = sender;
+        //satifyRate = new Func<NeedWork, float>(e => { return 1; });//都为1
     }
 }
 /// <summary>
@@ -179,7 +187,7 @@ public class SendGoods
     /// <summary>
     /// 每天期望商品提供的数目
     /// </summary>
-    public int remainSum;
+    public Int remainSum;
     /// <summary>
     /// 想要到手的钱
     /// </summary>
@@ -187,7 +195,7 @@ public class SendGoods
     /// <summary>
     /// 所住的位置
     /// </summary>
-    public Func<SceneObj> scene;
+    public SceneObj scene { get { return obj.nowPos(); } }
     /// <summary>
     /// 接收对象
     /// </summary>
@@ -195,15 +203,22 @@ public class SendGoods
     /// <summary>
     /// 是否能满足
     /// </summary>
-    public Func<NeedGoods, float> satifyRate;
-    public SendGoods()
+    public float satifyRate(NeedGoods needGoods)
     {
-        satifyRate = new Func<NeedGoods, float>(e =>
-        {
-            return 1;
-        });
+        return obj.SendGoodsSatifyRate(needGoods);
+    }
+    public SendGoods(ISendGoods sender)
+    {
+        obj= sender;
     }
 }
+
+public enum NeedGoodsEnum
+{
+    Continue,//持续需求
+    Once//一次性需求
+}
+
 /// <summary>
 /// 可以发送订单
 /// </summary>
@@ -220,7 +235,7 @@ public class NeedGoods
     /// <summary>
     /// 所住的位置
     /// </summary>
-    public Func<SceneObj> scene;
+    public SceneObj scene { get { return obj.aimPos(); } }
     /// <summary>
     /// 传输商品
     /// </summary>
@@ -232,28 +247,32 @@ public class NeedGoods
     /// <summary>
     /// 是否能满足
     /// </summary>
-    public Func<SendGoods, float> satifyRate;
-    public Func<SendGoods, float> satifySumRate;
-    public Func<SendGoods,float> satifyMoneyRate;
-    public Func<float[]> getRates;
-    public NeedGoods()
+    public float satifyRate(SendGoods sendGoods)
     {
-        satifySumRate = new Func<SendGoods, float>(e =>
-        {
-            return e.remainSum - needSum;
-        });
-        satifyMoneyRate = new Func<SendGoods, float>(e => {
-            return maxMoney- e.minMoney;
-        });
-        satifyRate = new Func<SendGoods, float>(e =>
-        {
-            var t = getRates();
-            var sum = satifySumRate(e);
-            var money = satifyMoneyRate(e);
-            var satRate = Math.Min(sum,money);
-            if(satRate <= 0)
-                return 0;
-            return t[0]* sum + t[1]* money;
-        });
+        return obj.NeedGoodsSatifyRate(sendGoods);
+    }
+    //public Func<SendGoods, float> satifySumRate;
+    //public Func<SendGoods,float> satifyMoneyRate;
+    //public Func<float[]> getRates;
+    public NeedGoods(INeedGoods needer)
+    {
+        obj = needer;
+        //satifySumRate = new Func<SendGoods, float>(e =>
+        //{
+        //    return e.remainSum - needSum;
+        //});
+        //satifyMoneyRate = new Func<SendGoods, float>(e => {
+        //    return maxMoney- e.minMoney;
+        //});
+        //satifyRate = new Func<SendGoods, float>(e =>
+        //{
+        //    var t = getRates();
+        //    var sum = satifySumRate(e);
+        //    var money = satifyMoneyRate(e);
+        //    var satRate = Math.Min(sum,money);
+        //    if(satRate <= 0)
+        //        return 0;
+        //    return t[0]* sum + t[1]* money;
+        //});
     }
 }

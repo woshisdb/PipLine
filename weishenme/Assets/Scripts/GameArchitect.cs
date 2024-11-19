@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class GameArchitect : Singleton<GameArchitect>
@@ -8,15 +9,30 @@ public class GameArchitect : Singleton<GameArchitect>
     public MapSystem mapSystem;
     public Market market;
     public UIManager uiManager;
-    public GameArchitect()
+    public SaveSystem saveSystem;
+    public TimeSystem timeSystem;
+    public WorldView worldViewSystem;
+    private GameArchitect()
     {
 
     }
     public override void OnSingletonInit()
     {
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        saveSystem=SaveSystem.Instance;
+        ///加载存档信息
+        saveSystem.Load();
+        ///地图信息
+        mapSystem=MapSystem.Instance;
+        ///市场系统
+        market=Market.Instance;
+        ///时间系统
+        timeSystem=TimeSystem.Instance;
+        ///世界的对象
+        worldViewSystem = GameObject.Find("World").GetComponent<WorldView>();
+        worldViewSystem.Bind(mapSystem);
     }
-    public List<NpcObj> npcs;
+    public HashSet<NpcObj> npcs { get { return mapSystem.npcs; } }
 
     /// <summary>
     /// 更新循环
@@ -24,21 +40,21 @@ public class GameArchitect : Singleton<GameArchitect>
     public void Update()
     {
         ///对场景进行一系列的初始化,更新那些道路可以前进
-        InitScene();
-        //NPC请求
-        NpcThink();
+        //InitScene();
+        ////NPC请求
+        //NpcThink();
         ///建筑更新,自己订单的价格
         BuildingThink();
-        //更新每个道路,货物搬运
-        PathUpdate();
+        ////更新每个道路,货物搬运
+        //PathUpdate();
         ///对市场进行更新
-        MarketWorkUpdate();
+        //MarketWorkUpdate();
         //建筑进行生产的更新
         BuildingUpdate();
         //人更新购买的物品  
-        NpcAfterUpdate();
+        //NpcAfterUpdate();
         ///市场商品的更新
-        MarketGoodsUpdate();
+        //MarketGoodsUpdate();
     }
 
     private void NpcAfterUpdate()
@@ -48,30 +64,32 @@ public class GameArchitect : Singleton<GameArchitect>
 
     private void BuildingUpdate()
     {
-        foreach (SceneObj scene in mapSystem.scenes)//更新场景
+        foreach (var scenex in mapSystem.scenes)//更新场景
         {
-            foreach(var building in scene.buildings)
-            {
-                building.Update();
-            }
+            foreach (var scene in scenex)
+                foreach (var building in scene.buildings)
+                {
+                    building.Update();
+                }
         }
     }
 
     private void PathUpdate()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
     /// <summary>
     /// 思考
     /// </summary>
     private void NpcThink()
     {
-        foreach(var scene in mapSystem.scenes)
+        foreach(var scenex in mapSystem.scenes)
         {
-            foreach(var npc in scene.npcs)
-            {
-                npc.BefThink();
-            }
+            foreach (var scene in scenex)
+                foreach (var npc in scene.npcs)
+                {
+                    npc.BefThink();
+                }
         }
     }
 
@@ -80,9 +98,9 @@ public class GameArchitect : Singleton<GameArchitect>
     /// </summary>
     public void InitScene()
     {
-        foreach (SceneObj scene in mapSystem.scenes)//更新场景
+        foreach (var scenex in mapSystem.scenes)//更新场景
         {
-            if (true)//场景更新,即添加新路径,或减少路径
+            foreach (var scene in scenex)
             {
 
             }
@@ -95,8 +113,9 @@ public class GameArchitect : Singleton<GameArchitect>
     /// </summary>
     public void BuildingThink()
     {
-        foreach (var scene in mapSystem.scenes)
+        foreach (var scenex in mapSystem.scenes)
         {
+            foreach(var scene in scenex)
             foreach (var building in scene.buildings)
             {
                 building.BefThink();

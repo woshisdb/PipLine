@@ -11,10 +11,6 @@ using UnityEngine;
 public abstract class BaseState
 {
     public BaseObj obj;
-    public virtual void Init()
-    {
-
-    }
     public virtual BaseState Clone(BaseObj obj)
     {
         return null;
@@ -49,7 +45,6 @@ public abstract class BaseObj
 
     public abstract void InitEconomicInf();
 
-    public int stateLen=10;
     public BaseObj()
     {
         InitBaseState();

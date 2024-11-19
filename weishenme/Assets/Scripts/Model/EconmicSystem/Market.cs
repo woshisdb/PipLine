@@ -3,16 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/// <summary>
+/// 货物管理器
+/// </summary>
 public class GoodsManager
 {
     public Dictionary<GoodsEnum,GoodsObj> goods;
-    public GoodsManager(GoodsEnum[] goodsEnums)
+    public BuildingObj building;
+    public GoodsManager(GoodsEnum[] goodsEnums,BuildingObj buildingObj)
     {
+        building = buildingObj;
         goods = new Dictionary<GoodsEnum, GoodsObj>();
-        
+        foreach(var good in goodsEnums)
+        {
+            GoodsObj goodObj = new GoodsObj(building,0,good);
+            goods.Add(good, goodObj);
+        }
     }
 }
+
 
 /// <summary>
 /// 匹配器
@@ -62,35 +71,51 @@ public class GoodsMatcher : Matcher
     /// <summary>
     /// 发送商品
     /// </summary>
-    public SortedSet<NeedGoods> needGoods;
-    public Dictionary<GoodsEnum,HashSet<SendGoods>> sendGoods;
+    public HashSet<NeedGoods> needGoods;
+    public Dictionary<GoodsEnum, HashSet<SendGoods>> sendGoods;
     public override void Match()
     {
-        List<(NeedGoods, SendGoods)> ss=new List<(NeedGoods, SendGoods)>();
+        List<(NeedGoods, SendGoods)> ss = new List<(NeedGoods, SendGoods)>();
         foreach (NeedGoods s in needGoods)
         {
-            var goodsEnum=s.goods;
+            var goodsEnum = s.goods;
             SendGoods selected = null;
-            foreach(var sends in sendGoods[goodsEnum])//接收商品
+            foreach (var sends in sendGoods[goodsEnum])//接收商品
             {
-                if(sends.satifyRate(s)>0)//选择商品
+                if (sends.satifyRate(s) > 0)//选择商品
                 {
-                    if(selected==null)
+                    if (selected == null)
                         selected = sends;
                     else
                     {
-                        if(sends.satifyRate(s)>selected.satifyRate(s))
+                        if (sends.satifyRate(s) > selected.satifyRate(s))
                         {
-                            selected=sends;
+                            selected = sends;
                         }
                     }
                 }
             }
             needGoods.Remove(s);
             sendGoods[selected.goods].Remove(selected);
-            goodsMatchs.Add(s, selected,new GoodsContract(s,selected));
+            goodsMatchs.Add(s, selected, new GoodsContract(s, selected));
         }
         return;
+    }
+    public void AddNeed(NeedGoods need)
+    {
+        needGoods.Add(need);
+    }
+    public void AddSend(SendGoods send)
+    {
+        if(sendGoods.ContainsKey(send.goods))
+        {
+            sendGoods[send.goods].Add(send);
+        }
+        else
+        {
+            sendGoods[send.goods] = new HashSet<SendGoods>();
+            sendGoods[send.goods].Add(send);
+        }
     }
 }
 
@@ -165,19 +190,23 @@ public class NpcPathTrans : PathTrans
     }
 }
 
-
 /// <summary>
 /// 市场
 /// </summary>
-public class Market :Singleton<Market>
+public class Market : Singleton<Market>
 {
     /// <summary>
     /// 一系列场景
     /// </summary>
-    public List<SceneObj> scenes;
-    public GoodsMatcher goodsMatcher;
-    public WorkMatcher workMatcher;
-    public List<PathTrans> pathTrans; 
+    public List<List<SceneObj>> scenes { get { return SaveSystem.Instance.saveData.SceneObjects; } }
+    public GoodsMatcher goodsMatcher { get { return SaveSystem.Instance.saveData.goodsMatcher; } }
+    public WorkMatcher workMatcher { get { return SaveSystem.Instance.saveData.workMatcher; } }
+    public List<PathTrans> pathTrans { get { return SaveSystem.Instance.saveData.pathTrans; } }
+
+    private Market()
+    {
+    }
+
     /// <summary>
     /// 匹配场景中的订单
     /// </summary>
@@ -203,7 +232,7 @@ public class Market :Singleton<Market>
     }
     public void Register(NeedGoods needGoods)
     {
-
+        goodsMatcher.AddNeed(needGoods);
     }
     public void UnRegister(NeedGoods needGoods)
     {
@@ -212,7 +241,7 @@ public class Market :Singleton<Market>
 
     public void Register(NeedWork needWork)
     {
-
+        
     }
     public void UnRegister(NeedWork needWork)
     {
@@ -220,7 +249,7 @@ public class Market :Singleton<Market>
     }
     public void Register(SendGoods sendGoods)
     {
-
+        goodsMatcher.AddSend(sendGoods);
     }
     public void UnRegister(SendGoods sendGoods)
     {
