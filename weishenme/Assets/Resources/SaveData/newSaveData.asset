@@ -58,560 +58,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 6|GoodsBuildingObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 7|GoodsBuildingState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 6
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: buildingEnum
-      Entry: 3
       Data: 0
-    - Name: allResourceSum
-      Entry: 3
-      Data: 10
-    - Name: generateList
-      Entry: 7
-      Data: 8|CircularQueue`1[[Float, Assembly-CSharp]], Assembly-CSharp
-    - Name: _queue
-      Entry: 7
-      Data: 9|Float[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _capacity
-      Entry: 3
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: prodSate
-      Entry: 7
-      Data: 10|Float, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: goodsManager
-      Entry: 7
-      Data: 11|GoodsManager, Assembly-CSharp
-    - Name: goods
-      Entry: 7
-      Data: 12|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 13|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 14|GoodsObj, Assembly-CSharp
-    - Name: building
-      Entry: 9
-      Data: 6
-    - Name: sum
-      Entry: 7
-      Data: 15|Int, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: goods
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 16|GoodsObj, Assembly-CSharp
-    - Name: building
-      Entry: 9
-      Data: 6
-    - Name: sum
-      Entry: 7
-      Data: 17|Int, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: goods
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: building
-      Entry: 9
-      Data: 6
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: needs
-      Entry: 7
-      Data: 18|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 13
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 19|NeedGoods, Assembly-CSharp
-    - Name: goods
-      Entry: 3
-      Data: 0
-    - Name: needSum
-      Entry: 3
-      Data: 0
-    - Name: obj
-      Entry: 9
-      Data: 6
-    - Name: maxMoney
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sends
-      Entry: 7
-      Data: 20|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 13
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 21|SendGoods, Assembly-CSharp
-    - Name: goods
-      Entry: 3
-      Data: 1
-    - Name: remainSum
-      Entry: 9
-      Data: 17
-    - Name: minMoney
-      Entry: 4
-      Data: 0
-    - Name: obj
-      Entry: 9
-      Data: 6
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sendWork
-      Entry: 7
-      Data: 22|SendWork, Assembly-CSharp
-    - Name: scene
-      Entry: 6
-      Data: 
-    - Name: obj
-      Entry: 9
-      Data: 6
-    - Name: maxMoney
-      Entry: 4
-      Data: 0
-    - Name: workTime
-      Entry: 3
-      Data: 0
-    - Name: wastEnerge
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 7
-      Data: 23|BuildingEc, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 6
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: x
-      Entry: 3
-      Data: 0
-    - Name: y
-      Entry: 3
-      Data: 0
-    - Name: scene
-      Entry: 9
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 24|GoodsBuildingObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 25|GoodsBuildingState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 24
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: buildingEnum
-      Entry: 3
-      Data: 1
-    - Name: allResourceSum
-      Entry: 3
-      Data: 10
-    - Name: generateList
-      Entry: 7
-      Data: 26|CircularQueue`1[[Float, Assembly-CSharp]], Assembly-CSharp
-    - Name: _queue
-      Entry: 7
-      Data: 27|Float[], Assembly-CSharp
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: _capacity
-      Entry: 3
-      Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: prodSate
-      Entry: 7
-      Data: 28|Float, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: goodsManager
-      Entry: 7
-      Data: 29|GoodsManager, Assembly-CSharp
-    - Name: goods
-      Entry: 7
-      Data: 30|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 13
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 31|GoodsObj, Assembly-CSharp
-    - Name: building
-      Entry: 9
-      Data: 24
-    - Name: sum
-      Entry: 7
-      Data: 32|Int, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: goods
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 7
-      Data: 33|GoodsObj, Assembly-CSharp
-    - Name: building
-      Entry: 9
-      Data: 24
-    - Name: sum
-      Entry: 7
-      Data: 34|Int, Assembly-CSharp
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: goods
-      Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: building
-      Entry: 9
-      Data: 24
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: needs
-      Entry: 7
-      Data: 35|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 13
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sends
-      Entry: 7
-      Data: 36|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 13
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 37|SendGoods, Assembly-CSharp
-    - Name: goods
-      Entry: 3
-      Data: 0
-    - Name: remainSum
-      Entry: 9
-      Data: 32
-    - Name: minMoney
-      Entry: 4
-      Data: 0
-    - Name: obj
-      Entry: 9
-      Data: 24
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sendWork
-      Entry: 7
-      Data: 38|SendWork, Assembly-CSharp
-    - Name: scene
-      Entry: 6
-      Data: 
-    - Name: obj
-      Entry: 9
-      Data: 24
-    - Name: maxMoney
-      Entry: 4
-      Data: 0
-    - Name: workTime
-      Entry: 3
-      Data: 0
-    - Name: wastEnerge
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 7
-      Data: 39|BuildingEc, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 24
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: x
-      Entry: 3
-      Data: 0
-    - Name: y
-      Entry: 3
-      Data: 1
-    - Name: scene
-      Entry: 9
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -620,7 +67,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 40|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
+      Data: 6|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
     - Name: 
       Entry: 12
       Data: 0
@@ -635,7 +82,7 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 41|SceneEcInf, Assembly-CSharp
+      Data: 7|SceneEcInf, Assembly-CSharp
     - Name: obj
       Entry: 9
       Data: 3
@@ -647,13 +94,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 42|SceneObj, Assembly-CSharp
+      Data: 8|SceneObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 43|SceneState, Assembly-CSharp
+      Data: 9|SceneState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 42
+      Data: 8
     - Name: x
       Entry: 3
       Data: 0
@@ -662,7 +109,7 @@ MonoBehaviour:
       Data: 1
     - Name: buildings
       Entry: 7
-      Data: 44|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
+      Data: 10|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -675,7 +122,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 45|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
+      Data: 11|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
     - Name: 
       Entry: 12
       Data: 0
@@ -690,10 +137,10 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 46|SceneEcInf, Assembly-CSharp
+      Data: 12|SceneEcInf, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 42
+      Data: 8
     - Name: 
       Entry: 8
       Data: 
@@ -708,19 +155,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 47|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib
+      Data: 13|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 7
-      Data: 48|SceneObj, Assembly-CSharp
+      Data: 14|SceneObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 49|SceneState, Assembly-CSharp
+      Data: 15|SceneState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 48
+      Data: 14
     - Name: x
       Entry: 3
       Data: 1
@@ -729,7 +176,7 @@ MonoBehaviour:
       Data: 0
     - Name: buildings
       Entry: 7
-      Data: 50|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
+      Data: 16|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -742,7 +189,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 51|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
+      Data: 17|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
     - Name: 
       Entry: 12
       Data: 0
@@ -757,10 +204,10 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 52|SceneEcInf, Assembly-CSharp
+      Data: 18|SceneEcInf, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 48
+      Data: 14
     - Name: 
       Entry: 8
       Data: 
@@ -769,13 +216,13 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 53|SceneObj, Assembly-CSharp
+      Data: 19|SceneObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 54|SceneState, Assembly-CSharp
+      Data: 20|SceneState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 19
     - Name: x
       Entry: 3
       Data: 1
@@ -784,7 +231,7 @@ MonoBehaviour:
       Data: 1
     - Name: buildings
       Entry: 7
-      Data: 55|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
+      Data: 21|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -797,7 +244,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 56|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
+      Data: 22|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
     - Name: 
       Entry: 12
       Data: 0
@@ -812,10 +259,10 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 57|SceneEcInf, Assembly-CSharp
+      Data: 23|SceneEcInf, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 19
     - Name: 
       Entry: 8
       Data: 
@@ -836,7 +283,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 58|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
+      Data: 24|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
     - Name: 
       Entry: 12
       Data: 0
@@ -848,24 +295,21 @@ MonoBehaviour:
       Data: 
     - Name: goodsMatcher
       Entry: 7
-      Data: 59|GoodsMatcher, Assembly-CSharp
+      Data: 25|GoodsMatcher, Assembly-CSharp
     - Name: goodsMatchs
       Entry: 7
-      Data: 60|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract,
+      Data: 26|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract,
         Assembly-CSharp]], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: needGoods
       Entry: 7
-      Data: 61|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]],
+      Data: 27|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 19
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -874,11 +318,11 @@ MonoBehaviour:
       Data: 
     - Name: sendGoods
       Entry: 7
-      Data: 62|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods,
+      Data: 28|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods,
         Assembly-CSharp]], System.Core]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 63|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
+      Data: 29|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -891,57 +335,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 1
-    - Name: $v
-      Entry: 7
-      Data: 64|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]],
-        System.Core
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 21
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 65|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]],
-        System.Core
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 9
-      Data: 37
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -953,17 +347,17 @@ MonoBehaviour:
       Data: 
     - Name: workMatcher
       Entry: 7
-      Data: 66|WorkMatcher, Assembly-CSharp
+      Data: 30|WorkMatcher, Assembly-CSharp
     - Name: workMatchs
       Entry: 7
-      Data: 67|BiDictionary`3[[NeedWork, Assembly-CSharp],[SendWork, Assembly-CSharp],[WorkContract,
+      Data: 31|BiDictionary`3[[NeedWork, Assembly-CSharp],[SendWork, Assembly-CSharp],[WorkContract,
         Assembly-CSharp]], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: sendWorks
       Entry: 7
-      Data: 68|System.Collections.Generic.SortedSet`1[[SendWork, Assembly-CSharp]],
+      Data: 32|System.Collections.Generic.SortedSet`1[[SendWork, Assembly-CSharp]],
         System
     - Name: 
       Entry: 12
@@ -976,7 +370,7 @@ MonoBehaviour:
       Data: 
     - Name: needWorks
       Entry: 7
-      Data: 69|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib
+      Data: 33|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -991,7 +385,7 @@ MonoBehaviour:
       Data: 
     - Name: pathTrans
       Entry: 7
-      Data: 70|System.Collections.Generic.List`1[[PathTrans, Assembly-CSharp]], mscorlib
+      Data: 34|System.Collections.Generic.List`1[[PathTrans, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
       Data: 0

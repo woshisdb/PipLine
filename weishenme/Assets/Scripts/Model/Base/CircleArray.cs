@@ -6,9 +6,9 @@ using UnityEngine;
 public class CircularQueue<T>
 {
     public T[] _queue;
-    private int _head;
-    private int _tail;
-    private int _size;
+    public int _head;
+    public int _tail;
+    public int _size;
     public int _capacity;
 
     public CircularQueue(int n)

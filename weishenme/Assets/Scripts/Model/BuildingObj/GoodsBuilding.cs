@@ -12,7 +12,7 @@ public class GoodsBuildingState : BuildingState
     /// <summary>
     /// 循环序列
     /// </summary>
-    public CircularQueue<Float> generateList;
+    public List<Float> generateList;
     /// <summary>
     /// 生产力的数目
     /// </summary>
@@ -29,11 +29,15 @@ public class GoodsBuildingState : BuildingState
     {
         return buildingMeta.ReturnEnum();
     }
-    public GoodsBuildingState(GoodsBuildingObj obj,BuildingEnum buildingEnum) : base(obj,buildingEnum)
+    public GoodsBuildingState(GoodsBuildingObj obj, BuildingEnum buildingEnum) : base(obj, buildingEnum)
     {
-        goodsManager = new GoodsManager(buildingMeta.GetGoods(),obj);
-        generateList = new CircularQueue<Float>(buildingMeta.spendTime);
-        generateList.Clear();
+        goodsManager = new GoodsManager(buildingMeta.GetGoods(), obj);
+        generateList = new List<Float>();
+        for (int i = 0; i <buildingMeta.spendTime; i++)
+        {
+            generateList.Add(new Float(0));
+        }
+        //generateList.Clear();
         prodSate = 0;
         allResourceSum = 10;
     }
@@ -120,7 +124,7 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
             sum.Value -= canPutSum* item.Item2;
         }
         //now.goodsManager.goods[now.buildingMeta.pipOutput.Item1].sum.Value
-        now.generateList.FindFront(0).Value+= canPutSum * now.buildingMeta.pipOutput.Item2;
+        now.generateList[0].Value+= canPutSum * now.buildingMeta.pipOutput.Item2;
     }
     /// <summary>
     /// 根据生产力更新商品流水线
@@ -130,35 +134,36 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
     public void GeneratePipline()
     {
         var state = (GoodsBuildingState)now;
+        state.prodSate = 1000;
         // 遍历流水线，从队尾开始
-        for (int i = 0; i < state.generateList.Size(); i++)
+        for (int i = state.generateList.Count-1; i >=0; i--)
         {
             if (state.prodSate >= 0)
             {
                 // 获取当前流水线节点，FindTail(i) 从队尾向头部查找第 i 个元素
-                var node = state.generateList.FindTail(i);
+                var node = state.generateList[i];
 
                 // 判断是否为最后一个节点
-                if (i == 0) // 处理最后一个节点（队尾）
+                if (i == state.generateList.Count - 1) // 处理最后一个节点（队尾）
                 {
-                    var needRed = Math.Min(state.prodSate, node);
+                    var needRed = Mathf.CeilToInt(Math.Min(state.prodSate, node));
                     state.prodSate -= needRed;
                     var tempNow = node;
-                    node -= needRed;
-                    int allCreate = Mathf.CeilToInt(tempNow) - Mathf.CeilToInt(node);
+                    node.value -= needRed;
+                    int allCreate = (int)needRed;
                     // 检查该商品是否完成生产，如果完成则加入到 goodslist 中
                     // 更新商品数量
-                    state.goodsManager.goods[now.buildingMeta.pipOutput.Item1].sum += now.buildingMeta.pipOutput.Item2 * allCreate;
+                    state.goodsManager.goods[now.buildingMeta.pipOutput.Item1].sum.value += now.buildingMeta.pipOutput.Item2 * allCreate;
                 }
                 else // 处理其他节点（非队尾）
                 {
                     // 将商品向前推进（模拟流水线）
-                    var nextNode = state.generateList.FindTail(i - 1); // 查找上一个节点
-                    nextNode = node;
+                    var nextNode = state.generateList[i + 1]; // 查找上一个节点
+                    //nextNode = node;
                     var needRed = Math.Min(state.prodSate, node);
                     state.prodSate -= needRed;
-                    nextNode += needRed;
-                    node -= needRed;
+                    nextNode.Value += needRed;
+                    node.Value -= needRed;
                 }
             }
         }

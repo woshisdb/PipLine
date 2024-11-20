@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Float
 {
-    private float value;
+    public float value;
 
     // 构造函数
     public Float(float value=0)
@@ -82,7 +82,7 @@ public class Float
 
 public class Int
 {
-    private int value;
+    public int value;
 
     // 构造函数
     public Int(int value = 0)

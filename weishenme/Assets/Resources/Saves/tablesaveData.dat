@@ -33,43 +33,44 @@
                                             "$type": "7|GoodsBuildingState, Assembly-CSharp",
                                             "obj": $iref:6,
                                             "belong": null,
-                                            "buildingEnum": 0,
+                                            "buildingEnum": 1,
                                             "allResourceSum": 10,
                                             "generateList": {
                                                 "$id": 8,
-                                                "$type": "8|CircularQueue`1[[Float, Assembly-CSharp]], Assembly-CSharp",
-                                                "_queue": {
-                                                    "$id": 9,
-                                                    "$type": "9|Float[], Assembly-CSharp",
-                                                    "$rlength": 10,
-                                                    "$rcontent": [
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null
-                                                    ]
-                                                },
-                                                "_capacity": 10
+                                                "$type": "8|System.Collections.Generic.List`1[[Float, Assembly-CSharp]], mscorlib",
+                                                "$rlength": 3,
+                                                "$rcontent": [
+                                                    {
+                                                        "$id": 9,
+                                                        "$type": "9|Float, Assembly-CSharp",
+                                                        "value": 0
+                                                    },
+                                                    {
+                                                        "$id": 10,
+                                                        "$type": 9,
+                                                        "value": 0
+                                                    },
+                                                    {
+                                                        "$id": 11,
+                                                        "$type": 9,
+                                                        "value": 0
+                                                    }
+                                                ]
                                             },
                                             "prodSate": {
-                                                "$id": 10,
-                                                "$type": "10|Float, Assembly-CSharp"
+                                                "$id": 12,
+                                                "$type": 9,
+                                                "value": 0
                                             },
                                             "goodsManager": {
-                                                "$id": 11,
-                                                "$type": "11|GoodsManager, Assembly-CSharp",
+                                                "$id": 13,
+                                                "$type": "10|GoodsManager, Assembly-CSharp",
                                                 "goods": {
-                                                    "$id": 12,
-                                                    "$type": "12|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj, Assembly-CSharp]], mscorlib",
+                                                    "$id": 14,
+                                                    "$type": "11|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj, Assembly-CSharp]], mscorlib",
                                                     "comparer": {
-                                                        "$id": 13,
-                                                        "$type": "13|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]], mscorlib",
+                                                        "$id": 15,
+                                                        "$type": "12|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]], mscorlib",
                                                         "$rlength": 0,
                                                         "$rcontent": [
                                                         ]
@@ -79,27 +80,29 @@
                                                         {
                                                             "$k": 0,
                                                             "$v": {
-                                                                "$id": 14,
-                                                                "$type": "14|GoodsObj, Assembly-CSharp",
+                                                                "$id": 16,
+                                                                "$type": "13|GoodsObj, Assembly-CSharp",
                                                                 "building": $iref:6,
                                                                 "sum": {
-                                                                    "$id": 15,
-                                                                    "$type": "15|Int, Assembly-CSharp"
+                                                                    "$id": 17,
+                                                                    "$type": "14|Int, Assembly-CSharp",
+                                                                    "value": 0
                                                                 },
                                                                 "goods": 0
                                                             }
                                                         },
                                                         {
-                                                            "$k": 1,
+                                                            "$k": 2,
                                                             "$v": {
-                                                                "$id": 16,
-                                                                "$type": 14,
+                                                                "$id": 18,
+                                                                "$type": 13,
                                                                 "building": $iref:6,
                                                                 "sum": {
-                                                                    "$id": 17,
-                                                                    "$type": 15
+                                                                    "$id": 19,
+                                                                    "$type": 14,
+                                                                    "value": 10000
                                                                 },
-                                                                "goods": 1
+                                                                "goods": 2
                                                             }
                                                         }
                                                     ]
@@ -107,36 +110,25 @@
                                                 "building": $iref:6
                                             },
                                             "needs": {
-                                                "$id": 18,
-                                                "$type": "16|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods, Assembly-CSharp]], mscorlib",
-                                                "comparer": $iref:13,
+                                                "$id": 20,
+                                                "$type": "15|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods, Assembly-CSharp]], mscorlib",
+                                                "comparer": $iref:15,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "sends": {
+                                                "$id": 21,
+                                                "$type": "16|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods, Assembly-CSharp]], mscorlib",
+                                                "comparer": $iref:15,
                                                 "$rlength": 1,
                                                 "$rcontent": [
                                                     {
                                                         "$k": 0,
                                                         "$v": {
-                                                            "$id": 19,
-                                                            "$type": "17|NeedGoods, Assembly-CSharp",
+                                                            "$id": 22,
+                                                            "$type": "17|SendGoods, Assembly-CSharp",
                                                             "goods": 0,
-                                                            "needSum": 0,
-                                                            "obj": $iref:6,
-                                                            "maxMoney": 0
-                                                        }
-                                                    }
-                                                ]
-                                            },
-                                            "sends": {
-                                                "$id": 20,
-                                                "$type": "18|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods, Assembly-CSharp]], mscorlib",
-                                                "comparer": $iref:13,
-                                                "$rlength": 1,
-                                                "$rcontent": [
-                                                    {
-                                                        "$k": 1,
-                                                        "$v": {
-                                                            "$id": 21,
-                                                            "$type": "19|SendGoods, Assembly-CSharp",
-                                                            "goods": 1,
                                                             "remainSum": $iref:17,
                                                             "minMoney": 0,
                                                             "obj": $iref:6
@@ -145,8 +137,8 @@
                                                 ]
                                             },
                                             "sendWork": {
-                                                "$id": 22,
-                                                "$type": "20|SendWork, Assembly-CSharp",
+                                                "$id": 23,
+                                                "$type": "18|SendWork, Assembly-CSharp",
                                                 "scene": null,
                                                 "obj": $iref:6,
                                                 "maxMoney": 0,
@@ -155,8 +147,8 @@
                                             }
                                         },
                                         "ecInf": {
-                                            "$id": 23,
-                                            "$type": "21|BuildingEc, Assembly-CSharp",
+                                            "$id": 24,
+                                            "$type": "19|BuildingEc, Assembly-CSharp",
                                             "obj": $iref:6
                                         },
                                         "x": 0,
@@ -164,121 +156,135 @@
                                         "scene": $iref:3
                                     },
                                     {
-                                        "$id": 24,
+                                        "$id": 25,
                                         "$type": 6,
                                         "state": {
-                                            "$id": 25,
+                                            "$id": 26,
                                             "$type": 7,
-                                            "obj": $iref:24,
+                                            "obj": $iref:25,
                                             "belong": null,
-                                            "buildingEnum": 1,
+                                            "buildingEnum": 0,
                                             "allResourceSum": 10,
                                             "generateList": {
-                                                "$id": 26,
+                                                "$id": 27,
                                                 "$type": 8,
-                                                "_queue": {
-                                                    "$id": 27,
-                                                    "$type": 9,
-                                                    "$rlength": 10,
-                                                    "$rcontent": [
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null
-                                                    ]
-                                                },
-                                                "_capacity": 10
+                                                "$rlength": 3,
+                                                "$rcontent": [
+                                                    {
+                                                        "$id": 28,
+                                                        "$type": 9,
+                                                        "value": 0
+                                                    },
+                                                    {
+                                                        "$id": 29,
+                                                        "$type": 9,
+                                                        "value": 0
+                                                    },
+                                                    {
+                                                        "$id": 30,
+                                                        "$type": 9,
+                                                        "value": 0
+                                                    }
+                                                ]
                                             },
                                             "prodSate": {
-                                                "$id": 28,
-                                                "$type": 10
+                                                "$id": 31,
+                                                "$type": 9,
+                                                "value": 0
                                             },
                                             "goodsManager": {
-                                                "$id": 29,
-                                                "$type": 11,
+                                                "$id": 32,
+                                                "$type": 10,
                                                 "goods": {
-                                                    "$id": 30,
-                                                    "$type": 12,
-                                                    "comparer": $iref:13,
+                                                    "$id": 33,
+                                                    "$type": 11,
+                                                    "comparer": $iref:15,
                                                     "$rlength": 2,
                                                     "$rcontent": [
                                                         {
                                                             "$k": 0,
                                                             "$v": {
-                                                                "$id": 31,
-                                                                "$type": 14,
-                                                                "building": $iref:24,
+                                                                "$id": 34,
+                                                                "$type": 13,
+                                                                "building": $iref:25,
                                                                 "sum": {
-                                                                    "$id": 32,
-                                                                    "$type": 15
+                                                                    "$id": 35,
+                                                                    "$type": 14,
+                                                                    "value": 0
                                                                 },
                                                                 "goods": 0
                                                             }
                                                         },
                                                         {
-                                                            "$k": 2,
+                                                            "$k": 1,
                                                             "$v": {
-                                                                "$id": 33,
-                                                                "$type": 14,
-                                                                "building": $iref:24,
+                                                                "$id": 36,
+                                                                "$type": 13,
+                                                                "building": $iref:25,
                                                                 "sum": {
-                                                                    "$id": 34,
-                                                                    "$type": 15
+                                                                    "$id": 37,
+                                                                    "$type": 14,
+                                                                    "value": 0
                                                                 },
-                                                                "goods": 2
+                                                                "goods": 1
                                                             }
                                                         }
                                                     ]
                                                 },
-                                                "building": $iref:24
+                                                "building": $iref:25
                                             },
                                             "needs": {
-                                                "$id": 35,
-                                                "$type": 16,
-                                                "comparer": $iref:13,
-                                                "$rlength": 0,
-                                                "$rcontent": [
-                                                ]
-                                            },
-                                            "sends": {
-                                                "$id": 36,
-                                                "$type": 18,
-                                                "comparer": $iref:13,
+                                                "$id": 38,
+                                                "$type": 15,
+                                                "comparer": $iref:15,
                                                 "$rlength": 1,
                                                 "$rcontent": [
                                                     {
                                                         "$k": 0,
                                                         "$v": {
-                                                            "$id": 37,
-                                                            "$type": 19,
+                                                            "$id": 39,
+                                                            "$type": "20|NeedGoods, Assembly-CSharp",
                                                             "goods": 0,
-                                                            "remainSum": $iref:32,
+                                                            "needSum": 0,
+                                                            "obj": $iref:25,
+                                                            "maxMoney": 0
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "sends": {
+                                                "$id": 40,
+                                                "$type": 16,
+                                                "comparer": $iref:15,
+                                                "$rlength": 1,
+                                                "$rcontent": [
+                                                    {
+                                                        "$k": 1,
+                                                        "$v": {
+                                                            "$id": 41,
+                                                            "$type": 17,
+                                                            "goods": 1,
+                                                            "remainSum": $iref:37,
                                                             "minMoney": 0,
-                                                            "obj": $iref:24
+                                                            "obj": $iref:25
                                                         }
                                                     }
                                                 ]
                                             },
                                             "sendWork": {
-                                                "$id": 38,
-                                                "$type": 20,
+                                                "$id": 42,
+                                                "$type": 18,
                                                 "scene": null,
-                                                "obj": $iref:24,
+                                                "obj": $iref:25,
                                                 "maxMoney": 0,
                                                 "workTime": 0,
                                                 "wastEnerge": 0
                                             }
                                         },
                                         "ecInf": {
-                                            "$id": 39,
-                                            "$type": 21,
-                                            "obj": $iref:24
+                                            "$id": 43,
+                                            "$type": 19,
+                                            "obj": $iref:25
                                         },
                                         "x": 0,
                                         "y": 1,
@@ -287,114 +293,114 @@
                                 ]
                             },
                             "npcs": {
-                                "$id": 40,
-                                "$type": "22|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core",
+                                "$id": 44,
+                                "$type": "21|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core",
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             }
                         },
                         "ecInf": {
-                            "$id": 41,
-                            "$type": "23|SceneEcInf, Assembly-CSharp",
+                            "$id": 45,
+                            "$type": "22|SceneEcInf, Assembly-CSharp",
                             "obj": $iref:3
                         }
                     },
                     {
-                        "$id": 42,
+                        "$id": 46,
                         "$type": 3,
                         "state": {
-                            "$id": 43,
+                            "$id": 47,
                             "$type": 4,
-                            "obj": $iref:42,
+                            "obj": $iref:46,
                             "x": 0,
                             "y": 1,
                             "buildings": {
-                                "$id": 44,
+                                "$id": 48,
                                 "$type": 5,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             },
                             "npcs": {
-                                "$id": 45,
-                                "$type": 22,
+                                "$id": 49,
+                                "$type": 21,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             }
                         },
                         "ecInf": {
-                            "$id": 46,
-                            "$type": 23,
-                            "obj": $iref:42
+                            "$id": 50,
+                            "$type": 22,
+                            "obj": $iref:46
                         }
                     }
                 ]
             },
             {
-                "$id": 47,
+                "$id": 51,
                 "$type": 2,
                 "$rlength": 2,
                 "$rcontent": [
                     {
-                        "$id": 48,
+                        "$id": 52,
                         "$type": 3,
                         "state": {
-                            "$id": 49,
+                            "$id": 53,
                             "$type": 4,
-                            "obj": $iref:48,
+                            "obj": $iref:52,
                             "x": 1,
                             "y": 0,
                             "buildings": {
-                                "$id": 50,
+                                "$id": 54,
                                 "$type": 5,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             },
                             "npcs": {
-                                "$id": 51,
-                                "$type": 22,
+                                "$id": 55,
+                                "$type": 21,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             }
                         },
                         "ecInf": {
-                            "$id": 52,
-                            "$type": 23,
-                            "obj": $iref:48
+                            "$id": 56,
+                            "$type": 22,
+                            "obj": $iref:52
                         }
                     },
                     {
-                        "$id": 53,
+                        "$id": 57,
                         "$type": 3,
                         "state": {
-                            "$id": 54,
+                            "$id": 58,
                             "$type": 4,
-                            "obj": $iref:53,
+                            "obj": $iref:57,
                             "x": 1,
                             "y": 1,
                             "buildings": {
-                                "$id": 55,
+                                "$id": 59,
                                 "$type": 5,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             },
                             "npcs": {
-                                "$id": 56,
-                                "$type": 22,
+                                "$id": 60,
+                                "$type": 21,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             }
                         },
                         "ecInf": {
-                            "$id": 57,
-                            "$type": 23,
-                            "obj": $iref:53
+                            "$id": 61,
+                            "$type": 22,
+                            "obj": $iref:57
                         }
                     }
                 ]
@@ -402,33 +408,33 @@
         ]
     },
     "npcs": {
-        "$id": 58,
-        "$type": 22,
+        "$id": 62,
+        "$type": 21,
         "$rlength": 0,
         "$rcontent": [
         ]
     },
     "goodsMatcher": {
-        "$id": 59,
-        "$type": "24|GoodsMatcher, Assembly-CSharp",
+        "$id": 63,
+        "$type": "23|GoodsMatcher, Assembly-CSharp",
         "goodsMatchs": {
-            "$id": 60,
-            "$type": "25|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract, Assembly-CSharp]], Assembly-CSharp"
+            "$id": 64,
+            "$type": "24|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract, Assembly-CSharp]], Assembly-CSharp"
         },
         "needGoods": {
-            "$id": 61,
-            "$type": "26|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]], System.Core",
+            "$id": 65,
+            "$type": "25|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]], System.Core",
             "$rlength": 1,
             "$rcontent": [
-                $iref:19
+                $iref:39
             ]
         },
         "sendGoods": {
-            "$id": 62,
-            "$type": "27|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core]], mscorlib",
+            "$id": 66,
+            "$type": "26|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core]], mscorlib",
             "comparer": {
-                "$id": 63,
-                "$type": 13,
+                "$id": 67,
+                "$type": 12,
                 "$rlength": 0,
                 "$rcontent": [
                 ]
@@ -436,24 +442,24 @@
             "$rlength": 2,
             "$rcontent": [
                 {
-                    "$k": 1,
+                    "$k": 0,
                     "$v": {
-                        "$id": 64,
-                        "$type": "28|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core",
+                        "$id": 68,
+                        "$type": "27|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core",
                         "$rlength": 1,
                         "$rcontent": [
-                            $iref:21
+                            $iref:22
                         ]
                     }
                 },
                 {
-                    "$k": 0,
+                    "$k": 1,
                     "$v": {
-                        "$id": 65,
-                        "$type": 28,
+                        "$id": 69,
+                        "$type": 27,
                         "$rlength": 1,
                         "$rcontent": [
-                            $iref:37
+                            $iref:41
                         ]
                     }
                 }
@@ -461,30 +467,30 @@
         }
     },
     "workMatcher": {
-        "$id": 66,
-        "$type": "29|WorkMatcher, Assembly-CSharp",
+        "$id": 70,
+        "$type": "28|WorkMatcher, Assembly-CSharp",
         "workMatchs": {
-            "$id": 67,
-            "$type": "30|BiDictionary`3[[NeedWork, Assembly-CSharp],[SendWork, Assembly-CSharp],[WorkContract, Assembly-CSharp]], Assembly-CSharp"
+            "$id": 71,
+            "$type": "29|BiDictionary`3[[NeedWork, Assembly-CSharp],[SendWork, Assembly-CSharp],[WorkContract, Assembly-CSharp]], Assembly-CSharp"
         },
         "sendWorks": {
-            "$id": 68,
-            "$type": "31|System.Collections.Generic.SortedSet`1[[SendWork, Assembly-CSharp]], System",
+            "$id": 72,
+            "$type": "30|System.Collections.Generic.SortedSet`1[[SendWork, Assembly-CSharp]], System",
             "$rlength": 0,
             "$rcontent": [
             ]
         },
         "needWorks": {
-            "$id": 69,
-            "$type": "32|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib",
+            "$id": 73,
+            "$type": "31|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib",
             "$rlength": 0,
             "$rcontent": [
             ]
         }
     },
     "pathTrans": {
-        "$id": 70,
-        "$type": "33|System.Collections.Generic.List`1[[PathTrans, Assembly-CSharp]], mscorlib",
+        "$id": 74,
+        "$type": "32|System.Collections.Generic.List`1[[PathTrans, Assembly-CSharp]], mscorlib",
         "$rlength": 0,
         "$rcontent": [
         ]
