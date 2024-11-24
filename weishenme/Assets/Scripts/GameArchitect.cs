@@ -31,6 +31,7 @@ public class GameArchitect : Singleton<GameArchitect>
         ///世界的对象
         worldViewSystem = GameObject.Find("World").GetComponent<WorldView>();
         worldViewSystem.Bind(mapSystem);
+        uiManager.selectUI.BindObj();
     }
     public HashSet<NpcObj> npcs { get { return mapSystem.npcs; } }
 
@@ -39,29 +40,21 @@ public class GameArchitect : Singleton<GameArchitect>
     /// </summary>
     public void Update()
     {
-        ///对场景进行一系列的初始化,更新那些道路可以前进
-        //InitScene();
-        ////NPC请求
+        ////NPC注册工作后处理,比如是否需要工作
         //NpcThink();
-        ///建筑更新,自己订单的价格
+        ///建筑更新,修改订单的需求量,价格等
         BuildingThink();
-        ////更新每个道路,货物搬运
-        //PathUpdate();
-        ///对市场进行更新
-        //MarketWorkUpdate();
         //建筑进行生产的更新
         BuildingUpdate();
-        //人更新购买的物品  
-        //NpcAfterUpdate();
         ///市场商品的更新
-        //MarketGoodsUpdate();
+        MarketGoodsUpdate();
+        //地图更新资源流水线
+        MapSystem.Instance.Update();
     }
 
-    private void NpcAfterUpdate()
-    {
-
-    }
-
+    /// <summary>
+    /// 建筑更新
+    /// </summary>
     private void BuildingUpdate()
     {
         foreach (var scenex in mapSystem.scenes)//更新场景
@@ -74,10 +67,6 @@ public class GameArchitect : Singleton<GameArchitect>
         }
     }
 
-    private void PathUpdate()
-    {
-        //throw new NotImplementedException();
-    }
     /// <summary>
     /// 思考
     /// </summary>
@@ -90,20 +79,6 @@ public class GameArchitect : Singleton<GameArchitect>
                 {
                     npc.BefThink();
                 }
-        }
-    }
-
-    /// <summary>
-    /// 更新场景的每一条道路,来判断是否可以走通
-    /// </summary>
-    public void InitScene()
-    {
-        foreach (var scenex in mapSystem.scenes)//更新场景
-        {
-            foreach (var scene in scenex)
-            {
-
-            }
         }
     }
 

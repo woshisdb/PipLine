@@ -83,7 +83,7 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
 
     public void addMoney(Float money)
     {
-        throw new NotImplementedException();
+        now.money.value += money;
     }
 
     public SceneObj aimPos()
@@ -169,9 +169,9 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
         }
     }
 
-    public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum)
+    public void GetGoodsProcess(GoodsEnum goodsEnum, int sum)
     {
-        throw new NotImplementedException();
+        now.goodsManager.goods[goodsEnum].sum.value+=sum;
     }
 
     public NpcObj GetNpc()
@@ -196,9 +196,8 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
 
     public void reduceMoney(Float money)
     {
-        throw new NotImplementedException();
+        now.money.value-=money;
     }
-
 
     /// <summary>
     /// 根据状态更新
@@ -303,6 +302,59 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
     public float NeedGoodsSatifyRate(SendGoods sendGoods)
     {
         throw new NotImplementedException();
+    }
+
+    public Float getMoney()
+    {
+        return now.money;
+    }
+    public override List<UIItemBinder> GetUI()
+    {
+        var ret = new List<UIItemBinder>();
+        ret.Add(new KVItemBinder(() =>
+        {
+            return "xy";
+        },
+        () =>
+        {
+            return "(" + x + "," + y + ")";
+        }));
+        ret.Add(new KVItemBinder(() =>
+        {
+            return "scene";
+        }, () =>
+        {
+            return "(" + scene.now.x + "," + scene.now.y + ")";
+        }));
+        var goods = new List<UIItemBinder>();
+        foreach(var g in now.goodsManager.goods)
+        {
+            var gx = g;
+            goods.Add(new KVItemBinder(() =>
+            {
+                return gx.Key.ToString();
+            }, () =>
+            {
+                return gx.Value.sum.Value.ToString();
+            }));
+        }
+        var nowUI = new List<UIItemBinder>()
+        {
+            new KVItemBinder(()=>{
+                return "money";
+            },()=>{
+                return now.money.Value.ToString();
+            }),
+            new TableItemBinder(()=>{
+                return "goods";
+            },goods),
+
+        };
+        ret.Add(new TableItemBinder(() =>
+        {
+            return "now";
+        }, nowUI));
+        return ret;
     }
 }
 

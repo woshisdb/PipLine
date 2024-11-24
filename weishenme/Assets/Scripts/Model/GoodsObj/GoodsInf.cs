@@ -53,6 +53,11 @@ public class GoodsInf : IEqualityComparer<GoodsInf>,MetaI<GoodsEnum>
         return obj.goodsEnum.GetHashCode();
     }
 
+    public string RetText()
+    {
+        return name;
+    }
+
     public GoodsEnum ReturnEnum()
     {
         return goodsEnum;

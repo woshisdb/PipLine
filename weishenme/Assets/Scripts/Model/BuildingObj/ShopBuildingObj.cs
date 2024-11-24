@@ -75,15 +75,10 @@ public class ShopBuildingObj : BuildingObj, MarketFactory
     }
     public void addMoney(Float money)
     {
-        throw new System.NotImplementedException();
+        now.money.value += money;
     }
 
     public SceneObj aimPos()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum)
     {
         throw new System.NotImplementedException();
     }
@@ -120,7 +115,7 @@ public class ShopBuildingObj : BuildingObj, MarketFactory
 
     public void reduceMoney(Float money)
     {
-        throw new System.NotImplementedException();
+        now.money.value -= money;
     }
 
     public NeedGoods[] RegisterNeedGoods()
@@ -154,6 +149,16 @@ public class ShopBuildingObj : BuildingObj, MarketFactory
     }
 
     public SendWork[] UnRegisterSendWork()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public Float getMoney()
+    {
+        return now.money;
+    }
+
+    public void GetGoodsProcess(GoodsEnum goodsEnum, int sum)
     {
         throw new System.NotImplementedException();
     }

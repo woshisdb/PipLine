@@ -21,7 +21,17 @@ public enum BuildingEnum
     building0,
 }
 
-public interface MetaI<T>
+public enum PathEnum
+{
+    path0
+}
+
+public interface MetaI
+{
+    public string RetText();
+}
+
+public interface MetaI<T>: MetaI
 {
     public T ReturnEnum();
 }
@@ -33,6 +43,39 @@ public enum GoodsStateEnum
     final,//最终生产商品
 }
 
+public abstract class PathMeta : MetaI<PathEnum>
+{
+    public GameObject view;
+    public PathEnum pathEnum;
+    public PathMeta(PathEnum pathEnum)
+    {
+        this.pathEnum = pathEnum;
+    }
+    public string RetText()
+    {
+        return pathEnum.ToString();
+    }
+
+    public PathEnum ReturnEnum()
+    {
+        return this.pathEnum;
+    }
+    public abstract PathObj createPathObj();
+}
+
+public class Path1Meta : PathMeta
+{
+    public Path1Meta() : base(PathEnum.path0)
+    {
+        view = (GameObject)Resources.Load("Prefab/path");
+    }
+
+    public override PathObj createPathObj()
+    {
+        return new PathObj(ReturnEnum());
+    }
+}
+
 public class Meta:Singleton<Meta>
 {
     public static int dayTime;
@@ -41,7 +84,7 @@ public class Meta:Singleton<Meta>
     /// </summary>
     public Dictionary<GoodsEnum, GoodsInf> goodsInfs;
     public Dictionary<BuildingEnum, BuildingMeta> buildingInfs;
-
+    public Dictionary<PathEnum, PathMeta> pathInfs;
     public BuildingMeta getMeta(BuildingEnum buildingEnum)
     {
         return buildingInfs[buildingEnum];
@@ -51,7 +94,10 @@ public class Meta:Singleton<Meta>
     {
         return goodsInfs[goodsEnum];
     }
-
+    public PathMeta getMeta(PathEnum pathEnum)
+    {
+        return pathInfs[pathEnum];
+    }
     private Meta()
     {
         goodsInfs = new Dictionary<GoodsEnum, GoodsInf>();//商品信息
@@ -60,5 +106,7 @@ public class Meta:Singleton<Meta>
         buildingInfs = new Dictionary<BuildingEnum, BuildingMeta>();//Meta数据
         buildingInfs[BuildingEnum.building1] = new Building1Meta();
         buildingInfs[BuildingEnum.building0]=new Building0Meta();
+        pathInfs=new Dictionary<PathEnum, PathMeta>();
+        pathInfs.Add(PathEnum.path0, new Path1Meta());
     }
 }

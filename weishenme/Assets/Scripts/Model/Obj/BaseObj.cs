@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public interface IWorldPosition
+{
+    public Vector2Int GetWorldPos();
+    public SceneObj GetSceneObj();
+}
+
 /// <summary>
 /// ¶ÔÏóµÄ×´Ì¬
 /// </summary>
@@ -73,6 +79,7 @@ public abstract class BaseObj
     /// </summary>
     /// <returns></returns>
     public abstract string ShowString();
+    public abstract List<UIItemBinder> GetUI();
 }
 
 ///// <summary>

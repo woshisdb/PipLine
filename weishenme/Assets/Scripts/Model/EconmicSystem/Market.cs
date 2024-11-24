@@ -75,31 +75,34 @@ public class GoodsMatcher : Matcher
     public Dictionary<GoodsEnum, HashSet<SendGoods>> sendGoods;
     public override void Match()
     {
-        List<(NeedGoods, SendGoods)> ss = new List<(NeedGoods, SendGoods)>();
-        foreach (NeedGoods s in needGoods)
+        foreach (var need in needGoods)
         {
-            var goodsEnum = s.goods;
-            SendGoods selected = null;
-            foreach (var sends in sendGoods[goodsEnum])//接收商品
+            // 获取能提供该商品的发送者集合
+            if (!sendGoods.TryGetValue(need.goods, out var sendGoodsSet))
+                continue; // 没有该商品的发送者，跳过
+            foreach(var x in sendGoodsSet)
             {
-                if (sends.satifyRate(s) > 0)//选择商品
+                x.sortVal= x.minMoney + MapSystem.Instance.WasterMoney(x.scene, need.scene);
+            }
+            foreach (var send in sendGoodsSet.OrderBy(s => {
+                return s.sortVal;
+            }))
+            {
+                var allcost= MapSystem.Instance.WasterMoney(send.scene, need.scene)+ send.minMoney;
+                // 检查是否满足价格条件
+                if (allcost > need.maxMoney) break;
+                // 分配数量
+                int allocated = Math.Min(need.needSum, send.remainSum);
+                if (allocated > 0)
                 {
-                    if (selected == null)
-                        selected = sends;
-                    else
-                    {
-                        if (sends.satifyRate(s) > selected.satifyRate(s))
-                        {
-                            selected = sends;
-                        }
-                    }
+                    //need.needSum -= allocated;
+                    //send.remainSum -= allocated;
+                    EconmicSystem.Instance.TransGoodsMoney(need,send);//进行交易
+                    // 如果需求已经满足，跳出循环
+                    if (need.needSum <= 0) break;
                 }
             }
-            needGoods.Remove(s);
-            sendGoods[selected.goods].Remove(selected);
-            goodsMatchs.Add(s, selected, new GoodsContract(s, selected));
         }
-        return;
     }
     public void AddNeed(NeedGoods need)
     {
@@ -263,64 +266,5 @@ public class Market : Singleton<Market>
     public void UnRegister(SendWork sendWork)
     {
 
-    }
-
-    /// <summary>
-    /// 两个场景之间的距离和花钱
-    /// </summary>
-    /// <returns></returns>
-    public (int,float) GoodsDistanceCost(SceneObj a,SceneObj b)
-    {
-        return (1,0);
-    }
-    /// <summary>
-    /// NPC之间的距离和花钱
-    /// </summary>
-    /// <returns></returns>
-    public (int, float) NpcDistanceCost(SceneObj a, SceneObj b)
-    {
-        return (1, 0);
-    }
-    /// <summary>
-    /// 预期员工能获得的实际收入
-    /// </summary>
-    /// <param name="sendWork"></param>
-    /// <param name="needWork"></param>
-    /// <returns></returns>
-    public float PredicateWorkMoney(SendWork sendWork, NeedWork needWork)
-    {
-        return sendWork.maxMoney;
-    }
-    /// <summary>
-    /// 预期员工在抛出路费后获得的收入
-    /// </summary>
-    /// <param name="sendWork"></param>
-    /// <param name="needWork"></param>
-    /// <returns></returns>
-    public float PredicateRealWorkMoney(SendWork sendWork,NeedWork needWork)
-    {
-        var disCost = NpcDistanceCost(needWork.obj.nowPos(), sendWork.obj.aimPos()).Item2;
-        return PredicateWorkMoney(sendWork,needWork)-disCost*2;
-    }
-    /// <summary>
-    /// 预期商品进口价格
-    /// </summary>
-    /// <param name="sendWork"></param>
-    /// <param name="needWork"></param>
-    /// <returns></returns>
-    public float PredicateGoodsMoney(SendGoods sendGoods, NeedGoods needGoods)
-    {
-        return sendGoods.minMoney+GoodsDistanceCost(sendGoods.obj.nowPos(), needGoods.obj.aimPos()).Item2;
-    }
-    /// <summary>
-    /// 预期员工在抛出路费后获得的收入
-    /// </summary>
-    /// <param name="sendWork"></param>
-    /// <param name="needWork"></param>
-    /// <returns></returns>
-    public float PredicateRealGoodsMoney(SendGoods sendGoods, NeedGoods needGoods)
-    {
-        var disCost = GoodsDistanceCost(sendGoods.obj.nowPos(), needGoods.obj.aimPos()).Item2;
-        return disCost + PredicateGoodsMoney(sendGoods, needGoods);
     }
 }

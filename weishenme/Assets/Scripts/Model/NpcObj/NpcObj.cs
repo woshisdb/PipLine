@@ -224,4 +224,19 @@ public class NpcObj : BaseObj,INpc
     {
         return 0.5f;
     }
+
+    public Float getMoney()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void GetGoodsProcess(GoodsEnum goodsEnum, int sum)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override List<UIItemBinder> GetUI()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -47,6 +47,11 @@ public abstract class BuildingMeta : MetaI<BuildingEnum>
     }
     public abstract BuildingObj createBuildingObj();
     public abstract BuildingEnum ReturnEnum();
+
+    public string RetText()
+    {
+        return ReturnEnum().ToString();
+    }
 }
 
 public class Building1Meta : BuildingMeta

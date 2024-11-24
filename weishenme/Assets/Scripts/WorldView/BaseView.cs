@@ -17,3 +17,12 @@ public class BaseView : MonoBehaviour, ISendEvent
         this.SendEvent<SelectViewEvent>(new SelectViewEvent(this));
     }
 }
+
+public struct SelectViewEvent:IEvent
+{
+    public BaseView view;
+    public SelectViewEvent(BaseView view)
+    {
+        this.view = view;
+    }
+}

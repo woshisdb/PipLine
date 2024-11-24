@@ -203,6 +203,7 @@ public class SendGoods
     /// <summary>
     /// ÊÇ·ñÄÜÂú×ã
     /// </summary>
+    public float sortVal;
     public float satifyRate(NeedGoods needGoods)
     {
         return obj.SendGoodsSatifyRate(needGoods);
@@ -251,28 +252,8 @@ public class NeedGoods
     {
         return obj.NeedGoodsSatifyRate(sendGoods);
     }
-    //public Func<SendGoods, float> satifySumRate;
-    //public Func<SendGoods,float> satifyMoneyRate;
-    //public Func<float[]> getRates;
     public NeedGoods(INeedGoods needer)
     {
         obj = needer;
-        //satifySumRate = new Func<SendGoods, float>(e =>
-        //{
-        //    return e.remainSum - needSum;
-        //});
-        //satifyMoneyRate = new Func<SendGoods, float>(e => {
-        //    return maxMoney- e.minMoney;
-        //});
-        //satifyRate = new Func<SendGoods, float>(e =>
-        //{
-        //    var t = getRates();
-        //    var sum = satifySumRate(e);
-        //    var money = satifyMoneyRate(e);
-        //    var satRate = Math.Min(sum,money);
-        //    if(satRate <= 0)
-        //        return 0;
-        //    return t[0]* sum + t[1]* money;
-        //});
     }
 }

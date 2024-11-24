@@ -23,6 +23,8 @@ public interface IMarketUser
     /// </summary>
     /// <param name="money"></param>
     public void reduceMoney(Float money);
+
+    public Float getMoney();
 }
 
 /// <summary>
@@ -103,7 +105,7 @@ public interface INeedGoods : IMarketUser
     /// <summary>
     /// 获取商品列表,用来加进来
     /// </summary>
-    public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum);
+    public void GetGoodsProcess(GoodsEnum goodsEnum, int sum);
     public NeedGoods[] RegisterNeedGoods();
     public NeedGoods[] UnRegisterNeedGoods();
     public SceneObj aimPos();

@@ -23,6 +23,11 @@ public class GovernmentEc : EconomicInf
 
 public class GovernmentObj : BaseObj
 {
+    public override List<UIItemBinder> GetUI()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void InitBaseState()
     {
         throw new System.NotImplementedException();

@@ -14,6 +14,7 @@ public class SaveFile
     public GoodsMatcher goodsMatcher;
     public WorkMatcher workMatcher;
     public List<PathTrans> pathTrans;
+    public CircularQueue<List<TransGoodsItem>> cirQueue;
 }
 
 [CreateAssetMenu(fileName = "newSaveData", menuName = "SaveData/newSaveData")]
@@ -26,6 +27,20 @@ public class SaveData : SerializedScriptableObject
     public GoodsMatcher goodsMatcher { get { return saveFile.goodsMatcher; } }
     public WorkMatcher workMatcher { get { return saveFile.workMatcher; } }
     public List<PathTrans> pathTrans { get { return saveFile.pathTrans; } }
+    public CircularQueue<List<TransGoodsItem>> cirQueue { get { return saveFile.cirQueue; } }
+    /// <summary>
+    /// 设置长度
+    /// </summary>
+    [Button]
+    public void setCirQueue(int n)
+    {
+        saveFile.cirQueue = new CircularQueue<List<TransGoodsItem>>(n);
+        for(int i=0;i<n;i++)
+        {
+            saveFile.cirQueue.Enqueue( new List<TransGoodsItem>() );
+        }
+    }
+
     /// <summary>
     /// 每次修改场景后,修改位置
     /// </summary>
