@@ -13,8 +13,8 @@ public class SaveFile
     //************************市场
     public GoodsMatcher goodsMatcher;
     public WorkMatcher workMatcher;
-    public List<PathTrans> pathTrans;
     public CircularQueue<List<TransGoodsItem>> cirQueue;
+    public GovernmentObj government;
 }
 
 [CreateAssetMenu(fileName = "newSaveData", menuName = "SaveData/newSaveData")]
@@ -26,8 +26,8 @@ public class SaveData : SerializedScriptableObject
 
     public GoodsMatcher goodsMatcher { get { return saveFile.goodsMatcher; } }
     public WorkMatcher workMatcher { get { return saveFile.workMatcher; } }
-    public List<PathTrans> pathTrans { get { return saveFile.pathTrans; } }
     public CircularQueue<List<TransGoodsItem>> cirQueue { get { return saveFile.cirQueue; } }
+    public GovernmentObj Government { get { return saveFile.government; } }
     /// <summary>
     /// 设置长度
     /// </summary>

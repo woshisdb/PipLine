@@ -82,13 +82,13 @@ public class GoodsMatcher : Matcher
                 continue; // 没有该商品的发送者，跳过
             foreach(var x in sendGoodsSet)
             {
-                x.sortVal= x.minMoney + MapSystem.Instance.WasterMoney(x.scene, need.scene);
+                x.sortVal= x.minMoney + MapSystem.Instance.WasterMoney(x.obj, need.obj);
             }
             foreach (var send in sendGoodsSet.OrderBy(s => {
                 return s.sortVal;
             }))
             {
-                var allcost= MapSystem.Instance.WasterMoney(send.scene, need.scene)+ send.minMoney;
+                var allcost= MapSystem.Instance.WasterMoney(send.obj, need.obj)+ send.minMoney;
                 // 检查是否满足价格条件
                 if (allcost > need.maxMoney) break;
                 // 分配数量
@@ -124,72 +124,48 @@ public class GoodsMatcher : Matcher
 
 public class WorkMatcher : Matcher
 {
-    /// <summary>
-    /// 对工作的匹配
-    /// </summary>
-    public BiDictionary<NeedWork, SendWork, WorkContract> workMatchs;
-    /// <summary>
-    /// 发送商品
-    /// </summary>
-    public SortedSet<SendWork> sendWorks;
+    public Dictionary<ProdEnum,List<SendWork>> sendWorks;
     //一系列的工作
-    public List<NeedWork> needWorks;
+    public Dictionary<ProdEnum,List<NeedWork>> needWorks;
     /// <summary>
     /// 一系列协议
     /// </summary>
     public override void Match()
     {
-        List<(SendWork, NeedWork)> ss = new List<(SendWork, NeedWork)>();
-        foreach (var sender in sendWorks)
+        foreach (var item in sendWorks)
         {
-            NeedWork selected = null;
-            foreach (var needs in needWorks)
+            foreach(var sender in item.Value)
             {
-                if (needs.satifyRate(sender) > 0)//选择商品
+                foreach (var needer in needWorks[item.Key])
                 {
-                    if (selected == null)
-                        selected = needs;
-                    else
+                    if(sender.rate<=0)
                     {
-                        if (needs.satifyRate(sender) > selected.satifyRate(sender))
-                        {
-                            selected = needs;
-                        }
+                        break;
                     }
+                    if(!needer.hasWork)
+                    sender.AddNeeder(needer);
                 }
             }
-            needWorks.Remove(selected);
-            sendWorks.Remove(sender);
-            workMatchs.Add(selected, sender, new WorkContract(selected, sender));
         }
     }
-}
-
-public abstract class PathTrans
-{
-    /// <summary>
-    /// 剩余的时间
-    /// </summary>
-    public int wasterTime;
-    /// <summary>
-    /// 结束调用
-    /// </summary>
-    public abstract void EndCall();
-}
-
-public class GoodsPathTrans : PathTrans
-{
-    public override void EndCall()
+    public void AddNeed(NeedWork need)
     {
-        throw new NotImplementedException();
+        needWorks[need.prodEnum].Add(need);
     }
-}
-
-public class NpcPathTrans : PathTrans
-{
-    public override void EndCall()
+    public void AddSend(SendWork send)
     {
-        throw new NotImplementedException();
+        sendWorks[send.prodEnum].Add(send);
+    }
+    public WorkMatcher()
+    {
+        sendWorks=new Dictionary<ProdEnum,List<SendWork>>();
+        needWorks=new Dictionary<ProdEnum,List<NeedWork>>();
+        foreach (var e in Enum.GetValues(typeof( ProdEnum )))
+        {
+            var it=(ProdEnum)e;
+            sendWorks.Add(it, new List<SendWork>());
+            needWorks.Add(it, new List<NeedWork>());
+        }
     }
 }
 
@@ -204,7 +180,6 @@ public class Market : Singleton<Market>
     public List<List<SceneObj>> scenes { get { return SaveSystem.Instance.saveData.SceneObjects; } }
     public GoodsMatcher goodsMatcher { get { return SaveSystem.Instance.saveData.goodsMatcher; } }
     public WorkMatcher workMatcher { get { return SaveSystem.Instance.saveData.workMatcher; } }
-    public List<PathTrans> pathTrans { get { return SaveSystem.Instance.saveData.pathTrans; } }
 
     private Market()
     {
@@ -217,21 +192,6 @@ public class Market : Singleton<Market>
     {
         goodsMatcher.Match();
         workMatcher.Match();
-    }
-    /// <summary>
-    /// 对路径进行更新
-    /// </summary>
-    public void PathUpdate()
-    {
-        for(int i = 0; i < pathTrans.Count; i++)
-        {
-            PathTrans trans = pathTrans[i];
-            trans.wasterTime -= TimeSystem.Instance.dayTime;
-            if(trans.wasterTime < 0)//结束了
-            {
-                trans.EndCall();
-            }
-        }    
     }
     public void Register(NeedGoods needGoods)
     {

@@ -51,7 +51,7 @@ public class MapSystem:Singleton<MapSystem>
         }
     }
 
-    public int WasterMoney(SceneObj a, SceneObj b)
+    public int WasterMoney(IWorldPosition a, IWorldPosition b)
     {
         return WasterTime(a,b);
     }

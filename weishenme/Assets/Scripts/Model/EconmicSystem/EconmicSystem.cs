@@ -14,7 +14,8 @@ public class EconmicSystem:Singleton<EconmicSystem>
     /// <param name="sendGoods"></param>
     public void TransGoodsMoney(NeedGoods needGoods,SendGoods sendGoods)
     {
-        var perGoodsCost=sendGoods.minMoney + MapSystem.Instance.WasterMoney(sendGoods.scene,needGoods.scene);
+        var transMoney = MapSystem.Instance.WasterMoney(sendGoods.obj, needGoods.obj);
+        var perGoodsCost=sendGoods.minMoney + transMoney;
         var sum = Math.Min((int)(needGoods.obj.getMoney()/perGoodsCost),Math.Min(sendGoods.remainSum,needGoods.needSum));
         var goodsItem = new TransGoodsItem();
         goodsItem.sendGoods = sendGoods;
@@ -22,10 +23,11 @@ public class EconmicSystem:Singleton<EconmicSystem>
         goodsItem.sender = sendGoods.obj;
         goodsItem.needer=needGoods.obj;
         goodsItem.goodsCount = sum;
-        var time = MapSystem.Instance.WasterTime(sendGoods.scene, needGoods.scene);
-        MapSystem.Instance.cirQueue.FindFront(time).Add(goodsItem);
+        var time = MapSystem.Instance.WasterTime(sendGoods.obj, needGoods.obj);
+        MapSystem.Instance.cirQueue.FindFront(time).Add(goodsItem);//添加经济循环
         goodsItem.sender.addMoney(sum*sendGoods.minMoney);
         goodsItem.needer.reduceMoney(sum*perGoodsCost);
+        GameArchitect.Instance.government.addMoney(sum* transMoney);//用来转移商品的钱
     }
     private EconmicSystem()
     {
@@ -36,8 +38,6 @@ public enum TransMoneyEnum
 {
     paySalary,//发薪水
     buyGoods,//购买商品
-    transGoods,//转移商品
-    npcPath,//路径转移
 }
 /// <summary>
 /// 转移金钱的类型

@@ -81,6 +81,9 @@ public class NeedWork
     /// 期望的最低工资
     /// </summary>
     public float minMoney;
+    public SendWork sender;
+    public ProdEnum prodEnum;
+    public bool hasWork { get { return sender!=null; } }
     /// <summary>
     /// 满足度
     /// </summary>
@@ -143,25 +146,20 @@ public class NeedWork
 public class SendWork
 {
     /// <summary>
-    /// 所住的位置
-    /// </summary>
-    public Func<SceneObj> scene;
-    /// <summary>
     /// 发送方
     /// </summary>
     public ISendWork obj;
+    public ProdEnum prodEnum;
     /// <summary>
-    /// 最多的给的工资
+    /// 一个给的工资
     /// </summary>
-    public float maxMoney;
+    public Float maxMoney;
     /// <summary>
     /// 工作时间
     /// </summary>
     public int workTime;
-    /// <summary>
-    /// 花费的精力
-    /// </summary>
-    public int wastEnerge;
+    public float allRate;//所有需要的值
+    public List<NeedWork> needWorks;
     /// <summary>
     /// 满足度
     /// </summary>
@@ -172,7 +170,32 @@ public class SendWork
     public SendWork(ISendWork sender)
     {
         obj = sender;
-        //satifyRate = new Func<NeedWork, float>(e => { return 1; });//都为1
+        maxMoney = new Float(0);
+        needWorks=new List<NeedWork>();
+    }
+    public void AddNeeder(NeedWork needWork)
+    {
+        if (rate > 0)
+        {
+            needWorks.Add(needWork);
+            needWork.sender = this;//已经匹配了
+        }
+    }
+    public void RemoveNeeder(NeedWork needWork)
+    {
+        needWorks.Remove(needWork);
+        needWork.sender =null;
+    }
+    public float rate { get {//剩余的空位
+            float sum = 0;
+            foreach(var needWork in needWorks)
+            {
+                sum+= ProdManager.Instance.TestProd(needWork.obj, prodEnum)* workTime;
+            }
+            return allRate-sum; } }
+    public SceneObj scene()
+    {
+        return obj.aimPos();
     }
 }
 /// <summary>

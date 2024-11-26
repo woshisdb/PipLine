@@ -7,10 +7,11 @@ public class GovernmentState:BaseState
     /// <summary>
     /// ◊‹ ’»Î
     /// </summary>
-    public double money;
+    public Float money;
 
     public GovernmentState(BaseObj obj) : base(obj)
     {
+        money=new Float(0);
     }
 }
 
@@ -21,8 +22,27 @@ public class GovernmentEc : EconomicInf
     }
 }
 
-public class GovernmentObj : BaseObj
+public class GovernmentObj : BaseObj, IMarketUser
 {
+    public GovernmentObj():base()
+    {
+
+    }
+    public void addMoney(Float money)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public Float getMoney()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public NpcObj GetNpc()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override List<UIItemBinder> GetUI()
     {
         throw new System.NotImplementedException();
@@ -30,15 +50,20 @@ public class GovernmentObj : BaseObj
 
     public override void InitBaseState()
     {
-        throw new System.NotImplementedException();
+        state = new GovernmentState(this);
     }
 
     public override void InitEconomicInf()
     {
-        throw new System.NotImplementedException();
+        ecInf = new GovernmentEc(this);
     }
 
     public override void Predict(BaseState input, int day)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void reduceMoney(Float money)
     {
         throw new System.NotImplementedException();
     }

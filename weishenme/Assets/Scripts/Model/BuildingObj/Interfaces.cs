@@ -100,7 +100,7 @@ public interface ICanEmploySelf:IMarketUser
 /// <summary>
 /// 可以请求商品的订单
 /// </summary>
-public interface INeedGoods : IMarketUser
+public interface INeedGoods : IMarketUser, IWorldPosition
 {
     /// <summary>
     /// 获取商品列表,用来加进来
@@ -116,7 +116,7 @@ public interface INeedGoods : IMarketUser
 /// <summary>
 /// 可以接收请求商品的订单
 /// </summary>
-public interface ISendGoods : IMarketUser
+public interface ISendGoods : IMarketUser, IWorldPosition
 {
     /// <summary>
     /// 接收商品的订单

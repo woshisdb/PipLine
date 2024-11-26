@@ -19,6 +19,22 @@ public class AStarSearcher
             X = x;
             Y = y;
         }
+        // 重写 Equals 方法
+        public override bool Equals(object obj)
+        {
+            if (obj is Node other)
+            {
+                return X == other.X && Y == other.Y;
+            }
+            return false;
+        }
+
+        // 重写 GetHashCode 方法
+        public override int GetHashCode()
+        {
+            // 根据 Name 和 Age 生成唯一哈希值
+            return HashCode.Combine(X, Y);
+        }
     }
 
     // 公共接口方法
@@ -58,27 +74,32 @@ public class AStarSearcher
             openList.Remove(currentNode);
             closedList.Add(currentNode);
 
-            // 如果到达目标点
-            if (currentNode.X == targetNode.X && currentNode.Y == targetNode.Y)
-            {
-                // 计算路径代价
-                int totalCost = currentNode.G;
-                RetracePath(currentNode, SetVis);
-                return totalCost;
-            }
+            //// 如果到达目标点
+            //if (currentNode.X == targetNode.X && currentNode.Y == targetNode.Y)
+            //{
+            //    // 计算路径代价
+            //    int totalCost = currentNode.G;
+            //    RetracePath(currentNode, SetVis);
+            //    return totalCost;
+            //}
 
             // 获取当前节点的所有相邻节点
             foreach (Node neighbor in GetNeighbors(currentNode, width, height, distance))
             {
-                // 如果不可访问或已在关闭列表，跳过
-                if (closedList.Contains(neighbor))
-                    continue;
-
-                // 计算新代价
+                // 如果到达目标点
                 int newCostToNeighbor = currentNode.G + distance[neighbor.X][neighbor.Y];
+                neighbor.G = newCostToNeighbor;
+                if (neighbor.X == targetNode.X && neighbor.Y == targetNode.Y)
+                {
+                    // 计算路径代价
+                    int totalCost = currentNode.G;
+                    return totalCost;
+                }
+                // 如果不可访问或已在关闭列表，跳过
+                if (closedList.Contains(neighbor) || distance[neighbor.X][neighbor.Y] <= 0)
+                    continue;
                 if (newCostToNeighbor < neighbor.G || !openList.Contains(neighbor))
                 {
-                    neighbor.G = newCostToNeighbor;
                     neighbor.H = GetDistance(neighbor, targetNode);
                     neighbor.Parent = currentNode;
 
@@ -105,7 +126,7 @@ public class AStarSearcher
         {
             int newX = node.X + dir.x;
             int newY = node.Y + dir.y;
-            if (newX >= 0 && newX < width && newY >= 0 && newY < height && distance[newX][newY]>0)
+            if (newX >= 0 && newX < width && newY >= 0 && newY < height)
             {
                 neighbors.Add(new Node(newX, newY));
             }

@@ -12,6 +12,7 @@ public class GameArchitect : Singleton<GameArchitect>
     public SaveSystem saveSystem;
     public TimeSystem timeSystem;
     public WorldView worldViewSystem;
+    public GovernmentObj government { get{ return saveSystem.saveData.Government; } }
     private GameArchitect()
     {
 
@@ -44,6 +45,7 @@ public class GameArchitect : Singleton<GameArchitect>
         //NpcThink();
         ///建筑更新,修改订单的需求量,价格等
         BuildingThink();
+        MarketWorkUpdate();
         //建筑进行生产的更新
         BuildingUpdate();
         ///市场商品的更新

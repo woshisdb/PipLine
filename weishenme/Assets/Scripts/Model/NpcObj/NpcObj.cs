@@ -239,4 +239,14 @@ public class NpcObj : BaseObj,INpc
     {
         throw new System.NotImplementedException();
     }
+
+    public Vector2Int GetWorldPos()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public SceneObj GetSceneObj()
+    {
+        throw new System.NotImplementedException();
+    }
 }

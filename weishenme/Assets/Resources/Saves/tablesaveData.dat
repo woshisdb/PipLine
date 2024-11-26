@@ -36,7 +36,7 @@
                                             "money": {
                                                 "$id": 8,
                                                 "$type": "8|Float, Assembly-CSharp",
-                                                "value": 10
+                                                "value": 100
                                             },
                                             "buildingEnum": 0,
                                             "allResourceSum": 10,
@@ -58,14 +58,14 @@
                                                     {
                                                         "$id": 12,
                                                         "$type": 8,
-                                                        "value": 10
+                                                        "value": 0
                                                     }
                                                 ]
                                             },
                                             "prodSate": {
                                                 "$id": 13,
                                                 "$type": 8,
-                                                "value": 990
+                                                "value": 0
                                             },
                                             "goodsManager": {
                                                 "$id": 14,
@@ -105,7 +105,7 @@
                                                                 "sum": {
                                                                     "$id": 20,
                                                                     "$type": 14,
-                                                                    "value": 80
+                                                                    "value": 0
                                                                 },
                                                                 "goods": 1
                                                             }
@@ -126,9 +126,9 @@
                                                             "$id": 22,
                                                             "$type": "16|NeedGoods, Assembly-CSharp",
                                                             "goods": 0,
-                                                            "needSum": 10,
+                                                            "needSum": 0,
                                                             "obj": $iref:6,
-                                                            "maxMoney": 5
+                                                            "maxMoney": 0
                                                         }
                                                     }
                                                 ]
@@ -169,7 +169,7 @@
                                             "obj": $iref:6
                                         },
                                         "x": 0,
-                                        "y": 0,
+                                        "y": 2,
                                         "scene": $iref:3
                                     },
                                     {
@@ -183,7 +183,7 @@
                                             "money": {
                                                 "$id": 29,
                                                 "$type": 8,
-                                                "value": 190
+                                                "value": 100
                                             },
                                             "buildingEnum": 1,
                                             "allResourceSum": 10,
@@ -195,12 +195,12 @@
                                                     {
                                                         "$id": 31,
                                                         "$type": 8,
-                                                        "value": 2000
+                                                        "value": 0
                                                     },
                                                     {
                                                         "$id": 32,
                                                         "$type": 8,
-                                                        "value": 1000
+                                                        "value": 0
                                                     },
                                                     {
                                                         "$id": 33,
@@ -232,7 +232,7 @@
                                                                 "sum": {
                                                                     "$id": 38,
                                                                     "$type": 14,
-                                                                    "value": 7100
+                                                                    "value": 0
                                                                 },
                                                                 "goods": 0
                                                             }
@@ -246,7 +246,7 @@
                                                                 "sum": {
                                                                     "$id": 40,
                                                                     "$type": 14,
-                                                                    "value": 0
+                                                                    "value": 10000
                                                                 },
                                                                 "goods": 2
                                                             }
@@ -276,9 +276,9 @@
                                                             "$type": 18,
                                                             "goods": 0,
                                                             "remainSum": $iref:38,
-                                                            "minMoney": 1,
+                                                            "minMoney": 0,
                                                             "obj": $iref:27,
-                                                            "sortVal": 1
+                                                            "sortVal": 0
                                                         }
                                                     }
                                                 ]
@@ -298,8 +298,8 @@
                                             "$type": 20,
                                             "obj": $iref:27
                                         },
-                                        "x": 0,
-                                        "y": 1,
+                                        "x": 5,
+                                        "y": 2,
                                         "scene": $iref:3
                                     }
                                 ]
@@ -329,7 +329,7 @@
                                         "pathEnum": 0,
                                         "scene": $iref:3,
                                         "x": 0,
-                                        "y": 2,
+                                        "y": 1,
                                         "belong": null
                                     },
                                     {
@@ -352,7 +352,7 @@
                                         "pathEnum": 0,
                                         "scene": $iref:3,
                                         "x": 1,
-                                        "y": 2,
+                                        "y": 1,
                                         "belong": null
                                     },
                                     {
@@ -374,7 +374,7 @@
                                         "ecInf": null,
                                         "pathEnum": 0,
                                         "scene": $iref:3,
-                                        "x": 1,
+                                        "x": 2,
                                         "y": 1,
                                         "belong": null
                                     },
@@ -397,8 +397,8 @@
                                         "ecInf": null,
                                         "pathEnum": 0,
                                         "scene": $iref:3,
-                                        "x": 1,
-                                        "y": 0,
+                                        "x": 3,
+                                        "y": 1,
                                         "belong": null
                                     },
                                     {
@@ -420,8 +420,8 @@
                                         "ecInf": null,
                                         "pathEnum": 0,
                                         "scene": $iref:3,
-                                        "x": 2,
-                                        "y": 0,
+                                        "x": 4,
+                                        "y": 1,
                                         "belong": null
                                     },
                                     {
@@ -443,8 +443,8 @@
                                         "ecInf": null,
                                         "pathEnum": 0,
                                         "scene": $iref:3,
-                                        "x": 3,
-                                        "y": 0,
+                                        "x": 5,
+                                        "y": 1,
                                         "belong": null
                                     }
                                 ]
@@ -463,8 +463,8 @@
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
-                                                0,
                                                 20,
+                                                0,
                                                 0,
                                                 0,
                                                 0,
@@ -479,9 +479,9 @@
                                             "$type": 26,
                                             "$rlength": 10,
                                             "$rcontent": [
+                                                0,
                                                 20,
-                                                20,
-                                                20,
+                                                0,
                                                 0,
                                                 0,
                                                 0,
@@ -496,8 +496,8 @@
                                             "$type": 26,
                                             "$rlength": 10,
                                             "$rcontent": [
-                                                20,
                                                 0,
+                                                20,
                                                 0,
                                                 0,
                                                 0,
@@ -513,8 +513,8 @@
                                             "$type": 26,
                                             "$rlength": 10,
                                             "$rcontent": [
-                                                20,
                                                 0,
+                                                20,
                                                 0,
                                                 0,
                                                 0,
@@ -531,7 +531,7 @@
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
-                                                0,
+                                                20,
                                                 0,
                                                 0,
                                                 0,
@@ -548,7 +548,7 @@
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
-                                                0,
+                                                20,
                                                 0,
                                                 0,
                                                 0,
@@ -2201,5 +2201,24 @@
         "_tail": 0,
         "_size": 10,
         "_capacity": 10
+    },
+    "government": {
+        "$id": 203,
+        "$type": "42|GovernmentObj, Assembly-CSharp",
+        "state": {
+            "$id": 204,
+            "$type": "43|GovernmentState, Assembly-CSharp",
+            "obj": $iref:203,
+            "money": {
+                "$id": 205,
+                "$type": 8,
+                "value": 0
+            }
+        },
+        "ecInf": {
+            "$id": 206,
+            "$type": "44|GovernmentEc, Assembly-CSharp",
+            "obj": $iref:203
+        }
     }
 }
