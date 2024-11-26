@@ -70,10 +70,6 @@ public class NeedWork
     /// </summary>
     public ContractState state;
     /// <summary>
-    /// 所住的位置
-    /// </summary>
-    public Func<SceneObj> scene;
-    /// <summary>
     /// 对象
     /// </summary>
     public INeedWork obj;
@@ -90,6 +86,10 @@ public class NeedWork
     public float satifyRate(SendWork sendWork)
     {
         return obj.GetNeedWorkRate(sendWork);
+    }
+    public SceneObj scene()
+    {
+        return obj.nowPos();
     }
     /// <summary>
     /// 对距离的满足度

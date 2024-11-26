@@ -127,6 +127,7 @@ public class NpcObj : BaseObj,INpc
                 Market.Instance.Register(need);
             }
         }
+        now.ecState.needWork = new NeedWork();
     }
     /// <summary>
     /// 更新每一个生产资料的数据,并更新完npc.根据contract
