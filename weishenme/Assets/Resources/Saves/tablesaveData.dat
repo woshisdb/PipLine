@@ -23,7 +23,7 @@
                             "buildings": {
                                 "$id": 5,
                                 "$type": "5|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]], mscorlib",
-                                "$rlength": 2,
+                                "$rlength": 3,
                                 "$rcontent": [
                                     {
                                         "$id": 6,
@@ -36,9 +36,9 @@
                                             "money": {
                                                 "$id": 8,
                                                 "$type": "8|Float, Assembly-CSharp",
-                                                "value": 100
+                                                "value": 10000
                                             },
-                                            "buildingEnum": 0,
+                                            "buildingEnum": 1,
                                             "allResourceSum": 10,
                                             "generateList": {
                                                 "$id": 9,
@@ -48,7 +48,7 @@
                                                     {
                                                         "$id": 10,
                                                         "$type": 8,
-                                                        "value": 0
+                                                        "value": 10000
                                                     },
                                                     {
                                                         "$id": 11,
@@ -62,19 +62,14 @@
                                                     }
                                                 ]
                                             },
-                                            "prodSate": {
-                                                "$id": 13,
-                                                "$type": 8,
-                                                "value": 0
-                                            },
                                             "goodsManager": {
-                                                "$id": 14,
+                                                "$id": 13,
                                                 "$type": "10|GoodsManager, Assembly-CSharp",
                                                 "goods": {
-                                                    "$id": 15,
+                                                    "$id": 14,
                                                     "$type": "11|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj, Assembly-CSharp]], mscorlib",
                                                     "comparer": {
-                                                        "$id": 16,
+                                                        "$id": 15,
                                                         "$type": "12|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]], mscorlib",
                                                         "$rlength": 0,
                                                         "$rcontent": [
@@ -85,11 +80,11 @@
                                                         {
                                                             "$k": 0,
                                                             "$v": {
-                                                                "$id": 17,
+                                                                "$id": 16,
                                                                 "$type": "13|GoodsObj, Assembly-CSharp",
                                                                 "building": $iref:6,
                                                                 "sum": {
-                                                                    "$id": 18,
+                                                                    "$id": 17,
                                                                     "$type": "14|Int, Assembly-CSharp",
                                                                     "value": 0
                                                                 },
@@ -97,17 +92,17 @@
                                                             }
                                                         },
                                                         {
-                                                            "$k": 1,
+                                                            "$k": 2,
                                                             "$v": {
-                                                                "$id": 19,
+                                                                "$id": 18,
                                                                 "$type": 13,
                                                                 "building": $iref:6,
                                                                 "sum": {
-                                                                    "$id": 20,
+                                                                    "$id": 19,
                                                                     "$type": 14,
                                                                     "value": 0
                                                                 },
-                                                                "goods": 1
+                                                                "goods": 2
                                                             }
                                                         }
                                                     ]
@@ -115,52 +110,52 @@
                                                 "building": $iref:6
                                             },
                                             "needs": {
-                                                "$id": 21,
+                                                "$id": 20,
                                                 "$type": "15|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods, Assembly-CSharp]], mscorlib",
-                                                "comparer": $iref:16,
+                                                "comparer": $iref:15,
+                                                "$rlength": 0,
+                                                "$rcontent": [
+                                                ]
+                                            },
+                                            "sends": {
+                                                "$id": 21,
+                                                "$type": "16|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods, Assembly-CSharp]], mscorlib",
+                                                "comparer": $iref:15,
                                                 "$rlength": 1,
                                                 "$rcontent": [
                                                     {
                                                         "$k": 0,
                                                         "$v": {
                                                             "$id": 22,
-                                                            "$type": "16|NeedGoods, Assembly-CSharp",
+                                                            "$type": "17|SendGoods, Assembly-CSharp",
                                                             "goods": 0,
-                                                            "needSum": 0,
+                                                            "remainSum": $iref:17,
+                                                            "minMoney": 2,
                                                             "obj": $iref:6,
-                                                            "maxMoney": 0
-                                                        }
-                                                    }
-                                                ]
-                                            },
-                                            "sends": {
-                                                "$id": 23,
-                                                "$type": "17|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods, Assembly-CSharp]], mscorlib",
-                                                "comparer": $iref:16,
-                                                "$rlength": 1,
-                                                "$rcontent": [
-                                                    {
-                                                        "$k": 1,
-                                                        "$v": {
-                                                            "$id": 24,
-                                                            "$type": "18|SendGoods, Assembly-CSharp",
-                                                            "goods": 1,
-                                                            "remainSum": $iref:20,
-                                                            "minMoney": 0,
-                                                            "obj": $iref:6,
-                                                            "sortVal": 0
+                                                            "sortVal": 62
                                                         }
                                                     }
                                                 ]
                                             },
                                             "sendWork": {
-                                                "$id": 25,
-                                                "$type": "19|SendWork, Assembly-CSharp",
-                                                "scene": null,
+                                                "$id": 23,
+                                                "$type": "18|SendWork, Assembly-CSharp",
                                                 "obj": $iref:6,
-                                                "maxMoney": 0,
-                                                "workTime": 0,
-                                                "wastEnerge": 0
+                                                "prodEnum": 0,
+                                                "maxMoney": {
+                                                    "$id": 24,
+                                                    "$type": 8,
+                                                    "value": 6
+                                                },
+                                                "workTime": 5,
+                                                "allRate": 4,
+                                                "needWorks": {
+                                                    "$id": 25,
+                                                    "$type": "19|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib",
+                                                    "$rlength": 0,
+                                                    "$rcontent": [
+                                                    ]
+                                                }
                                             }
                                         },
                                         "ecInf": {
@@ -169,7 +164,7 @@
                                             "obj": $iref:6
                                         },
                                         "x": 0,
-                                        "y": 2,
+                                        "y": 0,
                                         "scene": $iref:3
                                     },
                                     {
@@ -183,9 +178,9 @@
                                             "money": {
                                                 "$id": 29,
                                                 "$type": 8,
-                                                "value": 100
+                                                "value": 10000
                                             },
-                                            "buildingEnum": 1,
+                                            "buildingEnum": 0,
                                             "allResourceSum": 10,
                                             "generateList": {
                                                 "$id": 30,
@@ -209,28 +204,23 @@
                                                     }
                                                 ]
                                             },
-                                            "prodSate": {
-                                                "$id": 34,
-                                                "$type": 8,
-                                                "value": 0
-                                            },
                                             "goodsManager": {
-                                                "$id": 35,
+                                                "$id": 34,
                                                 "$type": 10,
                                                 "goods": {
-                                                    "$id": 36,
+                                                    "$id": 35,
                                                     "$type": 11,
-                                                    "comparer": $iref:16,
+                                                    "comparer": $iref:15,
                                                     "$rlength": 2,
                                                     "$rcontent": [
                                                         {
                                                             "$k": 0,
                                                             "$v": {
-                                                                "$id": 37,
+                                                                "$id": 36,
                                                                 "$type": 13,
                                                                 "building": $iref:27,
                                                                 "sum": {
-                                                                    "$id": 38,
+                                                                    "$id": 37,
                                                                     "$type": 14,
                                                                     "value": 0
                                                                 },
@@ -238,17 +228,17 @@
                                                             }
                                                         },
                                                         {
-                                                            "$k": 2,
+                                                            "$k": 1,
                                                             "$v": {
-                                                                "$id": 39,
+                                                                "$id": 38,
                                                                 "$type": 13,
                                                                 "building": $iref:27,
                                                                 "sum": {
-                                                                    "$id": 40,
+                                                                    "$id": 39,
                                                                     "$type": 14,
-                                                                    "value": 10000
+                                                                    "value": 0
                                                                 },
-                                                                "goods": 2
+                                                                "goods": 1
                                                             }
                                                         }
                                                     ]
@@ -256,69 +246,254 @@
                                                 "building": $iref:27
                                             },
                                             "needs": {
-                                                "$id": 41,
+                                                "$id": 40,
                                                 "$type": 15,
-                                                "comparer": $iref:16,
-                                                "$rlength": 0,
-                                                "$rcontent": [
-                                                ]
-                                            },
-                                            "sends": {
-                                                "$id": 42,
-                                                "$type": 17,
-                                                "comparer": $iref:16,
+                                                "comparer": $iref:15,
                                                 "$rlength": 1,
                                                 "$rcontent": [
                                                     {
                                                         "$k": 0,
                                                         "$v": {
-                                                            "$id": 43,
-                                                            "$type": 18,
+                                                            "$id": 41,
+                                                            "$type": "21|NeedGoods, Assembly-CSharp",
                                                             "goods": 0,
-                                                            "remainSum": $iref:38,
-                                                            "minMoney": 0,
+                                                            "needSum": 10,
                                                             "obj": $iref:27,
-                                                            "sortVal": 0
+                                                            "maxMoney": 70
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "sends": {
+                                                "$id": 42,
+                                                "$type": 16,
+                                                "comparer": $iref:15,
+                                                "$rlength": 1,
+                                                "$rcontent": [
+                                                    {
+                                                        "$k": 1,
+                                                        "$v": {
+                                                            "$id": 43,
+                                                            "$type": 17,
+                                                            "goods": 1,
+                                                            "remainSum": $iref:39,
+                                                            "minMoney": 2,
+                                                            "obj": $iref:27,
+                                                            "sortVal": 2
                                                         }
                                                     }
                                                 ]
                                             },
                                             "sendWork": {
                                                 "$id": 44,
-                                                "$type": 19,
-                                                "scene": null,
+                                                "$type": 18,
                                                 "obj": $iref:27,
-                                                "maxMoney": 0,
-                                                "workTime": 0,
-                                                "wastEnerge": 0
+                                                "prodEnum": 0,
+                                                "maxMoney": {
+                                                    "$id": 45,
+                                                    "$type": 8,
+                                                    "value": 6
+                                                },
+                                                "workTime": 5,
+                                                "allRate": 4,
+                                                "needWorks": {
+                                                    "$id": 46,
+                                                    "$type": 19,
+                                                    "$rlength": 0,
+                                                    "$rcontent": [
+                                                    ]
+                                                }
                                             }
                                         },
                                         "ecInf": {
-                                            "$id": 45,
+                                            "$id": 47,
                                             "$type": 20,
                                             "obj": $iref:27
                                         },
-                                        "x": 5,
-                                        "y": 2,
+                                        "x": 2,
+                                        "y": 0,
+                                        "scene": $iref:3
+                                    },
+                                    {
+                                        "$id": 48,
+                                        "$type": "22|HouseBuildingObj, Assembly-CSharp",
+                                        "state": {
+                                            "$id": 49,
+                                            "$type": "23|HouseBuildingState, Assembly-CSharp",
+                                            "obj": $iref:48,
+                                            "belong": null,
+                                            "money": {
+                                                "$id": 50,
+                                                "$type": 8,
+                                                "value": 100
+                                            },
+                                            "buildingEnum": 2,
+                                            "npcs": {
+                                                "$id": 51,
+                                                "$type": "24|System.Collections.Generic.List`1[[NpcObj, Assembly-CSharp]], mscorlib",
+                                                "$rlength": 2,
+                                                "$rcontent": [
+                                                    {
+                                                        "$id": 52,
+                                                        "$type": "25|NpcObj, Assembly-CSharp",
+                                                        "state": {
+                                                            "$id": 53,
+                                                            "$type": "26|NpcState, Assembly-CSharp",
+                                                            "obj": $iref:52,
+                                                            "sceneObj": $iref:3,
+                                                            "ecState": {
+                                                                "$id": 54,
+                                                                "$type": "27|EcState, Assembly-CSharp",
+                                                                "needGoods": {
+                                                                    "$id": 55,
+                                                                    "$type": "28|System.Collections.Generic.List`1[[NeedGoods, Assembly-CSharp]], mscorlib",
+                                                                    "$rlength": 1,
+                                                                    "$rcontent": [
+                                                                        {
+                                                                            "$id": 56,
+                                                                            "$type": 21,
+                                                                            "goods": 1,
+                                                                            "needSum": 2,
+                                                                            "obj": $iref:52,
+                                                                            "maxMoney": 70
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "needWork": {
+                                                                    "$id": 57,
+                                                                    "$type": "29|NeedWork, Assembly-CSharp",
+                                                                    "obj": $iref:52,
+                                                                    "minMoney": 0,
+                                                                    "sender": null,
+                                                                    "prodEnum": 0
+                                                                },
+                                                                "needWorkB": false,
+                                                                "money": {
+                                                                    "$id": 58,
+                                                                    "$type": 8,
+                                                                    "value": 0
+                                                                },
+                                                                "npcObj": $iref:52
+                                                            },
+                                                            "prodState": {
+                                                                "$id": 59,
+                                                                "$type": "30|ProdState, Assembly-CSharp",
+                                                                "remainTime": 0,
+                                                                "workTime": 0,
+                                                                "goWorkTime": 0,
+                                                                "lifeStyle": null,
+                                                                "npcObj": $iref:52
+                                                            },
+                                                            "physicalState": {
+                                                                "$id": 60,
+                                                                "$type": "31|PhysicalState, Assembly-CSharp",
+                                                                "remainEnerge": 0,
+                                                                "strength": 0,
+                                                                "npcObj": $iref:52,
+                                                                "livePlace": $iref:48
+                                                            }
+                                                        },
+                                                        "ecInf": {
+                                                            "$id": 61,
+                                                            "$type": "32|NpcEc, Assembly-CSharp",
+                                                            "obj": $iref:52
+                                                        }
+                                                    },
+                                                    {
+                                                        "$id": 62,
+                                                        "$type": 25,
+                                                        "state": {
+                                                            "$id": 63,
+                                                            "$type": 26,
+                                                            "obj": $iref:62,
+                                                            "sceneObj": $iref:3,
+                                                            "ecState": {
+                                                                "$id": 64,
+                                                                "$type": 27,
+                                                                "needGoods": {
+                                                                    "$id": 65,
+                                                                    "$type": 28,
+                                                                    "$rlength": 1,
+                                                                    "$rcontent": [
+                                                                        {
+                                                                            "$id": 66,
+                                                                            "$type": 21,
+                                                                            "goods": 1,
+                                                                            "needSum": 2,
+                                                                            "obj": $iref:62,
+                                                                            "maxMoney": 70
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "needWork": {
+                                                                    "$id": 67,
+                                                                    "$type": 29,
+                                                                    "obj": $iref:62,
+                                                                    "minMoney": 0,
+                                                                    "sender": null,
+                                                                    "prodEnum": 0
+                                                                },
+                                                                "needWorkB": false,
+                                                                "money": {
+                                                                    "$id": 68,
+                                                                    "$type": 8,
+                                                                    "value": 0
+                                                                },
+                                                                "npcObj": $iref:62
+                                                            },
+                                                            "prodState": {
+                                                                "$id": 69,
+                                                                "$type": 30,
+                                                                "remainTime": 0,
+                                                                "workTime": 0,
+                                                                "goWorkTime": 0,
+                                                                "lifeStyle": null,
+                                                                "npcObj": $iref:62
+                                                            },
+                                                            "physicalState": {
+                                                                "$id": 70,
+                                                                "$type": 31,
+                                                                "remainEnerge": 0,
+                                                                "strength": 0,
+                                                                "npcObj": $iref:62,
+                                                                "livePlace": $iref:48
+                                                            }
+                                                        },
+                                                        "ecInf": {
+                                                            "$id": 71,
+                                                            "$type": 32,
+                                                            "obj": $iref:62
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        "ecInf": {
+                                            "$id": 72,
+                                            "$type": "33|HouseBuildingEc, Assembly-CSharp",
+                                            "obj": $iref:48
+                                        },
+                                        "x": 1,
+                                        "y": 0,
                                         "scene": $iref:3
                                     }
                                 ]
                             },
                             "paths": {
-                                "$id": 46,
-                                "$type": "21|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib",
-                                "$rlength": 6,
+                                "$id": 73,
+                                "$type": "34|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib",
+                                "$rlength": 3,
                                 "$rcontent": [
                                     {
-                                        "$id": 47,
-                                        "$type": "22|PathObj, Assembly-CSharp",
+                                        "$id": 74,
+                                        "$type": "35|PathObj, Assembly-CSharp",
                                         "state": {
-                                            "$id": 48,
-                                            "$type": "23|PathState, Assembly-CSharp",
-                                            "obj": $iref:47,
+                                            "$id": 75,
+                                            "$type": "36|PathState, Assembly-CSharp",
+                                            "obj": $iref:74,
                                             "belong": null,
                                             "money": {
-                                                "$id": 49,
+                                                "$id": 76,
                                                 "$type": 8,
                                                 "value": 100
                                             },
@@ -333,15 +508,15 @@
                                         "belong": null
                                     },
                                     {
-                                        "$id": 50,
-                                        "$type": 22,
+                                        "$id": 77,
+                                        "$type": 35,
                                         "state": {
-                                            "$id": 51,
-                                            "$type": 23,
-                                            "obj": $iref:50,
+                                            "$id": 78,
+                                            "$type": 36,
+                                            "obj": $iref:77,
                                             "belong": null,
                                             "money": {
-                                                "$id": 52,
+                                                "$id": 79,
                                                 "$type": 8,
                                                 "value": 100
                                             },
@@ -356,15 +531,15 @@
                                         "belong": null
                                     },
                                     {
-                                        "$id": 53,
-                                        "$type": 22,
+                                        "$id": 80,
+                                        "$type": 35,
                                         "state": {
-                                            "$id": 54,
-                                            "$type": 23,
-                                            "obj": $iref:53,
+                                            "$id": 81,
+                                            "$type": 36,
+                                            "obj": $iref:80,
                                             "belong": null,
                                             "money": {
-                                                "$id": 55,
+                                                "$id": 82,
                                                 "$type": 8,
                                                 "value": 100
                                             },
@@ -377,89 +552,20 @@
                                         "x": 2,
                                         "y": 1,
                                         "belong": null
-                                    },
-                                    {
-                                        "$id": 56,
-                                        "$type": 22,
-                                        "state": {
-                                            "$id": 57,
-                                            "$type": 23,
-                                            "obj": $iref:56,
-                                            "belong": null,
-                                            "money": {
-                                                "$id": 58,
-                                                "$type": 8,
-                                                "value": 100
-                                            },
-                                            "pathEnum": 0,
-                                            "rate": 20
-                                        },
-                                        "ecInf": null,
-                                        "pathEnum": 0,
-                                        "scene": $iref:3,
-                                        "x": 3,
-                                        "y": 1,
-                                        "belong": null
-                                    },
-                                    {
-                                        "$id": 59,
-                                        "$type": 22,
-                                        "state": {
-                                            "$id": 60,
-                                            "$type": 23,
-                                            "obj": $iref:59,
-                                            "belong": null,
-                                            "money": {
-                                                "$id": 61,
-                                                "$type": 8,
-                                                "value": 100
-                                            },
-                                            "pathEnum": 0,
-                                            "rate": 20
-                                        },
-                                        "ecInf": null,
-                                        "pathEnum": 0,
-                                        "scene": $iref:3,
-                                        "x": 4,
-                                        "y": 1,
-                                        "belong": null
-                                    },
-                                    {
-                                        "$id": 62,
-                                        "$type": 22,
-                                        "state": {
-                                            "$id": 63,
-                                            "$type": 23,
-                                            "obj": $iref:62,
-                                            "belong": null,
-                                            "money": {
-                                                "$id": 64,
-                                                "$type": 8,
-                                                "value": 100
-                                            },
-                                            "pathEnum": 0,
-                                            "rate": 20
-                                        },
-                                        "ecInf": null,
-                                        "pathEnum": 0,
-                                        "scene": $iref:3,
-                                        "x": 5,
-                                        "y": 1,
-                                        "belong": null
                                     }
                                 ]
                             },
                             "mapLabels": {
-                                "$id": 65,
-                                "$type": "24|MapLabels, Assembly-CSharp",
+                                "$id": 83,
+                                "$type": "37|MapLabels, Assembly-CSharp",
                                 "distance": {
-                                    "$id": 66,
-                                    "$type": "25|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib]], mscorlib",
+                                    "$id": 84,
+                                    "$type": "38|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib]], mscorlib",
                                     "$rlength": 10,
                                     "$rcontent": [
                                         {
-                                            "$id": 67,
-                                            "$type": "26|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
+                                            "$id": 85,
+                                            "$type": "39|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib",
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -475,8 +581,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 68,
-                                            "$type": 26,
+                                            "$id": 86,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -492,8 +598,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 69,
-                                            "$type": 26,
+                                            "$id": 87,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -509,59 +615,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 70,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                20,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 71,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                20,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 72,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                20,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 73,
-                                            "$type": 26,
+                                            "$id": 88,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -577,8 +632,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 74,
-                                            "$type": 26,
+                                            "$id": 89,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -594,8 +649,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 75,
-                                            "$type": 26,
+                                            "$id": 90,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -611,8 +666,59 @@
                                             ]
                                         },
                                         {
-                                            "$id": 76,
-                                            "$type": 26,
+                                            "$id": 91,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 92,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 93,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 94,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -630,234 +736,13 @@
                                     ]
                                 },
                                 "vis": {
-                                    "$id": 77,
-                                    "$type": 25,
-                                    "$rlength": 10,
-                                    "$rcontent": [
-                                        {
-                                            "$id": 78,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 79,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 80,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 81,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 82,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 83,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 84,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 85,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 86,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 87,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        }
-                                    ]
-                                },
-                                "xl": 10,
-                                "yl": 10,
-                                "visLabel": 1
-                            },
-                            "npcs": {
-                                "$id": 88,
-                                "$type": "27|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core",
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            }
-                        },
-                        "ecInf": {
-                            "$id": 89,
-                            "$type": "28|SceneEcInf, Assembly-CSharp",
-                            "obj": $iref:3
-                        }
-                    },
-                    {
-                        "$id": 90,
-                        "$type": 3,
-                        "state": {
-                            "$id": 91,
-                            "$type": 4,
-                            "obj": $iref:90,
-                            "x": 0,
-                            "y": 1,
-                            "buildings": {
-                                "$id": 92,
-                                "$type": 5,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            },
-                            "paths": {
-                                "$id": 93,
-                                "$type": 21,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            },
-                            "mapLabels": {
-                                "$id": 94,
-                                "$type": 24,
-                                "distance": {
                                     "$id": 95,
-                                    "$type": 25,
+                                    "$type": 38,
                                     "$rlength": 10,
                                     "$rcontent": [
                                         {
                                             "$id": 96,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -874,7 +759,7 @@
                                         },
                                         {
                                             "$id": 97,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -891,7 +776,7 @@
                                         },
                                         {
                                             "$id": 98,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -908,7 +793,7 @@
                                         },
                                         {
                                             "$id": 99,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -925,7 +810,7 @@
                                         },
                                         {
                                             "$id": 100,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -942,7 +827,7 @@
                                         },
                                         {
                                             "$id": 101,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -959,7 +844,7 @@
                                         },
                                         {
                                             "$id": 102,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -976,7 +861,7 @@
                                         },
                                         {
                                             "$id": 103,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -993,7 +878,7 @@
                                         },
                                         {
                                             "$id": 104,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1010,7 +895,7 @@
                                         },
                                         {
                                             "$id": 105,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1027,133 +912,60 @@
                                         }
                                     ]
                                 },
-                                "vis": {
-                                    "$id": 106,
-                                    "$type": 25,
+                                "xl": 10,
+                                "yl": 10,
+                                "visLabel": 43
+                            },
+                            "npcs": {
+                                "$id": 106,
+                                "$type": "40|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core",
+                                "$rlength": 2,
+                                "$rcontent": [
+                                    $iref:52,
+                                    $iref:62
+                                ]
+                            }
+                        },
+                        "ecInf": {
+                            "$id": 107,
+                            "$type": "41|SceneEcInf, Assembly-CSharp",
+                            "obj": $iref:3
+                        }
+                    },
+                    {
+                        "$id": 108,
+                        "$type": 3,
+                        "state": {
+                            "$id": 109,
+                            "$type": 4,
+                            "obj": $iref:108,
+                            "x": 0,
+                            "y": 1,
+                            "buildings": {
+                                "$id": 110,
+                                "$type": 5,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            },
+                            "paths": {
+                                "$id": 111,
+                                "$type": 34,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            },
+                            "mapLabels": {
+                                "$id": 112,
+                                "$type": 37,
+                                "distance": {
+                                    "$id": 113,
+                                    "$type": 38,
                                     "$rlength": 10,
                                     "$rcontent": [
                                         {
-                                            "$id": 107,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 108,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 109,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 110,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 111,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 112,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 113,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
                                             "$id": 114,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1170,7 +982,7 @@
                                         },
                                         {
                                             "$id": 115,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1187,7 +999,126 @@
                                         },
                                         {
                                             "$id": 116,
-                                            "$type": 26,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 117,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 118,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 119,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 120,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 121,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 122,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 123,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1204,65 +1135,31 @@
                                         }
                                     ]
                                 },
-                                "xl": 10,
-                                "yl": 10,
-                                "visLabel": 1
-                            },
-                            "npcs": {
-                                "$id": 117,
-                                "$type": 27,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            }
-                        },
-                        "ecInf": {
-                            "$id": 118,
-                            "$type": 28,
-                            "obj": $iref:90
-                        }
-                    }
-                ]
-            },
-            {
-                "$id": 119,
-                "$type": 2,
-                "$rlength": 2,
-                "$rcontent": [
-                    {
-                        "$id": 120,
-                        "$type": 3,
-                        "state": {
-                            "$id": 121,
-                            "$type": 4,
-                            "obj": $iref:120,
-                            "x": 1,
-                            "y": 0,
-                            "buildings": {
-                                "$id": 122,
-                                "$type": 5,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            },
-                            "paths": {
-                                "$id": 123,
-                                "$type": 21,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            },
-                            "mapLabels": {
-                                "$id": 124,
-                                "$type": 24,
-                                "distance": {
-                                    "$id": 125,
-                                    "$type": 25,
+                                "vis": {
+                                    "$id": 124,
+                                    "$type": 38,
                                     "$rlength": 10,
                                     "$rcontent": [
                                         {
+                                            "$id": 125,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
                                             "$id": 126,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1279,7 +1176,7 @@
                                         },
                                         {
                                             "$id": 127,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1296,7 +1193,7 @@
                                         },
                                         {
                                             "$id": 128,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1313,7 +1210,7 @@
                                         },
                                         {
                                             "$id": 129,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1330,7 +1227,7 @@
                                         },
                                         {
                                             "$id": 130,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1347,7 +1244,7 @@
                                         },
                                         {
                                             "$id": 131,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1364,7 +1261,7 @@
                                         },
                                         {
                                             "$id": 132,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1381,7 +1278,7 @@
                                         },
                                         {
                                             "$id": 133,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1398,24 +1295,7 @@
                                         },
                                         {
                                             "$id": 134,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 135,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1432,133 +1312,65 @@
                                         }
                                     ]
                                 },
-                                "vis": {
-                                    "$id": 136,
-                                    "$type": 25,
+                                "xl": 10,
+                                "yl": 10,
+                                "visLabel": 1
+                            },
+                            "npcs": {
+                                "$id": 135,
+                                "$type": 40,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            }
+                        },
+                        "ecInf": {
+                            "$id": 136,
+                            "$type": 41,
+                            "obj": $iref:108
+                        }
+                    }
+                ]
+            },
+            {
+                "$id": 137,
+                "$type": 2,
+                "$rlength": 2,
+                "$rcontent": [
+                    {
+                        "$id": 138,
+                        "$type": 3,
+                        "state": {
+                            "$id": 139,
+                            "$type": 4,
+                            "obj": $iref:138,
+                            "x": 1,
+                            "y": 0,
+                            "buildings": {
+                                "$id": 140,
+                                "$type": 5,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            },
+                            "paths": {
+                                "$id": 141,
+                                "$type": 34,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            },
+                            "mapLabels": {
+                                "$id": 142,
+                                "$type": 37,
+                                "distance": {
+                                    "$id": 143,
+                                    "$type": 38,
                                     "$rlength": 10,
                                     "$rcontent": [
                                         {
-                                            "$id": 137,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 138,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 139,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 140,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 141,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 142,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 143,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
                                             "$id": 144,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1575,7 +1387,7 @@
                                         },
                                         {
                                             "$id": 145,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1592,75 +1404,7 @@
                                         },
                                         {
                                             "$id": 146,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        }
-                                    ]
-                                },
-                                "xl": 10,
-                                "yl": 10,
-                                "visLabel": 1
-                            },
-                            "npcs": {
-                                "$id": 147,
-                                "$type": 27,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            }
-                        },
-                        "ecInf": {
-                            "$id": 148,
-                            "$type": 28,
-                            "obj": $iref:120
-                        }
-                    },
-                    {
-                        "$id": 149,
-                        "$type": 3,
-                        "state": {
-                            "$id": 150,
-                            "$type": 4,
-                            "obj": $iref:149,
-                            "x": 1,
-                            "y": 1,
-                            "buildings": {
-                                "$id": 151,
-                                "$type": 5,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            },
-                            "paths": {
-                                "$id": 152,
-                                "$type": 21,
-                                "$rlength": 0,
-                                "$rcontent": [
-                                ]
-                            },
-                            "mapLabels": {
-                                "$id": 153,
-                                "$type": 24,
-                                "distance": {
-                                    "$id": 154,
-                                    "$type": 25,
-                                    "$rlength": 10,
-                                    "$rcontent": [
-                                        {
-                                            "$id": 155,
-                                            "$type": 26,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1676,8 +1420,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 156,
-                                            "$type": 26,
+                                            "$id": 147,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1693,8 +1437,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 157,
-                                            "$type": 26,
+                                            "$id": 148,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1710,8 +1454,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 158,
-                                            "$type": 26,
+                                            "$id": 149,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1727,8 +1471,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 159,
-                                            "$type": 26,
+                                            "$id": 150,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1744,8 +1488,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 160,
-                                            "$type": 26,
+                                            "$id": 151,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1761,8 +1505,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 161,
-                                            "$type": 26,
+                                            "$id": 152,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1778,42 +1522,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 162,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 163,
-                                            "$type": 26,
-                                            "$rlength": 10,
-                                            "$rcontent": [
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0,
-                                                0
-                                            ]
-                                        },
-                                        {
-                                            "$id": 164,
-                                            "$type": 26,
+                                            "$id": 153,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1831,13 +1541,13 @@
                                     ]
                                 },
                                 "vis": {
-                                    "$id": 165,
-                                    "$type": 25,
+                                    "$id": 154,
+                                    "$type": 38,
                                     "$rlength": 10,
                                     "$rcontent": [
                                         {
-                                            "$id": 166,
-                                            "$type": 26,
+                                            "$id": 155,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1853,8 +1563,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 167,
-                                            "$type": 26,
+                                            "$id": 156,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1870,8 +1580,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 168,
-                                            "$type": 26,
+                                            "$id": 157,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1887,8 +1597,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 169,
-                                            "$type": 26,
+                                            "$id": 158,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1904,8 +1614,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 170,
-                                            "$type": 26,
+                                            "$id": 159,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1921,8 +1631,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 171,
-                                            "$type": 26,
+                                            "$id": 160,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1938,8 +1648,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 172,
-                                            "$type": 26,
+                                            "$id": 161,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1955,8 +1665,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 173,
-                                            "$type": 26,
+                                            "$id": 162,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1972,8 +1682,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 174,
-                                            "$type": 26,
+                                            "$id": 163,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -1989,8 +1699,8 @@
                                             ]
                                         },
                                         {
-                                            "$id": 175,
-                                            "$type": 26,
+                                            "$id": 164,
+                                            "$type": 39,
                                             "$rlength": 10,
                                             "$rcontent": [
                                                 0,
@@ -2012,17 +1722,415 @@
                                 "visLabel": 1
                             },
                             "npcs": {
-                                "$id": 176,
-                                "$type": 27,
+                                "$id": 165,
+                                "$type": 40,
                                 "$rlength": 0,
                                 "$rcontent": [
                                 ]
                             }
                         },
                         "ecInf": {
-                            "$id": 177,
-                            "$type": 28,
-                            "obj": $iref:149
+                            "$id": 166,
+                            "$type": 41,
+                            "obj": $iref:138
+                        }
+                    },
+                    {
+                        "$id": 167,
+                        "$type": 3,
+                        "state": {
+                            "$id": 168,
+                            "$type": 4,
+                            "obj": $iref:167,
+                            "x": 1,
+                            "y": 1,
+                            "buildings": {
+                                "$id": 169,
+                                "$type": 5,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            },
+                            "paths": {
+                                "$id": 170,
+                                "$type": 34,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            },
+                            "mapLabels": {
+                                "$id": 171,
+                                "$type": 37,
+                                "distance": {
+                                    "$id": 172,
+                                    "$type": 38,
+                                    "$rlength": 10,
+                                    "$rcontent": [
+                                        {
+                                            "$id": 173,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 174,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 175,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 176,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 177,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 178,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 179,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 180,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 181,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 182,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "vis": {
+                                    "$id": 183,
+                                    "$type": 38,
+                                    "$rlength": 10,
+                                    "$rcontent": [
+                                        {
+                                            "$id": 184,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 185,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 186,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 187,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 188,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 189,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 190,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 191,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 192,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "$id": 193,
+                                            "$type": 39,
+                                            "$rlength": 10,
+                                            "$rcontent": [
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "xl": 10,
+                                "yl": 10,
+                                "visLabel": 1
+                            },
+                            "npcs": {
+                                "$id": 194,
+                                "$type": 40,
+                                "$rlength": 0,
+                                "$rcontent": [
+                                ]
+                            }
+                        },
+                        "ecInf": {
+                            "$id": 195,
+                            "$type": 41,
+                            "obj": $iref:167
                         }
                     }
                 ]
@@ -2030,32 +2138,34 @@
         ]
     },
     "npcs": {
-        "$id": 178,
-        "$type": 27,
+        "$id": 196,
+        "$type": 40,
         "$rlength": 0,
         "$rcontent": [
         ]
     },
     "goodsMatcher": {
-        "$id": 179,
-        "$type": "29|GoodsMatcher, Assembly-CSharp",
+        "$id": 197,
+        "$type": "42|GoodsMatcher, Assembly-CSharp",
         "goodsMatchs": {
-            "$id": 180,
-            "$type": "30|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract, Assembly-CSharp]], Assembly-CSharp"
+            "$id": 198,
+            "$type": "43|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract, Assembly-CSharp]], Assembly-CSharp"
         },
         "needGoods": {
-            "$id": 181,
-            "$type": "31|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]], System.Core",
-            "$rlength": 1,
+            "$id": 199,
+            "$type": "44|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]], System.Core",
+            "$rlength": 3,
             "$rcontent": [
-                $iref:22
+                $iref:41,
+                $iref:56,
+                $iref:66
             ]
         },
         "sendGoods": {
-            "$id": 182,
-            "$type": "32|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core]], mscorlib",
+            "$id": 200,
+            "$type": "45|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core]], mscorlib",
             "comparer": {
-                "$id": 183,
+                "$id": 201,
                 "$type": 12,
                 "$rlength": 0,
                 "$rcontent": [
@@ -2066,22 +2176,22 @@
                 {
                     "$k": 1,
                     "$v": {
-                        "$id": 184,
-                        "$type": "33|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core",
+                        "$id": 202,
+                        "$type": "46|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]], System.Core",
                         "$rlength": 1,
                         "$rcontent": [
-                            $iref:24
+                            $iref:43
                         ]
                     }
                 },
                 {
                     "$k": 0,
                     "$v": {
-                        "$id": 185,
-                        "$type": 33,
+                        "$id": 203,
+                        "$type": 46,
                         "$rlength": 1,
                         "$rcontent": [
-                            $iref:43
+                            $iref:22
                         ]
                     }
                 }
@@ -2089,136 +2199,157 @@
         }
     },
     "workMatcher": {
-        "$id": 186,
-        "$type": "34|WorkMatcher, Assembly-CSharp",
-        "workMatchs": {
-            "$id": 187,
-            "$type": "35|BiDictionary`3[[NeedWork, Assembly-CSharp],[SendWork, Assembly-CSharp],[WorkContract, Assembly-CSharp]], Assembly-CSharp"
-        },
+        "$id": 204,
+        "$type": "47|WorkMatcher, Assembly-CSharp",
         "sendWorks": {
-            "$id": 188,
-            "$type": "36|System.Collections.Generic.SortedSet`1[[SendWork, Assembly-CSharp]], System",
-            "$rlength": 0,
+            "$id": 205,
+            "$type": "48|System.Collections.Generic.Dictionary`2[[ProdEnum, Assembly-CSharp],[System.Collections.Generic.List`1[[SendWork, Assembly-CSharp]], mscorlib]], mscorlib",
+            "comparer": {
+                "$id": 206,
+                "$type": "49|System.Collections.Generic.EnumEqualityComparer`1[[ProdEnum, Assembly-CSharp]], mscorlib",
+                "$rlength": 0,
+                "$rcontent": [
+                ]
+            },
+            "$rlength": 1,
             "$rcontent": [
+                {
+                    "$k": 0,
+                    "$v": {
+                        "$id": 207,
+                        "$type": "50|System.Collections.Generic.List`1[[SendWork, Assembly-CSharp]], mscorlib",
+                        "$rlength": 2,
+                        "$rcontent": [
+                            $iref:23,
+                            $iref:44
+                        ]
+                    }
+                }
             ]
         },
         "needWorks": {
-            "$id": 189,
-            "$type": "37|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib",
-            "$rlength": 0,
+            "$id": 208,
+            "$type": "51|System.Collections.Generic.Dictionary`2[[ProdEnum, Assembly-CSharp],[System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib]], mscorlib",
+            "comparer": $iref:206,
+            "$rlength": 1,
             "$rcontent": [
+                {
+                    "$k": 0,
+                    "$v": {
+                        "$id": 209,
+                        "$type": 19,
+                        "$rlength": 2,
+                        "$rcontent": [
+                            $iref:57,
+                            $iref:67
+                        ]
+                    }
+                }
             ]
         }
     },
-    "pathTrans": {
-        "$id": 190,
-        "$type": "38|System.Collections.Generic.List`1[[PathTrans, Assembly-CSharp]], mscorlib",
-        "$rlength": 0,
-        "$rcontent": [
-        ]
-    },
     "cirQueue": {
-        "$id": 191,
-        "$type": "39|CircularQueue`1[[System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]], mscorlib]], Assembly-CSharp",
+        "$id": 210,
+        "$type": "52|CircularQueue`1[[System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]], mscorlib]], Assembly-CSharp",
         "_queue": {
-            "$id": 192,
-            "$type": "40|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]][], mscorlib",
+            "$id": 211,
+            "$type": "53|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]][], mscorlib",
             "$rlength": 10,
             "$rcontent": [
                 {
-                    "$id": 193,
-                    "$type": "41|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]], mscorlib",
+                    "$id": 212,
+                    "$type": "54|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]], mscorlib",
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 194,
-                    "$type": 41,
+                    "$id": 213,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 195,
-                    "$type": 41,
+                    "$id": 214,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 196,
-                    "$type": 41,
+                    "$id": 215,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 197,
-                    "$type": 41,
+                    "$id": 216,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 198,
-                    "$type": 41,
+                    "$id": 217,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 199,
-                    "$type": 41,
+                    "$id": 218,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 200,
-                    "$type": 41,
+                    "$id": 219,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 201,
-                    "$type": 41,
+                    "$id": 220,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 },
                 {
-                    "$id": 202,
-                    "$type": 41,
+                    "$id": 221,
+                    "$type": 54,
                     "$rlength": 0,
                     "$rcontent": [
                     ]
                 }
             ]
         },
-        "_head": 0,
-        "_tail": 0,
+        "_head": 8,
+        "_tail": 8,
         "_size": 10,
         "_capacity": 10
     },
     "government": {
-        "$id": 203,
-        "$type": "42|GovernmentObj, Assembly-CSharp",
+        "$id": 222,
+        "$type": "55|GovernmentObj, Assembly-CSharp",
         "state": {
-            "$id": 204,
-            "$type": "43|GovernmentState, Assembly-CSharp",
-            "obj": $iref:203,
+            "$id": 223,
+            "$type": "56|GovernmentState, Assembly-CSharp",
+            "obj": $iref:222,
             "money": {
-                "$id": 205,
+                "$id": 224,
                 "$type": 8,
-                "value": 0
+                "value": 60
             }
         },
         "ecInf": {
-            "$id": 206,
-            "$type": "44|GovernmentEc, Assembly-CSharp",
-            "obj": $iref:203
+            "$id": 225,
+            "$type": "57|GovernmentEc, Assembly-CSharp",
+            "obj": $iref:222
         }
     }
 }

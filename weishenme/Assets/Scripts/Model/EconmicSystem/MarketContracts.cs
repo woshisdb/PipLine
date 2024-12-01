@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public enum ContractState
@@ -65,10 +66,6 @@ public class GoodsContract : EveryDayContract
 /// </summary>
 public class NeedWork
 {
-    /// <summary>
-    /// 工作状态
-    /// </summary>
-    public ContractState state;
     /// <summary>
     /// 对象
     /// </summary>
@@ -175,7 +172,7 @@ public class SendWork
     }
     public void AddNeeder(NeedWork needWork)
     {
-        if (rate > 0)
+        if (remainRate > 0)
         {
             needWorks.Add(needWork);
             needWork.sender = this;//已经匹配了
@@ -186,13 +183,27 @@ public class SendWork
         needWorks.Remove(needWork);
         needWork.sender =null;
     }
-    public float rate { get {//剩余的空位
+    [ShowInInspector,ReadOnly]
+    public float remainRate { get {//剩余的空位
             float sum = 0;
             foreach(var needWork in needWorks)
             {
                 sum+= ProdManager.Instance.TestProd(needWork.obj, prodEnum)* workTime;
             }
             return allRate-sum; } }
+    [ShowInInspector, ReadOnly]
+    public float getRate
+    {
+        get
+        {
+            float sum = 0;
+            foreach (var needWork in needWorks)
+            {
+                sum += ProdManager.Instance.TestProd(needWork.obj, prodEnum) * workTime;
+            }
+            return sum;
+        }
+    }
     public SceneObj scene()
     {
         return obj.aimPos();
@@ -278,5 +289,6 @@ public class NeedGoods
     public NeedGoods(INeedGoods needer)
     {
         obj = needer;
+        goods = GoodsEnum.goods2;
     }
 }

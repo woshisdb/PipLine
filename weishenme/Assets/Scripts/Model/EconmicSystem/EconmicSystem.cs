@@ -24,7 +24,8 @@ public class EconmicSystem:Singleton<EconmicSystem>
         goodsItem.needer=needGoods.obj;
         goodsItem.goodsCount = sum;
         var time = MapSystem.Instance.WasterTime(sendGoods.obj, needGoods.obj);
-        MapSystem.Instance.cirQueue.FindFront(time).Add(goodsItem);//添加经济循环
+        var day = time / TimeSystem.Instance.dayTime;
+        MapSystem.Instance.cirQueue.FindFront(day).Add(goodsItem);//添加经济循环
         goodsItem.sender.addMoney(sum*sendGoods.minMoney);
         goodsItem.needer.reduceMoney(sum*perGoodsCost);
         GameArchitect.Instance.government.addMoney(sum* transMoney);//用来转移商品的钱

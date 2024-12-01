@@ -24,13 +24,14 @@ public class GovernmentEc : EconomicInf
 
 public class GovernmentObj : BaseObj, IMarketUser
 {
+    public GovernmentState now { get { return (GovernmentState)state; } }
     public GovernmentObj():base()
     {
 
     }
     public void addMoney(Float money)
     {
-        throw new System.NotImplementedException();
+        now.money.value += money;
     }
 
     public Float getMoney()

@@ -12,10 +12,10 @@ public abstract class NpcAction
     /// 这个行为要满足的条件
     /// </summary>
     /// <param name="state"></param>
-    public abstract void Condition(NpcState state);
+    public abstract bool Condition(NpcObj state);
     /// <summary>
     /// 这个行为的效果
     /// </summary>
     /// <param name="state"></param>
-    public abstract void Effect(NpcState state);
+    public abstract void Effect(NpcObj state);
 }

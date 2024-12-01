@@ -13,6 +13,10 @@ public class PhysicalState
     /// </summary>
     public int strength;
     public NpcObj npcObj;
+    /// <summary>
+    /// 自己所呆的地方
+    /// </summary>
+    public HouseBuildingObj livePlace;
     public PhysicalState(NpcObj obj)
     {
         this.npcObj = obj;
@@ -128,6 +132,9 @@ public class NpcObj : BaseObj,INpc
             }
         }
         now.ecState.needWork = new NeedWork();
+        now.ecState.needWork.obj = this;
+        now.ecState.needWork.prodEnum = ProdEnum.prod1;
+        Market.Instance.Register(RegisterNeedWork()[0] );
     }
     /// <summary>
     /// 更新每一个生产资料的数据,并更新完npc.根据contract
@@ -140,11 +147,11 @@ public class NpcObj : BaseObj,INpc
     public void BefThink()
     {
         //遍历每一个协议
-        var works = RegisterNeedWork();
-        foreach (var work in works)
-        {
-            Market.Instance.Register(work);
-        }
+        //var works = RegisterNeedWork();
+        //foreach (var work in works)
+        //{
+        //    Market.Instance.Register(work);
+        //}
     }
     public override void Predict(BaseState input, int day)
     {
@@ -183,12 +190,12 @@ public class NpcObj : BaseObj,INpc
 
     public void addMoney(Float money)
     {
-        throw new System.NotImplementedException();
+        now.ecState.money.value += money;
     }
 
     public void reduceMoney(Float money)
     {
-        throw new System.NotImplementedException();
+        now.ecState.money.value -= money;
     }
 
     public override string ShowString()
@@ -201,10 +208,6 @@ public class NpcObj : BaseObj,INpc
         throw new System.NotImplementedException();
     }
 
-    public void GetGoodsProcess(BaseState state, GoodsEnum goodsEnum, int sum)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public NeedGoods[] RegisterNeedGoods()
     {
@@ -228,26 +231,26 @@ public class NpcObj : BaseObj,INpc
 
     public Float getMoney()
     {
-        throw new System.NotImplementedException();
+        return now.ecState.money;
     }
 
     public void GetGoodsProcess(GoodsEnum goodsEnum, int sum)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override List<UIItemBinder> GetUI()
     {
         throw new System.NotImplementedException();
     }
-
+    //位置为所住的位置
     public Vector2Int GetWorldPos()
     {
-        throw new System.NotImplementedException();
+        return now.physicalState.livePlace.GetWorldPos();
     }
 
     public SceneObj GetSceneObj()
     {
-        throw new System.NotImplementedException();
+        return now.sceneObj;
     }
 }

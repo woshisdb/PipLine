@@ -58,7 +58,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 6|GoodsBuildingObj, Assembly-CSharp
@@ -76,13 +76,13 @@ MonoBehaviour:
       Data: 8|Float, Assembly-CSharp
     - Name: value
       Entry: 4
-      Data: 100
+      Data: 10060
     - Name: 
       Entry: 8
       Data: 
     - Name: buildingEnum
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: allResourceSum
       Entry: 3
       Data: 10
@@ -97,7 +97,7 @@ MonoBehaviour:
       Data: 10|Float, Assembly-CSharp
     - Name: value
       Entry: 4
-      Data: 0
+      Data: 9985
     - Name: 
       Entry: 8
       Data: 
@@ -115,7 +115,7 @@ MonoBehaviour:
       Data: 12|Float, Assembly-CSharp
     - Name: value
       Entry: 4
-      Data: 0
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -125,25 +125,16 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: prodSate
-      Entry: 7
-      Data: 13|Float, Assembly-CSharp
-    - Name: value
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: goodsManager
       Entry: 7
-      Data: 14|GoodsManager, Assembly-CSharp
+      Data: 13|GoodsManager, Assembly-CSharp
     - Name: goods
       Entry: 7
-      Data: 15|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj,
+      Data: 14|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 16|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
+      Data: 15|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -165,16 +156,16 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 17|GoodsObj, Assembly-CSharp
+      Data: 16|GoodsObj, Assembly-CSharp
     - Name: building
       Entry: 9
       Data: 6
     - Name: sum
       Entry: 7
-      Data: 18|Int, Assembly-CSharp
+      Data: 17|Int, Assembly-CSharp
     - Name: value
       Entry: 3
-      Data: 0
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -192,16 +183,16 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: $v
       Entry: 7
-      Data: 19|GoodsObj, Assembly-CSharp
+      Data: 18|GoodsObj, Assembly-CSharp
     - Name: building
       Entry: 9
       Data: 6
     - Name: sum
       Entry: 7
-      Data: 20|Int, Assembly-CSharp
+      Data: 19|Int, Assembly-CSharp
     - Name: value
       Entry: 3
       Data: 0
@@ -210,7 +201,7 @@ MonoBehaviour:
       Data: 
     - Name: goods
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -231,41 +222,14 @@ MonoBehaviour:
       Data: 
     - Name: needs
       Entry: 7
-      Data: 21|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods,
+      Data: 20|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 16
+      Data: 15
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 7
-      Data: 22|NeedGoods, Assembly-CSharp
-    - Name: goods
-      Entry: 3
-      Data: 0
-    - Name: needSum
-      Entry: 3
-      Data: 0
-    - Name: obj
-      Entry: 9
-      Data: 6
-    - Name: maxMoney
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -274,11 +238,11 @@ MonoBehaviour:
       Data: 
     - Name: sends
       Entry: 7
-      Data: 23|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods,
+      Data: 21|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 16
+      Data: 15
     - Name: 
       Entry: 12
       Data: 1
@@ -287,25 +251,25 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: $v
       Entry: 7
-      Data: 24|SendGoods, Assembly-CSharp
+      Data: 22|SendGoods, Assembly-CSharp
     - Name: goods
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: remainSum
       Entry: 9
-      Data: 20
+      Data: 17
     - Name: minMoney
       Entry: 4
-      Data: 0
+      Data: 2
     - Name: obj
       Entry: 9
       Data: 6
     - Name: sortVal
       Entry: 4
-      Data: 0
+      Data: 62
     - Name: 
       Entry: 8
       Data: 
@@ -320,10 +284,7 @@ MonoBehaviour:
       Data: 
     - Name: sendWork
       Entry: 7
-      Data: 25|SendWork, Assembly-CSharp
-    - Name: scene
-      Entry: 6
-      Data: 
+      Data: 23|SendWork, Assembly-CSharp
     - Name: obj
       Entry: 9
       Data: 6
@@ -331,84 +292,81 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: maxMoney
-      Entry: 4
-      Data: 0
-    - Name: workTime
-      Entry: 3
-      Data: 0
-    - Name: wastEnerge
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
       Entry: 7
-      Data: 26|BuildingEc, Assembly-CSharp
-    - Name: obj
-      Entry: 9
+      Data: 24|Float, Assembly-CSharp
+    - Name: value
+      Entry: 4
       Data: 6
     - Name: 
       Entry: 8
       Data: 
-    - Name: x
+    - Name: workTime
       Entry: 3
-      Data: 0
-    - Name: y
-      Entry: 3
-      Data: 2
-    - Name: scene
-      Entry: 9
-      Data: 3
+      Data: 5
+    - Name: allRate
+      Entry: 4
+      Data: 4
+    - Name: needWorks
+      Entry: 7
+      Data: 25|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib
     - Name: 
-      Entry: 8
-      Data: 
+      Entry: 12
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 27|GoodsBuildingObj, Assembly-CSharp
+      Data: 26|NeedWork, Assembly-CSharp
+    - Name: obj
+      Entry: 7
+      Data: 27|NpcObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 28|GoodsBuildingState, Assembly-CSharp
+      Data: 28|NpcState, Assembly-CSharp
     - Name: obj
       Entry: 9
       Data: 27
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: money
+    - Name: sceneObj
+      Entry: 9
+      Data: 3
+    - Name: ecState
       Entry: 7
-      Data: 29|Float, Assembly-CSharp
-    - Name: value
-      Entry: 4
-      Data: 100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: buildingEnum
-      Entry: 3
-      Data: 1
-    - Name: allResourceSum
-      Entry: 3
-      Data: 10
-    - Name: generateList
+      Data: 29|EcState, Assembly-CSharp
+    - Name: needGoods
       Entry: 7
-      Data: 30|System.Collections.Generic.List`1[[Float, Assembly-CSharp]], mscorlib
+      Data: 30|System.Collections.Generic.List`1[[NeedGoods, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 7
-      Data: 31|Float, Assembly-CSharp
-    - Name: value
+      Data: 31|NeedGoods, Assembly-CSharp
+    - Name: goods
+      Entry: 3
+      Data: 1
+    - Name: needSum
+      Entry: 3
+      Data: 2
+    - Name: obj
+      Entry: 9
+      Data: 27
+    - Name: maxMoney
       Entry: 4
-      Data: 0
+      Data: 70
     - Name: 
       Entry: 8
       Data: 
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: needWork
+      Entry: 9
+      Data: 26
+    - Name: needWorkB
+      Entry: 5
+      Data: false
+    - Name: money
       Entry: 7
       Data: 32|Float, Assembly-CSharp
     - Name: value
@@ -417,12 +375,114 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: npcObj
+      Entry: 9
+      Data: 27
     - Name: 
+      Entry: 8
+      Data: 
+    - Name: prodState
       Entry: 7
-      Data: 33|Float, Assembly-CSharp
+      Data: 33|ProdState, Assembly-CSharp
+    - Name: remainTime
+      Entry: 3
+      Data: 0
+    - Name: workTime
+      Entry: 3
+      Data: 0
+    - Name: goWorkTime
+      Entry: 3
+      Data: 0
+    - Name: lifeStyle
+      Entry: 6
+      Data: 
+    - Name: npcObj
+      Entry: 9
+      Data: 27
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: physicalState
+      Entry: 7
+      Data: 34|PhysicalState, Assembly-CSharp
+    - Name: remainEnerge
+      Entry: 3
+      Data: 0
+    - Name: strength
+      Entry: 3
+      Data: 0
+    - Name: npcObj
+      Entry: 9
+      Data: 27
+    - Name: livePlace
+      Entry: 7
+      Data: 35|HouseBuildingObj, Assembly-CSharp
+    - Name: state
+      Entry: 7
+      Data: 36|HouseBuildingState, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 35
+    - Name: belong
+      Entry: 6
+      Data: 
+    - Name: money
+      Entry: 7
+      Data: 37|Float, Assembly-CSharp
     - Name: value
       Entry: 4
-      Data: 0
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: buildingEnum
+      Entry: 3
+      Data: 2
+    - Name: npcs
+      Entry: 7
+      Data: 38|System.Collections.Generic.List`1[[NpcObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 9
+      Data: 27
+    - Name: 
+      Entry: 7
+      Data: 39|NpcObj, Assembly-CSharp
+    - Name: state
+      Entry: 7
+      Data: 40|NpcState, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 39
+    - Name: sceneObj
+      Entry: 9
+      Data: 3
+    - Name: ecState
+      Entry: 7
+      Data: 41|EcState, Assembly-CSharp
+    - Name: needGoods
+      Entry: 7
+      Data: 42|System.Collections.Generic.List`1[[NeedGoods, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 43|NeedGoods, Assembly-CSharp
+    - Name: goods
+      Entry: 3
+      Data: 1
+    - Name: needSum
+      Entry: 3
+      Data: 2
+    - Name: obj
+      Entry: 9
+      Data: 39
+    - Name: maxMoney
+      Entry: 4
+      Data: 70
     - Name: 
       Entry: 8
       Data: 
@@ -432,25 +492,94 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: prodSate
+    - Name: needWork
       Entry: 7
-      Data: 34|Float, Assembly-CSharp
+      Data: 44|NeedWork, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 39
+    - Name: minMoney
+      Entry: 4
+      Data: 0
+    - Name: sender
+      Entry: 7
+      Data: 45|SendWork, Assembly-CSharp
+    - Name: obj
+      Entry: 7
+      Data: 46|GoodsBuildingObj, Assembly-CSharp
+    - Name: state
+      Entry: 7
+      Data: 47|GoodsBuildingState, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 46
+    - Name: belong
+      Entry: 6
+      Data: 
+    - Name: money
+      Entry: 7
+      Data: 48|Float, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 8140
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: buildingEnum
+      Entry: 3
+      Data: 0
+    - Name: allResourceSum
+      Entry: 3
+      Data: 10
+    - Name: generateList
+      Entry: 7
+      Data: 49|System.Collections.Generic.List`1[[Float, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 50|Float, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 51|Float, Assembly-CSharp
     - Name: value
       Entry: 4
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 52|Float, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: goodsManager
       Entry: 7
-      Data: 35|GoodsManager, Assembly-CSharp
+      Data: 53|GoodsManager, Assembly-CSharp
     - Name: goods
       Entry: 7
-      Data: 36|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj,
+      Data: 54|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[GoodsObj,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 16
+      Data: 15
     - Name: 
       Entry: 12
       Data: 2
@@ -462,16 +591,16 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 37|GoodsObj, Assembly-CSharp
+      Data: 55|GoodsObj, Assembly-CSharp
     - Name: building
       Entry: 9
-      Data: 27
+      Data: 46
     - Name: sum
       Entry: 7
-      Data: 38|Int, Assembly-CSharp
+      Data: 56|Int, Assembly-CSharp
     - Name: value
       Entry: 3
-      Data: 0
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -489,25 +618,25 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: $v
       Entry: 7
-      Data: 39|GoodsObj, Assembly-CSharp
+      Data: 57|GoodsObj, Assembly-CSharp
     - Name: building
       Entry: 9
-      Data: 27
+      Data: 46
     - Name: sum
       Entry: 7
-      Data: 40|Int, Assembly-CSharp
+      Data: 58|Int, Assembly-CSharp
     - Name: value
       Entry: 3
-      Data: 10000
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
     - Name: goods
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -522,33 +651,17 @@ MonoBehaviour:
       Data: 
     - Name: building
       Entry: 9
-      Data: 27
+      Data: 46
     - Name: 
       Entry: 8
       Data: 
     - Name: needs
       Entry: 7
-      Data: 41|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods,
+      Data: 59|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[NeedGoods,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 16
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: sends
-      Entry: 7
-      Data: 42|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 9
-      Data: 16
+      Data: 15
     - Name: 
       Entry: 12
       Data: 1
@@ -560,22 +673,65 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 43|SendGoods, Assembly-CSharp
+      Data: 60|NeedGoods, Assembly-CSharp
     - Name: goods
       Entry: 3
       Data: 0
-    - Name: remainSum
-      Entry: 9
-      Data: 38
-    - Name: minMoney
-      Entry: 4
-      Data: 0
+    - Name: needSum
+      Entry: 3
+      Data: 5
     - Name: obj
       Entry: 9
-      Data: 27
+      Data: 46
+    - Name: maxMoney
+      Entry: 4
+      Data: 70
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: sends
+      Entry: 7
+      Data: 61|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[SendGoods,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 15
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 62|SendGoods, Assembly-CSharp
+    - Name: goods
+      Entry: 3
+      Data: 1
+    - Name: remainSum
+      Entry: 9
+      Data: 58
+    - Name: minMoney
+      Entry: 4
+      Data: 2
+    - Name: obj
+      Entry: 9
+      Data: 46
     - Name: sortVal
       Entry: 4
-      Data: 0
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -589,26 +745,128 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: sendWork
-      Entry: 7
-      Data: 44|SendWork, Assembly-CSharp
-    - Name: scene
-      Entry: 6
+      Entry: 9
+      Data: 45
+    - Name: 
+      Entry: 8
       Data: 
+    - Name: ecInf
+      Entry: 7
+      Data: 63|BuildingEc, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 27
+      Data: 46
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: x
+      Entry: 3
+      Data: 2
+    - Name: y
+      Entry: 3
+      Data: 0
+    - Name: scene
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: prodEnum
       Entry: 3
       Data: 0
     - Name: maxMoney
+      Entry: 7
+      Data: 64|Float, Assembly-CSharp
+    - Name: value
       Entry: 4
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: workTime
+      Entry: 3
+      Data: 5
+    - Name: allRate
+      Entry: 4
+      Data: 4
+    - Name: needWorks
+      Entry: 7
+      Data: 65|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 9
+      Data: 44
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: prodEnum
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: needWorkB
+      Entry: 5
+      Data: false
+    - Name: money
+      Entry: 7
+      Data: 66|Float, Assembly-CSharp
+    - Name: value
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: npcObj
+      Entry: 9
+      Data: 39
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: prodState
+      Entry: 7
+      Data: 67|ProdState, Assembly-CSharp
+    - Name: remainTime
+      Entry: 3
       Data: 0
     - Name: workTime
       Entry: 3
       Data: 0
-    - Name: wastEnerge
+    - Name: goWorkTime
       Entry: 3
       Data: 0
+    - Name: lifeStyle
+      Entry: 6
+      Data: 
+    - Name: npcObj
+      Entry: 9
+      Data: 39
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: physicalState
+      Entry: 7
+      Data: 68|PhysicalState, Assembly-CSharp
+    - Name: remainEnerge
+      Entry: 3
+      Data: 0
+    - Name: strength
+      Entry: 3
+      Data: 0
+    - Name: npcObj
+      Entry: 9
+      Data: 39
+    - Name: livePlace
+      Entry: 9
+      Data: 35
     - Name: 
       Entry: 8
       Data: 
@@ -617,22 +875,13 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 45|BuildingEc, Assembly-CSharp
+      Data: 69|NpcEc, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 27
+      Data: 39
     - Name: 
       Entry: 8
       Data: 
-    - Name: x
-      Entry: 3
-      Data: 5
-    - Name: y
-      Entry: 3
-      Data: 2
-    - Name: scene
-      Entry: 9
-      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -642,27 +891,126 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: paths
-      Entry: 7
-      Data: 46|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
     - Name: 
-      Entry: 12
+      Entry: 8
+      Data: 
+    - Name: ecInf
+      Entry: 7
+      Data: 70|HouseBuildingEc, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 35
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: x
+      Entry: 3
+      Data: 1
+    - Name: y
+      Entry: 3
+      Data: 0
+    - Name: scene
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ecInf
+      Entry: 7
+      Data: 71|NpcEc, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 27
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: minMoney
+      Entry: 4
+      Data: 0
+    - Name: sender
+      Entry: 9
+      Data: 23
+    - Name: prodEnum
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ecInf
+      Entry: 7
+      Data: 72|BuildingEc, Assembly-CSharp
+    - Name: obj
+      Entry: 9
       Data: 6
     - Name: 
+      Entry: 8
+      Data: 
+    - Name: x
+      Entry: 3
+      Data: 0
+    - Name: y
+      Entry: 3
+      Data: 0
+    - Name: scene
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 9
+      Data: 46
+    - Name: 
+      Entry: 9
+      Data: 35
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: paths
       Entry: 7
-      Data: 47|PathObj, Assembly-CSharp
+      Data: 73|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 74|PathObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 48|PathState, Assembly-CSharp
+      Data: 75|PathState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 47
+      Data: 74
     - Name: belong
       Entry: 6
       Data: 
     - Name: money
       Entry: 7
-      Data: 49|Float, Assembly-CSharp
+      Data: 76|Float, Assembly-CSharp
     - Name: value
       Entry: 4
       Data: 100
@@ -701,19 +1049,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 50|PathObj, Assembly-CSharp
+      Data: 77|PathObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 51|PathState, Assembly-CSharp
+      Data: 78|PathState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 50
+      Data: 77
     - Name: belong
       Entry: 6
       Data: 
     - Name: money
       Entry: 7
-      Data: 52|Float, Assembly-CSharp
+      Data: 79|Float, Assembly-CSharp
     - Name: value
       Entry: 4
       Data: 100
@@ -752,19 +1100,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 53|PathObj, Assembly-CSharp
+      Data: 80|PathObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 54|PathState, Assembly-CSharp
+      Data: 81|PathState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 53
+      Data: 80
     - Name: belong
       Entry: 6
       Data: 
     - Name: money
       Entry: 7
-      Data: 55|Float, Assembly-CSharp
+      Data: 82|Float, Assembly-CSharp
     - Name: value
       Entry: 4
       Data: 100
@@ -792,159 +1140,6 @@ MonoBehaviour:
     - Name: x
       Entry: 3
       Data: 2
-    - Name: y
-      Entry: 3
-      Data: 1
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 56|PathObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 57|PathState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 56
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: money
-      Entry: 7
-      Data: 58|Float, Assembly-CSharp
-    - Name: value
-      Entry: 4
-      Data: 100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: pathEnum
-      Entry: 3
-      Data: 0
-    - Name: rate
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 6
-      Data: 
-    - Name: pathEnum
-      Entry: 3
-      Data: 0
-    - Name: scene
-      Entry: 9
-      Data: 3
-    - Name: x
-      Entry: 3
-      Data: 3
-    - Name: y
-      Entry: 3
-      Data: 1
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 59|PathObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 60|PathState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 59
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: money
-      Entry: 7
-      Data: 61|Float, Assembly-CSharp
-    - Name: value
-      Entry: 4
-      Data: 100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: pathEnum
-      Entry: 3
-      Data: 0
-    - Name: rate
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 6
-      Data: 
-    - Name: pathEnum
-      Entry: 3
-      Data: 0
-    - Name: scene
-      Entry: 9
-      Data: 3
-    - Name: x
-      Entry: 3
-      Data: 4
-    - Name: y
-      Entry: 3
-      Data: 1
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 62|PathObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 63|PathState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 62
-    - Name: belong
-      Entry: 6
-      Data: 
-    - Name: money
-      Entry: 7
-      Data: 64|Float, Assembly-CSharp
-    - Name: value
-      Entry: 4
-      Data: 100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: pathEnum
-      Entry: 3
-      Data: 0
-    - Name: rate
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 6
-      Data: 
-    - Name: pathEnum
-      Entry: 3
-      Data: 0
-    - Name: scene
-      Entry: 9
-      Data: 3
-    - Name: x
-      Entry: 3
-      Data: 5
     - Name: y
       Entry: 3
       Data: 1
@@ -962,17 +1157,17 @@ MonoBehaviour:
       Data: 
     - Name: mapLabels
       Entry: 7
-      Data: 65|MapLabels, Assembly-CSharp
+      Data: 83|MapLabels, Assembly-CSharp
     - Name: distance
       Entry: 7
-      Data: 66|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
+      Data: 84|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
     - Name: 
       Entry: 7
-      Data: 67|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 85|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1014,7 +1209,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 68|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 86|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1056,7 +1251,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 69|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 87|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1098,133 +1293,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 70|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 71|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 72|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 20
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 73|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 88|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1266,7 +1335,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 74|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 89|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1308,7 +1377,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 75|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 90|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1350,7 +1419,133 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 76|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 91|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 92|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 93|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 94|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
@@ -1397,521 +1592,6 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: vis
-      Entry: 7
-      Data: 77|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
-        mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 7
-      Data: 78|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 79|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 80|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 81|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 82|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 83|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 84|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 85|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 86|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 87|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: xl
-      Entry: 3
-      Data: 10
-    - Name: yl
-      Entry: 3
-      Data: 10
-    - Name: visLabel
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: npcs
-      Entry: 7
-      Data: 88|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]], System.Core
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 7
-      Data: 89|SceneEcInf, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 90|SceneObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 91|SceneState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 90
-    - Name: x
-      Entry: 3
-      Data: 0
-    - Name: y
-      Entry: 3
-      Data: 1
-    - Name: buildings
-      Entry: 7
-      Data: 92|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: paths
-      Entry: 7
-      Data: 93|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: mapLabels
-      Entry: 7
-      Data: 94|MapLabels, Assembly-CSharp
-    - Name: distance
       Entry: 7
       Data: 95|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
@@ -2344,307 +2024,102 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: vis
+    - Name: xl
+      Entry: 3
+      Data: 10
+    - Name: yl
+      Entry: 3
+      Data: 10
+    - Name: visLabel
+      Entry: 3
+      Data: 107
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: npcs
       Entry: 7
-      Data: 106|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
+      Data: 106|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
+        System.Core
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 9
+      Data: 27
+    - Name: 
+      Entry: 9
+      Data: 39
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ecInf
+      Entry: 7
+      Data: 107|SceneEcInf, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 108|SceneObj, Assembly-CSharp
+    - Name: state
+      Entry: 7
+      Data: 109|SceneState, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 108
+    - Name: x
+      Entry: 3
+      Data: 0
+    - Name: y
+      Entry: 3
+      Data: 1
+    - Name: buildings
+      Entry: 7
+      Data: 110|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: paths
+      Entry: 7
+      Data: 111|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: mapLabels
+      Entry: 7
+      Data: 112|MapLabels, Assembly-CSharp
+    - Name: distance
+      Entry: 7
+      Data: 113|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
-    - Name: 
-      Entry: 7
-      Data: 107|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 108|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 109|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 110|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 111|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 112|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 113|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 7
       Data: 114|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
@@ -2772,84 +2247,82 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
+      Entry: 7
+      Data: 117|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: xl
-      Entry: 3
+      Entry: 12
       Data: 10
-    - Name: yl
+    - Name: 
       Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 118|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
       Data: 10
-    - Name: visLabel
-      Entry: 3
-      Data: 1
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: npcs
-      Entry: 7
-      Data: 117|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
-        System.Core
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
-      Entry: 7
-      Data: 118|SceneEcInf, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 90
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 119|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 120|SceneObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 121|SceneState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 120
-    - Name: x
-      Entry: 3
-      Data: 1
-    - Name: y
       Entry: 3
       Data: 0
-    - Name: buildings
-      Entry: 7
-      Data: 122|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
-        mscorlib
     - Name: 
-      Entry: 12
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
       Data: 0
     - Name: 
       Entry: 13
@@ -2857,11 +2330,41 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: paths
+    - Name: 
       Entry: 7
-      Data: 123|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
+      Data: 119|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
       Data: 0
     - Name: 
       Entry: 13
@@ -2869,16 +2372,229 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: mapLabels
+    - Name: 
       Entry: 7
-      Data: 124|MapLabels, Assembly-CSharp
-    - Name: distance
+      Data: 120|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 7
-      Data: 125|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
+      Data: 121|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 122|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 123|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: vis
+      Entry: 7
+      Data: 124|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
+    - Name: 
+      Entry: 7
+      Data: 125|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 7
       Data: 126|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
@@ -3258,40 +2974,29 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: xl
+      Entry: 3
+      Data: 10
+    - Name: yl
+      Entry: 3
+      Data: 10
+    - Name: visLabel
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: npcs
       Entry: 7
-      Data: 135|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+      Data: 135|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
+        System.Core
     - Name: 
       Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
       Data: 0
     - Name: 
       Entry: 13
@@ -3300,312 +3005,82 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
       Entry: 8
       Data: 
-    - Name: vis
+    - Name: ecInf
       Entry: 7
-      Data: 136|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
+      Data: 136|SceneEcInf, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 108
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 137|System.Collections.Generic.List`1[[SceneObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 138|SceneObj, Assembly-CSharp
+    - Name: state
+      Entry: 7
+      Data: 139|SceneState, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 138
+    - Name: x
+      Entry: 3
+      Data: 1
+    - Name: y
+      Entry: 3
+      Data: 0
+    - Name: buildings
+      Entry: 7
+      Data: 140|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: paths
+      Entry: 7
+      Data: 141|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: mapLabels
+      Entry: 7
+      Data: 142|MapLabels, Assembly-CSharp
+    - Name: distance
+      Entry: 7
+      Data: 143|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
-    - Name: 
-      Entry: 7
-      Data: 137|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 138|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 139|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 140|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 141|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 142|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 143|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 7
       Data: 144|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
@@ -3733,29 +3208,82 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
+      Entry: 7
+      Data: 147|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: xl
-      Entry: 3
+      Entry: 12
       Data: 10
-    - Name: yl
+    - Name: 
       Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 148|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
       Data: 10
-    - Name: visLabel
+    - Name: 
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: npcs
-      Entry: 7
-      Data: 147|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
-        System.Core
+      Entry: 3
+      Data: 0
     - Name: 
-      Entry: 12
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
       Data: 0
     - Name: 
       Entry: 13
@@ -3764,41 +3292,40 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: ecInf
       Entry: 7
-      Data: 148|SceneEcInf, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 120
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 149|SceneObj, Assembly-CSharp
-    - Name: state
-      Entry: 7
-      Data: 150|SceneState, Assembly-CSharp
-    - Name: obj
-      Entry: 9
-      Data: 149
-    - Name: x
-      Entry: 3
-      Data: 1
-    - Name: y
-      Entry: 3
-      Data: 1
-    - Name: buildings
-      Entry: 7
-      Data: 151|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
-        mscorlib
+      Data: 149|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
       Data: 0
     - Name: 
       Entry: 13
@@ -3806,11 +3333,41 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: paths
+    - Name: 
       Entry: 7
-      Data: 152|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
+      Data: 150|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
     - Name: 
       Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
       Data: 0
     - Name: 
       Entry: 13
@@ -3818,10 +3375,139 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: mapLabels
+    - Name: 
       Entry: 7
-      Data: 153|MapLabels, Assembly-CSharp
-    - Name: distance
+      Data: 151|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 152|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 153|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: vis
       Entry: 7
       Data: 154|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
@@ -4254,307 +3940,96 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: vis
+    - Name: xl
+      Entry: 3
+      Data: 10
+    - Name: yl
+      Entry: 3
+      Data: 10
+    - Name: visLabel
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: npcs
       Entry: 7
-      Data: 165|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
+      Data: 165|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
+        System.Core
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ecInf
+      Entry: 7
+      Data: 166|SceneEcInf, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 138
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 167|SceneObj, Assembly-CSharp
+    - Name: state
+      Entry: 7
+      Data: 168|SceneState, Assembly-CSharp
+    - Name: obj
+      Entry: 9
+      Data: 167
+    - Name: x
+      Entry: 3
+      Data: 1
+    - Name: y
+      Entry: 3
+      Data: 1
+    - Name: buildings
+      Entry: 7
+      Data: 169|System.Collections.Generic.List`1[[BuildingObj, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: paths
+      Entry: 7
+      Data: 170|System.Collections.Generic.List`1[[PathObj, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: mapLabels
+      Entry: 7
+      Data: 171|MapLabels, Assembly-CSharp
+    - Name: distance
+      Entry: 7
+      Data: 172|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
         mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 10
-    - Name: 
-      Entry: 7
-      Data: 166|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 167|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 168|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 169|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 170|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 171|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 172|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 10
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 7
       Data: 173|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
@@ -4682,6 +4157,733 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 176|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 177|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 178|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 179|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 180|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 181|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 182|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: vis
+      Entry: 7
+      Data: 183|System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[System.Int32,
+        mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 7
+      Data: 184|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 185|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 186|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 187|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 188|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 189|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 190|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 191|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 192|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 193|System.Collections.Generic.List`1[[System.Int32, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 10
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -4701,7 +4903,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 176|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
+      Data: 194|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
@@ -4717,10 +4919,10 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 177|SceneEcInf, Assembly-CSharp
+      Data: 195|SceneEcInf, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 149
+      Data: 167
     - Name: 
       Entry: 8
       Data: 
@@ -4741,7 +4943,7 @@ MonoBehaviour:
       Data: 
     - Name: npcs
       Entry: 7
-      Data: 178|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
+      Data: 196|System.Collections.Generic.HashSet`1[[NpcObj, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
@@ -4754,24 +4956,30 @@ MonoBehaviour:
       Data: 
     - Name: goodsMatcher
       Entry: 7
-      Data: 179|GoodsMatcher, Assembly-CSharp
+      Data: 197|GoodsMatcher, Assembly-CSharp
     - Name: goodsMatchs
       Entry: 7
-      Data: 180|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract,
+      Data: 198|BiDictionary`3[[NeedGoods, Assembly-CSharp],[SendGoods, Assembly-CSharp],[GoodsContract,
         Assembly-CSharp]], Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: needGoods
       Entry: 7
-      Data: 181|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]],
+      Data: 199|System.Collections.Generic.HashSet`1[[NeedGoods, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 9
-      Data: 22
+      Data: 60
+    - Name: 
+      Entry: 9
+      Data: 31
+    - Name: 
+      Entry: 9
+      Data: 43
     - Name: 
       Entry: 13
       Data: 
@@ -4780,11 +4988,11 @@ MonoBehaviour:
       Data: 
     - Name: sendGoods
       Entry: 7
-      Data: 182|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods,
+      Data: 200|System.Collections.Generic.Dictionary`2[[GoodsEnum, Assembly-CSharp],[System.Collections.Generic.HashSet`1[[SendGoods,
         Assembly-CSharp]], System.Core]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 183|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
+      Data: 201|System.Collections.Generic.EnumEqualityComparer`1[[GoodsEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4806,14 +5014,14 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 7
-      Data: 184|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]],
+      Data: 202|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 24
+      Data: 62
     - Name: 
       Entry: 13
       Data: 
@@ -4831,14 +5039,14 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 7
-      Data: 185|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]],
+      Data: 203|System.Collections.Generic.HashSet`1[[SendGoods, Assembly-CSharp]],
         System.Core
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 9
-      Data: 43
+      Data: 22
     - Name: 
       Entry: 13
       Data: 
@@ -4859,43 +5067,120 @@ MonoBehaviour:
       Data: 
     - Name: workMatcher
       Entry: 7
-      Data: 186|WorkMatcher, Assembly-CSharp
+      Data: 204|WorkMatcher, Assembly-CSharp
     - Name: sendWorks
-      Entry: 6
-      Data: 
-    - Name: needWorks
-      Entry: 6
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: pathTrans
       Entry: 7
-      Data: 187|System.Collections.Generic.List`1[[PathTrans, Assembly-CSharp]],
+      Data: 205|System.Collections.Generic.Dictionary`2[[ProdEnum, Assembly-CSharp],[System.Collections.Generic.List`1[[SendWork,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 206|System.Collections.Generic.EnumEqualityComparer`1[[ProdEnum, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 0
     - Name: 
       Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 207|System.Collections.Generic.List`1[[SendWork, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 9
+      Data: 23
+    - Name: 
+      Entry: 9
+      Data: 45
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: needWorks
+      Entry: 7
+      Data: 208|System.Collections.Generic.Dictionary`2[[ProdEnum, Assembly-CSharp],[System.Collections.Generic.List`1[[NeedWork,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 9
+      Data: 206
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 209|System.Collections.Generic.List`1[[NeedWork, Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 9
+      Data: 26
+    - Name: 
+      Entry: 9
+      Data: 44
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: 
       Entry: 8
       Data: 
     - Name: cirQueue
       Entry: 7
-      Data: 188|CircularQueue`1[[System.Collections.Generic.List`1[[TransGoodsItem,
+      Data: 210|CircularQueue`1[[System.Collections.Generic.List`1[[TransGoodsItem,
         Assembly-CSharp]], mscorlib]], Assembly-CSharp
     - Name: _queue
       Entry: 7
-      Data: 189|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp,
+      Data: 211|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]][], mscorlib
     - Name: 
       Entry: 12
       Data: 10
     - Name: 
       Entry: 7
-      Data: 190|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 212|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4908,7 +5193,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 191|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 213|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4921,7 +5206,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 192|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 214|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4934,7 +5219,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 193|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 215|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4947,7 +5232,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 194|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 216|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4960,7 +5245,166 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 195|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 217|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 218|TransGoodsItem, Assembly-CSharp
+    - Name: needGoods
+      Entry: 9
+      Data: 60
+    - Name: sendGoods
+      Entry: 9
+      Data: 22
+    - Name: needer
+      Entry: 9
+      Data: 46
+    - Name: sender
+      Entry: 9
+      Data: 6
+    - Name: goodsEnum
+      Entry: 3
+      Data: 0
+    - Name: goodsCount
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 219|TransGoodsItem, Assembly-CSharp
+    - Name: needGoods
+      Entry: 9
+      Data: 31
+    - Name: sendGoods
+      Entry: 9
+      Data: 62
+    - Name: needer
+      Entry: 9
+      Data: 27
+    - Name: sender
+      Entry: 9
+      Data: 46
+    - Name: goodsEnum
+      Entry: 3
+      Data: 0
+    - Name: goodsCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 220|TransGoodsItem, Assembly-CSharp
+    - Name: needGoods
+      Entry: 9
+      Data: 43
+    - Name: sendGoods
+      Entry: 9
+      Data: 62
+    - Name: needer
+      Entry: 9
+      Data: 39
+    - Name: sender
+      Entry: 9
+      Data: 46
+    - Name: goodsEnum
+      Entry: 3
+      Data: 0
+    - Name: goodsCount
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 221|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 222|TransGoodsItem, Assembly-CSharp
+    - Name: needGoods
+      Entry: 9
+      Data: 60
+    - Name: sendGoods
+      Entry: 9
+      Data: 22
+    - Name: needer
+      Entry: 9
+      Data: 46
+    - Name: sender
+      Entry: 9
+      Data: 6
+    - Name: goodsEnum
+      Entry: 3
+      Data: 0
+    - Name: goodsCount
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 223|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 224|TransGoodsItem, Assembly-CSharp
+    - Name: needGoods
+      Entry: 9
+      Data: 60
+    - Name: sendGoods
+      Entry: 9
+      Data: 22
+    - Name: needer
+      Entry: 9
+      Data: 46
+    - Name: sender
+      Entry: 9
+      Data: 6
+    - Name: goodsEnum
+      Entry: 3
+      Data: 0
+    - Name: goodsCount
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 225|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -4973,46 +5417,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 196|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 197|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 198|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 199|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
+      Data: 226|System.Collections.Generic.List`1[[TransGoodsItem, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -5031,10 +5436,10 @@ MonoBehaviour:
       Data: 
     - Name: _head
       Entry: 3
-      Data: 0
+      Data: 5
     - Name: _tail
       Entry: 3
-      Data: 0
+      Data: 5
     - Name: _size
       Entry: 3
       Data: 10
@@ -5046,19 +5451,19 @@ MonoBehaviour:
       Data: 
     - Name: government
       Entry: 7
-      Data: 200|GovernmentObj, Assembly-CSharp
+      Data: 227|GovernmentObj, Assembly-CSharp
     - Name: state
       Entry: 7
-      Data: 201|GovernmentState, Assembly-CSharp
+      Data: 228|GovernmentState, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 200
+      Data: 227
     - Name: money
       Entry: 7
-      Data: 202|Float, Assembly-CSharp
+      Data: 229|Float, Assembly-CSharp
     - Name: value
       Entry: 4
-      Data: 0
+      Data: 1860
     - Name: 
       Entry: 8
       Data: 
@@ -5067,10 +5472,10 @@ MonoBehaviour:
       Data: 
     - Name: ecInf
       Entry: 7
-      Data: 203|GovernmentEc, Assembly-CSharp
+      Data: 230|GovernmentEc, Assembly-CSharp
     - Name: obj
       Entry: 9
-      Data: 200
+      Data: 227
     - Name: 
       Entry: 8
       Data: 

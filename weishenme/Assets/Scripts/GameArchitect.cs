@@ -42,9 +42,10 @@ public class GameArchitect : Singleton<GameArchitect>
     public void Update()
     {
         ////NPC注册工作后处理,比如是否需要工作
-        //NpcThink();
+        NpcThink();
         ///建筑更新,修改订单的需求量,价格等
         BuildingThink();
+        //建筑更新
         MarketWorkUpdate();
         //建筑进行生产的更新
         BuildingUpdate();

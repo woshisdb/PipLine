@@ -28,7 +28,6 @@ public class Building0Meta : BuildingMeta
     public Building0Meta() : base()
     {
         view = (GameObject)Resources.Load("Prefab/building");
-        state = GoodsStateEnum.source;
         prods = new Tuple<ProdEnum, Int>[]{
             new Tuple<ProdEnum, Int>(ProdEnum.prod1,1),
         };

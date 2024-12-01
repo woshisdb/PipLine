@@ -138,7 +138,9 @@ public class WorkMatcher : Matcher
             {
                 foreach (var needer in needWorks[item.Key])
                 {
-                    if(sender.rate<=0)
+                    if (needer.hasWork)
+                        continue;
+                    if(sender.remainRate <= 0)
                     {
                         break;
                     }
@@ -204,7 +206,7 @@ public class Market : Singleton<Market>
 
     public void Register(NeedWork needWork)
     {
-        
+        workMatcher.AddNeed(needWork);
     }
     public void UnRegister(NeedWork needWork)
     {
@@ -221,7 +223,7 @@ public class Market : Singleton<Market>
 
     public void Register(SendWork sendWork)
     {
-
+        workMatcher.AddSend(sendWork);
     }
     public void UnRegister(SendWork sendWork)
     {

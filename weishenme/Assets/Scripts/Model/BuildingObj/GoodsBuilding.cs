@@ -16,7 +16,7 @@ public class GoodsBuildingState : BuildingState
     /// <summary>
     /// 生产力的数目
     /// </summary>
-    public Float prodSate;
+    public float prodSate { get { return sendWork.getRate; } }
     /// <summary>
     /// 商品管理器
     /// </summary>
@@ -38,7 +38,6 @@ public class GoodsBuildingState : BuildingState
             generateList.Add(new Float(0));
         }
         //generateList.Clear();
-        prodSate = 0;
         allResourceSum = 10;
     }
 }
@@ -79,6 +78,7 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
         now.sends[output.Item1] = sendGoods;
         ///发送工作
         now.sendWork = new SendWork(this);
+        Market.Instance.Register(now.sendWork);
     }
 
     public void addMoney(Float money)
@@ -134,11 +134,11 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
     public void GeneratePipline()
     {
         var state = (GoodsBuildingState)now;
-        state.prodSate = 1000;
+        float prodState = now.prodSate;
         // 遍历流水线，从队尾开始
         for (int i = state.generateList.Count-1; i >=0; i--)
         {
-            if (state.prodSate >= 0)
+            if (prodState >= 0)
             {
                 // 获取当前流水线节点，FindTail(i) 从队尾向头部查找第 i 个元素
                 var node = state.generateList[i];
@@ -146,8 +146,8 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
                 // 判断是否为最后一个节点
                 if (i == state.generateList.Count - 1) // 处理最后一个节点（队尾）
                 {
-                    var needRed = Mathf.CeilToInt(Math.Min(state.prodSate, node));
-                    state.prodSate -= needRed;
+                    var needRed = Mathf.CeilToInt(Math.Min(prodState, node));
+                    prodState -= needRed;
                     var tempNow = node;
                     node.value -= needRed;
                     int allCreate = (int)needRed;
@@ -160,8 +160,8 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
                     // 将商品向前推进（模拟流水线）
                     var nextNode = state.generateList[i + 1]; // 查找上一个节点
                     //nextNode = node;
-                    var needRed = Math.Min(state.prodSate, node);
-                    state.prodSate -= needRed;
+                    var needRed = Math.Min(prodState, node);
+                    prodState -= needRed;
                     nextNode.Value += needRed;
                     node.Value -= needRed;
                 }

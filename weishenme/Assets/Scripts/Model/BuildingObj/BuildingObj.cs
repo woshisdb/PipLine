@@ -23,7 +23,6 @@ public class BuildingState:BaseState
         //buildingMeta=Meta.Instance.getMeta(buildingEnum);
         money=new Float(100);
     }
-
 }
 
 public class BuildingEc : EconomicInf

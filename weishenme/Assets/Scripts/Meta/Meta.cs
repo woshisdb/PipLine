@@ -19,6 +19,7 @@ public enum BuildingEnum
 {
     building1,
     building0,
+    houseBuilding,
 }
 
 public enum PathEnum
@@ -36,12 +37,12 @@ public interface MetaI<T>: MetaI
     public T ReturnEnum();
 }
 
-public enum GoodsStateEnum
-{
-    source,//原材料生产型:不需要进口只需要出口
-    process,//中间产物生成
-    final,//最终生产商品
-}
+//public enum GoodsStateEnum
+//{
+//    source,//原材料生产型:不需要进口只需要出口
+//    process,//中间产物生成
+//    final,//最终生产商品
+//}
 
 public abstract class PathMeta : MetaI<PathEnum>
 {
@@ -106,6 +107,7 @@ public class Meta:Singleton<Meta>
         buildingInfs = new Dictionary<BuildingEnum, BuildingMeta>();//Meta数据
         buildingInfs[BuildingEnum.building1] = new Building1Meta();
         buildingInfs[BuildingEnum.building0]=new Building0Meta();
+        buildingInfs[BuildingEnum.houseBuilding] = new HouseBuildingMeta();
         pathInfs=new Dictionary<PathEnum, PathMeta>();
         pathInfs.Add(PathEnum.path0, new Path1Meta());
     }

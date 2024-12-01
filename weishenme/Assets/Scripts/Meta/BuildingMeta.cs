@@ -6,10 +6,10 @@ using UnityEngine;
 
 public abstract class BuildingMeta : MetaI<BuildingEnum>
 {
-    /// <summary>
-    /// 商品的Enum
-    /// </summary>
-    public GoodsStateEnum state;
+    ///// <summary>
+    ///// 商品的Enum
+    ///// </summary>
+    //public GoodsStateEnum state;
     /// <summary>
     /// 需要的生产力列表
     /// </summary>
