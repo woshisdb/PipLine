@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class SaveSystem : Singleton<SaveSystem>
 {
-    /// <summary>
-    /// ±£´æÊý¾Ý
-    /// </summary>
     public SaveData saveData;
     public void Save()
     {

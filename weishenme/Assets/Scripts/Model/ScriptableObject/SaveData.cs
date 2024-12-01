@@ -20,14 +20,64 @@ public class SaveFile
 [CreateAssetMenu(fileName = "newSaveData", menuName = "SaveData/newSaveData")]
 public class SaveData : SerializedScriptableObject
 {
+    /// <summary>
+    /// 根据是否是搜索状态来选择访问的是什么
+    /// </summary>
+    public bool isSearch;
     public SaveFile saveFile;
-    public List<List<SceneObj>> SceneObjects { get { return saveFile.SceneObjects; } }
-    public HashSet<NpcObj> npcs { get { return saveFile.npcs; } }
+    public SaveFile searchFile;
+    public List<List<SceneObj>> SceneObjects { get {
+        if(!isSearch)
+            return saveFile.SceneObjects;
+        return searchFile.SceneObjects;
+    } }
+    public HashSet<NpcObj> npcs { get {
+        if (!isSearch)
+        {
+            return saveFile.npcs;
+        }
+        else
+        {
+            return searchFile.npcs;
+        }
+    } }
 
-    public GoodsMatcher goodsMatcher { get { return saveFile.goodsMatcher; } }
-    public WorkMatcher workMatcher { get { return saveFile.workMatcher; } }
-    public CircularQueue<List<TransGoodsItem>> cirQueue { get { return saveFile.cirQueue; } }
-    public GovernmentObj Government { get { return saveFile.government; } }
+    public GoodsMatcher goodsMatcher { get {
+            if (!isSearch)
+            {
+                return saveFile.goodsMatcher;
+            }
+            else
+            {
+                return searchFile.goodsMatcher ;
+            }
+    } }
+    public WorkMatcher workMatcher { get {
+            if (!isSearch)
+            {
+                return saveFile.workMatcher;
+            }else
+            {
+                return searchFile.workMatcher;
+            }
+    } }
+    public CircularQueue<List<TransGoodsItem>> cirQueue { get {
+            if (!isSearch)
+            {
+                return saveFile.cirQueue;
+            }
+            else
+            {
+                return searchFile.cirQueue;
+            }
+    } }
+    public GovernmentObj Government { get {
+            if (!isSearch)
+            {
+                return saveFile.government;
+            }
+            return searchFile.government;
+    } }
     /// <summary>
     /// 设置长度
     /// </summary>
@@ -80,5 +130,7 @@ public class SaveData : SerializedScriptableObject
         var json = File.ReadAllBytes(filePath);
         var data = SerializationUtility.DeserializeValue<SaveFile>(json, DataFormat.JSON);
         saveFile = data;
+        /////////////////////////////////////
+        searchFile= SerializationUtility.DeserializeValue<SaveFile>(json, DataFormat.JSON);
     }
 }
