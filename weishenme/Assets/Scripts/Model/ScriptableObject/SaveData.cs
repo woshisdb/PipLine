@@ -23,7 +23,7 @@ public class SaveData : SerializedScriptableObject
     /// <summary>
     /// 根据是否是搜索状态来选择访问的是什么
     /// </summary>
-    public bool isSearch;
+    public bool isSearch=false;
     public SaveFile saveFile;
     public SaveFile searchFile;
     public List<List<SceneObj>> SceneObjects { get {
@@ -128,9 +128,8 @@ public class SaveData : SerializedScriptableObject
     {
         var filePath = "Assets/Resources/Saves" + "/tablesaveData.dat";
         var json = File.ReadAllBytes(filePath);
-        var data = SerializationUtility.DeserializeValue<SaveFile>(json, DataFormat.JSON);
-        saveFile = data;
+        saveFile = SerializationUtility.DeserializeValue<SaveFile>(json, DataFormat.JSON);
         /////////////////////////////////////
-        searchFile= SerializationUtility.DeserializeValue<SaveFile>(json, DataFormat.JSON);
+        searchFile = SerializationUtility.DeserializeValue<SaveFile>(json, DataFormat.JSON);
     }
 }

@@ -38,7 +38,7 @@ public class BuildingEc : EconomicInf
 /// ½¨Öþ¶ÔÏó
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent, IWorldPosition
+public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent, IWorldPosition,IEffectShort
 {
     [SerializeField]
     public BuildingState now { get { return (BuildingState)getNow(); } }
@@ -135,6 +135,21 @@ public class BuildingObj :BaseObj,ISendEvent,ISendCommand,IRegisterEvent, IWorld
     public SceneObj GetSceneObj()
     {
         return scene;
+    }
+    public void AddBelong(NpcObj npc)
+    {
+        now.belong = npc;
+        npc.now.needState.shortNeed.ecTimeLine.baseMoneyList.Add(this);
+    }
+    public void RemoveBelong()
+    {
+        now.belong.now.needState.shortNeed.ecTimeLine.baseMoneyList.Remove(this);
+        now.belong = null;
+    }
+
+    public virtual float effect()
+    {
+        return 1;
     }
 }
 

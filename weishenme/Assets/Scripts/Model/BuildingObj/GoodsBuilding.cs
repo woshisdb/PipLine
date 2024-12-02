@@ -356,6 +356,11 @@ public class GoodsBuildingObj : BuildingObj, EmploymentFactory
         }, nowUI));
         return ret;
     }
+
+    public override float effect()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 

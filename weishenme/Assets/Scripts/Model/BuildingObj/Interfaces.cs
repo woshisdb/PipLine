@@ -227,3 +227,23 @@ public interface INpc:INeedWork,INeedGoods
 {
 
 }
+/// <summary>
+/// 影响短期收入
+/// </summary>
+public interface IEffectShort
+{
+    /// <summary>
+    /// 对收入的影响
+    /// </summary>
+    /// <returns></returns>
+    public float effect();
+}
+
+public interface IEffectLong
+{
+    /// <summary>
+    /// 对收入的影响
+    /// </summary>
+    /// <returns></returns>
+    public float effect();
+}

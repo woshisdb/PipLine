@@ -36,35 +36,11 @@ public class WorkContract:EveryDayContract
     }
 }
 
-public class GoodsContract : EveryDayContract
-{
-    /// <summary>
-    /// 工作状态
-    /// </summary>
-    public ContractState state;
-    public NeedGoods needGoods;
-    public SendGoods sendGoods;
-    /// <summary>
-    /// A给B的收入
-    /// </summary>
-    public Float money;
-    public GoodsContract(NeedGoods needGoods, SendGoods sendGoods) : base(needGoods.obj.GetNpc(), sendGoods.obj.GetNpc(), null)
-    {
-        this.needGoods = needGoods;
-        this.sendGoods = sendGoods;
-        this.money = (needGoods.maxMoney + sendGoods.minMoney) / 2;
-    }
-
-    public override void DayUpdate()
-    {
-
-    }
-}
 
 /// <summary>
 /// 可以提供工作
 /// </summary>
-public class NeedWork
+public class NeedWork : IEffectShort
 {
     /// <summary>
     /// 对象
@@ -76,6 +52,7 @@ public class NeedWork
     public float minMoney;
     public SendWork sender;
     public ProdEnum prodEnum;
+    public float predMoney;
     public bool hasWork { get { return sender!=null; } }
     /// <summary>
     /// 满足度
@@ -88,53 +65,33 @@ public class NeedWork
     {
         return obj.nowPos();
     }
-    /// <summary>
-    /// 对距离的满足度
-    ///// </summary>
-    //public Func<SendWork, float> pathSatifyRate;
-    ///// <summary>
-    ///// 对金钱的满足程度
-    ///// </summary>
-    //public Func<SendWork, float> moneySatify;
-    ///// <summary>
-    ///// 对工作内容本身的满足度
-    ///// </summary>
-    //public Func<SendWork, float> workStateSatify;
-    //public Func<float[]> getRates;
+    public void GetSend(SendWork sendWork)
+    {
+        this.sender = sendWork;
+    }
+    public void LostSend(SendWork sendWork)
+    {
+        this.sender = null;
+    }
+
+    public float effect()
+    {
+        if (hasWork)
+        {
+            return 0;
+        }
+        else
+        {
+            return sender.maxMoney;//自己的收入
+        }
+    }
+
     public NeedWork()
     {
-        //pathSatifyRate = f1;
-        //moneySatify= f2;
-        //workStateSatify = f3;
-        //satifyRate = new Func<SendWork, float>(e => {
-        //    var path=pathSatifyRate(e);
-        //    var money = moneySatify(e);
-        //    var work = workStateSatify(e);
-        //    var satRate=Math.Min(path,Math.Min(money, work)); 
-        //    if(satRate<=0)
-        //    return 0;
-        //    var rates=getRates();
-        //    satRate = path* rates[0] + money* rates[1] + work* rates[2];
-        //    return satRate;
-        //});
     }
     public NeedWork(INeedWork needer)
     {
         obj = needer;
-        //moneySatify = new Func<SendWork, float>(e =>
-        //{
-        //    return Market.Instance.PredicateRealWorkMoney(e,this) - minMoney;
-        //});
-        //pathSatifyRate = new Func<SendWork, float>(e =>
-        //{
-        //    var inf= Market.Instance.NpcDistanceCost(obj.nowPos(),e.obj.aimPos());
-        //    var goTime = inf.Item1*2;//通勤时间
-        //    return ((float)(goTime+e.workTime))/24f;//总的工作时间
-        //});
-        //workStateSatify = new Func<SendWork, float>(e =>
-        //{
-        //    return (float)(3*24-e.wastEnerge);
-        //});
     }
 }
 /// <summary>
@@ -175,13 +132,13 @@ public class SendWork
         if (remainRate > 0)
         {
             needWorks.Add(needWork);
-            needWork.sender = this;//已经匹配了
+            needWork.GetSend(this);
         }
     }
     public void RemoveNeeder(NeedWork needWork)
     {
         needWorks.Remove(needWork);
-        needWork.sender =null;
+        needWork.LostSend(this);
     }
     [ShowInInspector,ReadOnly]
     public float remainRate { get {//剩余的空位
@@ -257,7 +214,7 @@ public enum NeedGoodsEnum
 /// <summary>
 /// 可以发送订单
 /// </summary>
-public class NeedGoods
+public class NeedGoods:IEffectShort
 {
     /// <summary>
     /// 商品
@@ -286,6 +243,12 @@ public class NeedGoods
     {
         return obj.NeedGoodsSatifyRate(sendGoods);
     }
+
+    public float effect()
+    {
+        return maxMoney;
+    }
+
     public NeedGoods(INeedGoods needer)
     {
         obj = needer;

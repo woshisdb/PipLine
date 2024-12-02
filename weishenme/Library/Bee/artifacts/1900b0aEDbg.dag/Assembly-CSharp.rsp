@@ -397,7 +397,6 @@
 "Assets/Scripts/Model/NpcObj/Actions/Action.cs"
 "Assets/Scripts/Model/NpcObj/Contracts/Contract.cs"
 "Assets/Scripts/Model/NpcObj/Contracts/Contracts.cs"
-"Assets/Scripts/Model/NpcObj/LifeStyle.cs"
 "Assets/Scripts/Model/NpcObj/NpcActions/NpcActions.cs"
 "Assets/Scripts/Model/NpcObj/NpcEc.cs"
 "Assets/Scripts/Model/NpcObj/NpcObj.cs"

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class PhysicalState
     /// <summary>
     /// 个人状态,剩余的体力,当前的体力状态
     /// </summary>
-    public int remainEnerge;//决定当前生产力
+    public float remainEnerge;//决定当前生产力
     /// <summary>
     /// 个人状态,身体情况,饥饿导致下降,每一天下降1点,到0则
     /// </summary>
@@ -22,7 +23,66 @@ public class PhysicalState
         this.npcObj = obj;
     }
 }
-
+public class EcTimeLine
+{
+    /// <summary>
+    /// 每日工资的数据
+    /// </summary>
+    public List<IEffectShort> baseMoneyList;
+    /// <summary>
+    /// 基本的每日收入
+    /// </summary>
+    public float baseMoney { get
+        {
+            float ret=0;
+            foreach(var item in baseMoneyList)
+            {
+                ret += item.effect();
+            }
+            return ret;
+        } }
+    public class EcTimeLineItem
+    {
+        public int time;
+        public EcTimeLine timeLine;
+        public float value;
+        public float getValue
+        {
+            get
+            {
+                return timeLine.baseMoney+value;
+            }
+        }
+        public EcTimeLineItem(EcTimeLine timeLine, int time)
+        {
+            this.timeLine = timeLine;
+            this.time = time;
+        }
+    }
+    /// <summary>
+    /// 循环队列
+    /// </summary>
+    public CircularQueue<EcTimeLineItem> ecInfos;
+    public NpcObj npc;
+    public EcTimeLine(NpcObj npc)
+    {
+        this.npc = npc;
+        ecInfos = new CircularQueue<EcTimeLineItem>(30);
+        for(int i=0;i<30;i++)
+        {
+            ecInfos.Enqueue(new EcTimeLineItem(this,i));
+        }
+        baseMoneyList = new List<IEffectShort>();
+        ///工作会影响短期收入
+        baseMoneyList.Add(npc.now.ecState.needWork);
+        ///添加一系列的商品
+        baseMoneyList.AddRange(npc.now.ecState.needGoods);
+    }
+    public float GetRate(int day)
+    {
+        return baseMoney * day;
+    }
+}
 public class EcState
 {
     /// <summary>
@@ -49,40 +109,105 @@ public class EcState
     }
 }
 
-public class ProdState
+public class NeedItem
+{
+    public NpcObj npc;
+    public NeedItem(NpcObj npc)
+    {
+        this.npc = npc;
+    }
+}
+
+public class JoyNeedItem : NeedItem
 {
     /// <summary>
-    /// 一天的总时长
+    /// 感官刺激
     /// </summary>
-    public int allTime { get { return Meta.dayTime; } }
+    public Float joyRate;
     /// <summary>
-    /// 剩余自由活动时间
+    /// 剩余的金钱
     /// </summary>
-    public int remainTime;
+    public Float money { get { return npc.now.ecState.money; } }
     /// <summary>
-    /// 想要工作的时间
+    /// 剩余的能量
     /// </summary>
-    public int workTime;
-    /// <summary>
-    /// 前往工作地点的时间
-    /// </summary>
-    public int goWorkTime;
-    /// <summary>
-    /// 生活方式
-    /// </summary>
-    public LifeStyle lifeStyle;
-    public NpcObj npcObj;
-    public ProdState(NpcObj npc)
+    public float remainEnerge { get { return npc.now.physicalState.remainEnerge; } }
+    public JoyNeedItem(NpcObj npc) : base(npc)
     {
-        this.npcObj = npc;
+
+    }
+}
+
+/// <summary>
+/// 短期能量需求
+/// </summary>
+public class ShortNeedItem:NeedItem
+{
+    /// <summary>
+    /// 经济的时间线
+    /// </summary>
+    public EcTimeLine ecTimeLine;//关系到自己的收入
+    /// <summary>
+    /// 剩余的金钱
+    /// </summary>
+    public Float money { get { return npc.now.ecState.money; } }
+    /// <summary>
+    /// 剩余的能量
+    /// </summary>
+    public float remainEnerge { get { return npc.now.physicalState.remainEnerge; } }
+    public ShortNeedItem(NpcObj npc) : base(npc)
+    {
+
+    }
+    public float getRate()
+    {
+        return money+ecTimeLine.GetRate(10);//10天内的总收入 
     }
 }
 /// <summary>
-/// 每个人的个人能力
+/// 长期的收入
 /// </summary>
-public class NPcPower
+public class LongTermMoney
 {
+    /// <summary>
+    /// 金钱收入
+    /// </summary>
+    public Func<float> money;
+}
+/// <summary>
+/// 对事业的需求
+/// </summary>
+public class LongNeedItem : NeedItem
+{
+    public LongTermMoney longTermMoney;
+    public LongNeedItem(NpcObj npc) : base(npc)
+    {
 
+    }
+}
+
+public class DreamNeedItem : NeedItem
+{
+    public DreamNeedItem(NpcObj npc) : base(npc)
+    {
+    }
+}
+
+public class NeedState
+{
+    public NpcObj npcObj;
+    public ShortNeedItem shortNeed;
+    public LongNeedItem longNeed;
+    public JoyNeedItem joyNeed;
+    public DreamNeedItem dreamNeed;
+    public NeedState(NpcObj npc)
+    {
+        npcObj = npc;
+    }
+    public float GetRate()
+    {
+        return shortNeed.getRate();
+    }
 }
 
 public class NpcState:BaseState
@@ -93,19 +218,18 @@ public class NpcState:BaseState
     /// </summary>
     public EcState ecState;
     /// <summary>
-    /// 生产力
-    /// </summary>
-    public ProdState prodState;
-    /// <summary>
     /// 身体
     /// </summary>
     public PhysicalState physicalState;
-
+    /// <summary>
+    /// 需求状态
+    /// </summary>
+    public NeedState needState;
     public NpcState(BaseObj obj):base(obj)
     {
         ecState = new EcState((NpcObj)obj);
-        prodState = new ProdState((NpcObj)obj);
         physicalState = new PhysicalState((NpcObj)obj);
+        needState = new NeedState((NpcObj)obj);
     }
 }
 public class NpcEc : EconomicInf

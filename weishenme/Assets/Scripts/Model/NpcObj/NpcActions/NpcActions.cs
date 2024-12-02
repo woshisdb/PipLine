@@ -54,7 +54,7 @@ public class NpcMoveBelongScene : NpcAction
     public NpcMoveBelongScene(NpcObj npc)
     {
         this.npc = npc;
-    }
+    }    
 
     public override bool Condition(NpcObj state)
     {

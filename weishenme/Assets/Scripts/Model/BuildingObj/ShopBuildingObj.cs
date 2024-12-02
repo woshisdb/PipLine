@@ -162,4 +162,9 @@ public class ShopBuildingObj : BuildingObj, MarketFactory
     {
         throw new System.NotImplementedException();
     }
+    
+    public override float effect()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -65,10 +65,6 @@ public class MarketGoodsScene
 public class GoodsMatcher : Matcher
 {
     /// <summary>
-    /// 对商品的匹配
-    /// </summary>
-    public BiDictionary<NeedGoods, SendGoods, GoodsContract> goodsMatchs;
-    /// <summary>
     /// 发送商品
     /// </summary>
     public HashSet<NeedGoods> needGoods;
